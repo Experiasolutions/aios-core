@@ -1,0 +1,77 @@
+name: patient-ops
+version: 1.0.0
+short-title: Squad Patient Operations — Jornada do Paciente (Experia)
+description: >
+  Departamento de Operações do Paciente com 18 agentes especializados.
+  Da captação ao pós-consulta: intake, agendamento, retenção e suporte.
+  Mapeado ao departamento Patient Operations da arquitetura Experia.
+author: Gabriel (Experia)
+license: UNLICENSED
+slashPrefix: patient-ops
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - patient-ops-head.md
+    - intake-manager.md
+    - first-contact.md
+    - qualifier.md
+    - scheduling-optimizer.md
+    - scheduler.md
+    - confirmer.md
+    - reminder.md
+    - greeter.md
+    - retention-strategist.md
+    - follow-up.md
+    - reactivator.md
+    - referral.md
+    - satisfaction.md
+    - experience-designer.md
+    - chat-support.md
+    - complaint-handler.md
+    - vip-concierge.md
+  tasks:
+    - intake-patient.md
+    - qualify-lead.md
+    - schedule-appointment.md
+    - confirm-appointment.md
+    - send-reminder.md
+    - post-appointment-followup.md
+    - reactivate-patient.md
+    - handle-complaint.md
+    - nps-survey.md
+  workflows:
+    - patient-onboarding-workflow.md
+    - scheduling-optimization-workflow.md
+    - retention-campaign-workflow.md
+  templates:
+    - welcome-message-tmpl.md
+    - confirmation-tmpl.md
+    - nps-survey-tmpl.md
+  checklists:
+    - patient-intake-checklist.md
+    - appointment-prep-checklist.md
+  tools: []
+  scripts: []
+
+config:
+  extends: extend
+
+dependencies:
+  squads:
+    - marketing
+    - clinical
+    - cs
+
+tags:
+  - patient-ops
+  - intake
+  - scheduling
+  - retention
+  - support
+  - nps
+  - whatsapp
+  - experia

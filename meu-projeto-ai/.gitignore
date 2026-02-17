@@ -1,0 +1,66 @@
+
+# Environment & Secrets (AIOS)
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# Dependencies (AIOS)
+node_modules/
+node_modules
+
+# Build & Logs (AIOS)
+dist/
+build/
+*.log
+logs/
+
+# IDE & OS (AIOS)
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+
+# AIOS Local (AIOS)
+.aios-core/local/
+.claude/settings.local.json
+.aios/install-log.txt
+
+# Large PDF/EPUB files (Livro de Ouro source material — 57MB+)
+*.pdf
+*.epub
+
+# Runtime data (regenerable via scripts)
+data/memory.json
+data/squad-audit-report.json
+.aios-core/data/rag/
+
+# Tools cloned repos (16K+ files, each has its own .git — causes embedded repo issues)
+tools/integrations/repos/
+tools/integrations/aion-ui/
+tools/integrations/anthropics-skills/
+tools/integrations/chrome-devtools-mcp/
+tools/integrations/claude-mem/
+tools/integrations/claude-skills/
+tools/integrations/compound-engineering/
+tools/integrations/dexter/
+tools/integrations/get-shit-done/
+tools/integrations/miessler-infra/
+tools/integrations/monty/
+tools/integrations/openai-skills/
+tools/integrations/openclaw/
+tools/integrations/opencode/
+tools/integrations/page-index/
+tools/integrations/qmd/
+tools/integrations/shannon/
+tools/integrations/superpowers/
+tools/integrations/tambo/
+tools/anthropics-cookbook/
+tools/claude-skills-dev/
+tools/get-shit-done/
+tools/openai-cookbook/
+
+# Action output (generated at runtime)
+action.json
+context.json

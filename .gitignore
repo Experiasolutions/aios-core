@@ -338,3 +338,19 @@ scripts/glue/
 .claude/setup/
 docs/guides/aios-workflows/
 docs/guides/glue-script-guide.md
+
+# Dependencies (AIOS)
+node_modules
+
+# Build & Logs (AIOS)
+dist/
+build/
+
+# IDE & OS (AIOS)
+.idea/
+*.swp
+
+# AIOS Local (AIOS)
+.aios-core/local/
+.claude/settings.local.json
+.aios/install-log.txt

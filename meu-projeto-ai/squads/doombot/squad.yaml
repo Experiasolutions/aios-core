@@ -1,0 +1,84 @@
+name: doombot
+version: 2.0.0
+short-title: DooMMasteRBot V5 — Revenue Operating System
+description: >
+  Revenue Operating System enterprise-grade com 10 agentes especializados.
+  Herda 7 personas lendárias (ARIA, DOUG, RAYA, UGLY COPY, D'Marco, Doug Offer,
+  Doug.T) e adiciona Revenue Intelligence e Defesa Antifrágil. Opera Cérebro de
+  Cobrança (Planner→Solver→Crítico), Juiz de Caixa (P(aceite) × margem × payback),
+  NMI 2.0 (ofertas em 7 etapas), Arena de Ofertas, Profit Firewall, OPD++ e
+  Creative Brain para maximizar conversão e receita com compliance by-design.
+author: Gabriel (DooMMasteRBot V5)
+license: UNLICENSED
+slashPrefix: doombot
+
+aios:
+  minVersion: "5.0.0"
+  type: squad
+
+components:
+  agents:
+    - doom-master.md
+    - doom-strategist.md
+    - doom-mentor.md
+    - doom-persuader.md
+    - doom-copywriter.md
+    - doom-storyads.md
+    - doom-offers.md
+    - doom-tension.md
+    - doom-revenue.md
+    - doom-security.md
+  tasks:
+    - diagnose-business.md
+    - create-action-plan.md
+    - build-micro-offer.md
+    - rewrite-copy.md
+    - create-storyadd.md
+    - tension-copy.md
+    - persuasion-script.md
+    - launch-war-room.md
+    - analyze-revenue.md
+    - security-assessment.md
+    - run-quality-gate.md
+    - post-deal-ltv.md
+  workflows:
+    - full-campaign-workflow.md
+    - copy-review-workflow.md
+    - war-room-workflow.md
+  checklists:
+    - copy-qa-checklist.md
+    - offer-launch-checklist.md
+    - security-gate-checklist.md
+  templates:
+    - micro-offer-tmpl.md
+    - storyadd-tmpl.md
+    - persuasion-script-tmpl.md
+    - mission-brief-tmpl.md
+  data:
+    - doombot-kb.md
+  tools: []
+  scripts: []
+
+config:
+  extends: extend
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+
+dependencies:
+  node: []
+  python: []
+  squads: []
+
+tags:
+  - revenue-ops
+  - monetizacao
+  - copywriting
+  - mentoria
+  - ofertas
+  - storyads
+  - conversao
+  - doombot
+  - persuasao
+  - security
+  - antifragile
+  - enterprise
