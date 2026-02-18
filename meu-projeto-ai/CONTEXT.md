@@ -124,7 +124,7 @@ Categories: IDS(3), QA Pipeline(20+), Dev Workflow(10+), Spec Writing(5), Databa
 
 Cloned in `tools/integrations/`. Wave 1 (integrated): anthropics/skills, claude-mem, get-shit-done, openai/skills, claude-skills. Waves 2-4 (cloned, not integrated): openclaw, opencode, shannon, tambo, aion-ui, +8 more.
 
-**Skill→Clone mappings:** mcp-builder→Harrison Chase, webapp-testing→Silas Alberti, frontend-design→Chris Lattner, security-reviewer→Eliezer Yudkowsky, rag-architect→Matei Zaharia, prompt-engineer→Andrew Ng, architecture-designer→Pedro Valério
+**Skill→Clone mappings:** mcp-builder→Harrison Ch Oase, webapp-testing→Silas Alberti, frontend-design→Chris Lattner, security-reviewer→Eliezer Yudkowsky, rag-architect→Matei Zaharia, prompt-engineer→Andrew Ng, architecture-designer→Pedro Valério
 
 ---
 

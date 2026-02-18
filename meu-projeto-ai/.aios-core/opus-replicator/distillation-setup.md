@@ -53,7 +53,36 @@ Use Opus 4.6 to solve these 5 diverse tasks. Save the FULL output (reasoning + r
 
 ---
 
+## 🔄 AUTOMATIC HARVEST PROTOCOL (Karpathy Patch)
+> *"Software 2.0 is about curating data, not writing code."*
+
+1.  **Trigger:** Whenever the user rates an output 10/10 (e.g., "Perfect," "Great job").
+2.  **Action:** The system automatically executes `scripts/harvest-gold.js`.
+3.  **Process:**
+    - Extracts the prompt + reasoning + final output.
+    - Scrubs PII (Project IDs, User Names).
+    - Formats into the **Compressed Thought Schema** (below).
+    - Saves to `golden-examples/auto-harvested/`.
+
+## 🧠 COMPRESSED THOUGHT SCHEMA (Sutskever Patch)
+> *"Prediction is compression. Store the Insight, not the Fluff."*
+
+When saving Golden Examples manually or automatically, use this schema:
+
+```markdown
+<trace>
+Problem: [Dense, 1-sentence description of the core difficulty]
+Insight: [The key pivot that solved it - the "Aha!" moment]
+Reasoning: [Step-by-step logic, stripped of conversational fluff]
+Solution: [The final output]
+</trace>
+```
+
+**Why?** This maximizes "Insight Density" per token injected into Gemini.
+
+---
+
 ## 🔄 MAINTENANCE
 
-- **Weekly:** Add 1 new Golden Example from a successful session.
-- **Monthly:** Prune examples that are no longer relevant (e.g., old architecture).
+- **Weekly:** Review `golden-examples/auto-harvested/`. Promote the best to `reasoning/`, `execution/`, or `evaluation/`.
+- **Monthly:** Prune examples that are no longer generating Wins.

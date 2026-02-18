@@ -6,7 +6,8 @@
     "scripts": {
         "bridge": "node scripts/experia_bridge.js",
         "bridge:test": "node scripts/experia_bridge.js test/context-whatsapp.json",
-        "bridge:watch": "node scripts/bridge-watcher.js"
+        "bridge:watch": "node scripts/bridge-watcher.js",
+        "start:revenue": "node scripts/whatsapp-server.js"
     },
     "dependencies": {
         "@ai-sdk/anthropic": "^3.0.44",
