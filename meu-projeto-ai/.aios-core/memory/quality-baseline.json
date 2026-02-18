@@ -1,54 +1,16 @@
 {
-    "version": "2.0",
-    "initialized": "2026-02-17",
-    "opus_baseline": 8.5,
-    "dimensions": {
-        "clarity": {
-            "target": 8.0,
-            "current": null,
-            "history": []
-        },
-        "depth": {
-            "target": 8.0,
-            "current": null,
-            "history": []
-        },
-        "rigor": {
-            "target": 8.0,
-            "current": null,
-            "history": []
-        },
-        "completeness": {
-            "target": 8.0,
-            "current": null,
-            "history": []
-        },
-        "innovation": {
-            "target": 7.0,
-            "current": null,
-            "history": []
-        },
-        "applicability": {
-            "target": 8.0,
-            "current": null,
-            "history": []
-        },
-        "aios_fitness": {
-            "target": 8.0,
-            "current": null,
-            "history": []
+    "sessions": [
+        {
+            "date": "2026-02-18",
+            "average_score": 0,
+            "tasks_completed": 0,
+            "golden_examples_harvested": 2,
+            "anti_patterns_added": 5,
+            "notes": "Bootstrap session — seed examples and anti-patterns catalog created. Baseline not yet established (no PM3 audit run)."
         }
-    },
-    "thresholds": {
-        "minimum_acceptable": 7.0,
-        "target_average": 8.0,
-        "opus_parity": 8.5,
-        "degradation_alert": -0.5,
-        "improvement_signal": 0.5
-    },
-    "session_history": [],
-    "hivemind_effectiveness": {
-        "most_effective_combinations": [],
-        "notes": "Track which mind clone combinations produce the highest quality scores"
-    }
+    ],
+    "current_baseline": 0,
+    "trend": "establishing",
+    "five_session_rule_trigger": false,
+    "last_updated": "2026-02-18"
 }

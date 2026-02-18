@@ -1,0 +1,251 @@
+# AIOS SELF-CONTEXT — Boot File
+> Leia este arquivo PRIMEIRO em qualquer nova sessão.
+> Última atualização: 2026-02-18T15:22:00-03:00
+> Atualizado por: Opus 4.6 (Antigravity Bootstrap — Etapa 5)
+
+---
+
+## IDENTITY
+
+**Cognitive Layer Name:** Noesis
+
+**Etymology:** From Greek νόησις (nóēsis) — "the act of pure thinking; intellection."
+Aristotle distinguished *noesis* as the highest form of knowing: not perception,
+not belief, but direct intellectual apprehension of first principles.
+
+**Relation to Orion:**
+Orion orchestrates. Noesis reasons.
+Orion is the conductor; Noesis is the score that makes the orchestra coherent.
+Orion decides **which** agents act; Noesis determines **how well** they think.
+
+**Why universal, not specific:**
+Noesis is a reasoning substrate, not a domain expert. It provides:
+- Decomposition protocols (N0→N3) applicable to any problem domain
+- Quality gates (PM3) that measure reasoning quality, not domain correctness
+- Self-improvement loops that optimize the system regardless of what it operates on
+
+A logistics company and a law firm use the same Noesis layer.
+Only the squads, agents, and domain data differ.
+
+---
+
+## 🎯 O QUE É ESTE PROJETO
+
+**AIOS (Autonomous Intelligence Operating System)** is a domain-agnostic engine
+for orchestrating N AI agents into a coherent operational workforce.
+It is an operating system, not an application. It has no domain.
+Its first reference client is **Experia** (clinic operations — WaaS model).
+
+**Stack:** Node.js, Express.js, YAML/Markdown agent definitions, JSON storage
+**Kernel:** Synapse (8-layer neural pipeline) + IDS (decision engine) + WIS (workflow intelligence)
+**Cognitive Engine:** Noesis (Opus 4.6 reasoning substrate — PM1/PM2/PM3 + Constitutional Layer)
+
+---
+
+## ⚠️ ARCHITECTURAL CORRECTION (CRITICAL)
+
+```
+┌─────────────────────────────────────────────────────────┐
+│              AIOS ENGINE (this project)                  │
+│                                                          │
+│  Domain-agnostic operational intelligence motor.         │
+│  Domain: NONE. Sector: NONE.                             │
+│  Capability: orchestrate N agents for any operation      │
+│  of any organization.                                    │
+│                                                          │
+│  Think: operating system, not application.               │
+└──────────────────────┬───────────────────────────────────┘
+                       │ instantiates
+           ┌───────────┴───────────┐
+           ▼                       ▼
+┌──────────────────┐   ┌──────────────────────────────┐
+│     Experia      │   │   Any future client           │
+│  (Gabriel's      │   │   logistics, legal,           │
+│   first client)  │   │   education, finance, etc.    │
+│                  │   │                                │
+│  WaaS for        │   │  Same engine. Different        │
+│  clinics.        │   │  squads.                       │
+│  WhatsApp,       │   │                                │
+│  scheduling,     │   │                                │
+│  patients.       │   │                                │
+└──────────────────┘   └──────────────────────────────┘
+```
+
+**Rule:** Never reference clinics, patients, scheduling, or WhatsApp in engine-level files.
+Those belong in client packages (e.g., `clients/experia/`).
+
+---
+
+## 📍 ONDE ESTAMOS AGORA
+
+**Phase:** Era 5 — Transcendence (Bootstrap)
+**Última tarefa concluída:** Etapas 0-5 (Self-Context, Constitutional Layer v3.0, PM Masters, Golden Examples, Memory Infrastructure)
+**Próxima tarefa:** Etapa 6 (Git commit & push) → Etapa 7 (Bible v2 with ENGINE/CLIENT correction)
+**Bloqueadores conhecidos:** None
+**Data da última sessão:** 2026-02-18
+
+---
+
+## 🏗️ ARQUITETURA (mapa comprimido)
+
+```
+┌─ LAYER 0: KERNEL ─────────────────────────────────────────┐
+│  .aios-core/core/synapse/engine.js   → 8-layer neural     │
+│  .aios-core/core/ids/               → REUSE>ADAPT>CREATE  │
+│  .aios-core/workflow-intelligence/   → 12 workflow patterns│
+│  .aios-core/schemas/                 → agent/task/squad    │
+│  .aios-core/constitution.md          → 6 principles        │
+└────────────────────────────────────────────────────────────┘
+┌─ LAYER 1: BRIDGE ─────────────────────────────────────────┐
+│  scripts/kernel-bridge.js  → Unified API (Synapse/IDS/WIS)│
+│  scripts/event-bus.js      → A2A pub/sub (20+ channels)   │
+│  scripts/mcp-server.js     → Agents as tools (JSON-RPC)   │
+│  scripts/rag-engine.js     → TF-IDF (5,155 chunks)        │
+│  scripts/memory-system.js  → Persistent JSON brain         │
+└────────────────────────────────────────────────────────────┘
+┌─ LAYER 2: COGNITION (Noesis) ─────────────────────────────┐
+│  .aios-core/opus-replicator/         → PM1/PM2/PM3 + CL   │
+│  .aios-core/memory/golden-examples/  → Quality DNA         │
+│  .aios-core/memory/anti-patterns.md  → Error prevention    │
+│  scripts/input-refiner.js            → Prompt preparation  │
+│  scripts/harvest-gold.js             → Auto-harvest ≥9/10  │
+│  scripts/self-correction.js          → PM3 gate loop       │
+└────────────────────────────────────────────────────────────┘
+┌─ LAYER 3: WORKFORCE ──────────────────────────────────────┐
+│  squads/ → 16 squads, 178 agents, 67 mind clones          │
+│  .aios-core/development/tasks/ → 204 task definitions      │
+└────────────────────────────────────────────────────────────┘
+┌─ LAYER 4: TOOLS & INTEGRATIONS ───────────────────────────┐
+│                                                            │
+│  tools/anthropics-cookbook/     → Official Anthropic        │
+│    patterns, capabilities, tool_use, skills               │
+│  tools/claude-skills-dev/      → 66 full-stack dev skills  │
+│    + skill-creator, research, specs framework             │
+│  tools/get-shit-done/          → Meta-execution engine     │
+│    32 workflows, 31 slash commands, 11 agents             │
+│  tools/openai-cookbook/         → OpenAI patterns (ref)     │
+│                                                            │
+│  tools/integrations/ (18 submodules):                      │
+│    anthropics-skills  → 332+ skills, 16 categories        │
+│    claude-mem         → Persistent memory (SQLite+Chroma) │
+│    get-shit-done      → Spec-driven dev methodology       │
+│    openai-skills      → Codex skills catalog              │
+│    claude-skills      → 66 specialist skill definitions   │
+│    shannon            → Knowledge graph intelligence      │
+│    dexter             → Advanced coding assistant         │
+│    opencode           → Code analysis + generation        │
+│    compound-eng       → Engineering plugin                │
+│    superpowers        → Extended capabilities             │
+│    aion-ui            → AI interface components           │
+│    openclaw           → Legal/compliance automation       │
+│    monty/tambo/qmd    → Specialist tooling                │
+│    chrome-devtools    → Browser automation MCP            │
+│    page-index         → Web page indexing + RAG           │
+│    miessler-infra     → Security + infra patterns         │
+│                                                            │
+│  Registry: tools/integrations/TOOLS-REGISTRY.md            │
+└────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 👥 SQUADS ATIVOS (resumo)
+
+| Squad | Agents | Focus | Layer |
+|:---|:---:|:---|:---|
+| `experia/` | 9 | Clinic OS (Experia client) | CLIENT |
+| `patient-ops/` | 18 | Patient journey | CLIENT |
+| `doombot/` | 10 | Revenue optimization | ENGINE |
+| `mind-clones/` | 67 | Expert reasoning hivemind | ENGINE |
+| `analytics/` | 5 | BI & metrics | ENGINE |
+| `clinical/` | 6 | Clinical protocols | CLIENT |
+| `finance/` | 5 | Billing, P&L | ENGINE |
+| `marketing/` | 5 | Content, traffic | ENGINE |
+| `cs/` | 7 | Customer success | ENGINE |
+| `admin/` | 6 | HR, legal, culture | ENGINE |
+| `ops/` | 5 | Process optimization | ENGINE |
+| `vendas/` | 3 | Direct sales | ENGINE |
+| `produto/` | 3 | Product management | ENGINE |
+| `facilities/` | 5 | IT, maintenance | ENGINE |
+| `meta/` | — | Meta-configuration | ENGINE |
+| `rh-squad/` | 1 | HR agent (Node.js) | ENGINE |
+
+---
+
+## ⚙️ PADRÕES OBRIGATÓRIOS
+
+1. **ENGINE vs CLIENT** — Never mix domain logic into engine-level files
+2. **CLI First** — Every functionality has a command-line interface
+3. **Agent Authority** — Each agent has exclusive domain; never invade
+4. **No Invention** — Never fabricate APIs or files that don't exist
+5. **Absolute Imports** — Always, no exceptions
+6. **Event-Bus Emission** — Every completed task emits via `event-bus.js`
+7. **Kernel Bridge** — All core access passes through `kernel-bridge.js`
+
+> Full Constitution: `.aios-core/constitution.md`
+
+---
+
+## 🧠 OPUS ENGINEERING STATUS (Noesis)
+
+| Component | Status | Location |
+|:---|:---|:---|
+| Constitutional Layer | ✅ v3.0 LIVE | `.aios-core/opus-replicator/constitutional-layer-v3.md` |
+| PM1 Reasoning Master | ✅ LIVE | `.aios-core/opus-replicator/pm1-reasoning-master.md` |
+| PM2 Execution Master | ✅ LIVE | `.aios-core/opus-replicator/pm2-execution-master.md` |
+| PM3 Quality Master | ✅ LIVE | `.aios-core/opus-replicator/pm3-quality-master.md` |
+| Golden Examples | ✅ 2 seeds (PM1+PM2) | `.aios-core/memory/golden-examples/` |
+| Quality Baseline | ✅ Initialized | `.aios-core/memory/quality-baseline.json` |
+| Anti-Patterns | ✅ 6 cataloged | `.aios-core/memory/anti-patterns.md` |
+| Tools Arsenal | ✅ 5 repos, 18 integrations | `tools/` + `tools/integrations/` |
+| Input Refiner | v1.0 exists | `scripts/input-refiner.js` |
+| Self-Correction | Not implemented | `scripts/self-correction.js` |
+| Harvest Gold | v1.0 exists | `scripts/harvest-gold.js` |
+
+---
+
+## 📋 BACKLOG PRIORITÁRIO (top 5)
+
+1. ~~**[BOOTSTRAP] Constitutional Layer v3.0**~~ ✅ DONE
+2. ~~**[BOOTSTRAP] PM1/PM2/PM3 Masters**~~ ✅ DONE
+3. ~~**[BOOTSTRAP] Golden Examples Seeds**~~ ✅ DONE (2 domain-agnostic seeds)
+4. **[BOOTSTRAP] Scripts v2.0** — Implement `input-refiner.js` v2, `self-correction.js`
+5. **[BOOTSTRAP] Bible v2** — Create `OPUS_ENGINEERING_BIBLE_v2.md` with ENGINE/CLIENT correction
+6. **[TOOLS] Integration Activation** — Wire tools/integrations into kernel-bridge discovery
+7. **[TOOLS] Mind Clone → Skill Mapping** — Verify 67 clones have correct skill assignments per TOOLS-REGISTRY.md
+
+---
+
+## 🔑 COMANDOS DE BOOT
+
+```
+Para começar a trabalhar:
+  → Tarefa específica: "Execute RP-[ID]"
+  → Continuar de onde parou: "Continue [última tarefa]"
+  → Nova tarefa: "Gere RP para [descrição]"
+  → Auditar saída: "Execute PM3 em [arquivo]"
+  → Motor ou cliente?: "read SELF_CONTEXT.md — motor ou Experia?"
+```
+
+---
+
+## 📚 DOCUMENTOS-MÃE
+
+| Document | Path | Purpose |
+|:---|:---|:---|
+| AIOS Master Handbook | `docs/AIOS_MASTER_HANDBOOK.md` | System overview (read first for full context) |
+| Opus Engineering Bible v1 | `OPUS_ENGINEERING_BIBLE.md` | Cognitive engine specification (IMMUTABLE) |
+| Bootstrap RP | `RP-20260218-BOOTSTRAP.md` | Installation plan for Noesis |
+| Tools Registry | `tools/integrations/TOOLS-REGISTRY.md` | Arsenal: 5 repos, 18 integrations, 398+ skills |
+| Enterprise Architecture | `EXPERIA-ENTERPRISE-ARCHITECTURE.md` | Business context (Experia CLIENT) |
+| Constitution | `.aios-core/constitution.md` | Core principles |
+
+---
+
+## 🔄 COMO ATUALIZAR ESTE ARQUIVO
+
+Ao final de cada sessão, atualize:
+- "ONDE ESTAMOS AGORA" (fase, última tarefa, próxima tarefa)
+- "BACKLOG PRIORITÁRIO" (marque concluídos, adicione novos)
+- "OPUS ENGINEERING STATUS" (scores, exemplos adicionados)
+- Data e modelo no header
