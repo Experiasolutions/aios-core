@@ -1,20 +1,33 @@
 {
-    "examples": [
-        {
-            "id": "pm2-2026-02-18-kernel-bridge",
-            "file": "2026-02-18-kernel-bridge.md",
-            "score": 9.4,
-            "tags": [
-                "node.js",
-                "kernel",
-                "bridge-pattern",
-                "singleton",
-                "domain-agnostic"
-            ],
-            "task_type": "implementation",
-            "squad": "meta",
-            "summary": "Unified kernel-bridge.js connecting Synapse, IDS, and WIS with graceful degradation and zero domain coupling",
-            "why_golden": "Perfect interface abstraction, complete graceful degradation, zero domain vocabulary, exemplary module pattern"
-        }
-    ]
+  "examples": [
+    {
+      "id": "pm2-2026-02-18-kernel-bridge",
+      "file": "2026-02-18-kernel-bridge.md",
+      "score": 9.4,
+      "tags": [
+        "node.js",
+        "kernel",
+        "bridge-pattern",
+        "singleton",
+        "domain-agnostic"
+      ],
+      "task_type": "implementation",
+      "squad": "meta",
+      "summary": "Unified kernel-bridge.js connecting Synapse, IDS, and WIS with graceful degradation and zero domain coupling",
+      "why_golden": "Perfect interface abstraction, complete graceful degradation, zero domain vocabulary, exemplary module pattern"
+    },
+    {
+      "id": "pm2-2026-02-18-implement-kernel-bridge-sub-bridge-for",
+      "file": "2026-02-18-implement-kernel-bridge-sub-bridge-for.md",
+      "score": 9.5,
+      "tags": [
+        "pm2",
+        "bridge-pattern",
+        "kernel"
+      ],
+      "task_type": "implementation",
+      "summary": "implement kernel-bridge sub-bridge for tools discovery",
+      "why_golden": "Perfect PM3 score, zero anti-patterns, complete implementation"
+    }
+  ]
 }
