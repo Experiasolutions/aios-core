@@ -1,7 +1,7 @@
 # AIOS SELF-CONTEXT — Boot File
 > Leia este arquivo PRIMEIRO em qualquer nova sessão.
-> Última atualização: 2026-02-18T15:22:00-03:00
-> Atualizado por: Opus 4.6 (Antigravity Bootstrap — Etapa 5)
+> Última atualização: 2026-02-18T15:32:00-03:00
+> Atualizado por: Opus 4.6 (Antigravity Bootstrap — Complete)
 
 ---
 
@@ -79,8 +79,8 @@ Those belong in client packages (e.g., `clients/experia/`).
 ## 📍 ONDE ESTAMOS AGORA
 
 **Phase:** Era 5 — Transcendence (Bootstrap)
-**Última tarefa concluída:** Etapas 0-5 (Self-Context, Constitutional Layer v3.0, PM Masters, Golden Examples, Memory Infrastructure)
-**Próxima tarefa:** Etapa 6 (Git commit & push) → Etapa 7 (Bible v2 with ENGINE/CLIENT correction)
+**Última tarefa concluída:** Etapas 0-7 (Full bootstrap: Self-Context, CL v3, PM Masters, Golden Examples, Memory, Scripts v2, Bible v2)
+**Próxima tarefa:** Etapa 8 (Tools integration activation) → Etapa 9 (Mind Clone → Skill mapping)
 **Bloqueadores conhecidos:** None
 **Data da última sessão:** 2026-02-18
 
@@ -198,8 +198,8 @@ Those belong in client packages (e.g., `clients/experia/`).
 | Quality Baseline | ✅ Initialized | `.aios-core/memory/quality-baseline.json` |
 | Anti-Patterns | ✅ 6 cataloged | `.aios-core/memory/anti-patterns.md` |
 | Tools Arsenal | ✅ 5 repos, 18 integrations | `tools/` + `tools/integrations/` |
-| Input Refiner | v1.0 exists | `scripts/input-refiner.js` |
-| Self-Correction | Not implemented | `scripts/self-correction.js` |
+| Input Refiner | ✅ v2.0 LIVE | `scripts/input-refiner.js` |
+| Self-Correction | ✅ v1.0 LIVE | `scripts/self-correction.js` |
 | Harvest Gold | v1.0 exists | `scripts/harvest-gold.js` |
 
 ---
@@ -209,8 +209,8 @@ Those belong in client packages (e.g., `clients/experia/`).
 1. ~~**[BOOTSTRAP] Constitutional Layer v3.0**~~ ✅ DONE
 2. ~~**[BOOTSTRAP] PM1/PM2/PM3 Masters**~~ ✅ DONE
 3. ~~**[BOOTSTRAP] Golden Examples Seeds**~~ ✅ DONE (2 domain-agnostic seeds)
-4. **[BOOTSTRAP] Scripts v2.0** — Implement `input-refiner.js` v2, `self-correction.js`
-5. **[BOOTSTRAP] Bible v2** — Create `OPUS_ENGINEERING_BIBLE_v2.md` with ENGINE/CLIENT correction
+4. ~~**[BOOTSTRAP] Scripts v2.0**~~ ✅ DONE (input-refiner v2 + self-correction)
+5. ~~**[BOOTSTRAP] Bible v2**~~ ✅ DONE (ENGINE/CLIENT correction addendum)
 6. **[TOOLS] Integration Activation** — Wire tools/integrations into kernel-bridge discovery
 7. **[TOOLS] Mind Clone → Skill Mapping** — Verify 67 clones have correct skill assignments per TOOLS-REGISTRY.md
 
@@ -235,6 +235,7 @@ Para começar a trabalhar:
 |:---|:---|:---|
 | AIOS Master Handbook | `docs/AIOS_MASTER_HANDBOOK.md` | System overview (read first for full context) |
 | Opus Engineering Bible v1 | `OPUS_ENGINEERING_BIBLE.md` | Cognitive engine specification (IMMUTABLE) |
+| Opus Engineering Bible v2 | `OPUS_ENGINEERING_BIBLE_v2.md` | ENGINE/CLIENT correction addendum (TAKES PRECEDENCE) |
 | Bootstrap RP | `RP-20260218-BOOTSTRAP.md` | Installation plan for Noesis |
 | Tools Registry | `tools/integrations/TOOLS-REGISTRY.md` | Arsenal: 5 repos, 18 integrations, 398+ skills |
 | Enterprise Architecture | `EXPERIA-ENTERPRISE-ARCHITECTURE.md` | Business context (Experia CLIENT) |
