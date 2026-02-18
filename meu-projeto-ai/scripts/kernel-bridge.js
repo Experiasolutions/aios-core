@@ -1,7 +1,18 @@
 #!/usr/bin/env node
 
+/**
+ * @module kernel-bridge
+ * @version 1.1.0
+ * @purpose Unified bridge connecting .aios-core kernel modules (Synapse, IDS, WIS)
+ *          and tools arsenal to the scripts layer. Provides singleton API with
+ *          lazy initialization and graceful degradation.
+ * @inputs  .aios-core/core/, .synapse/, tools/ directory structures
+ * @outputs Unified bridge object with sub-bridges for each kernel module
+ * @dependencies tools-bridge.js (lazy-loaded)
+ */
+
 // AIOS Kernel Bridge — Thin wrapper connecting .aios-core modules to scripts layer
-// Provides unified API for Synapse, IDS, and WIS kernel modules.
+// Provides unified API for Synapse, IDS, WIS, and Tools kernel modules.
 
 const path = require('path');
 const fs = require('fs');
@@ -185,19 +196,67 @@ function createWISBridge() {
     };
 }
 
+// ── Tools Bridge (Lazy Import) ───────────────────────────────
+// WHY: tools-bridge is in the same scripts/ directory but loaded lazily
+// to avoid scanning tools/ filesystem unless actually needed.
+
+function createToolsBridgeProxy() {
+    let _toolsBridge = null;
+
+    function getToolsBridge() {
+        if (!_toolsBridge) {
+            try {
+                const { createToolsBridge } = require(path.join(__dirname, 'tools-bridge'));
+                _toolsBridge = createToolsBridge();
+            } catch {
+                _toolsBridge = {
+                    available: false,
+                    getDiscovery: () => ({ available: false, repos: [], integrations: [], allSkills: [], totalSkills: 0 }),
+                    getRepos: () => [],
+                    getIntegrations: () => [],
+                    getSkillCount: () => 0,
+                    searchSkills: () => [],
+                    getSkillById: () => null,
+                    loadSkillContent: () => null,
+                    getHealth: () => ({ available: false }),
+                    refresh: () => ({ available: false }),
+                };
+            }
+        }
+        return _toolsBridge;
+    }
+
+    // WHY: Proxy pattern — delegate all calls to the lazily-loaded bridge
+    return {
+        get available() { return getToolsBridge().available; },
+        getDiscovery() { return getToolsBridge().getDiscovery(); },
+        getRepos() { return getToolsBridge().getRepos(); },
+        getIntegrations() { return getToolsBridge().getIntegrations(); },
+        getSkillCount() { return getToolsBridge().getSkillCount(); },
+        searchSkills(q) { return getToolsBridge().searchSkills(q); },
+        getSkillById(id) { return getToolsBridge().getSkillById(id); },
+        loadSkillContent(id) { return getToolsBridge().loadSkillContent(id); },
+        getHealth() { return getToolsBridge().getHealth(); },
+        refresh() { return getToolsBridge().refresh(); },
+    };
+}
+
 // ── Unified Bridge ───────────────────────────────────────────
 
 function createKernelBridge() {
     const synapse = createSynapseBridge();
     const ids = createIDSBridge();
     const wis = createWISBridge();
+    const tools = createToolsBridgeProxy();
 
     return {
         synapse,
         ids,
         wis,
+        tools,
 
         getSystemHealth() {
+            const toolsHealth = tools.getHealth();
             return {
                 timestamp: new Date().toISOString(),
                 modules: {
@@ -216,6 +275,13 @@ function createKernelBridge() {
                         workflows: wis.available ? wis.getWorkflowNames() : [],
                         stats: wis.available ? wis.getStats() : null,
                         hasLearning: wis.available ? wis.hasLearning() : false,
+                    },
+                    tools: {
+                        available: tools.available,
+                        repos: toolsHealth.repos || 0,
+                        integrations: toolsHealth.integrations || 0,
+                        skills: toolsHealth.skills || 0,
+                        registryExists: toolsHealth.registryExists || false,
                     },
                 },
                 overall: synapse.available && ids.available && wis.available
