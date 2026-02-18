@@ -1,7 +1,7 @@
 # AIOS SELF-CONTEXT — Boot File
 > Leia este arquivo PRIMEIRO em qualquer nova sessão.
-> Última atualização: 2026-02-18T15:32:00-03:00
-> Atualizado por: Opus 4.6 (Antigravity Bootstrap — Complete)
+> Última atualização: 2026-02-18T16:12:00-03:00
+> Atualizado por: Opus 4.6 (Bootstrap Etapas 0-10 COMPLETE + Phase 3 RP Generated)
 
 ---
 
@@ -194,25 +194,25 @@ Those belong in client packages (e.g., `clients/experia/`).
 | PM1 Reasoning Master | ✅ LIVE | `.aios-core/opus-replicator/pm1-reasoning-master.md` |
 | PM2 Execution Master | ✅ LIVE | `.aios-core/opus-replicator/pm2-execution-master.md` |
 | PM3 Quality Master | ✅ LIVE | `.aios-core/opus-replicator/pm3-quality-master.md` |
-| Golden Examples | ✅ 2 seeds (PM1+PM2) | `.aios-core/memory/golden-examples/` |
+| Golden Examples | ✅ 3 total (2 seeds + 1 auto) | `.aios-core/memory/golden-examples/` |
 | Quality Baseline | ✅ Initialized | `.aios-core/memory/quality-baseline.json` |
 | Anti-Patterns | ✅ 6 cataloged | `.aios-core/memory/anti-patterns.md` |
-| Tools Arsenal | ✅ 5 repos, 18 integrations | `tools/` + `tools/integrations/` |
-| Input Refiner | ✅ v2.0 LIVE | `scripts/input-refiner.js` |
-| Self-Correction | ✅ v1.0 LIVE | `scripts/self-correction.js` |
-| Harvest Gold | v1.0 exists | `scripts/harvest-gold.js` |
+| Tools Arsenal | ✅ 4 repos, 18 integrations, 163 skills | `tools/` + `tools/integrations/` |
+| Tools Bridge | ✅ v1.0 LIVE (10/10 PM3) | `scripts/tools-bridge.js` |
+| Skill Mapper | ✅ v1.0 LIVE (10/10 PM3) | `scripts/skill-mapper.js` |
+| Input Refiner | ✅ v2.0 LIVE (9.3/10 PM3) | `scripts/input-refiner.js` |
+| Self-Correction | ✅ v1.0 LIVE (8.6/10 PM3) | `scripts/self-correction.js` |
+| Harvest Gold | ✅ v2.0 LIVE (9.8/10 PM3) | `scripts/harvest-gold.js` |
 
 ---
 
 ## 📋 BACKLOG PRIORITÁRIO (top 5)
 
-1. ~~**[BOOTSTRAP] Constitutional Layer v3.0**~~ ✅ DONE
-2. ~~**[BOOTSTRAP] PM1/PM2/PM3 Masters**~~ ✅ DONE
-3. ~~**[BOOTSTRAP] Golden Examples Seeds**~~ ✅ DONE (2 domain-agnostic seeds)
-4. ~~**[BOOTSTRAP] Scripts v2.0**~~ ✅ DONE (input-refiner v2 + self-correction)
-5. ~~**[BOOTSTRAP] Bible v2**~~ ✅ DONE (ENGINE/CLIENT correction addendum)
-6. **[TOOLS] Integration Activation** — Wire tools/integrations into kernel-bridge discovery
-7. **[TOOLS] Mind Clone → Skill Mapping** — Verify 67 clones have correct skill assignments per TOOLS-REGISTRY.md
+1. **[PHASE 3] WhatsApp Revenue Bridge** — `RP-20260218-PHASE3-WHATSAPP.md` (session-store, intent-classifier, response-builder, whatsapp-server v2)
+2. **[PHASE 3] Evolution API Integration** — Auto-reply loop (receive → classify → respond)
+3. **[PHASE 3] First Real $ Transaction** — End-to-end test with live clinic
+4. ~~**[BOOTSTRAP] All Etapas 0-10**~~ ✅ DONE (8 commits, 3,000+ lines)
+5. ~~**[TOOLS] Integration + Skill Mapping**~~ ✅ DONE (163 skills, 52% clone coverage)
 
 ---
 
@@ -236,8 +236,9 @@ Para começar a trabalhar:
 | AIOS Master Handbook | `docs/AIOS_MASTER_HANDBOOK.md` | System overview (read first for full context) |
 | Opus Engineering Bible v1 | `OPUS_ENGINEERING_BIBLE.md` | Cognitive engine specification (IMMUTABLE) |
 | Opus Engineering Bible v2 | `OPUS_ENGINEERING_BIBLE_v2.md` | ENGINE/CLIENT correction addendum (TAKES PRECEDENCE) |
-| Bootstrap RP | `RP-20260218-BOOTSTRAP.md` | Installation plan for Noesis |
-| Tools Registry | `tools/integrations/TOOLS-REGISTRY.md` | Arsenal: 5 repos, 18 integrations, 398+ skills |
+| Bootstrap RP | `RP-20260218-BOOTSTRAP.md` | Installation plan for Noesis (COMPLETE ✅) |
+| Phase 3 RP | `RP-20260218-PHASE3-WHATSAPP.md` | WhatsApp Revenue Bridge (NEXT) |
+| Tools Registry | `tools/integrations/TOOLS-REGISTRY.md` | Arsenal: 4 repos, 18 integrations, 163 skills |
 | Enterprise Architecture | `EXPERIA-ENTERPRISE-ARCHITECTURE.md` | Business context (Experia CLIENT) |
 | Constitution | `.aios-core/constitution.md` | Core principles |
 
