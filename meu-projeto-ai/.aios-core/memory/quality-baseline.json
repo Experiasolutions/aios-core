@@ -1,0 +1,54 @@
+{
+    "version": "2.0",
+    "initialized": "2026-02-17",
+    "opus_baseline": 8.5,
+    "dimensions": {
+        "clarity": {
+            "target": 8.0,
+            "current": null,
+            "history": []
+        },
+        "depth": {
+            "target": 8.0,
+            "current": null,
+            "history": []
+        },
+        "rigor": {
+            "target": 8.0,
+            "current": null,
+            "history": []
+        },
+        "completeness": {
+            "target": 8.0,
+            "current": null,
+            "history": []
+        },
+        "innovation": {
+            "target": 7.0,
+            "current": null,
+            "history": []
+        },
+        "applicability": {
+            "target": 8.0,
+            "current": null,
+            "history": []
+        },
+        "aios_fitness": {
+            "target": 8.0,
+            "current": null,
+            "history": []
+        }
+    },
+    "thresholds": {
+        "minimum_acceptable": 7.0,
+        "target_average": 8.0,
+        "opus_parity": 8.5,
+        "degradation_alert": -0.5,
+        "improvement_signal": 0.5
+    },
+    "session_history": [],
+    "hivemind_effectiveness": {
+        "most_effective_combinations": [],
+        "notes": "Track which mind clone combinations produce the highest quality scores"
+    }
+}
