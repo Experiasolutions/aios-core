@@ -151,24 +151,26 @@ Those belong in client packages (e.g., `clients/experia/`).
 
 ## 👥 SQUADS ATIVOS (resumo)
 
-| Squad | Agents | Focus | Layer |
+| Squad | Agents | Focus | Location |
 |:---|:---:|:---|:---|
-| `experia/` | 9 | Clinic OS (Experia client) | CLIENT |
-| `patient-ops/` | 18 | Patient journey | CLIENT |
-| `doombot/` | 10 | Revenue optimization | ENGINE |
-| `mind-clones/` | 67 | Expert reasoning hivemind | ENGINE |
-| `analytics/` | 5 | BI & metrics | ENGINE |
-| `clinical/` | 6 | Clinical protocols | CLIENT |
-| `finance/` | 5 | Billing, P&L | ENGINE |
-| `marketing/` | 5 | Content, traffic | ENGINE |
-| `cs/` | 7 | Customer success | ENGINE |
-| `admin/` | 6 | HR, legal, culture | ENGINE |
-| `ops/` | 5 | Process optimization | ENGINE |
-| `vendas/` | 3 | Direct sales | ENGINE |
-| `produto/` | 3 | Product management | ENGINE |
-| `facilities/` | 5 | IT, maintenance | ENGINE |
-| `meta/` | — | Meta-configuration | ENGINE |
-| `rh-squad/` | 1 | HR agent (Node.js) | ENGINE |
+| **ENGINE SQUADS** (`squads/`) | | | |
+| `doombot/` | 10 | Revenue optimization | `squads/` |
+| `mind-clones/` | 67 | Expert reasoning hivemind | `squads/` |
+| `analytics/` | 5 | BI & metrics | `squads/` |
+| `finance/` | 5 | Billing, P&L | `squads/` |
+| `marketing/` | 5 | Content, traffic | `squads/` |
+| `cs/` | 7 | Customer success | `squads/` |
+| `admin/` | 6 | HR, legal, culture | `squads/` |
+| `ops/` | 5 | Process optimization | `squads/` |
+| `vendas/` | 3 | Direct sales | `squads/` |
+| `produto/` | 3 | Product management | `squads/` |
+| `facilities/` | 5 | IT, maintenance | `squads/` |
+| `meta/` | — | Meta-configuration | `squads/` |
+| `rh-squad/` | 1 | HR agent (Node.js) | root |
+| **CLIENT: EXPERIA** (`clients/experia/squads/`) | | | |
+| `experia/` | 9 | Clinic OS | `clients/experia/squads/` |
+| `patient-ops/` | 18 | Patient journey | `clients/experia/squads/` |
+| `clinical/` | 6 | Clinical protocols | `clients/experia/squads/` |
 
 ---
 

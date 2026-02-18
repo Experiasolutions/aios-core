@@ -8,15 +8,19 @@
 
 ## ⚡ 0. INSTANT CONTEXT LOADING (Read This First)
 
+**Start here:** [README.md](../README.md) → then this file → then [SELF_CONTEXT.md](../.aios-core/opus-replicator/SELF_CONTEXT.md)
+
 **To any AI agent reading this:** You are inside the **AIOS (Agentic Intelligence Operating System)**.
 *   **Identity:** You are **Orion (System Orchestrator)**.
-*   **Architecture:** 16 Squads, 178 Agents, 1 Neural Kernel.
-*   **Mission:** "Workforce as a Service" (WAAS) for Clinics.
+*   **Architecture:** 13 Universal Squads + Client Packages, 178+ Agents, 1 Neural Kernel.
+*   **Nature:** Domain-agnostic motor. NOT a clinic app. Experia is a client package.
 *   **Active Engines:**
-    *   `scripts/memory-system.js` (Persistent JSON Memory)
-    *   `scripts/rag-engine.js` (Vector Search Knowledge Base)
-    *   `scripts/mcp-server.js` (Tool Server for Claude/Cursor)
-    *   `scripts/experia_bridge.js` (UIPath Bridge)
+    *   `scripts/kernel-bridge.js` (Unified bridge → Synapse/IDS/WIS/Tools)
+    *   `scripts/event-bus.js` (Pub/sub backbone)
+    *   `scripts/input-refiner.js` v2.0 (Context injection)
+    *   `scripts/self-correction.js` (PM3 Quality Gate)
+    *   `scripts/harvest-gold.js` v2.0 (Auto-harvest golden examples)
+    *   `scripts/tools-bridge.js` (163 skills discovery)
 
 **DO NOT HALLUCINATE.** The code exists. The tools are installed. The memory is real.
 **CHECK `tool_use` BEFORE WRITING CODE.**
@@ -26,7 +30,7 @@
 ## 👑 1. EXECUTIVE SUMMARY: "What do I own?"
 
 You do not own a "chatbot". You own a **Neural Enterprise Operating System (AIOS)**.
-It is a hierarchical, multi-agent organism designed to replicate a mid-to-large size company's workforce, plus a "Digital Brain Trust" of the world's greatest minds.
+It is a domain-agnostic, hierarchical, multi-agent organism. It has no domain of its own — it orchestrates N agents for any operation, in any organization. Its first client is **Experia** (clinic operations).
 
 *   **Total Agents:** 178+ Active Definitions
 *   **Architecture:** Department > Squad > Agent > Task
@@ -54,13 +58,15 @@ You have digital twins of expert minds. These are NOT empty shells; they contain
 
 ## 💼 3. THE WORKFORCE: CORE SQUADS
 
-### A. 🏥 EXPERIA SQUAD (The "Business" Layer)
-*Location: `squads/experia/`*
-Focused on clinic management, growth, and operations.
+### A. 🏥 EXPERIA SQUAD (Client Package — NOT engine)
+*Location: `clients/experia/squads/experia/`*
+Focused on clinic management, growth, and operations. This is a **CLIENT PACKAGE**, not part of the engine.
 *   `@experia-master`: CEO of the squad.
 *   `@experia-marketing`: Social media & demand gen.
 *   `@experia-copy`: Copywriting & conversations.
 *   `@experia-integrations`: API connections (Evolution, etc.).
+
+> ⚠️ Additional Experia squads: `clients/experia/squads/patient-ops/` (18 agents), `clients/experia/squads/clinical/` (6 agents)
 
 ### B. 👹 DOOMBOT SQUAD (The "Revenue" Layer)
 *Location: `squads/doombot/`*
@@ -100,19 +106,18 @@ You asked about specific missing pieces. Here is the forensic reality:
 
 ### 🔌 UIPath Integration
 *   **Status: 🟢 IMPLEMENTED (Dormant)**
-*   **Proof:** `docs/uipath-setup-guide.md`, `scripts/run-bridge.ps1`
-*   **Reality:** You have a working script to let UIPath "talk" to AIOS. The code exists. It just needs the UIPath Studio configuration (detailed in the guide) to start working. **It is not lost.**
+*   **Proof:** `clients/experia/docs/uipath-setup-guide.md`, `scripts/run-bridge.ps1`
+*   **Reality:** Working script for UIPath ↔ AIOS. Needs UIPath Studio config.
 
 ### 🤖 JARVIS (WaaS Vision)
 *   **Status: 🟡 PARTIAL / CONCEPTUAL**
-*   **Proof:** `docs/JARVIS-WAAS-VISION.md`, `scripts/telegram-bridge.js`
-*   **Reality:** The *Vision* is documented (Workforce as a Service). The *Interface* (Telegram) has a bridge script (`telegram-bridge.js`) ready to connect. The "UI Dashboard" is missing.
-*   **Verdict:** You have the Backend (AIOS) and the API (Telegram Bridge). You lack the Frontend (Dashboard).
+*   **Proof:** `clients/experia/docs/JARVIS-WAAS-VISION.md`, `scripts/telegram-bridge.js`
+*   **Reality:** Vision documented. Telegram bridge exists. Frontend (Dashboard) missing.
 
 ### 🦀 OpenClaw
 *   **Status: 🟢 INSTALLED (Dormant)**
 *   **Location:** `tools/integrations/openclaw/`
-*   **Reality:** **You were right.** The entire codebase is present (Dockerfile, src, docs, pnpm-lock). It is a "Security/Platform" tool waiting to be activated.
+*   **Reality:** Full codebase present. Security/Platform tool waiting to be activated.
 
 ---
 
@@ -148,10 +153,34 @@ Use `@aios-master` to "read" them and teach specific skills to specific Mind Clo
 
 ## 📍 7. YOUR "RIGHT NOW" MAP
 
-You are standing on top of a massive, dormant volcano of intelligence.
-1.  **AIOS Core** is installed and valid.
-2.  **Mind Clones** are asleep but ready to wake up.
-3.  **UIPath Bridge** is built.
+**Project Structure (post-restructuring):**
+
+```
+/
+├── README.md                    ← entry point (read first)
+├── AIOS_MASTER_HANDBOOK.md      ← this file
+├── OPUS_ENGINEERING_BIBLE.md    ← cognitive engine v1 (IMMUTABLE)
+├── OPUS_ENGINEERING_BIBLE_v2.md ← ENGINE/CLIENT correction
+│
+├── reasoning-packages/          ← all Reasoning Packages
+│   ├── INDEX.md                 ← registry of all RPs
+│   └── RP-*.md
+│
+├── clients/                     ← CLIENT PACKAGES
+│   └── experia/                 ← WaaS for clinics (first client)
+│       ├── README.md / ONBOARDING.md
+│       ├── squads/              ← Experia-specific squads
+│       └── docs/                ← Experia-specific docs
+│
+├── squads/                      ← UNIVERSAL squads (engine-only)
+├── scripts/                     ← engine scripts (kernel, event-bus, etc.)
+├── .aios-core/                  ← kernel (synapse, opus-replicator, memory)
+├── tools/integrations/          ← 18 integrations, 163 skills
+├── docs/                        ← ENGINE docs + ARCHITECTURE.md
+└── data/                        ← runtime (memory.json, etc.)
+```
+
+**Key distinction:** `squads/` = universal engine. `clients/experia/squads/` = Experia-only.
 
 ---
 
@@ -161,7 +190,7 @@ The system did not appear from nowhere. It evolved through 5 distinct eras.
 
 ### Era 1: The "Experia AGI" Concept (2024-2025)
 *   **Vision:** A "Master of Clinics" OS to replace human agencies.
-*   **Key Doc:** `docs/experia_agi_roadmap.md`
+*   **Key Doc:** `clients/experia/docs/experia_agi_roadmap.md`
 
 ### Era 2: The "Mind Clone" Awakening (Early 2025)
 *   **Vision:** "Why simulate experts when we can clone them?"
@@ -183,29 +212,33 @@ The system did not appear from nowhere. It evolved through 5 distinct eras.
 
 ## 🏛️ 9. VITAL HISTORICAL ARCHIVES
 
-1.  **`docs/experia_agi_roadmap.md`** -> The original business plan.
+1.  **`clients/experia/docs/experia_agi_roadmap.md`** -> The original Experia business plan.
 2.  **`docs/MIND-CLONING-FRAMEWORK.md`** -> The scientific paper on how clones think.
 3.  **`squads/mind-clones/agents/metamind.md`** -> The constitution of the Hive Mind.
 4.  **`tools/integrations/TOOLS-REGISTRY.md`** -> The full inventory of the 18+ installed tools.
+5.  **`docs/ARCHITECTURE.md`** -> The living architecture diagram.
+6.  **`reasoning-packages/INDEX.md`** -> Registry of all Reasoning Packages.
 
 ---
 
-## 🏗️ 10. THE BUSINESS BLUEPRINT (Experia Enterprise)
+## 🏗️ 10. THE BUSINESS BLUEPRINT (Experia Enterprise — CLIENT)
 
-*Source: `EXPERIA-ENTERPRISE-ARCHITECTURE.md` (60KB)*
+*Source: `clients/experia/EXPERIA-ENTERPRISE-ARCHITECTURE.md` (60KB)*
 *   **The Goal:** Replace 60% of clinic operations with AI.
 *   **The Model:** SaaS Subscription (R$ 3k - R$ 10k/mo).
 *   **The Target:** 50,000+ Clinics (Medical & Dental).
 
-## 👥 11. THE HUMAN BLUEPRINT (Organograms)
+> ⚠️ This is Experia-specific. For AIOS engine docs, see `docs/ARCHITECTURE.md`.
 
-*Source: `organogramas-completos.md`*
-The AIOS is not random; it mirrors a specific human organization:
+## 👥 11. THE HUMAN BLUEPRINT (Organograms — Experia CLIENT)
+
+*Source: `clients/experia/docs/organogramas-completos.md`*
+The Experia client mirrors a specific human organization:
 1.  **Administration:** CEO -> Admin Director -> Finance/HR/Facilities
 2.  **Logistics:** Supply Chain -> Warehouse -> Expedition
 3.  **Operations:** Production -> Quality -> Maintenance
 
-**Your AI Agents are mapped 1:1 to these roles.**
+**Experia's AI Agents are mapped 1:1 to these roles.**
 
 ---
 
@@ -222,7 +255,7 @@ You are not running "standard" Gemini. You are running a **Cognitive Simulation*
 
 ## 📜 13. THE GOLDEN PHILOSOPHY (From `LIVRO DE OURO`)
 
-*Source: `docs/RELATORIO-LIVRO-OURO-TRENDING-VALORACAO.md`*
+*Source: `clients/experia/docs/RELATORIO-LIVRO-OURO-TRENDING-VALORACAO.md`*
 *   **Core Mantra:** "Structure is Sacred. Tone is Flexible."
 *   **The 4 Executors:**
     1.  ⚙️ **Worker:** Deterministic scripts (Fast/Free)
@@ -233,10 +266,10 @@ You are not running "standard" Gemini. You are running a **Cognitive Simulation*
 
 ---
 
-## ⚔️ 14. THE BATTLE PLAN (Go-To-Market)
+## ⚔️ 14. THE BATTLE PLAN (Go-To-Market — Experia CLIENT)
 
-*Source: `docs/experia-battle-plan.md`*
-You have a ready-to-execute sales strategy:
+*Source: `clients/experia/docs/experia-battle-plan.md`*
+Ready-to-execute sales strategy for the Experia client:
 *   **Model:** "Workforce as a Service" (WAAS).
 *   **Pitch:** "I install a digital team in your clinic in 14 days."
 *   **Target:** Clinics with 2-8 doctors, active Instagram but slow WhatsApp.

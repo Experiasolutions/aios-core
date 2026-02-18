@@ -40,7 +40,7 @@ bootstrapped em RP-20260218-BOOTSTRAP. O input-refiner.js v2 já detecta
 mode PM2 para tarefas de implementação e injeta golden examples e
 constitutional layer automaticamente.
 
-## Squad/Agent: experia/a
+## Squad/Agent: experia
 ## Arquivos a CRIAR:
 - `scripts/session-store.js` ← estado de conversa, TTL 24h, chave = phone
 - `scripts/intent-classifier.js` ← 7 intents com confidence scoring

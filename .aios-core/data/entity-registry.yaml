@@ -1,6 +1,6 @@
 metadata:
   version: 1.0.0
-  lastUpdated: '2026-02-12T13:07:01.327Z'
+  lastUpdated: '2026-02-17T23:04:49.774Z'
   entityCount: 487
   checksumAlgorithm: sha256
 entities:
@@ -8251,23 +8251,18 @@ entities:
     core-config:
       path: .aios-core/core-config.yaml
       type: module
-      purpose: Core MCPs - no API keys required
+      purpose: Entity at .aios-core\core-config.yaml
       keywords:
         - core
         - config
-        - memory
-        - intelligence
-        - system
-        - (epic
-        - mis)
       usedBy: []
       dependencies: []
       adaptability:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:8e1d03a482b820a6a23d5821fae9e23fcb13cb70c95daec388e2e03d3283861f
-      lastVerified: '2026-02-09T16:42:28.275Z'
+      checksum: sha256:398beda229df41b52969b3a2cdfc82d174bfb5a605b9ffa7827f49fa3e575ec3
+      lastVerified: '2026-02-17T23:04:49.742Z'
     active-modules.verify:
       path: .aios-core/core/memory/__tests__/active-modules.verify.js
       type: module
