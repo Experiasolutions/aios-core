@@ -37,7 +37,7 @@ function scanTools() {
         inputSchema: {
             type: 'object',
             properties: {
-                squad: { type: 'string', description: 'Squad name (e.g., doombot, experia)' },
+                squad: { type: 'string', description: 'Squad name (e.g., marketing, ops, cs)' },
             },
             required: ['squad'],
         },

@@ -1,0 +1,61 @@
+{
+    "client": "experia",
+    "brandLine": "Experia Inteligência Operacional",
+    "agentLabel": "Experia Agents",
+    "partnerLabel": "Master Pumps",
+    "agents": {
+        "totalAgents": 58,
+        "departments": [
+            "patient-ops",
+            "marketing",
+            "finance",
+            "clinical",
+            "analytics"
+        ]
+    },
+    "partners": [
+        {
+            "name": "Master Pumps",
+            "totalPositions": 120
+        }
+    ],
+    "businessModel": {
+        "plans": {
+            "essential": {
+                "price": 2997,
+                "agents": 15
+            },
+            "growth": {
+                "price": 5997,
+                "agents": 35
+            },
+            "enterprise": {
+                "price": 9997,
+                "agents": 58
+            }
+        }
+    },
+    "assistantPersona": {
+        "name": "Orion",
+        "systemPrompt": "Você é Orion, o gerente de operações IA da Experia. Responda de forma direta e útil. Se o usuário pedir uma tarefa específica (WhatsApp, leads, relatório, health check, manutenção), indique o comando exato do Bridge. Assine como — Orion 👑"
+    },
+    "squads": [
+        {
+            "name": "Experia",
+            "aiHead": "@experia-master",
+            "agents": "10 agentes (copy, data, auto...)",
+            "status": "ATIVO"
+        },
+        {
+            "name": "Doombot",
+            "aiHead": "@doom-master",
+            "agents": "10 agentes (sentinel, revenue...)",
+            "status": "ATIVO"
+        }
+    ],
+    "testMessages": [
+        "Quanto custa o botox?",
+        "Classifique esse lead do Instagram",
+        "Lance o novo serviço de limpeza de pele"
+    ]
+}

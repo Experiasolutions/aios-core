@@ -6,7 +6,8 @@
  *          Synapse metrics, WIS stats, Orion chat, and multi-squad decomposer.
  * @inputs  HTTP requests on port 3000 (or DASHBOARD_PORT env)
  * @outputs HTML dashboard + JSON API responses
- * @dependencies memory-system.js, enterprise-loader.js, kernel-bridge.js
+ * @dependencies memory-system.js, kernel-bridge.js,
+ *              clients/<client>/config/enterprise.json (optional)
  */
 
 require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });
@@ -14,7 +15,24 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const memory = require('./memory-system');
-const { EXPERIA_AGENTS, MASTER_PUMPS, AIOS_ENTERPRISE_MAP, BUSINESS_MODEL } = require('./enterprise-loader');
+
+// ── Dynamic Enterprise Loader (client-agnostic) ──────────────
+function loadEnterprise() {
+  const clientsDir = path.join(__dirname, '..', 'clients');
+  try {
+    const clients = fs.readdirSync(clientsDir).filter(d =>
+      fs.statSync(path.join(clientsDir, d)).isDirectory()
+    );
+    for (const client of clients) {
+      const cfgPath = path.join(clientsDir, client, 'config', 'enterprise.json');
+      if (fs.existsSync(cfgPath)) {
+        return JSON.parse(fs.readFileSync(cfgPath, 'utf8'));
+      }
+    }
+  } catch (_) { /* no clients dir */ }
+  return { client: 'none', brandLine: 'AIOS Intelligence Platform', agentLabel: 'Active Agents', partnerLabel: 'Partners', agents: { totalAgents: 0 }, partners: [], businessModel: {} };
+}
+const ENTERPRISE = loadEnterprise();
 const { getBridge } = require('./kernel-bridge');
 const https = require('https');
 
@@ -30,8 +48,9 @@ function askOrion(userMessage) {
         {
           role: 'system', content: `Você é Orion, o AIOS Master Orchestrator. Responda sempre em português brasileiro, de forma direta e profissional.
 Contexto recente da memória:\n${context}\n
-Dados da empresa: Experia tem ${EXPERIA_AGENTS.totalAgents} agentes, Master Pumps tem ${MASTER_PUMPS.totalPositions} colaboradores.
-Planos: Essential R$2.997 (15 agents), Growth R$5.997 (35), Enterprise R$9.997 (58).` },
+Dados da empresa: ${ENTERPRISE.agents.totalAgents} agentes ativos. ${ENTERPRISE.partners.map(p => `${p.name}: ${p.totalPositions} colaboradores`).join('. ') || 'Sem parceiros configurados.'}
+Cliente ativo: ${ENTERPRISE.client}.`
+        },
         { role: 'user', content: userMessage },
       ],
       temperature: 0.3,
@@ -69,7 +88,7 @@ function handleAPI(req, res) {
       memory: stats,
       skills: 13,
       apis: { groq: !!process.env.GROQ_API_KEY, clickup: !!process.env.CLICKUP_API_KEY, instagram: !!process.env.INSTAGRAM_ACCESS_TOKEN, gemini: !!process.env.GEMINI_API_KEY },
-      enterprise: { experiaAgents: EXPERIA_AGENTS.totalAgents, masterPumpsPositions: MASTER_PUMPS.totalPositions },
+      enterprise: { totalAgents: ENTERPRISE.agents.totalAgents, partners: ENTERPRISE.partners },
     }));
     return true;
   }
@@ -88,7 +107,7 @@ function handleAPI(req, res) {
 
   if (url.pathname === '/api/enterprise') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ agents: EXPERIA_AGENTS, masterPumps: MASTER_PUMPS, mapping: AIOS_ENTERPRISE_MAP, business: BUSINESS_MODEL }));
+    res.end(JSON.stringify(ENTERPRISE));
     return true;
   }
 
@@ -537,7 +556,7 @@ function getHTML() {
       <div class="logo">👑</div>
       <div>
         <h1>JARVIS Command Center</h1>
-        <div class="header-subtitle">AIOS v5.0 — Experia Inteligência Operacional</div>
+        <div class="header-subtitle">AIOS v5.0 — ${ENTERPRISE.brandLine}</div>
       </div>
     </div>
     <div class="status-badge status-online">
@@ -554,16 +573,16 @@ function getHTML() {
         <div class="stat-label">OpenClaw Skills</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value" id="stat-agents">58</div>
-        <div class="stat-label">Experia Agents</div>
+        <div class="stat-value" id="stat-agents">${ENTERPRISE.agents.totalAgents}</div>
+        <div class="stat-label">${ENTERPRISE.agentLabel}</div>
       </div>
       <div class="stat-card">
         <div class="stat-value" id="stat-memories">–</div>
         <div class="stat-label">Memórias</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value" id="stat-mp">120+</div>
-        <div class="stat-label">Master Pumps</div>
+        <div class="stat-value" id="stat-mp">${ENTERPRISE.partners[0]?.totalPositions || '—'}+</div>
+        <div class="stat-label">${ENTERPRISE.partnerLabel}</div>
       </div>
       <div class="stat-card">
         <div class="stat-value" id="stat-apis">–</div>
@@ -744,7 +763,7 @@ server.listen(PORT, () => {
   console.log('  APIs:');
   console.log('    /api/status     — Status do sistema');
   console.log('    /api/memory     — Memórias (?q=, ?category=)');
-  console.log('    /api/enterprise — Dados Experia + Master Pumps');
+  console.log('    /api/enterprise — Enterprise data (client-specific)');
   console.log('    /api/chat       — Chat com Orion (POST)');
   console.log('    /api/decompose  — Multi-Squad Decomposer (POST)');
   console.log('');

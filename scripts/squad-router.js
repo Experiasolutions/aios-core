@@ -6,7 +6,8 @@
  *          into a single multi-squad router.
  * @inputs  User message string (CLI arg)
  * @outputs Routing decision { route, squad, source, functional } + action.json
- * @dependencies bridge-config.json, figjam-squads.json, experia_bridge.js
+ * @dependencies bridge-config.json, figjam-squads.json,
+ *              clients/{client}/config/bridge-routes.json (optional)
  */
 
 const fs = require('fs');
@@ -104,8 +105,20 @@ function executeRoute(message, routeInfo) {
         const ctxPath = path.join(ROOT, 'context.json');
         fs.writeFileSync(ctxPath, JSON.stringify(context, null, 2));
 
-        const bridge = path.join(__dirname, 'experia_bridge.js');
-        execSync(`node "${bridge}" "${ctxPath}" ${routeInfo.route}`, { cwd: ROOT, stdio: 'pipe', timeout: 30000 });
+        // Resolve bridge script from client config
+        const bridgePatterns = loadClientBridgePatterns();
+        const clientBridge = bridgePatterns.find(p => p.route === routeInfo.route);
+        const bridgeDir = path.join(ROOT, 'clients');
+        let bridgeScript = null;
+        if (clientBridge) {
+            const configDir = path.join(ROOT, 'clients');
+            for (const client of fs.readdirSync(configDir).filter(d => fs.statSync(path.join(configDir, d)).isDirectory())) {
+                const candidate = path.join(configDir, client, 'scripts', clientBridge.bridge || 'bridge.js');
+                if (fs.existsSync(candidate)) { bridgeScript = candidate; break; }
+            }
+        }
+        if (!bridgeScript) return { status: 'error', message: 'No bridge script found for route: ' + routeInfo.route };
+        execSync(`node "${bridgeScript}" "${ctxPath}" ${routeInfo.route}`, { cwd: ROOT, stdio: 'pipe', timeout: 30000 });
 
         return JSON.parse(fs.readFileSync(path.join(ROOT, 'action.json'), 'utf8'));
     }
@@ -131,9 +144,27 @@ function main() {
         console.log('│ Squad            │ AI Head              │ Agentes                                │ Status   │');
         console.log('├──────────────────┼──────────────────────┼────────────────────────────────────────┼──────────┤');
 
-        // Bridge squad (Experia)
-        console.log('│ Experia          │ @experia-master      │ 10 agentes (copy, data, auto...)       │ ✅ ATIVO │');
-        console.log('│ Doombot          │ @doom-master         │ 10 agentes (sentinel, revenue...)      │ ✅ ATIVO │');
+        // Dynamic client squads from enterprise config
+        const clientsDir = path.join(ROOT, 'clients');
+        if (fs.existsSync(clientsDir)) {
+            for (const client of fs.readdirSync(clientsDir).filter(d => fs.statSync(path.join(clientsDir, d)).isDirectory())) {
+                const cfgPath = path.join(clientsDir, client, 'config', 'enterprise.json');
+                if (fs.existsSync(cfgPath)) {
+                    try {
+                        const cfg = JSON.parse(fs.readFileSync(cfgPath, 'utf8'));
+                        if (Array.isArray(cfg.squads)) {
+                            for (const s of cfg.squads) {
+                                const nm = (s.name || '').padEnd(16);
+                                const hd = (s.aiHead || '').padEnd(20);
+                                const ag = (s.agents || '').padEnd(38);
+                                const icon = s.status === 'ATIVO' ? '✅ ATIVO' : '📋 PLAN ';
+                                console.log(`│ ${nm} │ ${hd} │ ${ag} │ ${icon} │`);
+                            }
+                        }
+                    } catch (_) { }
+                }
+            }
+        }
 
         for (const [id, squad] of Object.entries(FIGJAM.squads)) {
             const name = squad.name.padEnd(16);
@@ -149,16 +180,15 @@ function main() {
     if (args[0] === '--test') {
         console.log('\n🧪 Testando Decision Tree Router\n');
         const tests = [
-            'Quanto custa o botox?',
-            'Classifique esse lead do Instagram',
-            'Gere o relatório financeiro',
-            'Crie uma campanha de marketing para Instagram',
-            'Preciso fechar a venda com o cliente',
-            'Verifique a satisfação do cliente',
-            'Processe a folha de pagamento',
-            'Audite os acessos do sistema',
-            'Mapeie o processo de atendimento',
-            'Lance o novo serviço de limpeza de pele',
+            'Generate a financial report',
+            'Classify this Instagram lead',
+            'Create a marketing campaign for Instagram',
+            'I need to close the deal with the client',
+            'Check customer satisfaction',
+            'Process the payroll',
+            'Audit the system access logs',
+            'Map the service delivery process',
+            'Launch the new product line',
         ];
         for (const t of tests) {
             const r = routeMessage(t);

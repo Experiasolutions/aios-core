@@ -6,7 +6,8 @@
  *          and routes accordingly, otherwise falls back to general chat.
  * @inputs  User message string (CLI arg) + optional project-id
  * @outputs LLM response (chat) or action.json (bridge execution)
- * @dependencies experia_bridge.js, .env (GROQ_API_KEY)
+ * @dependencies .env (GROQ_API_KEY),
+ *              clients/{client}/config/enterprise.json (optional)
  */
 
 const http = require('http');
@@ -198,13 +199,23 @@ async function main() {
         return;
     }
 
-    // General chat — use Orion assistant
-    const systemPrompt = 'Você é Orion, o gerente de operações IA da Experia. Responda de forma direta e útil. Se o usuário pedir uma tarefa específica (WhatsApp, leads, relatório, health check, manutenção), indique o comando exato do Bridge. Assine como — Orion 👑';
+    // General chat — use assistant persona from client config
+    let persona = { name: 'AIOS', systemPrompt: 'You are AIOS, an AI operations assistant. Respond helpfully and concisely.' };
+    try {
+        const clientsDir = path.join(ROOT, 'clients');
+        for (const client of fs.readdirSync(clientsDir).filter(d => fs.statSync(path.join(clientsDir, d)).isDirectory())) {
+            const cfgPath = path.join(clientsDir, client, 'config', 'enterprise.json');
+            if (fs.existsSync(cfgPath)) {
+                const cfg = JSON.parse(fs.readFileSync(cfgPath, 'utf8'));
+                if (cfg.assistantPersona) { persona = cfg.assistantPersona; break; }
+            }
+        }
+    } catch (_) { }
 
     try {
-        const { provider, response } = await chat(message, systemPrompt);
+        const { provider, response } = await chat(message, persona.systemPrompt);
         console.log(`\n🧠 Provider: ${provider}`);
-        console.log(`\n💬 Orion:\n${response}\n`);
+        console.log(`\n💬 ${persona.name}:\n${response}\n`);
     } catch (err) {
         console.log(`❌ Erro: ${err.message}`);
     }
