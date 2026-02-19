@@ -1,12 +1,11 @@
 /**
- * AIOS ClickUp Client — CRUD de tarefas, listas e projetos
- * 
- * Uso:
- *   node scripts/clickup-client.js --tasks <list_id>         Lista tarefas
- *   node scripts/clickup-client.js --create <list_id> "nome" Cria tarefa
- *   node scripts/clickup-client.js --spaces                  Lista spaces
- *   node scripts/clickup-client.js --lists <space_id>        Lista lists
- *   node scripts/clickup-client.js --update <task_id> "status" Atualiza tarefa
+ * @module clickup-client
+ * @version 1.0.0
+ * @purpose CRUD client for ClickUp API — list teams, spaces, lists, tasks;
+ *          create and update tasks programmatically.
+ * @inputs  CLI flags (--teams, --spaces, --lists, --tasks, --create, --update)
+ * @outputs Console formatted task/list/space data
+ * @dependencies .env (CLICKUP_API_KEY)
  */
 
 require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });

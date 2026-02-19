@@ -1,25 +1,13 @@
 /**
- * AIOS MCP Server — Expose AIOS as Tools for Any AI
- * 
- * Creates a Model Context Protocol (MCP) server that exposes all 101 agents
- * and 16 squads as "tools" that any MCP-compatible client can use.
- * 
- * Compatible with: Claude Desktop, Cursor, Cline, Continue, etc.
- * 
- * Usage:
- *   node scripts/mcp-server.js          → Start MCP server (stdio mode)
- *   node scripts/mcp-server.js --list   → List all exposed tools
- *   node scripts/mcp-server.js --test   → Run self-test
- * 
- * To add to Claude Desktop, add to claude_desktop_config.json:
- * {
- *   "mcpServers": {
- *     "aios": {
- *       "command": "node",
- *       "args": ["C:/Users/Gabriel/Documents/aios-core-main/aios-core/meu-projeto-ai/scripts/mcp-server.js"]
- *     }
- *   }
- * }
+ * @module mcp-server
+ * @version 1.0.0
+ * @purpose Expose all AIOS agents and squads as MCP tools for any
+ *          compatible AI client (Claude Desktop, Cursor, Cline, etc.).
+ *          Runs in stdio mode per the Model Context Protocol spec.
+ * @inputs  MCP JSON-RPC requests via stdin (or --list / --test CLI flags)
+ * @outputs MCP JSON-RPC responses via stdout
+ * @exports { startMCPServer }
+ * @dependencies entity-registry, squad definitions
  */
 
 const fs = require('fs');

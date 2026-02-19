@@ -1,10 +1,11 @@
 /**
- * AIOS ClickUp Workspace Builder
- * 
- * Cria toda a estrutura do workspace Experia via API:
- * 7 Spaces, 25+ Lists, Custom Fields, Tags
- * 
- * Uso: node scripts/clickup-workspace-builder.js
+ * @module clickup-workspace-builder
+ * @version 1.0.0
+ * @purpose Provision an entire ClickUp workspace via API — creates spaces,
+ *          lists, custom fields, and status workflows in a single run.
+ * @inputs  None (uses hardcoded WORKSPACE structure + .env CLICKUP_API_KEY)
+ * @outputs ClickUp API calls creating spaces/lists + console progress report
+ * @dependencies .env (CLICKUP_API_KEY)
  */
 
 require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });

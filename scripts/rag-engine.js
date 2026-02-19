@@ -1,20 +1,13 @@
 /**
- * AIOS RAG Engine — Retrieval Augmented Generation for Mind Clones
- * 
- * Indexes documents (books, frameworks, knowledge bases) into a local vector
- * store and enables semantic search for mind clones to access real knowledge.
- * 
- * Architecture:
- *   Documents → Chunking → Embeddings → Vector Store → Semantic Search
- * 
- * Usage:
- *   node scripts/rag-engine.js --index              → Index all knowledge bases
- *   node scripts/rag-engine.js --query "grand slam"  → Search across all documents
- *   node scripts/rag-engine.js --status              → Show index status
- *   node scripts/rag-engine.js --demo                → Run interactive demo
- * 
- * Designed for future zvec integration (Alibaba's in-process vector DB).
- * Currently uses in-memory store for instant setup.
+ * @module rag-engine
+ * @version 1.0.0
+ * @purpose Retrieval Augmented Generation engine — index documents into a
+ *          local vector store and enable semantic search for mind clones.
+ *          Pipeline: Documents → Chunking → Embeddings → Vector Store → Search.
+ * @inputs  Knowledge base files (auto-indexed) or query string (CLI)
+ * @outputs Search results with relevance scores + .aios-core/data/rag/ index
+ * @exports { index, query, status }
+ * @dependencies .env (GEMINI_API_KEY for embeddings)
  */
 
 const fs = require('fs');

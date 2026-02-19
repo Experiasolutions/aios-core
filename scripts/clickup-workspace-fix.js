@@ -1,10 +1,11 @@
 /**
- * AIOS ClickUp Workspace Builder — Phase 2
- * 
- * Adds Lists to existing Spaces + creates Folders for merged departments
- * Free plan: max 5 spaces, so Administração/Facilities/Produto become Folders
- * 
- * Uso: node scripts/clickup-workspace-fix.js
+ * @module clickup-workspace-fix
+ * @version 1.0.0
+ * @purpose Phase 2 workspace builder — adds lists to existing spaces and
+ *          creates folders for merged departments (free plan 5-space limit).
+ * @inputs  None (uses hardcoded space IDs + .env CLICKUP_API_KEY)
+ * @outputs ClickUp API calls creating folders/lists + console report
+ * @dependencies .env (CLICKUP_API_KEY)
  */
 
 require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });

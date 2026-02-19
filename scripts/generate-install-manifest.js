@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 /**
- * Generate Install Manifest
- * Dynamically generates install-manifest.yaml with file hashes for brownfield upgrades
- *
- * @script scripts/generate-install-manifest.js
- * @story 6.18 - Dynamic Manifest & Brownfield Upgrade System
- *
- * Usage:
- *   node scripts/generate-install-manifest.js
- *   npm run generate:manifest
+ * @module generate-install-manifest
+ * @version 1.0.0
+ * @purpose Dynamically generate install-manifest.yaml with SHA-256 file hashes
+ *          for brownfield upgrades. Scans .aios-core folders and root files.
+ * @inputs  .aios-core directory tree (auto-scanned)
+ * @outputs .aios-core/install-manifest.yaml
+ * @exports { generateManifest, writeManifest, getFileType, scanDirectory }
+ * @dependencies fs-extra, js-yaml, file-hasher
  */
 
 const fs = require('fs-extra');

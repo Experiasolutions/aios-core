@@ -1,13 +1,11 @@
 /**
- * AIOS Google Sheets Client — Leitura e escrita de planilhas
- * 
- * Sem necessidade de Service Account — usa API Key simples.
- * Para planilhas públicas: só leitura com API Key
- * Para planilhas privadas: precisa de Service Account (futuro)
- * 
- * Uso:
- *   node scripts/gsheets-client.js --read <spreadsheet_id> <range>
- *   node scripts/gsheets-client.js --info <spreadsheet_id>
+ * @module gsheets-client
+ * @version 1.0.0
+ * @purpose Read-only Google Sheets client using a simple API key.
+ *          Supports spreadsheet info and range queries.
+ * @inputs  CLI flags (--read spreadsheet_id range, --info spreadsheet_id)
+ * @outputs Console formatted spreadsheet data in table format
+ * @dependencies .env (GOOGLE_SHEETS_API_KEY or GEMINI_API_KEY)
  */
 
 require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });

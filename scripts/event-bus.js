@@ -1,15 +1,13 @@
 /**
- * AIOS Event Bus — Cross-Squad Communication (A2A Protocol)
- * 
- * Enables Agent-to-Agent communication between squads.
- * Example: squad-A detects emergency → squad-B reacts → squad-C creates billing
- * 
- * Usage:
- *   const bus = require('./event-bus');
- *   bus.on('ops.emergency', (data) => handleEmergency(data));
- *   bus.emit('ops.emergency', { severity: 'high', entityId: '123' });
- * 
- * Run standalone: node scripts/event-bus.js --demo
+ * @module event-bus
+ * @version 2.0.0
+ * @purpose Cross-squad Agent-to-Agent (A2A) communication bus.
+ *          Enables pub/sub event channels with wildcard matching,
+ *          persistent event log, and demo mode.
+ * @inputs  Channel name + event data (API), or --demo flag (CLI)
+ * @outputs Event delivery to subscribers + .aios-core/data/event-log.json
+ * @exports { on, emit, channels, history, stats }
+ * @emits   ops.*, quality.*, system.* channels
  */
 
 const fs = require('fs');

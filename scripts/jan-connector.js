@@ -18,10 +18,28 @@ const { execSync } = require('child_process');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 const JAN_API = 'http://127.0.0.1:1337/v1';
-const GROQ_API = 'https://api.groq.com/openai/v1';
 const GROQ_KEY = process.env.GROQ_API_KEY;
-const PROJECT_ROOT = path.join(__dirname, '..');
-const BRIDGE = path.join(__dirname, 'experia_bridge.js');
+const ROOT = path.join(__dirname, '..');
+
+// ── Load client detection patterns from clients/*/config/ ─────
+function loadClientDetectionPatterns() {
+    const clientsDir = path.join(ROOT, 'clients');
+    if (!fs.existsSync(clientsDir)) return [];
+    const patterns = [];
+    for (const client of fs.readdirSync(clientsDir)) {
+        const configPath = path.join(clientsDir, client, 'config', 'bridge-routes.json');
+        if (fs.existsSync(configPath)) {
+            try {
+                const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+                if (Array.isArray(config.detectionPatterns)) patterns.push(...config.detectionPatterns);
+            } catch (e) { /* skip malformed config */ }
+        }
+    }
+    return patterns;
+}
+const GROQ_API = 'https://api.groq.com/openai/v1';
+const BRIDGE = path.join(ROOT, 'clients', 'experia', 'scripts', 'experia_bridge.js');
+
 
 // ── Helpers ──────────────────────────────────────────────────
 function httpRequest(url, options, body) {
@@ -105,13 +123,9 @@ async function chat(message, systemPrompt) {
 // ── Detect if message requires AIOS Bridge execution ──────────
 function detectProject(message) {
     const lower = message.toLowerCase();
-    const patterns = [
-        { keywords: ['whatsapp', 'mensagem', 'paciente', 'responder', 'chat'], project: 'whatsapp-autoreply' },
-        { keywords: ['lead', 'scoring', 'classificar', 'pontuar', 'prospect'], project: 'lead-scoring' },
-        { keywords: ['financeiro', 'relatório', 'faturamento', 'receita', 'p&l'], project: 'financial-report' },
-        { keywords: ['health', 'saúde', 'status', 'sistema', 'check'], project: 'health-check' },
-        { keywords: ['manutenção', 'maintenance', 'limpeza', 'backup', 'cleanup'], project: 'preventive-maintenance' },
-    ];
+    // Load client-specific detection patterns dynamically
+    const patterns = loadClientDetectionPatterns();
+
 
     for (const p of patterns) {
         if (p.keywords.some(k => lower.includes(k))) return p.project;

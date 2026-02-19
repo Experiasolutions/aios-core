@@ -17,6 +17,23 @@ const ROOT = path.join(__dirname, '..');
 const FIGJAM = JSON.parse(fs.readFileSync(path.join(__dirname, 'figjam-squads.json'), 'utf8'));
 const BRIDGE_CONFIG = JSON.parse(fs.readFileSync(path.join(__dirname, 'bridge-config.json'), 'utf8'));
 
+// ── Load client bridge patterns from clients/*/config/ ────────
+function loadClientBridgePatterns() {
+    const clientsDir = path.join(ROOT, 'clients');
+    if (!fs.existsSync(clientsDir)) return [];
+    const patterns = [];
+    for (const client of fs.readdirSync(clientsDir)) {
+        const configPath = path.join(clientsDir, client, 'config', 'bridge-routes.json');
+        if (fs.existsSync(configPath)) {
+            try {
+                const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+                if (Array.isArray(config.bridgeRoutes)) patterns.push(...config.bridgeRoutes);
+            } catch (e) { /* skip malformed config */ }
+        }
+    }
+    return patterns;
+}
+
 // ── Merge bridge routes + figjam routes ──────────────────────
 function getAllRoutes() {
     const routes = {};
@@ -47,14 +64,9 @@ function getAllRoutes() {
 function routeMessage(message) {
     const lower = message.toLowerCase();
 
-    // 1. Check bridge routes first (functional)
-    const bridgePatterns = [
-        { keywords: ['whatsapp', 'mensagem', 'paciente', 'responder', 'chat', 'botox', 'harmoniza'], route: 'whatsapp-autoreply', squad: 'experia' },
-        { keywords: ['lead', 'scoring', 'classificar', 'pontuar', 'prospect'], route: 'lead-scoring', squad: 'experia' },
-        { keywords: ['financeiro', 'relatorio', 'faturamento', 'receita', 'p&l'], route: 'financial-report', squad: 'experia' },
-        { keywords: ['health', 'saude', 'status', 'check', 'sistema'], route: 'health-check', squad: 'experia' },
-        { keywords: ['manutencao', 'maintenance', 'limpeza', 'backup'], route: 'preventive-maintenance', squad: 'experia' },
-    ];
+    // 1. Check client bridge routes (loaded from clients/*/config/)
+    const bridgePatterns = loadClientBridgePatterns();
+
 
     for (const p of bridgePatterns) {
         if (p.keywords.some(k => lower.includes(k))) {

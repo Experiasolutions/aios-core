@@ -1,11 +1,11 @@
 /**
- * AIOS Instagram Client — Posts, métricas e insights via Graph API
- * 
- * Uso:
- *   node scripts/instagram-client.js --profile            Perfil e métricas
- *   node scripts/instagram-client.js --media              Lista posts recentes
- *   node scripts/instagram-client.js --insights <days>    Insights do período
- *   node scripts/instagram-client.js --publish "caption" <image_url>  Publicar
+ * @module instagram-client
+ * @version 1.0.0
+ * @purpose Instagram Graph API client — fetch profile, media, insights,
+ *          and publish posts via Business Account.
+ * @inputs  CLI flags (--profile, --media, --insights, --publish)
+ * @outputs Console formatted Instagram data or published post confirmation
+ * @dependencies .env (INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_BUSINESS_ID)
  */
 
 require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });

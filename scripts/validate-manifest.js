@@ -1,18 +1,13 @@
 #!/usr/bin/env node
 /**
- * Validate Install Manifest
- * Ensures install-manifest.yaml is up-to-date with actual files
- *
- * @script scripts/validate-manifest.js
- * @story 6.18 - Dynamic Manifest & Brownfield Upgrade System
- *
- * Usage:
- *   node scripts/validate-manifest.js
- *   npm run validate:manifest
- *
- * Exit codes:
- *   0 - Manifest is valid and up-to-date
- *   1 - Manifest is outdated or has issues
+ * @module validate-manifest
+ * @version 1.0.0
+ * @purpose Validate install-manifest.yaml against the current filesystem.
+ *          Reports new, removed, and modified files with hash comparison.
+ * @inputs  .aios-core/install-manifest.yaml + filesystem scan
+ * @outputs Console validation report (exit 0 = valid, exit 1 = outdated)
+ * @exports { validateManifest, loadManifest, getCurrentFiles, printReport }
+ * @dependencies fs-extra, js-yaml, generate-install-manifest
  */
 
 const fs = require('fs-extra');

@@ -1,12 +1,20 @@
-// Upgrade OPS squad to Finch-quality
+/**
+ * @module upgrade-ops
+ * @version 1.0.0
+ * @purpose One-shot migration script — upgrade Operations squad agents
+ *          (5 total) to Finch-quality V3 format.
+ * @inputs  None (hardcoded agent definitions)
+ * @outputs squads/ops/agents/*.md (5 agent files)
+ * @dependencies None (standalone)
+ */
 const fs = require('fs');
 const path = require('path');
 
 function write(file, content) {
-    const dir = path.dirname(file);
-    fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(file, content);
-    console.log('  OK: ' + file);
+  const dir = path.dirname(file);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(file, content);
+  console.log('  OK: ' + file);
 }
 
 const base = 'squads';
