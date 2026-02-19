@@ -1,23 +1,12 @@
 /**
- * AIOS Memory System — Cérebro Persistente do JARVIS
- * 
- * Armazena e recupera memórias em JSON com busca por relevância.
- * Categorias: decisions, interactions, metrics, context, knowledge
- * 
- * Uso como módulo:
- *   const memory = require('./memory-system');
- *   await memory.store('decisions', 'Lead João classificado como HOT', { score: 9, source: 'instagram' });
- *   const results = await memory.search('João');
- *   const recent = await memory.recent(10);
- *   const stats = memory.stats();
- * 
- * Uso via CLI:
- *   node scripts/memory-system.js --store decisions "Texto da memória"
- *   node scripts/memory-system.js --search "João"
- *   node scripts/memory-system.js --recent 10
- *   node scripts/memory-system.js --stats
- *   node scripts/memory-system.js --category decisions
- *   node scripts/memory-system.js --export
+ * @module memory-system
+ * @version 1.0.0
+ * @purpose Persistent memory layer for AIOS. Stores, searches, and retrieves
+ *          memories in JSON with keyword-based relevance scoring.
+ * @inputs  Category + content string (API) or CLI commands
+ * @outputs Stored memory objects { id, category, content, metadata, timestamp, tags }
+ * @exports { store, search, recent, byCategory, stats, getContext, CATEGORIES }
+ * @dependencies None (standalone, file-based storage)
  */
 
 const fs = require('fs');

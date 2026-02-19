@@ -848,19 +848,19 @@ Note a precisão:
 
 Não criamos personalidades aleatórias. Usamos um sistema de arquétipos para cobrir todas as funções necessárias em um time de software.
 
-| Arquétipo | Ícone | Função | Exemplo | Mindset |
-|-----------|-------|--------|---------|---------|
-| **Builder** | 💻 | Fazer | Dex (Dev) | "Como eu construo isso?" |
-| **Guardian** | 🛡️ | Proteger | Quinn (QA) | "Onde isso vai quebrar?" |
-| **Balancer** | ⚖️ | Priorizar | Pax (PO) | "Isso gera valor?" |
-| **Visionary** | 🏛️ | Arquitetar | Aria (Arch) | "Como isso escala?" |
-| **Flow Master**| 🌊 | Facilitar | Sage (SM) | "O que está bloqueando?" |
-| **Explorer** | 🔍 | Analisar | Scout (BA) | "O que não estamos vendo?" |
-| **Engineer** | 🔧 | Estruturar | Dara (Data) | "Como os dados fluem?" |
-| **Operator** | ⚙️ | Operar | Gage (DevOps)| "Como automatizamos isso?" |
-| **Empathizer**| 🎨 | Humanizar | Uma (UX) | "Como o usuário sente?" |
-| **Orchestrator**| ⭐ | Coordenar | Orion (Master)| "Quem faz o quê?" |
-| **Specialist**| 🏗️ | Aprofundar | DB Sage | "Como otimizar a query?" |
+| Arquétipo        | Ícone | Função     | Exemplo        | Mindset                    |
+| ---------------- | ----- | ---------- | -------------- | -------------------------- |
+| **Builder**      | 💻     | Fazer      | Dex (Dev)      | "Como eu construo isso?"   |
+| **Guardian**     | 🛡️     | Proteger   | Quinn (QA)     | "Onde isso vai quebrar?"   |
+| **Balancer**     | ⚖️     | Priorizar  | Pax (PO)       | "Isso gera valor?"         |
+| **Visionary**    | 🏛️     | Arquitetar | Aria (Arch)    | "Como isso escala?"        |
+| **Flow Master**  | 🌊     | Facilitar  | Sage (SM)      | "O que está bloqueando?"   |
+| **Explorer**     | 🔍     | Analisar   | Scout (BA)     | "O que não estamos vendo?" |
+| **Engineer**     | 🔧     | Estruturar | Dara (Data)    | "Como os dados fluem?"     |
+| **Operator**     | ⚙️     | Operar     | Gage (DevOps)  | "Como automatizamos isso?" |
+| **Empathizer**   | 🎨     | Humanizar  | Uma (UX)       | "Como o usuário sente?"    |
+| **Orchestrator** | ⭐     | Coordenar  | Orion (Master) | "Quem faz o quê?"          |
+| **Specialist**   | 🏗️     | Aprofundar | DB Sage        | "Como otimizar a query?"   |
 
 **Por que isso importa?**
 
@@ -994,12 +994,12 @@ O **Framework AIOS** suporta nativamente todos os 4 executores. A arquitetura es
 
 **Mas a distribuição varia:**
 
-| Executor | Open Source | Service (Enterprise/SaaS) |
-|----------|-------------|---------------------------|
-| **🤖 Agente** | ✅ **Foco principal** - 16 agentes prontos | ✅ Todos incluídos |
-| **⚙️ Worker** | ⚠️ Arquitetura disponível, você implementa seus scripts | ✅ **Infraestrutura pesada** pré-construída |
-| **👤 Humano** | ✅ Você define os gates manualmente | ✅ Workflows de aprovação integrados |
-| **🧠 Clone** | ⚠️ Arquitetura disponível, você treina seus clones | ✅ **Clones proprietários** (Pedro Valério, Brad Frost, etc.) |
+| Executor     | Open Source                                            | Service (Enterprise/SaaS)                                    |
+| ------------ | ------------------------------------------------------ | ------------------------------------------------------------ |
+| **🤖 Agente** | ✅ **Foco principal** - 16 agentes prontos              | ✅ Todos incluídos                                            |
+| **⚙️ Worker** | ⚠️ Arquitetura disponível, você implementa seus scripts | ✅ **Infraestrutura pesada** pré-construída                   |
+| **👤 Humano** | ✅ Você define os gates manualmente                     | ✅ Workflows de aprovação integrados                          |
+| **🧠 Clone**  | ⚠️ Arquitetura disponível, você treina seus clones      | ✅ **Clones proprietários** (Pedro Valério, Brad Frost, etc.) |
 
 **Por quê?**
 - **Open Source:** Democratiza o poder dos Agentes. Qualquer um pode orquestrar IA.
@@ -1911,19 +1911,19 @@ Agents são a **força de trabalho** do AIOS. Cada um tem personalidade, funçã
 
 #### 📊 Visão Geral dos Agents
 
-| Agent | Archetype | Emoji | Função Principal | Quando Usar |
-|-------|-----------|-------|------------------|-------------|
-| **Dex** | Builder (♒) | 💻 | Full Stack Developer | Escrever código, refatorar, debugar, implementar features |
-| **Quinn** | Guardian (♍) | ✅ | Test Architect & QA | Validar qualidade, testes, code review, quality gates |
-| **Pax** | Balancer (♎) | 🎯 | Product Owner | Backlog management, story refinement, acceptance criteria |
-| **Aria** | Visionary (♐) | 🏛️ | System Architect | System design, tech stack, API design, architecture decisions |
-| **River** | Facilitator (♓) | 🌊 | Scrum Master | Story creation from PRD, sprint planning, retrospectives |
-| **Morgan** | Strategist (♑) | 📋 | Product Manager | PRD creation, epic management, product strategy, roadmap |
-| **Dara** | ??? | 📊 | Database Architect | Database schema, migrations, RLS policies, query optimization |
-| **Atlas** | Decoder (♏) | 🔍 | Business Analyst | Market research, competitive analysis, discovery, insights |
-| **Gage** | Operator (♈) | ⚡ | DevOps Specialist | CI/CD, deployments, GitHub operations, infrastructure |
-| **Uma** | ??? | 🎨 | UX/UI Designer | Design systems, Atomic Design, wireframes, user research |
-| **Orion** | Orchestrator (♌) | 👑 | AIOS Master | Framework development, workflow orchestration, meta-operations |
+| Agent      | Archetype        | Emoji | Função Principal     | Quando Usar                                                    |
+| ---------- | ---------------- | ----- | -------------------- | -------------------------------------------------------------- |
+| **Dex**    | Builder (♒)      | 💻     | Full Stack Developer | Escrever código, refatorar, debugar, implementar features      |
+| **Quinn**  | Guardian (♍)     | ✅     | Test Architect & QA  | Validar qualidade, testes, code review, quality gates          |
+| **Pax**    | Balancer (♎)     | 🎯     | Product Owner        | Backlog management, story refinement, acceptance criteria      |
+| **Aria**   | Visionary (♐)    | 🏛️     | System Architect     | System design, tech stack, API design, architecture decisions  |
+| **River**  | Facilitator (♓)  | 🌊     | Scrum Master         | Story creation from PRD, sprint planning, retrospectives       |
+| **Morgan** | Strategist (♑)   | 📋     | Product Manager      | PRD creation, epic management, product strategy, roadmap       |
+| **Dara**   | ???              | 📊     | Database Architect   | Database schema, migrations, RLS policies, query optimization  |
+| **Atlas**  | Decoder (♏)      | 🔍     | Business Analyst     | Market research, competitive analysis, discovery, insights     |
+| **Gage**   | Operator (♈)     | ⚡     | DevOps Specialist    | CI/CD, deployments, GitHub operations, infrastructure          |
+| **Uma**    | ???              | 🎨     | UX/UI Designer       | Design systems, Atomic Design, wireframes, user research       |
+| **Orion**  | Orchestrator (♌) | 👑     | AIOS Master          | Framework development, workflow orchestration, meta-operations |
 
 ---
 
@@ -2196,15 +2196,15 @@ signature: "— Dara, guardião da integridade dos dados 📊"
 
 Use esta matriz para escolher o agent certo:
 
-| Tarefa | Agent Primário | Agent Secundário | Justificativa |
-|--------|----------------|------------------|---------------|
-| Implementar feature | Dex (Dev) | Quinn (QA) | Dev implementa, QA valida |
-| Criar story | Pax (PO) | Sage (Architect) | PO define, Architect valida viabilidade |
-| Desenhar arquitetura | Sage (Architect) | Kai (Explorer) | Architect decide, Explorer pesquisa |
-| Debugar bug | Dex (Dev) | Kai (Explorer) | Dev investiga, Explorer pesquisa soluções |
-| Otimizar performance | Finn (Optimizer) | Dex (Dev) | Optimizer analisa, Dev implementa |
-| Documentar sistema | Ivy (Nurturer) | Sage (Architect) | Nurturer escreve, Architect valida |
-| Comunicar stakeholders | Echo (Communicator) | Pax (PO) | Communicator comunica, PO valida mensagem |
+| Tarefa                 | Agent Primário      | Agent Secundário | Justificativa                             |
+| ---------------------- | ------------------- | ---------------- | ----------------------------------------- |
+| Implementar feature    | Dex (Dev)           | Quinn (QA)       | Dev implementa, QA valida                 |
+| Criar story            | Pax (PO)            | Sage (Architect) | PO define, Architect valida viabilidade   |
+| Desenhar arquitetura   | Sage (Architect)    | Kai (Explorer)   | Architect decide, Explorer pesquisa       |
+| Debugar bug            | Dex (Dev)           | Kai (Explorer)   | Dev investiga, Explorer pesquisa soluções |
+| Otimizar performance   | Finn (Optimizer)    | Dex (Dev)        | Optimizer analisa, Dev implementa         |
+| Documentar sistema     | Ivy (Nurturer)      | Sage (Architect) | Nurturer escreve, Architect valida        |
+| Comunicar stakeholders | Echo (Communicator) | Pax (PO)         | Communicator comunica, PO valida mensagem |
 
 ---
 
@@ -2423,19 +2423,19 @@ Archetypes são **personalidades base** que definem comportamento dos agents.
 
 #### 📊 Os 11 Archetypes
 
-| Archetype | Signo | Características | Agents que Usam |
-|-----------|-------|-----------------|-----------------|
-| **Builder** | ♒ Aquarius | Pragmático, técnico, focado em construir | Dex |
-| **Guardian** | ♋ Cancer | Protetor, cuidadoso, focado em qualidade | Quinn |
-| **Balancer** | ♎ Libra | Equilibrado, estratégico, focado em valor | Pax |
-| **Architect** | ♑ Capricorn | Sistemático, estruturado, focado em design | Sage |
-| **Explorer** | ♐ Sagittarius | Curioso, aventureiro, focado em descoberta | Kai |
-| **Analyst** | ♏ Scorpio | Profundo, analítico, focado em insights | Nyx |
-| **Catalyst** | ♈ Aries | Energético, inovador, focado em mudança | Zara |
-| **Harmonizer** | ♊ Gemini | Adaptável, comunicativo, focado em UX | Remy |
-| **Optimizer** | ♍ Virgo | Detalhista, eficiente, focado em performance | Finn |
-| **Visionary** | ♓ Pisces | Criativo, estratégico, focado em visão | Luna |
-| **Commander** | ♌ Leo | Líder, decisivo, focado em coordenação | Rex |
+| Archetype      | Signo         | Características                              | Agents que Usam |
+| -------------- | ------------- | -------------------------------------------- | --------------- |
+| **Builder**    | ♒ Aquarius    | Pragmático, técnico, focado em construir     | Dex             |
+| **Guardian**   | ♋ Cancer      | Protetor, cuidadoso, focado em qualidade     | Quinn           |
+| **Balancer**   | ♎ Libra       | Equilibrado, estratégico, focado em valor    | Pax             |
+| **Architect**  | ♑ Capricorn   | Sistemático, estruturado, focado em design   | Sage            |
+| **Explorer**   | ♐ Sagittarius | Curioso, aventureiro, focado em descoberta   | Kai             |
+| **Analyst**    | ♏ Scorpio     | Profundo, analítico, focado em insights      | Nyx             |
+| **Catalyst**   | ♈ Aries       | Energético, inovador, focado em mudança      | Zara            |
+| **Harmonizer** | ♊ Gemini      | Adaptável, comunicativo, focado em UX        | Remy            |
+| **Optimizer**  | ♍ Virgo       | Detalhista, eficiente, focado em performance | Finn            |
+| **Visionary**  | ♓ Pisces      | Criativo, estratégico, focado em visão       | Luna            |
+| **Commander**  | ♌ Leo         | Líder, decisivo, focado em coordenação       | Rex             |
 
 **Path:** `.aios-core/archetypes/`
 
@@ -2551,14 +2551,14 @@ ai_config:
 
 ### Por Objetivo
 
-| Objetivo | Componente | Path |
-|----------|-----------|------|
-| Implementar feature | Agent: Dex + Task: implement-story | `.aios-core/agents/dev.md` |
-| Validar qualidade | Agent: Quinn + Checklist: qa-checklist | `.aios-core/agents/qa.md` |
-| Criar story | Agent: Pax + Template: story-template | `.aios-core/agents/po.md` |
-| Desenhar arquitetura | Agent: Sage + Template: adr-template | `.aios-core/agents/architect.md` |
-| Criar conteúdo visual | Expansion Pack: Instagram Creator | `Squads/instagram-content-creator/` |
-| Validar Atomic Design | Clone: Brad Frost | `clones/brad_frost/` |
+| Objetivo              | Componente                             | Path                                |
+| --------------------- | -------------------------------------- | ----------------------------------- |
+| Implementar feature   | Agent: Dex + Task: implement-story     | `.aios-core/agents/dev.md`          |
+| Validar qualidade     | Agent: Quinn + Checklist: qa-checklist | `.aios-core/agents/qa.md`           |
+| Criar story           | Agent: Pax + Template: story-template  | `.aios-core/agents/po.md`           |
+| Desenhar arquitetura  | Agent: Sage + Template: adr-template   | `.aios-core/agents/architect.md`    |
+| Criar conteúdo visual | Expansion Pack: Instagram Creator      | `Squads/instagram-content-creator/` |
+| Validar Atomic Design | Clone: Brad Frost                      | `clones/brad_frost/`                |
 
 ---
 
@@ -4437,7 +4437,7 @@ User Feedback → Issue/PR → Review → Update → Release → User Feedback
 
 **Exemplo:**
 ```
-AIOS-LIVRO-DE-OURO-v1.0.md  ← Layer 0-4 iniciais
+AIOS-LIVRO-DE-6-v1.0.md  ← Layer 0-4 iniciais
 AIOS-LIVRO-DE-OURO-v1.1.md  ← + Meta Layer
 AIOS-LIVRO-DE-OURO-v2.0.md  ← Reestruturação completa
 ```
@@ -4860,75 +4860,75 @@ Juntos, vamos criar a melhor documentação de framework AI do mundo.
 
 ### 1.1 Agents (11 agents oficiais)
 
-| Agent | Emoji | Uso |
-|-------|-------|-----|
-| Orion (AIOS Master) | 👑 | Orchestration, framework operations |
-| Morgan (PM) | 📋 | Product management, PRDs |
-| River (SM) | 🌊 | Sprint planning, ceremonies |
-| Pax (PO) | 🎯 | Backlog management, priorities |
-| Aria (Architect) | 🏛️ | System design, architecture |
-| Dara (DB) | 📊 | Database schema, migrations |
-| Uma (UX) | 🎨 | UX/UI design, wireframes |
-| Dex (Dev) | 💻 | Implementation, coding |
-| Quinn (QA) | ✅ | Testing, quality gates |
-| Gage (DevOps) | ⚡ | CI/CD, deployments |
-| Atlas (Analyst) | 🔍 | Research, market analysis |
+| Agent               | Emoji | Uso                                 |
+| ------------------- | ----- | ----------------------------------- |
+| Orion (AIOS Master) | 👑     | Orchestration, framework operations |
+| Morgan (PM)         | 📋     | Product management, PRDs            |
+| River (SM)          | 🌊     | Sprint planning, ceremonies         |
+| Pax (PO)            | 🎯     | Backlog management, priorities      |
+| Aria (Architect)    | 🏛️     | System design, architecture         |
+| Dara (DB)           | 📊     | Database schema, migrations         |
+| Uma (UX)            | 🎨     | UX/UI design, wireframes            |
+| Dex (Dev)           | 💻     | Implementation, coding              |
+| Quinn (QA)          | ✅     | Testing, quality gates              |
+| Gage (DevOps)       | ⚡     | CI/CD, deployments                  |
+| Atlas (Analyst)     | 🔍     | Research, market analysis           |
 
 ### 1.2 Conceitos e Objetos
 
-| Conceito | Emoji | Uso |
-|----------|-------|-----|
-| Workflow | ⚙️ | Workflow definitions, orchestration |
-| Task | 📝 | Individual tasks |
-| Template | 📄 | Document templates |
-| Quality Gate | 🚦 | Quality validation |
-| Story | 📖 | User stories |
-| Epic | 🏔️ | Large features |
-| Sprint | 🏃 | Sprint cycles |
-| Decision | 🎲 | Decision records |
-| Architecture | 🏗️ | System architecture |
-| Database | 🗄️ | Database operations |
-| API | 🔌 | API design |
-| Config | ⚙️ | Configuration |
-| Error | ❌ | Errors, failures |
-| Success | ✅ | Success, completion |
-| Warning | ⚠️ | Warnings, cautions |
-| Info | ℹ️ | Information |
-| Example | 💡 | Examples, tips |
-| Documentation | 📚 | Documentation |
-| Research | 🔬 | Research, investigation |
-| Security | 🔒 | Security, auth |
-| Performance | 🚀 | Performance, optimization |
+| Conceito      | Emoji | Uso                                 |
+| ------------- | ----- | ----------------------------------- |
+| Workflow      | ⚙️     | Workflow definitions, orchestration |
+| Task          | 📝     | Individual tasks                    |
+| Template      | 📄     | Document templates                  |
+| Quality Gate  | 🚦     | Quality validation                  |
+| Story         | 📖     | User stories                        |
+| Epic          | 🏔️     | Large features                      |
+| Sprint        | 🏃     | Sprint cycles                       |
+| Decision      | 🎲     | Decision records                    |
+| Architecture  | 🏗️     | System architecture                 |
+| Database      | 🗄️     | Database operations                 |
+| API           | 🔌     | API design                          |
+| Config        | ⚙️     | Configuration                       |
+| Error         | ❌     | Errors, failures                    |
+| Success       | ✅     | Success, completion                 |
+| Warning       | ⚠️     | Warnings, cautions                  |
+| Info          | ℹ️     | Information                         |
+| Example       | 💡     | Examples, tips                      |
+| Documentation | 📚     | Documentation                       |
+| Research      | 🔬     | Research, investigation             |
+| Security      | 🔒     | Security, auth                      |
+| Performance   | 🚀     | Performance, optimization           |
 
 ### 1.3 Status Indicators
 
-| Status | Emoji | Significado |
-|--------|-------|-------------|
-| Complete | ✅ | Tarefa completa |
-| In Progress | ⏳ | Em andamento |
-| Pending | ⏸️ | Aguardando |
-| Blocked | 🚫 | Bloqueado |
-| Critical | 🔴 | Crítico, urgente |
-| High Priority | 🟡 | Alta prioridade |
-| Medium Priority | 🟢 | Média prioridade |
-| Low Priority | ⚪ | Baixa prioridade |
+| Status          | Emoji | Significado      |
+| --------------- | ----- | ---------------- |
+| Complete        | ✅     | Tarefa completa  |
+| In Progress     | ⏳     | Em andamento     |
+| Pending         | ⏸️     | Aguardando       |
+| Blocked         | 🚫     | Bloqueado        |
+| Critical        | 🔴     | Crítico, urgente |
+| High Priority   | 🟡     | Alta prioridade  |
+| Medium Priority | 🟢     | Média prioridade |
+| Low Priority    | ⚪     | Baixa prioridade |
 
 ### 1.4 Ações e Comandos
 
-| Ação | Emoji | Uso |
-|------|-------|-----|
-| Execute | ▶️ | Executar workflow/task |
-| Stop | ⏹️ | Parar execução |
-| Pause | ⏸️ | Pausar |
-| Resume | ⏯️ | Retomar |
-| Skip | ⏭️ | Pular passo |
-| Retry | 🔄 | Tentar novamente |
-| Delete | 🗑️ | Deletar |
-| Edit | ✏️ | Editar |
-| Add | ➕ | Adicionar |
-| Remove | ➖ | Remover |
-| Search | 🔍 | Buscar |
-| Filter | 🔎 | Filtrar |
+| Ação    | Emoji | Uso                    |
+| ------- | ----- | ---------------------- |
+| Execute | ▶️     | Executar workflow/task |
+| Stop    | ⏹️     | Parar execução         |
+| Pause   | ⏸️     | Pausar                 |
+| Resume  | ⏯️     | Retomar                |
+| Skip    | ⏭️     | Pular passo            |
+| Retry   | 🔄     | Tentar novamente       |
+| Delete  | 🗑️     | Deletar                |
+| Edit    | ✏️     | Editar                 |
+| Add     | ➕     | Adicionar              |
+| Remove  | ➖     | Remover                |
+| Search  | 🔍     | Buscar                 |
+| Filter  | 🔎     | Filtrar                |
 
 ---
 
@@ -5064,15 +5064,15 @@ npm run aios-init
 #### Tabela Comparativa
 ```markdown
 | Feature | AIOS | Other |
-|---------|------|-------|
-| X       | ✅   | ❌    |
-| Y       | ⚠️   | ✅    |
+| ------- | ---- | ----- |
+| X       | ✅    | ❌     |
+| Y       | ⚠️    | ✅     |
 ```
 
 #### Tabela de Referência
 ```markdown
-| Agent | Role | Quando Usar |
-|-------|------|-------------|
+| Agent | Role | Quando Usar             |
+| ----- | ---- | ----------------------- |
 | Dex   | Dev  | Implementação de código |
 ```
 

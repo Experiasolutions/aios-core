@@ -1,14 +1,13 @@
 /**
- * AIOS Scheduler — Agente Autônomo Proativo
- * 
- * Roda tarefas automaticamente em intervalos definidos.
- * Todas as execuções são registradas na memória.
- * 
- * Uso:
- *   node scripts/scheduler.js              Inicia o scheduler (foreground)
- *   node scripts/scheduler.js --status     Mostra próximas execuções
- *   node scripts/scheduler.js --run <task> Executa uma tarefa manualmente
- *   node scripts/scheduler.js --history    Histórico de execuções
+ * @module scheduler
+ * @version 1.0.0
+ * @purpose Autonomous proactive agent that runs scheduled tasks at defined
+ *          intervals (health checks, metrics collection, memory cleanup,
+ *          daily reports, Synapse health, WIS learning). All executions
+ *          are logged to the memory system.
+ * @inputs  None in daemon mode; CLI flags for status/run/history/tasks
+ * @outputs Memory entries for each execution + console status reports
+ * @dependencies memory-system.js, kernel-bridge.js
  */
 
 require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });

@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 
-// AIOS Squad Agent Auditor
-// Scans all squad agent .md files and reports format, field coverage, V3 compatibility.
-// Usage: node scripts/audit-squad-agents.js
+/**
+ * @module audit-squad-agents
+ * @version 1.0.0
+ * @purpose Scan all squad agent .md files and report format distribution,
+ *          field coverage, and V3 compatibility across all squads.
+ * @inputs  squads/ directory (auto-scanned)
+ * @outputs Console audit report + data/squad-audit-report.json
+ * @dependencies None (standalone)
+ */
 
 const fs = require('fs');
 const path = require('path');

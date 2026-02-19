@@ -1,12 +1,12 @@
 /**
- * AIOS Entity Registry Activator
- * 
- * Populates the IDS Entity Registry with our custom squads and agents.
- * This enables the full IDS system (search, dependencies, health checks)
- * for all 101 agents across 16 squads.
- * 
- * Usage: node scripts/activate-registry.js
- */
+ * @module activate-registry
+ * @version 1.0.0
+ * @purpose Populate the IDS Entity Registry by scanning all squad agent .md
+ *          files. Enables full IDS system (search, dependencies, health checks).
+ * @inputs  squads/ directory (auto-scanned for agents and squad.yaml)
+ * @outputs .aios-core/data/custom-entity-registry.yaml + .json
+ * @dependencies squads/{squad}/agents/{agent}.md, squads/{squad}/squad.yaml
+    */
 
 const fs = require('fs');
 const path = require('path');

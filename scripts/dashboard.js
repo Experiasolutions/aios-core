@@ -1,11 +1,12 @@
 /**
- * AIOS JARVIS Dashboard — Web Interface
- * 
- * Server: Express.js na porta 3000
- * Features: Status panel, memory viewer, squad map, chat com Orion, metrics
- * 
- * Uso: node scripts/dashboard.js
- *      Abra: http://localhost:3000
+ * @module dashboard
+ * @version 5.0.0
+ * @purpose Serve the JARVIS Command Center web UI. Provides API endpoints
+ *          for system status, memory, enterprise data, kernel health,
+ *          Synapse metrics, WIS stats, Orion chat, and multi-squad decomposer.
+ * @inputs  HTTP requests on port 3000 (or DASHBOARD_PORT env)
+ * @outputs HTML dashboard + JSON API responses
+ * @dependencies memory-system.js, enterprise-loader.js, kernel-bridge.js
  */
 
 require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });

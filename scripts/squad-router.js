@@ -1,13 +1,12 @@
 /**
- * AIOS Multi-Squad Router — FigJam Integration
- * 
- * Roteia qualquer mensagem para o squad correto usando o Decision Tree do FigJam.
- * Combina os 5 bridge routes existentes + 7 squads FigJam em um router único.
- * 
- * Uso:
- *   node scripts/squad-router.js "sua mensagem"
- *   node scripts/squad-router.js --squads          (lista todos os squads)
- *   node scripts/squad-router.js --test             (testa todas as rotas)
+ * @module squad-router
+ * @version 1.0.0
+ * @purpose Route any message to the correct squad using a Decision Tree.
+ *          Merges bridge routes (functional) with FigJam routes (planned)
+ *          into a single multi-squad router.
+ * @inputs  User message string (CLI arg)
+ * @outputs Routing decision { route, squad, source, functional } + action.json
+ * @dependencies bridge-config.json, figjam-squads.json, experia_bridge.js
  */
 
 const fs = require('fs');

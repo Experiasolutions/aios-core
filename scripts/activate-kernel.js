@@ -1,7 +1,14 @@
 #!/usr/bin/env node
 
-// AIOS Kernel Activator — One-shot verification of all kernel modules
-// Usage: node scripts/activate-kernel.js
+/**
+ * @module activate-kernel
+ * @version 1.0.0
+ * @purpose One-shot verification of all kernel modules (Synapse, IDS, WIS).
+ *          Displays health status and runs a Synapse pipeline test.
+ * @inputs  None (CLI only)
+ * @outputs Console report with per-module status and overall kernel health
+ * @dependencies kernel-bridge.js
+ */
 
 const { createKernelBridge } = require('./kernel-bridge');
 

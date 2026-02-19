@@ -1,17 +1,12 @@
 /**
- * AIOS ↔ Jan.ai Connector
- * 
- * Permite enviar comandos para o Jan.ai via API local e 
- * rotear respostas pelo AIOS Bridge.
- * 
- * Uso:
- *   node scripts/jan-connector.js "mensagem do usuário" [project-id]
- *   node scripts/jan-connector.js "Quanto custa o botox?" whatsapp-autoreply
- *   node scripts/jan-connector.js "Gere o relatório financeiro de janeiro"
- *   node scripts/jan-connector.js --status   (verifica se Jan está rodando)
- * 
- * Fluxo:
- *   Usuário → Jan.ai → Orion assistant → se detectar task → Bridge → action.json
+ * @module jan-connector
+ * @version 1.0.0
+ * @purpose Bridge AIOS to Jan.ai (local LLM) with Groq cloud fallback.
+ *          Auto-detects if user message requires AIOS Bridge execution
+ *          and routes accordingly, otherwise falls back to general chat.
+ * @inputs  User message string (CLI arg) + optional project-id
+ * @outputs LLM response (chat) or action.json (bridge execution)
+ * @dependencies experia_bridge.js, .env (GROQ_API_KEY)
  */
 
 const http = require('http');
