@@ -1,0 +1,48 @@
+{
+    "source": "scheduler",
+    "trigger": "monthly_report",
+    "project": "financial-report",
+    "timestamp": "2026-02-14T19:00:00Z",
+    "data": {
+        "period": "Janeiro 2026",
+        "faturamento": 185000,
+        "procedimentos_realizados": 127,
+        "novos_pacientes": 34,
+        "cancelamentos": 8,
+        "ticket_medio": 1456.69,
+        "top_procedimentos": [
+            {
+                "nome": "Botox",
+                "receita": 52000,
+                "quantidade": 43
+            },
+            {
+                "nome": "Preenchimento labial",
+                "receita": 38000,
+                "quantidade": 22
+            },
+            {
+                "nome": "Harmonização facial",
+                "receita": 35000,
+                "quantidade": 14
+            }
+        ],
+        "canais_aquisicao": [
+            {
+                "canal": "Instagram",
+                "leads": 89,
+                "conversoes": 18
+            },
+            {
+                "canal": "Indicação",
+                "leads": 34,
+                "conversoes": 12
+            },
+            {
+                "canal": "Google",
+                "leads": 22,
+                "conversoes": 4
+            }
+        ]
+    }
+}

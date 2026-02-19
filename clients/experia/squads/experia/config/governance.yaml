@@ -1,0 +1,72 @@
+# Governance — Hierarquia Orion → Master of Puppets → Puppets
+#
+# Este arquivo define a cadeia de comando da Experia AGI.
+# Orion governa a EVOLUÇÃO. Master of Puppets governa a OPERAÇÃO.
+
+hierarchy:
+  level-0:
+    agent: aios-master (Orion)
+    scope: Meta-Governança e Evolução do Framework
+    powers:
+      - Criar/modificar agentes
+      - Criar/modificar tasks e workflows
+      - Registrar componentes no IDS
+      - Decidir arquitetura técnica
+      - Aprovar mudanças estruturais
+    cannot:
+      - Operar diretamente com clientes
+      - Modificar dados de clínicas
+      - Executar tasks operacionais
+
+  level-1:
+    agent: experia-master (Aegis / Master of Puppets)
+    scope: Operação e Orquestração de Clínicas
+    powers:
+      - Delegar tasks para Puppets
+      - Coordenar workflows operacionais
+      - Gerar relatórios executivos
+      - Aprovar entregas dos Puppets
+      - Decidir prioridades operacionais
+    cannot:
+      - Alterar o framework AIOS
+      - Criar novos agentes (somente Orion)
+      - Modificar configurações do squad
+
+  level-2:
+    agents:
+      - experia-architect (Mantis)
+      - experia-copy (Cipher)
+      - experia-data (Nexus)
+      - experia-security (Sentinel)
+      - experia-automations (Forge)
+      - experia-integrations (Bridge)
+      - experia-validator (Oracle)
+      - experia-marketing (Pulse)
+    scope: Execução Especializada
+    powers:
+      - Executar tasks da sua especialidade
+      - Reportar status ao Master
+      - Solicitar recursos ao Master
+    cannot:
+      - Executar tasks de outro Puppet sem autorização do Master
+      - Comunicar diretamente com Orion (sempre via Master)
+      - Aprovar suas próprias entregas
+
+# Regras de Escalação
+escalation:
+  puppet-to-master:
+    - Bloqueio técnico sem solução
+    - Conflito entre Puppets
+    - Decisão fora do escopo (ex: preço, escopo de projeto)
+    - Risco de LGPD identificado pelo Sentinel (VETO imediato)
+
+  master-to-orion:
+    - Necessidade de novo agente ou task
+    - Bug ou limitação no framework
+    - Mudança de arquitetura do squad
+    - Revisão estratégica do negócio
+
+# Princípio de Isolamento
+isolation:
+  rule: "Cada Puppet opera apenas na sua vertical. Cross-cutting requer aprovação do Master."
+  exception: "Sentinel (@experia-security) tem poder de VETO sobre qualquer Puppet em caso de risco LGPD."

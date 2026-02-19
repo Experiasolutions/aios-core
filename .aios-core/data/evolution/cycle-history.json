@@ -1,0 +1,25 @@
+[
+  {
+    "timestamp": "2026-02-19T01:13:49.930Z",
+    "proposals": [
+      {
+        "file": "create",
+        "changeType": "domain-cleanup",
+        "hash": "ee8cf7e7d3baf4361b6891d2f9e6c62e"
+      },
+      {
+        "file": "create",
+        "changeType": "domain-cleanup",
+        "hash": "ee8cf7e7d3baf4361b6891d2f9e6c62e"
+      },
+      {
+        "file": "create",
+        "changeType": "domain-cleanup",
+        "hash": "ee8cf7e7d3baf4361b6891d2f9e6c62e"
+      }
+    ],
+    "improvements": {},
+    "applied": false,
+    "converged": true
+  }
+]

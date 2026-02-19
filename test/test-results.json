@@ -1,0 +1,59 @@
+{
+  "timestamp": "2026-02-14T22:36:17.257Z",
+  "aiosVersion": "5.0.0",
+  "totalTests": 5,
+  "passed": 5,
+  "failed": 0,
+  "results": [
+    {
+      "test": "WhatsApp AutoReply",
+      "project": "whatsapp-autoreply",
+      "status": "success",
+      "actionType": "reply_message",
+      "provider": "llm",
+      "confidence": 0.85,
+      "timeMs": 8256,
+      "response": "Olá Maria! O valor do botox varia de acordo com a área a ser tratada e a quantid"
+    },
+    {
+      "test": "Lead Scoring",
+      "project": "lead-scoring",
+      "status": "success",
+      "actionType": "score_lead",
+      "provider": "llm",
+      "confidence": 0.85,
+      "timeMs": 9047,
+      "response": "{\"score\":7.5,\"priority\":\"WARM\",\"recommended_action\":\"Nurture com conteúdo + foll"
+    },
+    {
+      "test": "Financial Report",
+      "project": "financial-report",
+      "status": "success",
+      "actionType": "generate_report",
+      "provider": "llm",
+      "confidence": 0.85,
+      "timeMs": 5237,
+      "response": "{\"summary\":\"O faturamento do mês de Janeiro de 2026 foi de R$ 185.000, com um ti"
+    },
+    {
+      "test": "Health Check",
+      "project": "health-check",
+      "status": "success",
+      "actionType": "check_status",
+      "provider": "llm",
+      "confidence": 0.85,
+      "timeMs": 3689,
+      "response": "{\"overall\":\"DEGRADED\",\"checks\":[{\"system\":\"whatsapp_web\",\"status\":\"ok\",\"detail\":"
+    },
+    {
+      "test": "Preventive Maintenance",
+      "project": "preventive-maintenance",
+      "status": "success",
+      "actionType": "generate_report",
+      "provider": "llm",
+      "confidence": 0.85,
+      "timeMs": 4559,
+      "response": "{\"disk_space_free_gb\":33.2,\"last_backup\":\"2026-02-14T03:00:00Z\",\"logs_older_than"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+    "source": "whatsapp_web",
+    "trigger": "new_message",
+    "project": "whatsapp-autoreply",
+    "timestamp": "2026-02-14T09:00:00Z",
+    "data": {
+        "sender_name": "Maria Silva",
+        "sender_phone": "+5511999998888",
+        "message_text": "Olá, quanto custa o botox?",
+        "chat_history": [
+            {
+                "role": "assistant",
+                "text": "Bom dia! Tudo bem?"
+            },
+            {
+                "role": "user",
+                "text": "Tudo. Quanto é o botox?"
+            }
+        ]
+    }
+}
