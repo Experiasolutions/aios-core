@@ -1,0 +1,16 @@
+{
+    "source": "crm",
+    "trigger": "new_lead",
+    "project": "lead-scoring",
+    "timestamp": "2026-02-14T19:00:00Z",
+    "data": {
+        "lead_name": "Carlos Mendes",
+        "lead_phone": "11999887766",
+        "lead_source": "instagram",
+        "procedure_interest": "harmonização facial",
+        "first_message": "Oi, vi o anúncio de vocês no Instagram sobre harmonização facial. Quanto custa?",
+        "response_time_minutes": 12,
+        "previous_procedures": false,
+        "engagement_score": 3
+    }
+}

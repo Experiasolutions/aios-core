@@ -1,0 +1,36 @@
+{
+    "source": "scheduler",
+    "trigger": "daily_check",
+    "project": "health-check",
+    "timestamp": "2026-02-14T19:00:00Z",
+    "data": {
+        "systems": [
+            {
+                "name": "whatsapp_web",
+                "status": "connected",
+                "last_activity": "2026-02-14T18:45:00Z"
+            },
+            {
+                "name": "crm_agenda",
+                "status": "ok",
+                "last_activity": "2026-02-14T18:30:00Z"
+            },
+            {
+                "name": "aios_bridge",
+                "status": "ok",
+                "last_run": "2026-02-14T18:50:00Z",
+                "response_time_ms": 3047
+            },
+            {
+                "name": "uipath_robot",
+                "status": "idle",
+                "last_run": "2026-02-14T17:00:00Z"
+            },
+            {
+                "name": "backup",
+                "status": "ok",
+                "last_backup": "2026-02-14T03:00:00Z"
+            }
+        ]
+    }
+}
