@@ -12,9 +12,12 @@
 
 const fs = require('fs');
 const path = require('path');
+const { getToolsBridge } = require('./tools-bridge');
 
 const AIOS_ROOT = path.resolve(__dirname, '..');
 const SQUADS_DIR = path.join(AIOS_ROOT, 'squads');
+
+const toolsBridge = getToolsBridge();
 
 // ============================================================
 // SCAN AIOS FOR TOOLS
@@ -103,6 +106,45 @@ function scanTools() {
                 source: { type: 'string', description: 'Source agent ID' },
             },
             required: ['channel', 'data'],
+        },
+    });
+
+    // Tool: list-skills
+    tools.push({
+        name: 'aios_list_skills',
+        description: 'List available skills from the tools arsenal (tools/integrations). Limited by default, use search for specific skills.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                limit: { type: 'number', description: 'Maximum number of skills to return (default: 50)' }
+            },
+            required: []
+        },
+    });
+
+    // Tool: search-skills
+    tools.push({
+        name: 'aios_search_skills',
+        description: 'Search for specific skills in the AIOS tools arsenal by keyword',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                query: { type: 'string', description: 'Search query (e.g., "react", "pdf", "python")' },
+            },
+            required: ['query'],
+        },
+    });
+
+    // Tool: read-skill
+    tools.push({
+        name: 'aios_read_skill',
+        description: 'Read the full instructional content of a specific skill (returns the SKILL.md content)',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                skill_id: { type: 'string', description: 'ID of the skill (e.g., "python-pro", "mcp-builder")' },
+            },
+            required: ['skill_id'],
         },
     });
 
@@ -205,6 +247,46 @@ function handleTool(name, args) {
             return { published: true, channel: args.channel, data: args.data, source: args.source || 'mcp-client', timestamp: new Date().toISOString() };
         }
 
+        case 'aios_list_skills': {
+            const discovery = toolsBridge.getDiscovery();
+            if (!discovery.available) return { error: 'Tools bridge is not available. Ensure the tools/ directory exists.' };
+            const limit = args.limit || 50;
+            return {
+                total_skills: discovery.totalSkills,
+                integrations: discovery.integrations.length,
+                skills_preview: discovery.allSkills.slice(0, limit).map(s => ({ id: s.id, name: s.name })),
+                note: `Showing first ${Math.min(limit, discovery.totalSkills)} skills. Use aios_search_skills to find specific ones.`
+            };
+        }
+
+        case 'aios_search_skills': {
+            if (!toolsBridge.available) return { error: 'Tools bridge is not available.' };
+            const results = toolsBridge.searchSkills(args.query);
+            return {
+                query: args.query,
+                count: results.length,
+                results: results.slice(0, 20).map(s => ({
+                    id: s.id,
+                    name: s.name,
+                    relevance: s.relevance,
+                    description: s.description
+                }))
+            };
+        }
+
+        case 'aios_read_skill': {
+            if (!toolsBridge.available) return { error: 'Tools bridge is not available.' };
+            const content = toolsBridge.loadSkillContent(args.skill_id);
+            if (!content) return { error: `Skill '${args.skill_id}' not found or has no content.` };
+            const skill = toolsBridge.getSkillById(args.skill_id);
+            return {
+                id: args.skill_id,
+                name: skill.name,
+                path: skill.path,
+                content: content
+            };
+        }
+
         default:
             return { error: `Unknown tool: ${name}` };
     }
@@ -237,6 +319,8 @@ if (process.argv.includes('--test')) {
         ['aios_list_agents', { squad: 'doombot' }],
         ['aios_search_agents', { query: 'revenue' }],
         ['aios_publish_event', { channel: 'test.ping', data: { msg: 'hello' } }],
+        ['aios_list_skills', { limit: 5 }],
+        ['aios_search_skills', { query: 'react' }],
     ];
 
     let passed = 0;

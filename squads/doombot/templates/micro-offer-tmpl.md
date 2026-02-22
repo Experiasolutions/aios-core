@@ -11,7 +11,7 @@
 **Canal preferido:** [WhatsApp / Instagram / Email]
 
 ## Etapa 2 — Dor
-**Dor principal:** [ex: agenda com buracos e pacientes que somem]
+**Dor principal:** [ex: agenda com buracos e clientes que somem]
 **Urgência:** [1-10]
 **Disposição a pagar:** [1-10]
 **Custo da inação:** [ex: R$X/mês perdido]

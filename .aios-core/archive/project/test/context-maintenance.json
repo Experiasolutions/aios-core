@@ -1,0 +1,16 @@
+{
+    "source": "scheduler",
+    "trigger": "weekly_maintenance",
+    "project": "preventive-maintenance",
+    "timestamp": "2026-02-14T19:00:00Z",
+    "data": {
+        "scope": "full",
+        "disk_space_used_percent": 67,
+        "logs_older_than_30_days": 142,
+        "last_backup": "2026-02-14T03:00:00Z",
+        "pending_updates": [
+            "dotenv@17.0.1"
+        ],
+        "sessions_expired": 23
+    }
+}

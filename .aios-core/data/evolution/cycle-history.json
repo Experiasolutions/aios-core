@@ -1,48 +1,25 @@
 [
   {
-    "timestamp": "2026-02-19T01:13:49.930Z",
+    "timestamp": "2026-02-20T22:58:26.921Z",
     "proposals": [
       {
-        "file": "create",
+        "file": "IMPLEMENTATION",
         "changeType": "domain-cleanup",
-        "hash": "ee8cf7e7d3baf4361b6891d2f9e6c62e"
+        "hash": "4fd1774d164c545d105a465ca2c49c86"
       },
       {
-        "file": "create",
+        "file": "IMPLEMENTATION",
         "changeType": "domain-cleanup",
-        "hash": "ee8cf7e7d3baf4361b6891d2f9e6c62e"
+        "hash": "4fd1774d164c545d105a465ca2c49c86"
       },
       {
-        "file": "create",
+        "file": "OPUS",
         "changeType": "domain-cleanup",
-        "hash": "ee8cf7e7d3baf4361b6891d2f9e6c62e"
+        "hash": "8666fab2d59b8c9605edb6bdc1eb085b"
       }
     ],
     "improvements": {},
-    "applied": false,
-    "converged": true
-  },
-  {
-    "timestamp": "2026-02-19T03:03:48.047Z",
-    "proposals": [
-      {
-        "file": "experia_bridge.js",
-        "changeType": "domain-cleanup",
-        "hash": "71f504d66df6751fe3f0482ea6e4f9f5"
-      },
-      {
-        "file": "jan",
-        "changeType": "domain-cleanup",
-        "hash": "829fdb66ef528654cafbe686084ff4e7"
-      },
-      {
-        "file": "session",
-        "changeType": "domain-cleanup",
-        "hash": "a08107739ee4678782d979613a00e9c6"
-      }
-    ],
-    "improvements": {},
-    "applied": false,
+    "applied": true,
     "converged": true
   }
 ]

@@ -26,7 +26,7 @@ hierarchy:
   reports_to: "@doom-master (DoomMaster)"
   veto_power: true
   collaborates_with:
-    - "@experia-security (Sentinela) — padrões LGPD"
+    - "Client security agent — padrões LGPD"
     - "@admin-juridico (Lex) — compliance legal"
     - "TODOS os agentes Doom — gate obrigatório"
 

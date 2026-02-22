@@ -81,7 +81,7 @@ const RISK_CLASSIFICATION = Object.freeze({
             /^\.aios-core\/opus-replicator\//,
             /^scripts\/input-refiner\.js$/,
             /^scripts\/self-correction\.js$/,
-            /^OPUS_ENGINEERING_BIBLE/,
+            /^KAIROS_ENGINEERING_BIBLE/,
         ],
     },
 });
@@ -193,8 +193,8 @@ const CRITICAL_FILES = Object.freeze([
     'scripts/input-refiner.js',
     'scripts/self-correction.js',
     'scripts/harvest-gold.js',
-    'OPUS_ENGINEERING_BIBLE.md',
-    'OPUS_ENGINEERING_BIBLE_v2.md',
+    'KAIROS_ENGINEERING_BIBLE.md',
+    'KAIROS_ENGINEERING_BIBLE_v2.md',
     'scripts/evolution/evolution-engine.js',
     'scripts/evolution/circuit-breaker.config.js',
 ]);

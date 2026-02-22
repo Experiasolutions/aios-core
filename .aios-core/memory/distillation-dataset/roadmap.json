@@ -1,58 +1,31 @@
 {
     "version": "1.0.0",
-    "lastUpdated": "2026-02-18T22:48:00-03:00",
-    "goal": "Build local distillation dataset for AIOS fine-tuning. Target: 500 high-quality traces before first training run.",
+    "purpose": "Track progress toward local model fine-tuning",
+    "target": 500,
+    "captured": 13,
+    "curated": 12,
     "milestones": [
         {
-            "id": "M1",
-            "name": "Infrastructure Bootstrap",
-            "status": "complete",
-            "target": "traces/ and curated/ directories + roadmap.json",
-            "completedAt": "2026-02-18T22:48:00-03:00"
+            "name": "Prototype",
+            "traces": 50,
+            "status": "pending"
         },
         {
-            "id": "M2",
-            "name": "First 50 Traces",
-            "status": "in-progress",
-            "target": "50 raw traces captured from evolution cycles",
-            "currentCount": 3,
-            "eta": "2026-03-15"
+            "name": "Alpha",
+            "traces": 200,
+            "status": "pending"
         },
         {
-            "id": "M3",
-            "name": "First Curation Pass",
-            "status": "pending",
-            "target": "30 curated traces from M2, validated by Council",
-            "currentCount": 0,
-            "eta": "2026-03-30"
+            "name": "Beta",
+            "traces": 500,
+            "status": "pending"
         },
         {
-            "id": "M4",
-            "name": "500 Traces + First Training Run",
-            "status": "pending",
-            "target": "500 curated traces → LoRA fine-tune experiment",
-            "currentCount": 0,
-            "eta": "2026-06-01"
+            "name": "Production",
+            "traces": 1000,
+            "status": "pending"
         }
     ],
-    "traceSchema": {
-        "id": "string (TRACE-{timestamp})",
-        "type": "enum(audit|proposal|vote|correction|verification)",
-        "input": "object (context given to the reasoning step)",
-        "reasoning": "string (chain-of-thought captured)",
-        "output": "object (decision/action taken)",
-        "quality": "number (0-10, assessed by Council)",
-        "source": "string (cycle ID that generated this trace)",
-        "tags": "array of strings for categorization"
-    },
-    "stats": {
-        "totalTraces": 3,
-        "totalCurated": 0,
-        "avgQuality": 0,
-        "topCategories": [
-            "audit",
-            "vote",
-            "correction"
-        ]
-    }
+    "lastUpdated": "2026-02-20T02:35:00-03:00",
+    "note": "Canonical copy is distillation-dataset/roadmap.json. This copy kept in sync for Chair 8 compatibility."
 }

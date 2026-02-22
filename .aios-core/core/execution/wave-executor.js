@@ -3,7 +3,7 @@
  * Story 10.1 - Parallel Agent Execution
  *
  * Executes task waves in parallel, leveraging the WaveAnalyzer
- * for dependency-aware scheduling.
+ * for dependency-aware execution ordering.
  */
 
 const EventEmitter = require('events');

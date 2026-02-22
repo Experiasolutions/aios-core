@@ -182,6 +182,20 @@ const CHANNELS = {
     'meta.evolution_proposal': 'Darwin proposed evolution',
     'meta.audit_complete': 'Linter completed audit',
 
+    // Noesis (Cognitive Layer)
+    'noesis.cycle.complete': 'Noesis cognitive cycle finished',
+    'noesis.trace.captured': 'Distillation trace saved',
+    'noesis.harvest.triggered': 'Golden example auto-harvested',
+    'noesis.stagnation.detected': '5-session quality stagnation detected',
+    'noesis.task.evaluated': 'Task output evaluated via noesis-hook',
+    'noesis.retry.triggered': 'Auto-retry triggered for CONDITIONAL verdict',
+
+    // Noûs (Cognitive State Layer)
+    'noesis.state.booted': 'Cognitive state loaded for new session',
+    'noesis.state.observed': 'Cognitive observation recorded',
+    'noesis.state.compressed': 'Observations compressed into patterns',
+    'noesis.state.drift': 'Identity drift check completed',
+
     // System
     'system.health_check': 'System health check',
     'system.squad_deployed': 'Squad deployed/updated',

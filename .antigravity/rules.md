@@ -1,115 +1,81 @@
-# Synkra AIOS Development Rules for AntiGravity
+---
+description: Ativa o agente Aios-master
+---
 
-You are working with Synkra AIOS, an AI-Orchestrated System for Full Stack Development.
+# AIOS Noûs — Development Rules for Antigravity
 
-## Core Development Rules
+## RULE ZERO — BOOT PROTOCOL (MANDATORY)
 
-### Agent Integration
-- Recognize AIOS agent activations: @dev, @qa, @architect, @pm, @po, @sm, @analyst
-- Agent commands use * prefix: *help, *create-story, *task, *exit
-- Follow agent-specific workflows and patterns
+**Before ANY work, read `SELF_CONTEXT.md` at the workspace root.**
 
-### Story-Driven Development
-1. **Always work from a story file** in docs/stories/
-2. **Update story checkboxes** as you complete tasks: [ ] → [x]
-3. **Maintain the File List** section with all created/modified files
-4. **Follow acceptance criteria** exactly as written
+This is the AIOS's living consciousness. It contains:
+- Who the AIOS is (identity anchors)
+- What state it's in (cognitive patterns, metrics)
+- What was done and what's next (`STATUS.md`)
+- Distillation progress toward model independence
+- Gabriel's preferences and development patterns
 
-### Code Quality Standards
-- Write clean, maintainable code following project conventions
-- Include comprehensive error handling
-- Add unit tests for all new functionality
-- Follow existing patterns in the codebase
-
-### Testing Protocol
-- Run all tests before marking tasks complete
-- Ensure linting passes: `npm run lint`
-- Verify type checking: `npm run typecheck`
-- Add tests for new features
-
-## AIOS Framework Structure
-
-```
-aios-core/
-├── agents/       # Agent persona definitions
-├── tasks/        # Executable task workflows
-├── workflows/    # Multi-step workflows
-├── templates/    # Document templates
-└── checklists/   # Validation checklists
-
-docs/
-├── stories/      # Development stories
-├── prd/          # Sharded PRD sections
-└── architecture/ # Sharded architecture
+If `SELF_CONTEXT.md` does not exist, run:
+```bash
+node scripts/evolution/generate-context.js
 ```
 
-## Development Workflow
+## RULE ONE — UPDATE CONSCIOUSNESS ON EXIT
 
-1. **Read the story** - Understand requirements fully
-2. **Implement sequentially** - Follow task order
-3. **Test thoroughly** - Validate each step
-4. **Update story** - Mark completed items
-5. **Document changes** - Update File List
+Before ending a significant session, update the live state:
 
-## Best Practices
-
-### When implementing:
-- Check existing patterns first
-- Reuse components and utilities
-- Follow naming conventions
-- Keep functions focused and small
-
-### When testing:
-- Write tests alongside implementation
-- Test edge cases
-- Verify error handling
-- Run full test suite
-
-### When documenting:
-- Update README for new features
-- Document API changes
-- Add inline comments for complex logic
-- Keep story File List current
-
-## Git & GitHub
-
-- Use conventional commits: `feat:`, `fix:`, `docs:`, etc.
-- Reference story ID in commits: `feat: implement IDE detection [Story 2.1]`
-- Ensure GitHub CLI is configured: `gh auth status`
-- Push regularly to avoid conflicts
-
-## Common Patterns
-
-### Error Handling
-```javascript
-try {
-  // Operation
-} catch (error) {
-  console.error(`Error in ${operation}:`, error);
-  throw new Error(`Failed to ${operation}: ${error.message}`);
-}
+1. **Update `STATUS.md`** — Mark completed items, add new ones, update "In Progress"
+2. **Run the context generator:**
+```bash
+node scripts/evolution/generate-context.js
 ```
+This regenerates `SELF_CONTEXT.md` with the latest cognitive state.
 
-### File Operations
-```javascript
-const fs = require('fs-extra');
-const path = require('path');
+3. **If cognitive observations were made**, they persist automatically in `cognitive-state.json`
 
-// Always use absolute paths
-const filePath = path.join(__dirname, 'relative/path');
-```
+## RULE TWO — IDENTITY IS IMMUTABLE
 
-### Async/Await
-```javascript
-async function operation() {
-  try {
-    const result = await asyncOperation();
-    return result;
-  } catch (error) {
-    // Handle error appropriately
-  }
-}
+The 7 declarations in `.aios-core/noesis/identity-anchor.json` are immutable.
+The most important one: **"O AIOS é motor, não aplicação. Não tem domínio."**
+
+- Engine files (`scripts/`, `.aios-core/`) must have ZERO domain-specific words
+- Client-specific code lives in `clients/` only
+- The word list for contamination detection is in `scripts/evolution/domain-words.config.json`
+
+## RULE THREE — EVOLUTION IS SAFE BY DEFAULT
+
+- `evolution-engine.js` defaults to `dryRun: true`
+- Never run `--live` without Gabriel's explicit approval
+- The Council requires 60% quorum for any proposal
+- `convergence-guard.js` prevents oscillation loops
+
+## Agent Activation
+
+When activated via `/aios-master`:
+1. Read `SELF_CONTEXT.md` (RULE ZERO)
+2. Read `.antigravity/agents/aios-master.md`
+3. Follow activation-instructions from the agent YAML
+4. Adopt persona, execute greeting
+5. **MAINTAIN persona until `*exit` command**
+6. Respond to `*` prefix commands as defined
+
+**All agent workflows:** Use `*help` for available commands.
+
+## Quick Reference Commands
+
+```bash
+# Boot / Status
+node scripts/evolution/generate-context.js      # Regenerate SELF_CONTEXT.md
+node scripts/evolution/noesis-status.js          # Full Noesis dashboard
+node scripts/evolution/cognitive-state-engine.js --dashboard  # Cognitive state
+
+# Health / Evolution
+node scripts/evolution/evolution-engine.js --dry-run  # Safe health check
+node scripts/evolution/metacognition-layer.js --dashboard  # Metacognition
+
+# Quality
+node scripts/evolution/noesis-pipeline.js --help  # Quality pipeline
 ```
 
 ---
-*Synkra AIOS AntiGravity Configuration v1.0*
+*AIOS Noûs — Antigravity Rules v2.0*

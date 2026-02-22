@@ -1,0 +1,19 @@
+{
+    "name": "aios-bridge",
+    "version": "1.0.0",
+    "description": "AIOS Bridge — Connects AIOS brain to UiPath/external executors",
+    "main": "scripts/experia_bridge.js",
+    "scripts": {
+        "bridge": "node scripts/experia_bridge.js",
+        "bridge:test": "node scripts/experia_bridge.js test/context-whatsapp.json",
+        "bridge:watch": "node scripts/bridge-watcher.js"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.0",
+        "nodemailer": "^8.0.1"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "private": true
+}

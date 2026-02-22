@@ -23,6 +23,7 @@ const { createGenerateCommand } = require('./commands/generate');
 const { createMetricsCommand } = require('./commands/metrics');
 const { createConfigCommand } = require('./commands/config');
 const { createProCommand } = require('./commands/pro');
+const { createNoesisCommand } = require('./commands/noesis');
 
 // Read package.json for version
 const packageJsonPath = path.join(__dirname, '..', '..', 'package.json');
@@ -123,6 +124,9 @@ Examples:
 
   // Add pro command (Story PRO-6)
   program.addCommand(createProCommand());
+
+  // Add noesis command (Noesis Engine v2.2)
+  program.addCommand(createNoesisCommand());
 
   return program;
 }

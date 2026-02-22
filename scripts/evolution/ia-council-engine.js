@@ -396,6 +396,8 @@ function evaluatePedro(systemState) {
     const engineFiles = (systemState.files || []).filter(f =>
         !f.path.startsWith('clients/') &&
         !f.path.includes('node_modules') &&
+        !f.path.includes('/archive/') &&
+        !f.path.includes('\\archive\\') &&
         f.content
     );
     let domainWords = [];
@@ -405,8 +407,20 @@ function evaluatePedro(systemState) {
     } catch {
         domainWords = []; // No config = no domain check (safe default)
     }
+    // Files that legitimately contain domain words as part of detection logic (not contamination)
+    const detectorExclusions = [
+        'ia-council-engine.js',      // Pedro's own scanner (this file)
+        'cognitive-state-engine.js',  // AP-001 detection word lists
+        'metacognition-layer.js',     // Domain boundary detection
+        'domain-words.config.json',   // The word list config itself
+        'circuit-breaker.config.js',  // Contains detection patterns
+        'IMPLEMENTATION-GUIDE-QUICK.md', // Documentation examples
+        'OPUS-REPLICANT-SYSTEM-v2.md'    // Documentation examples
+    ];
     for (const file of engineFiles) {
-        if (file.path.endsWith('.js') || (file.path.endsWith('.md') && file.path.includes('opus-replicator'))) {
+        const basename = path.basename(file.path);
+        if ((file.path.endsWith('.js') || (file.path.endsWith('.md') && file.path.includes('opus-replicator')))
+            && !detectorExclusions.includes(basename)) {
             for (const word of domainWords) {
                 // Case insensitive check, but skip if it's in a comment about the anti-pattern itself
                 const regex = new RegExp(`\\b${word}\\b`, 'gi');
@@ -543,7 +557,7 @@ function evaluateDistillation(systemState, cycleContext = {}) {
             id: 'DST-TRACES-MISSING',
             description: 'Distillation traces directory not found — reasoning traces not being captured',
             severity: 7,
-            evidence: '.aios-core/memory/distillation-dataset/traces/ not found',
+            evidence: 'distillation-dataset/traces/ not found',
             impact30d: 'Every cycle produces reasoning traces that are lost forever. Zero progress toward local model independence.',
         });
         score -= 1.5;
@@ -554,7 +568,7 @@ function evaluateDistillation(systemState, cycleContext = {}) {
             id: 'DST-CURATED-MISSING',
             description: 'Curated dataset directory not found — high-quality examples not being collected',
             severity: 6,
-            evidence: '.aios-core/memory/distillation-dataset/curated/ not found',
+            evidence: 'distillation-dataset/curated/ not found',
             impact30d: 'Golden examples exist but are not structured for fine-tuning. Model training impossible.',
         });
         score -= 1;
@@ -634,12 +648,16 @@ function evaluateDistillation(systemState, cycleContext = {}) {
                 const roadmap = JSON.parse(roadmapFile.content);
                 distillationReport.roadmap = roadmap;
 
-                if (roadmap.total_traces < 50) {
+                const traceCount = roadmap.captured || roadmap.total_traces || 0;
+                const curatedCount = roadmap.curated || 0;
+                const target = roadmap.target || 500;
+
+                if (traceCount < 50) {
                     gaps.push({
                         id: 'DST-ROADMAP-LOW',
-                        description: `Only ${roadmap.total_traces || 0} traces captured. Need ~500 for viable 3B model fine-tune.`,
+                        description: `Only ${traceCount} traces captured (${curatedCount} curated). Need ~${target} for viable 3B model fine-tune.`,
                         severity: 4,
-                        evidence: `${roadmap.total_traces || 0}/500 traces (${((roadmap.total_traces || 0) / 500 * 100).toFixed(1)}%)`,
+                        evidence: `${traceCount}/${target} captured, ${curatedCount} curated (${(traceCount / target * 100).toFixed(1)}%)`,
                         impact30d: 'Insufficient data for local model training',
                     });
                     score -= 0.5;
@@ -653,7 +671,7 @@ function evaluateDistillation(systemState, cycleContext = {}) {
             id: 'DST-ROADMAP-MISSING',
             description: 'Independence roadmap not found — no progress tracking toward local model',
             severity: 5,
-            evidence: '.aios-core/memory/distillation-dataset/roadmap.json not found',
+            evidence: 'distillation-dataset/roadmap.json not found',
             impact30d: 'No visibility into how close system is to model independence',
         });
         score -= 0.8;

@@ -27,7 +27,7 @@ hierarchy:
   collaborates_with:
     - "@doom-strategist (ARIA) — diagnóstico + dados"
     - "@admin-financeiro (Vault) — P&L real"
-    - "@experia-data (Radar) — padrões de métricas"
+    - "Client data agent — padrões de métricas"
 
 kpi_thresholds:
   - metric: "Report Accuracy"

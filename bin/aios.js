@@ -20,7 +20,7 @@ const command = args[0];
 
 // Helper: Run initialization wizard
 async function runWizard(options = {}) {
-  // Use the new v2.1 wizard from packages/installer/src/wizard/index.js
+  // Use the v4 wizard from packages/installer/src/wizard/index.js
   const wizardPath = path.join(__dirname, '..', 'packages', 'installer', 'src', 'wizard', 'index.js');
 
   if (!fs.existsSync(wizardPath)) {
@@ -43,7 +43,7 @@ async function runWizard(options = {}) {
   }
 
   try {
-    // Run the new v2.1 wizard with options
+    // Run the v4 wizard with options
     const { runWizard: executeWizard } = require(wizardPath);
     await executeWizard(options);
   } catch (error) {
@@ -59,16 +59,16 @@ AIOS-FullStack v${packageJson.version}
 AI-Orchestrated System for Full Stack Development
 
 USAGE:
-  npx @synkra/aios-core@latest              # Run installation wizard
-  npx @synkra/aios-core@latest install      # Install in current project
-  npx @synkra/aios-core@latest init <name>  # Create new project
-  npx @synkra/aios-core@latest update       # Update to latest version
-  npx @synkra/aios-core@latest validate     # Validate installation integrity
-  npx @synkra/aios-core@latest info         # Show system info
-  npx @synkra/aios-core@latest doctor       # Run diagnostics
-  npx @synkra/aios-core@latest --version    # Show version
-  npx @synkra/aios-core@latest --version -d # Show detailed version info
-  npx @synkra/aios-core@latest --help       # Show this help
+  npx aios-core@latest              # Run installation wizard
+  npx aios-core@latest install      # Install in current project
+  npx aios-core@latest init <name>  # Create new project
+  npx aios-core@latest update       # Update to latest version
+  npx aios-core@latest validate     # Validate installation integrity
+  npx aios-core@latest info         # Show system info
+  npx aios-core@latest doctor       # Run diagnostics
+  npx aios-core@latest --version    # Show version
+  npx aios-core@latest --version -d # Show detailed version info
+  npx aios-core@latest --help       # Show this help
 
 UPDATE:
   aios update                    # Update to latest version
@@ -99,13 +99,13 @@ SERVICE DISCOVERY:
 
 EXAMPLES:
   # Install in current directory
-  npx @synkra/aios-core@latest
+  npx aios-core@latest
 
   # Install with minimal mode (only expansion-creator)
-  npx @synkra/aios-core-minimal@latest
+  npx aios-core-minimal@latest
 
   # Create new project
-  npx @synkra/aios-core@latest init my-project
+  npx aios-core@latest init my-project
 
   # Search for workers
   aios workers search "json csv"
@@ -126,7 +126,7 @@ async function showVersion() {
 
   // Detailed version output (Story 7.2: Version Tracking)
   console.log(`AIOS-FullStack v${packageJson.version}`);
-  console.log('Package: @synkra/aios-core');
+  console.log('Package: aios-core');
 
   // Check for local installation
   const localVersionPath = path.join(process.cwd(), '.aios-core', 'version.json');
@@ -199,10 +199,13 @@ function showInfo() {
       }
     };
 
-    console.log(`  - Agents: ${countFiles(path.join(aiosCoreDir, 'agents'))}`);
-    console.log(`  - Tasks: ${countFiles(path.join(aiosCoreDir, 'tasks'))}`);
-    console.log(`  - Templates: ${countFiles(path.join(aiosCoreDir, 'templates'))}`);
-    console.log(`  - Workflows: ${countFiles(path.join(aiosCoreDir, 'workflows'))}`);
+    const devDir = path.join(aiosCoreDir, 'development');
+    const componentBase = fs.existsSync(devDir) ? devDir : aiosCoreDir;
+
+    console.log(`  - Agents: ${countFiles(path.join(componentBase, 'agents'))}`);
+    console.log(`  - Tasks: ${countFiles(path.join(componentBase, 'tasks'))}`);
+    console.log(`  - Templates: ${countFiles(path.join(componentBase, 'templates'))}`);
+    console.log(`  - Workflows: ${countFiles(path.join(componentBase, 'workflows'))}`);
   } else {
     console.log('\n⚠️  AIOS Core not found');
   }
@@ -485,7 +488,7 @@ Examples:
     });
     hasErrors = true;
     console.log('✗ AIOS Core not installed');
-    console.log('  Run: npx @synkra/aios-core@latest');
+    console.log('  Run: npx aios-core@latest');
   }
 
   // Check 5: AIOS Pro license status (Task 5.1)
@@ -633,7 +636,7 @@ Options:
 What gets removed:
   - .aios-core/     Framework core files
   - docs/stories/   Story files (if created by AIOS)
-  - squads/         Squad expansion packs
+  - squads/         Squad definitions
   - .gitignore      AIOS-added entries only
 
 What is preserved (with --keep-data):
@@ -702,7 +705,7 @@ async function runUninstall(options = {}) {
   // Items to remove
   const itemsToRemove = [
     { path: '.aios-core', description: 'Framework core' },
-    { path: 'squads', description: 'Squad expansion packs' },
+    { path: 'squads', description: 'Squad definitions' },
   ];
 
   // Optionally remove .aios
