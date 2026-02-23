@@ -9,6 +9,7 @@
  * @dependencies .env (TELEGRAM_BOT_TOKEN, TELEGRAM_ALLOWED_USER_ID)
  */
 
+require('dotenv').config({ path: require('path').resolve(__dirname, '..', '.env') });
 const fs = require('fs');
 const path = require('path');
 const { execSync, exec } = require('child_process');
