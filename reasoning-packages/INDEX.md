@@ -31,7 +31,8 @@
 
 | ID                         | Data       | Status       | Descrição                                                            | Arquivo                                                              |
 | :------------------------- | :--------- | :----------- | :------------------------------------------------------------------- | :------------------------------------------------------------------- |
-| RP-20260223-ATIVACAO-TOTAL | 2026-02-23 | 🔄 Executando | IA Council deliberation — plano revisado de ativação total do KAIROS | [RP-20260223-ATIVACAO-TOTAL.md](tasks/RP-20260223-ATIVACAO-TOTAL.md) |
+| RP-20260223-ATIVACAO-TOTAL | 2026-02-23 | ✅ Completo   | IA Council deliberation — plano revisado de ativação total do KAIROS | [RP-20260223-ATIVACAO-TOTAL.md](tasks/RP-20260223-ATIVACAO-TOTAL.md) |
+| RP-20260223-EXPERIA-GTM    | 2026-02-23 | 🔄 Executando | Go-To-Market zero budget — captação de clientes Experia no ABC       | [RP-20260223-EXPERIA-GTM.md](tasks/RP-20260223-EXPERIA-GTM.md)       |
 
 > RPs de tarefa são criados automaticamente pelo Noesis quando a complexidade da tarefa exige.
 > Veja o [Protocolo RP-MCP](PROTOCOL-RP-MCP-v1.0.md) para critérios e formato.

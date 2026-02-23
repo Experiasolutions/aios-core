@@ -1,7 +1,7 @@
 {
     "name": "clickup",
     "type": "api",
-    "status": "pending",
+    "status": "active",
     "credentials_ref": ".env → CLICKUP_API_TOKEN",
     "purpose": "Gestão de tarefas da agência Experia. Tracking de entregas por cliente, sprints, e backlog.",
     "agents_with_access": [
