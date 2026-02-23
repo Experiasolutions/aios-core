@@ -1,97 +1,161 @@
-# KAIROS Community Edition — Contributions to AIOS
+# 🧬 KAIROS Community Edition — Contribuições para o Ecossistema AIOS
 
-> Open-source contributions from the KAIROS project back to the AIOS ecosystem.
-> All contributions are MIT-compatible and contain no proprietary code.
-
----
-
-## What's Included
-
-### 1. Opus Replicant Engine — Think-With-Depth Protocol
-
-A reasoning protocol that gives any LLM structured depth. Originally designed for Claude's OPUS model, adapted to work with Gemini, GPT, and any instruction-following LLM.
-
-**Key files:**
-- `opus-replicant/OPUS-REPLICANT-SYSTEM-v2.md` — Core specification
-- `opus-replicant/GEM_MODE_ACTIVATION.md` — Gemini-specific activation
-- `opus-replicant/PM1-PM2-PM3/` — Three reasoning modes (Analysis, Execution, Evaluation)
-- `opus-replicant/constitutional-layer-v3.md` — Safety guardrails
-
-**What it does:** Forces 3-layer thinking (Immediate → Structural → Strategic) on every output. No surface-level answers. Evidence-backed claims. Steel-man rejected alternatives.
+> Ferramentas e padrões criados durante a operação do KAIROS,
+> devolvidos à comunidade AIOS. 100% compatíveis com AIOS v3.9+.
+> Licença MIT. Sem código proprietário.
 
 ---
 
-### 2. RP-MCP Protocol — Intent + Execution Framework
+## O que é o KAIROS?
 
-A lightweight protocol for pairing Reasoning Packages (intent metadata) with MCP tool execution.
+O KAIROS é um projeto pessoal construído em cima do AIOS. Em 10 dias de operação, foram criadas ferramentas que resolvem problemas reais que qualquer operador AIOS enfrenta: outputs rasos, tarefas que perdem o foco, e dificuldade de escalar para múltiplos clientes.
 
-**Key file:** `PROTOCOL-RP-MCP-v1.0.md`
+Estas 3 contribuições são as que mais ajudaram no meu dia a dia. Compartilho aqui para que outros operadores possam usar e melhorar.
 
-**What it does:** For complex tasks, creates a short "intent document" that defines success criteria, risks, and scope *before* any tool is invoked. The agent checks criteria after execution. Simple tasks skip this entirely.
+---
 
-**Format:**
-```markdown
-# RP: [task name]
-## Intenção — what success looks like
-## Critério de sucesso — verifiable checkboxes
-## O que pode dar errado — risks + mitigations
-## Ferramentas MCP envolvidas — which tools and why
-## Fora do escopo — what this task does NOT do
+## 📦 Contribuição 1: Opus Replicant Engine
+
+**Problema:** LLMs respondem de forma superficial. Muitas vezes o output "parece certo" mas não tem profundidade real.
+
+**Solução:** Um protocolo de raciocínio que força 3 camadas de análise em toda resposta:
+
+| Camada          | O que faz                                      |
+| :-------------- | :--------------------------------------------- |
+| **Imediata**    | Responde o que foi perguntado                  |
+| **Estrutural**  | Analisa premissas, dependências, e trade-offs  |
+| **Estratégica** | Conecta com o contexto maior e próximos passos |
+
+**5 Regras Core:**
+1. **DEPTH** — Todo output percorre 3 camadas. Zero respostas superficiais.
+2. **EVIDENCE** — Nenhuma afirmação sem evidência. Incerteza é declarada explicitamente.
+3. **SYNTHESIS** — Outputs não-triviais reconhecem tensões e steel-man alternativas rejeitadas.
+4. **MODULARITY** — Todo output é reutilizável por outros agentes.
+5. **EVOLUTION** — O sistema melhora a cada sessão. Nunca o mesmo erro duas vezes.
+
+**Arquivos incluídos:**
+```
+opus-replicant/
+├── OPUS-REPLICANT-SYSTEM-v2.md      ← Especificação completa (1500+ linhas)
+├── GEM_MODE_ACTIVATION.md           ← Ativação específica para Gemini
+├── IMPLEMENTATION-GUIDE-QUICK.md    ← Guia rápido de implementação
+├── constitutional-layer-v3.md       ← Guardrails de segurança
+├── pm1-reasoning-master.md          ← PM1: Análise profunda
+├── pm2-execution-master.md          ← PM2: Execução criativa
+└── pm3-quality-master.md            ← PM3: Avaliação de qualidade
 ```
 
+**Como usar:**
+```bash
+# Copie para seu workspace AIOS
+cp -r opus-replicant/ .aios-core/opus-replicator/
+
+# Referência no seu agente master:
+# Adicione as 5 regras core no identity-anchor do seu agente
+```
+
+**Resultado real:** Minha taxa de retrabalho caiu ~60%. Outputs que antes precisavam 2-3 iterações agora saem corretos na primeira tentativa.
+
 ---
 
-### 3. Engine/Client Separation Pattern
+## 📦 Contribuição 2: Protocolo RP-MCP
 
-An architectural pattern for multi-tenancy in AIOS: the engine (motor) stays domain-agnostic, client-specific code lives in isolated directories.
+**Problema:** Em tarefas complexas, o agente começa a executar mas perde o foco no meio. Ferramentas são invocadas sem clareza sobre o que "sucesso" significa.
+
+**Solução:** Antes de executar tarefas complexas, criar um "Intent Document" mínimo (2-3 minutos) que define:
+
+```
+TAREFA COMPLEXA
+      │
+      ├── RP (INTENT.md)     → O QUE significa sucesso?
+      │                         Quais critérios definem "feito"?
+      │                         O que pode dar errado?
+      │
+      └── MCP (ferramentas)  → COMO executar?
+                                Quais skills, agentes, APIs?
+```
+
+**Quando usar (2 ou mais destes sinais):**
+- ✅ Decisão que não pode ser revertida facilmente
+- ✅ Requer 3+ agentes ou ferramentas em sequência
+- ✅ O critério de "pronto" não é óbvio
+- ✅ Tem impacto em cliente ou código de produção
+
+**Tarefas simples? Execute direto via MCP sem RP.**
+
+**Arquivo incluído:**
+```
+rp-mcp-protocol/
+└── PROTOCOL-RP-MCP-v1.0.md    ← Protocolo completo com template e exemplo
+```
+
+**Resultado real:** Eliminei quase totalmente a situação "tarefa finalizada mas não era isso que eu queria".
+
+---
+
+## 📦 Contribuição 3: Engine/Client Separation
+
+**Problema:** Quando você atende mais de um cliente com o AIOS, tudo se mistura. Agentes genéricos contaminados com referências ao "Cliente X", impossível reutilizar o motor em outro domínio.
+
+**Solução:** Separar o ENGINE (motor, domain-agnostic) do CLIENT (aplicação, domain-specific):
 
 ```
 project-root/
-├── squads/          ← engine agents (domain-agnostic)
+├── squads/          ← ENGINE (motor — nunca referencia um cliente)
+├── scripts/         ← ENGINE
+├── .aios-core/      ← ENGINE
 ├── clients/
-│   └── experia/     ← client-specific code, configs, assets
-│   └── [client-b]/  ← another client, fully isolated
-├── scripts/         ← engine scripts
-└── .aios-core/      ← engine configuration
+│   ├── cliente-a/   ← APPLICATION (isolado)
+│   └── cliente-b/   ← APPLICATION (isolado)
 ```
 
-**Principle:** "O AIOS é motor, não aplicação. Não tem domínio." The same engine serves any business vertical. Domain contamination is actively detected and removed by the Evolution Engine.
+**Princípio:** "O AIOS é motor, não aplicação. Não tem domínio."
+
+O mesmo motor que atende uma clínica de estética pode atender um pet shop. A inteligência está no motor. O domínio está no cliente.
+
+**Arquivo incluído:**
+```
+engine-client-separation/
+└── GUIDE.md    ← Guia com regras, detecção de contaminação, setup em 5 min
+```
+
+**Resultado real:** Testado com 350+ arquivos de aplicação isolados do engine. Zero contaminação de domínio entre clientes.
 
 ---
 
-### 4. AIOS Father — Mentorship Protocol
-
-A simplified mentorship framework for new AIOS operators. Teaches the progression from "person who uses AI" to "person who orchestrates AI systems."
-
-**Key file:** `aios-father/AIOS-FATHER-SIMPLE.md`
-
----
-
-## How to Use These Contributions
-
-Each contribution is self-contained. Copy the relevant directory into your AIOS workspace:
+## Como instalar tudo de uma vez
 
 ```bash
-# Opus Replicant
+# Clone ou copie a pasta community-edition para seu workspace
+
+# 1. Opus Replicant
 cp -r community-edition/opus-replicant/ .aios-core/opus-replicator/
 
-# RP-MCP Protocol
-cp community-edition/PROTOCOL-RP-MCP-v1.0.md reasoning-packages/
+# 2. RP-MCP Protocol
+cp community-edition/rp-mcp-protocol/PROTOCOL-RP-MCP-v1.0.md reasoning-packages/
 
-# Engine/Client Pattern
-mkdir -p clients/[your-client]/
-# Move domain-specific files there
+# 3. Engine/Client Separation
+mkdir -p clients/meu-primeiro-cliente/{agents,templates,data}
+# Siga o GUIDE.md para mover arquivos de domínio
 ```
 
 ---
 
-## License
+## Compatibilidade
 
-All Community Edition contributions are MIT-compatible and designed to work with AIOS v3.9+.
-
-No proprietary KAIROS components (Noesis Engine, Evolution Engine, IA Council, Mind Clones) are included.
+- AIOS v3.9+ (testado em v4.2.13 e v5.0.0)
+- Funciona com qualquer LLM (Gemini, Claude, GPT, Groq, DeepSeek)
+- Não tem dependências externas
+- Licença MIT — use como quiser
 
 ---
 
-*Community Edition — KAIROS Project*
-*Contributor: Gabriel | February 2026*
+## O que NÃO está incluído
+
+Este é um release gratuito da comunidade. Componentes proprietários do KAIROS (Noesis Engine, Evolution Engine, IA Council, Mind Clones, Distillation Pipeline) **não** estão incluídos.
+
+---
+
+*Contribuição do projeto KAIROS para a comunidade AIOS.*
+*Operador: Gabriel Lima | Grande ABC, SP | Fevereiro 2026*
+*Feedback e melhorias são bem-vindos.*
