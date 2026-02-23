@@ -146,18 +146,21 @@ function runCommand(cmd) {
 const handlers = {
   '/start': async (chatId) => {
     await sendMessage(chatId,
-      '🤖 *AIOS Telegram Bridge v1.0*\n\n' +
-      'Bem-vindo! Você está conectado ao AIOS.\n\n' +
+      '🤖 *KAIROS Telegram Bridge v2.0*\n\n' +
+      'Bem-vindo, Gabriel! Você está conectado ao KAIROS.\n\n' +
       'Use /help para ver os comandos disponíveis.'
     );
   },
 
   '/help': async (chatId) => {
     await sendMessage(chatId,
-      '📋 *Comandos AIOS*\n\n' +
-      '`/status` — Status geral do AIOS\n' +
+      '📋 *Comandos KAIROS*\n\n' +
+      '`/status` — Health check completo do KAIROS\n' +
       '`/squads` — Listar todos os squads\n' +
       '`/agents [squad]` — Agentes de um squad\n' +
+      '`/experia` — Status dos clientes Experia\n' +
+      '`/noite` — Ativar turno da noite manualmente\n' +
+      '`/urgente [msg]` — Tarefa urgente (bypassa fila)\n' +
       '`/run [cmd]` — Executar comando no terminal\n' +
       '`/audit` — Relatório rápido de saúde\n' +
       '`/help` — Esta mensagem'
@@ -166,12 +169,21 @@ const handlers = {
 
   '/status': async (chatId) => {
     const s = getStatus();
+    let noesisInfo = '';
+    try {
+      const output = runCommand('node scripts/evolution/noesis-status.js');
+      const lines = output.split('\n').filter(l =>
+        l.includes('Score') || l.includes('Traces') || l.includes('Health')
+      );
+      noesisInfo = lines.length > 0 ? '\n\n🧠 *Noesis:*\n' + lines.join('\n') : '';
+    } catch { }
     await sendMessage(chatId,
-      `🟢 *AIOS Online*\n\n` +
+      `🟢 *KAIROS Online*\n\n` +
       `📦 Version: \`${s.version}\`\n` +
       `🏢 Squads: ${s.squads}\n` +
       `🤖 Agents: ${s.agents}\n` +
-      `⏰ ${new Date().toLocaleString('pt-BR')}`
+      `⏰ ${new Date().toLocaleString('pt-BR')}` +
+      noesisInfo
     );
   },
 
@@ -197,12 +209,62 @@ const handlers = {
     await sendMessage(chatId, `📋 *${args}* (${agents.length} agents)\n\n${list}`);
   },
 
+  '/experia': async (chatId) => {
+    const clientsDir = path.join(CONFIG.AIOS_ROOT, 'clients', 'experia');
+    let clientFiles = 0;
+    try { clientFiles = fs.readdirSync(clientsDir, { recursive: true }).length; } catch { }
+    const clonesDir = path.join(CONFIG.AIOS_ROOT, 'squads', 'mind-clones', 'experia');
+    let clones = [];
+    try { clones = fs.readdirSync(clonesDir).filter(f => f.endsWith('.md')); } catch { }
+    const masterExists = fs.existsSync(path.join(CONFIG.AIOS_ROOT, 'squads', 'experia', 'EXPERIA-MASTER.md'));
+    await sendMessage(chatId,
+      `📊 *Experia Status*\n\n` +
+      `${masterExists ? '✅' : '❌'} EXPERIA-MASTER: ${masterExists ? 'ativo' : 'não encontrado'}\n` +
+      `🤖 Mind Clones: ${clones.length} (${clones.map(c => c.replace('.md', '')).join(', ') || 'nenhum'})\n` +
+      `📁 Client files: ${clientFiles}\n` +
+      `📡 Canal: aguardando ativação WhatsApp via OpenClaw`
+    );
+  },
+
+  '/noite': async (chatId) => {
+    await sendMessage(chatId, '🌙 Ativando turno da noite manualmente...');
+    try {
+      const output = runCommand('node scripts/evolution/evolution-engine.js --dry-run');
+      const summary = output.split('\n').filter(l =>
+        l.includes('COMPLETE') || l.includes('Score') || l.includes('Gaps') ||
+        l.includes('Approved') || l.includes('Duration')
+      ).join('\n');
+      await sendMessage(chatId,
+        `🌙 *Night Shift Manual*\n\`\`\`\n${summary || '(ciclo executado sem output de resumo)'}\n\`\`\``
+      );
+    } catch (e) {
+      await sendMessage(chatId, `❌ Erro no turno da noite: ${e.message}`);
+    }
+  },
+
+  '/urgente': async (chatId, args) => {
+    if (!args) {
+      await sendMessage(chatId, '⚠️ Uso: `/urgente [descrição da tarefa]`');
+      return;
+    }
+    const reportDir = path.join(CONFIG.AIOS_ROOT, '.aios-core', 'night-reports');
+    try { if (!fs.existsSync(reportDir)) fs.mkdirSync(reportDir, { recursive: true }); } catch { }
+    const urgentFile = path.join(reportDir, `urgente-${Date.now()}.md`);
+    fs.writeFileSync(urgentFile,
+      `# 🚨 URGENTE — ${new Date().toISOString()}\n\n${args}\n\nStatus: recebido\n`
+    );
+    await sendMessage(chatId,
+      `🚨 *URGENTE registrado:*\n"${args}"\n\n` +
+      `📁 Salvo em: \`.aios-core/night-reports/\`\n` +
+      `Será processado com prioridade máxima no próximo ciclo.`
+    );
+  },
+
   '/run': async (chatId, args) => {
     if (!args) {
       await sendMessage(chatId, '⚠️ Uso: `/run [comando]`');
       return;
     }
-    // Security: block dangerous commands
     const blocked = ['rm -rf', 'del /s', 'format', 'shutdown', 'reboot'];
     if (blocked.some(b => args.toLowerCase().includes(b))) {
       await sendMessage(chatId, '🔴 Comando bloqueado por segurança.');
@@ -220,7 +282,7 @@ const handlers = {
     const status = getStatus();
 
     await sendMessage(chatId,
-      `🔬 *AIOS Audit Report*\n\n` +
+      `🔬 *KAIROS Audit Report*\n\n` +
       `📦 Version: \`${status.version}\`\n` +
       `🏢 Squads: ${squads.length} (${withYaml} with yaml)\n` +
       `🤖 Agents: ${totalAgents}\n` +
@@ -282,8 +344,8 @@ async function poll() {
 // ============================================================
 
 async function main() {
-  console.log('🤖 AIOS Telegram Bridge v1.0');
-  console.log(`📁 AIOS Root: ${CONFIG.AIOS_ROOT}`);
+  console.log('🤖 KAIROS Telegram Bridge v2.0');
+  console.log(`📁 KAIROS Root: ${CONFIG.AIOS_ROOT}`);
 
   if (CONFIG.BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE') {
     console.log('\n⚠️  Setup necessário:');
