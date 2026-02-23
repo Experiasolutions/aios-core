@@ -1,7 +1,7 @@
 {
     "name": "telegram",
     "type": "api",
-    "status": "pending",
+    "status": "active",
     "credentials_ref": ".env → TELEGRAM_BOT_TOKEN",
     "purpose": "Ponte celular↔KAIROS. Gabriel envia mensagens de texto e voz, KAIROS processa e responde.",
     "agents_with_access": [
