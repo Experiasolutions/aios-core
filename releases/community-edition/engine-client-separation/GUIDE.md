@@ -80,7 +80,7 @@ Mesmo com 1 cliente, implemente a separação. Motivos:
 1. **Futuro:** Quando o segundo cliente chegar, já está pronto
 2. **Clareza:** Saber o que é do motor e o que é do negócio
 3. **Portabilidade:** Copiar o motor para outro projeto sem arrastar o domínio
-4. **Evolução:** O Evolution Engine pode auditar separação automaticamente
+4. **Evolução:** Facilita auditoria e manutenção — ferramentas podem validar a separação automaticamente
 
 ## Implementação em 5 minutos
 

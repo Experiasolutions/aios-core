@@ -4,6 +4,23 @@
 > devolvidos à comunidade AIOS. 100% compatíveis com AIOS v3.9+.
 > Licença MIT. Sem código proprietário.
 
+## ⚡ Quick Start
+
+```bash
+# 1. Clone ou copie a pasta community-edition para seu workspace AIOS
+
+# 2. Comece pelo AIOS Father (mentor)
+#    Leia: aios-father/AIOS-FATHER.md
+
+# 3. Siga o checklist da primeira semana
+#    Leia: first-week-checklist/CHECKLIST.md
+
+# 4. Use os templates prontos quando precisar
+#    Copie de: agent-templates/TEMPLATES.md
+```
+
+> **Windows?** Substitua `cp -r` por `copy /Y` ou `xcopy /E /I`. Os arquivos são todos `.md`, sem dependências.
+
 ---
 
 ## O que é o KAIROS?

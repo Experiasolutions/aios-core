@@ -4,11 +4,11 @@
 
 ---
 
-## Dia 1 (segunda) — Conhecer a Casa
+## Dia 1 — Conhecer a Casa
 
 - [ ] Instalar o AIOS (seguir documentação oficial SynkraAI)
-- [ ] Rodar `node scripts/evolution/noesis-status.js` — ver se o sistema responde
-- [ ] Abrir `.antigravity/agents/` — ler 2 agentes existentes para entender o formato
+- [ ] Rodar qualquer script existente para confirmar que o Node.js funciona (ex: `node -e "console.log('AIOS OK')"`)  
+  > **Dica Windows:** Se `grep` não funcionar, use `findstr /S /I` como alternativa
 - [ ] Ler a seção "Nível 1" do AIOS Father
 
 **Tempo estimado:** 1-2 horas
@@ -16,7 +16,7 @@
 
 ---
 
-## Dia 2 (terça) — Criar Seu Primeiro Agente
+## Dia 2 — Criar Seu Primeiro Agente
 
 - [ ] Criar `.antigravity/agents/meu-assistente.md` (copiar template do AIOS Father)
 - [ ] Ativar o agente e testar 3 conversas
@@ -28,7 +28,7 @@
 
 ---
 
-## Dia 3 (quarta) — Montar Seu Primeiro Squad
+## Dia 3 — Montar Seu Primeiro Squad
 
 - [ ] Criar pasta `squads/meu-squad/agents/`
 - [ ] Criar 2 agentes complementares (ex: writer + reviewer, ou pesquisador + sintetizador)
@@ -40,11 +40,11 @@
 
 ---
 
-## Dia 4 (quinta) — Separar Engine de Client
+## Dia 4 — Separar Engine de Client
 
 - [ ] Criar `clients/meu-negocio/` com subpastas (agents, templates, data)
 - [ ] Mover qualquer arquivo de domínio de `squads/` para `clients/`
-- [ ] Rodar busca de contaminação: `grep -r "nome-do-negocio" squads/`
+- [ ] Rodar busca de contaminação: `grep -r "nome-do-negocio" squads/` (Linux/Mac) ou `findstr /S /I "nome-do-negocio" squads\*` (Windows)
 - [ ] Resultado esperado: zero matches
 
 **Tempo estimado:** 30 minutos
@@ -52,7 +52,7 @@
 
 ---
 
-## Dia 5 (sexta) — Conectar um Canal
+## Dia 5 — Conectar um Canal
 
 - [ ] Escolher: Telegram Bot (mais fácil) ou WhatsApp
 - [ ] Para Telegram: criar bot via @BotFather, adicionar token ao `.env`
@@ -64,7 +64,7 @@
 
 ---
 
-## Dia 6 (sábado) — Automatizar Algo
+## Dia 6 — Automatizar Algo
 
 - [ ] Escolher 1 tarefa que faz toda semana (relatório, planejamento, revisão)
 - [ ] Criar script que roda essa tarefa usando seus agentes
@@ -76,7 +76,7 @@
 
 ---
 
-## Dia 7 (domingo) — Revisar e Decidir
+## Dia 7 — Revisar e Decidir
 
 - [ ] Listar o que funcionou e o que não funcionou
 - [ ] Decidir: quero continuar evoluindo? quero atender clientes com isso?

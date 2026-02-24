@@ -21,16 +21,17 @@ Este guia assume que você já instalou o AIOS (framework do SynkraAI). Se não 
 
 ---
 
-## A Jornada — 4 Fases Cognitivas
+## A Jornada — 4 Fases Cognitivas, 5 Níveis Práticos
 
 ```
-Fase 1: "Eu uso IA"           → Você dá prompts e recebe respostas
-Fase 2: "Eu delego para IA"   → Agentes fazem tarefas por você
-Fase 3: "Eu orquestro IA"     → Squads trabalham em conjunto
-Fase 4: "Meu sistema evolui"  → Meta-agentes melhoram o próprio sistema
+Fase 1: "Eu uso IA"           → Nível 1 (Dia 1)
+Fase 2: "Eu delego para IA"   → Nível 2 (Dia 3) + Nível 3 (Dia 7)
+Fase 3: "Eu orquestro IA"     → Nível 4 (Dia 14)
+Fase 4: "Meu sistema evolui"  → Nível 5 (Dia 30)
 ```
 
 A maioria das pessoas fica presa na Fase 1. O AIOS existe para levar você à Fase 3+.
+Este guia mapeia cada fase a níveis práticos com ações concretas.
 
 ---
 
@@ -63,16 +64,17 @@ commands:
 
 **2. Crie seu primeiro agente — um assistente simples:**
 
-Crie o arquivo `.antigravity/agents/meu-assistente.md`:
-
-```markdown
-# meu-assistente
+Crie o arquivo `.antigravity/agents/meu-assistente.md` com este conteúdo:
 
 ```yaml
+# meu-assistente
+
 agent:
   name: Assistente
   id: meu-assistente
   title: Assistente Pessoal do [Seu Nome]
+  icon: 🤖
+  whenToUse: Use para tarefas do dia a dia, organização e dúvidas rápidas.
 
 persona:
   role: Assistente pessoal
@@ -89,7 +91,6 @@ commands:
     description: Lista minhas tarefas pendentes
   - name: resumo
     description: Resume o que foi feito na sessão
-```​
 ```
 
 **3. Ative:** `@meu-assistente` no seu IDE compatível.
@@ -159,6 +160,7 @@ persona:
 - [ ] Criei uma pasta `squads/[nome]/agents/` com 2+ agentes
 - [ ] Cada agente tem responsabilidade clara e distinta
 - [ ] Consigo acionar cada agente separadamente
+- [ ] Pedi para outra pessoa interagir com meus agentes e avaliar (feedback externo)
 
 ---
 
@@ -217,11 +219,26 @@ Até agora, você acionava agentes manualmente. Agora, o sistema roda **sozinho*
 **2. Crie um scheduler simples:**
 ```javascript
 const schedule = require('node-schedule');
+const { execSync } = require('child_process');
+const https = require('https');
 
-// Todo dia às 6h: gera relatório
+// Todo dia às 6h: gera resumo e envia via Telegram
 schedule.scheduleJob('0 6 * * *', async () => {
-  // Executa seus agentes
-  // Envia resultado via Telegram/WhatsApp
+  console.log('[Scheduler] Gerando relatório matinal...');
+
+  // 1. Executa seus scripts
+  const status = execSync('node scripts/meu-status.js').toString();
+
+  // 2. Envia via Telegram
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  const url = `https://api.telegram.org/bot${token}/sendMessage`;
+  const body = JSON.stringify({ chat_id: chatId, text: status });
+
+  const req = https.request(url, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+  req.write(body);
+  req.end();
+  console.log('[Scheduler] Morning brief enviado!');
 });
 ```
 
