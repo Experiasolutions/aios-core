@@ -10,7 +10,7 @@
 
 O KAIROS é um projeto pessoal construído em cima do AIOS. Em 10 dias de operação, foram criadas ferramentas que resolvem problemas reais que qualquer operador AIOS enfrenta: outputs rasos, tarefas que perdem o foco, e dificuldade de escalar para múltiplos clientes.
 
-Estas 3 contribuições são as que mais ajudaram no meu dia a dia. Compartilho aqui para que outros operadores possam usar e melhorar.
+Estas 6 contribuições são as que mais ajudaram no meu dia a dia. Compartilho aqui para que outros operadores possam usar e melhorar.
 
 ---
 
@@ -138,6 +138,67 @@ cp community-edition/rp-mcp-protocol/PROTOCOL-RP-MCP-v1.0.md reasoning-packages/
 mkdir -p clients/meu-primeiro-cliente/{agents,templates,data}
 # Siga o GUIDE.md para mover arquivos de domínio
 ```
+
+---
+
+## 📦 Contribuição 4: AIOS Father — Mentor para Novos Operadores
+
+**Problema:** Novos operadores instalam o AIOS e se perguntam: "E agora?"
+
+**Solução:** Guia prático de 5 níveis que vai do primeiro agente até meta-agentes:
+
+| Nível                  | O que aprende                 | Tempo  |
+| :--------------------- | :---------------------------- | :----: |
+| 1. Seu Primeiro Agente | Criar e ativar 1 agente       | Dia 1  |
+| 2. Seu Primeiro Squad  | 2+ agentes trabalhando juntos | Dia 3  |
+| 3. Motor vs Aplicação  | Separar engine de client      | Dia 7  |
+| 4. Automação           | Sistema trabalha sozinho      | Dia 14 |
+| 5. Meta-Agentes        | Sistema evolui sozinho        | Dia 30 |
+
+Cada nível tem: mindset shift, exemplo prático, e checkpoint de validação.
+Inclui seção honesta sobre **o que o AIOS NÃO faz**.
+
+**Arquivo:** `aios-father/AIOS-FATHER.md`
+
+---
+
+## 📦 Contribuição 5: Agent Templates Pack
+
+**Problema:** Criar agentes do zero demora e a maioria dos operadores não sabe por onde começar.
+
+**Solução:** 5 templates prontos para copiar e personalizar:
+
+1. **Customer Service** — atendimento ao cliente 24/7
+2. **Content Creator** — posts, captions, scripts de reels
+3. **Code Reviewer** — revisão de PRs com foco em segurança
+4. **Data Analyst** — dados → insights acionáveis
+5. **Project Manager** — organização, sprints, priorização
+
+Cada template inclui YAML completo com persona, princípios e comandos.
+
+**Arquivo:** `agent-templates/TEMPLATES.md`
+
+---
+
+## 📦 Contribuição 6: First Week Checklist
+
+**Problema:** A primeira semana com o AIOS é decisiva. Quem não vê resultado rápido desiste.
+
+**Solução:** Checklist de 7 dias com 1 ação concreta por dia:
+
+|  Dia  | Ação                  | Meta                          |
+| :---: | :-------------------- | :---------------------------- |
+|   1   | Conhecer a casa       | Entender onde cada coisa fica |
+|   2   | Criar primeiro agente | 1 agente funcional            |
+|   3   | Montar primeiro squad | 2 agentes em sequência        |
+|   4   | Separar engine/client | Separação limpa               |
+|   5   | Conectar Telegram     | Acessar pelo celular          |
+|   6   | Automatizar algo      | 1 tarefa rodando sozinha      |
+|   7   | Revisar e decidir     | Clareza sobre próximo mês     |
+
+**Tempo total:** ~8-10 horas na semana.
+
+**Arquivo:** `first-week-checklist/CHECKLIST.md`
 
 ---
 
