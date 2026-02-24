@@ -116,4 +116,4 @@ O mesmo motor que atende uma clínica de estética pode atender um pet shop, uma
 ---
 
 *Contribuição: KAIROS Project — Community Edition*
-*Padrão testado com 350+ arquivos de aplicação isolados do engine*
+*Padrão testado com 270+ arquivos de aplicação isolados do engine*

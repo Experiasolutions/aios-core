@@ -6,7 +6,7 @@
 
 ## Dia 1 — Conhecer a Casa
 
-- [ ] Instalar o AIOS (seguir documentação oficial SynkraAI)
+- [ ] Instalar o AIOS (seguir documentação oficial)
 - [ ] Rodar qualquer script existente para confirmar que o Node.js funciona (ex: `node -e "console.log('AIOS OK')"`)  
   > **Dica Windows:** Se `grep` não funcionar, use `findstr /S /I` como alternativa
 - [ ] Ler a seção "Nível 1" do AIOS Father

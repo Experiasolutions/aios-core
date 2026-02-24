@@ -30,9 +30,9 @@ Protocolo de raciocínio que força 3 camadas de análise em toda resposta:
 - Estrutural (analisa premissas e trade-offs)
 - Estratégica (conecta com contexto maior)
 
-**Resultado real:** taxa de retrabalho caiu ~60%.
+**Resultado real:** redução significativa de retrabalho.
 
-Inclui: spec completa (1500+ linhas), 3 modos de raciocínio, guardrails, guia rápido.
+Inclui: spec completa (1200+ linhas), 3 modos de raciocínio, guardrails, guia rápido.
 
 ---
 
@@ -46,7 +46,7 @@ Antes de tarefas complexas, você cria um "Intent Document" de 2 min que define:
 ### 🔧 3. Engine/Client Separation
 Padrão pra atender múltiplos clientes: motor (genérico) fica em squads/, aplicação (específica) fica em clients/nome/. Inclui guia de detecção de contaminação.
 
-**Resultado real:** 350+ arquivos, zero contaminação entre clientes.
+**Resultado real:** 270+ arquivos, zero contaminação entre clientes.
 
 ---
 

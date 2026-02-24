@@ -209,4 +209,4 @@ commands:
 ---
 
 *Agent Templates Pack — KAIROS Community Edition*
-*5 templates testados em operação real — Gabriel Lima, Fev 2026*
+*5 templates baseados em operação real — Gabriel Lima, Fev 2026*

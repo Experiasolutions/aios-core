@@ -1,7 +1,7 @@
 # 🧬 KAIROS Community Edition — Contribuições para o Ecossistema AIOS
 
 > Ferramentas e padrões criados durante a operação do KAIROS,
-> devolvidos à comunidade AIOS. 100% compatíveis com AIOS v3.9+.
+> devolvidos à comunidade AIOS. Compatíveis com AIOS v3.9+.
 > Licença MIT. Sem código proprietário.
 
 ## ⚡ Quick Start
@@ -53,7 +53,7 @@ Estas 6 contribuições são as que mais ajudaram no meu dia a dia. Compartilho 
 **Arquivos incluídos:**
 ```
 opus-replicant/
-├── OPUS-REPLICANT-SYSTEM-v2.md      ← Especificação completa (1500+ linhas)
+├── OPUS-REPLICANT-SYSTEM-v2.md      ← Especificação completa (1200+ linhas)
 ├── GEM_MODE_ACTIVATION.md           ← Ativação específica para Gemini
 ├── IMPLEMENTATION-GUIDE-QUICK.md    ← Guia rápido de implementação
 ├── constitutional-layer-v3.md       ← Guardrails de segurança
@@ -71,7 +71,7 @@ cp -r opus-replicant/ .aios-core/opus-replicator/
 # Adicione as 5 regras core no identity-anchor do seu agente
 ```
 
-**Resultado real:** Minha taxa de retrabalho caiu ~60%. Outputs que antes precisavam 2-3 iterações agora saem corretos na primeira tentativa.
+**Resultado real:** Percebi redução significativa no retrabalho. Outputs que antes precisavam 2-3 iterações passaram a sair mais completos na primeira tentativa.
 
 ---
 
@@ -136,7 +136,7 @@ engine-client-separation/
 └── GUIDE.md    ← Guia com regras, detecção de contaminação, setup em 5 min
 ```
 
-**Resultado real:** Testado com 350+ arquivos de aplicação isolados do engine. Zero contaminação de domínio entre clientes.
+**Resultado real:** Testado com 270+ arquivos de aplicação isolados do engine. Zero contaminação de domínio entre clientes.
 
 ---
 
@@ -221,7 +221,7 @@ Cada template inclui YAML completo com persona, princípios e comandos.
 
 ## Compatibilidade
 
-- AIOS v3.9+ (testado em v4.2.13 e v5.0.0)
+- AIOS v3.9+
 - Funciona com qualquer LLM (Gemini, Claude, GPT, Groq, DeepSeek)
 - Não tem dependências externas
 - Licença MIT — use como quiser

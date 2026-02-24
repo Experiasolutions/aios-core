@@ -7,10 +7,10 @@
 
 ## Antes de Começar
 
-Este guia assume que você já instalou o AIOS (framework do SynkraAI). Se não instalou, siga a documentação oficial primeiro.
+Este guia assume que você já instalou o AIOS. Se não instalou, siga a documentação oficial primeiro.
 
 **O que este guia NÃO é:**
-- Não é a documentação oficial do AIOS (essa está no repo do SynkraAI)
+- Não é a documentação oficial do AIOS
 - Não promete resultados mágicos
 - Não substitui expertise no seu domínio de negócio
 
@@ -214,7 +214,7 @@ Até agora, você acionava agentes manualmente. Agora, o sistema roda **sozinho*
 
 **1. Escolha um canal de comunicação:**
 - Telegram Bot (mais simples — recomendado para começar)
-- WhatsApp via OpenClaw (mais complexo, mas é onde seus clientes estão)
+- WhatsApp via integração de API (mais complexo, mas é onde seus clientes estão)
 
 **2. Crie um scheduler simples:**
 ```javascript
@@ -267,7 +267,7 @@ Este nível é avançado e depende do seu contexto. Exemplos do que é possível
 - Agente que comprime memórias de sessões anteriores
 
 ### Recomendação honesta
-Não tente o Nível 5 antes de ter os Níveis 1-4 sólidos. A maioria dos operadores vai extrair 90% do valor nos Níveis 2-3.
+Não tente o Nível 5 antes de ter os Níveis 1-4 sólidos. A maioria dos operadores vai extrair a maior parte do valor nos Níveis 2-3.
 
 ### ✅ Checkpoint Nível 5
 - [ ] Tenho pelo menos 1 meta-agente operacional
