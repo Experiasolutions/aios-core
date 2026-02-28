@@ -249,6 +249,14 @@ function observe(observation) {
         session: state.sessionCount,
     };
 
+    // High-severity penalty for Pilar 3 (Investigative Mode Violation / Direct Assumption)
+    if (obs.description && obs.description.includes('AP-006')) {
+        obs.type = 'blindspot';
+        if (obs.score != null) obs.score = Math.max(0, obs.score - 4); // Heavy penalty
+        if (obs.depthScore != null) obs.depthScore = 0;
+        obs.context.investigativeModeViolation = true;
+    }
+
     state.pendingObservations.push(obs);
 
     // Update metrics

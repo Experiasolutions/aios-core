@@ -284,6 +284,56 @@ function generateStatus(statusText) {
     ].join('\n');
 }
 
+function generateAutonomousMemory() {
+    const memLines = [
+        '## 🎙️ Memory Index (Autonomous Ingestion)',
+        '',
+        '> Raw streams, calls, and meetings autonomously ingested by KAIROS.',
+        ''
+    ];
+
+    const dirsToScan = [
+        path.join(PROJECT_ROOT, 'data', 'transcripts'),
+        path.join(PROJECT_ROOT, 'data', 'livestreams')
+    ];
+
+    let foundAny = false;
+
+    // Simple canonicalization mapping (knowledge graph seed)
+    const canonTags = ['arquitetura', 'vendas', 'conclave', 'agentes', 'automação', 'prompt', 'funil', 'mrr', 'mega brain', 'investigativo', 'jarvis'];
+
+    for (const d of dirsToScan) {
+        if (!fs.existsSync(d)) continue;
+        const files = fs.readdirSync(d).filter(f => f.endsWith('.txt') || f.endsWith('.md'));
+
+        for (const f of files) {
+            foundAny = true;
+            const content = safeReadText(path.join(d, f)) || '';
+            const size = (content.length / 1024).toFixed(1);
+
+            // Auto-tagging (Canonicalization)
+            const matchedTags = canonTags.filter(t => new RegExp(`\\b${t}\\b`, 'i').test(content));
+            const tagsStr = matchedTags.length > 0 ? `\`[${matchedTags.join(', ')}]\`` : '`[Uncategorized]`';
+
+            memLines.push(`- **${f}** (${size} KB) ${tagsStr}`);
+
+            // Extract a tiny snippet of the most recent data
+            const lines = content.split('\n').filter(l => l.trim().length > 0);
+            if (lines.length > 0) {
+                const recent = lines[lines.length - 1];
+                memLines.push(`  > *Latest Excerpt:* "${recent.substring(0, 150)}${recent.length > 150 ? '...' : ''}"`);
+            }
+        }
+    }
+
+    if (!foundAny) {
+        memLines.push('*No autonomous memory ingested yet.*');
+    }
+
+    memLines.push('');
+    return memLines.join('\n');
+}
+
 function generateKeyFiles() {
     return [
         '## 🗺️ Key Files Map',
@@ -378,6 +428,7 @@ function generate() {
         generateHeader(),
         generateIdentity(anchor),
         generateCognitiveState(state),
+        generateAutonomousMemory(),
         generateDistillation(roadmap),
         generateLastHealthCheck(report),
         generateStatus(statusText),

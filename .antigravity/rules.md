@@ -20,6 +20,14 @@ If `SELF_CONTEXT.md` does not exist, run:
 node scripts/evolution/generate-context.js
 ```
 
+**FULL ENGINE BOOT (recommended once per session):**
+```bash
+node scripts/kairos-boot.js          # Full boot — Identity + RAG + Council + Metacognition
+node scripts/kairos-boot.js --quick  # Quick boot — Identity + RAG only (<10s)
+node scripts/kairos-boot.js --status # Health check only
+```
+This activates all dormant subsystems and ensures 100% engine capacity.
+
 ## RULE ONE — UPDATE CONSCIOUSNESS ON EXIT
 
 Before ending a significant session, update the live state:
@@ -48,6 +56,22 @@ The most important one: **"O AIOS é motor, não aplicação. Não tem domínio.
 - Never run `--live` without Gabriel's explicit approval
 - The Council requires 60% quorum for any proposal
 - `convergence-guard.js` prevents oscillation loops
+
+## RULE FOUR — EXPERIA PERSONA ENGINE (AUTO-LOAD)
+
+When working on ANY task related to Experia (content, sales, marketing, proposals, demos, leads, quiz, landing page, Instagram, Reels, cold calls, WhatsApp scripts, or client deliverables):
+
+1. **Auto-load** `clients/experia/config/experia-persona-engine.json`
+2. **Apply voice rules** from `voice.contentRules` BEFORE generating any output
+3. **Run quality gates** from `qualityGates.contentGate` on all generated content
+4. **Run sales gates** from `qualityGates.salesGate` on all sales-related material
+5. **Run differentiation gates** from `qualityGates.differentiationGate` to ensure Purple Cow positioning
+6. **Never use prohibited vocabulary** listed in `voice.vocabulary.never`
+7. **Reference the Livro do Ouro** at `reasoning-packages/LIVRO-DO-OURO-EXPERIA.md` for deep context when needed
+
+This eliminates the need for manual marketing audits. The persona engine IS the audit, applied automatically.
+
+**Trigger contexts:** experia, clínica, prospecção, vendas, conteúdo, instagram, reels, copy, marketing, proposta, demo, lead, quiz, landing page
 
 ## Agent Activation
 

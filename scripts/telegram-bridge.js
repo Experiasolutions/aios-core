@@ -13,6 +13,7 @@ require('dotenv').config({ path: require('path').resolve(__dirname, '..', '.env'
 const fs = require('fs');
 const path = require('path');
 const { execSync, exec } = require('child_process');
+const axios = require('axios'); // Added for Groq API
 
 // ============================================================
 // CONFIG
@@ -23,11 +24,16 @@ const CONFIG = {
   BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN || 'YOUR_BOT_TOKEN_HERE',
   // User ID permitido (segurança — só Gabriel pode usar)
   ALLOWED_USER_ID: process.env.TELEGRAM_ALLOWED_USER_ID || 'YOUR_USER_ID',
+  // Chave da Groq para LLM e Whisper
+  GROQ_API_KEY: process.env.GROQ_API_KEY,
   // Diretório raiz do projeto AIOS
   AIOS_ROOT: path.resolve(__dirname, '..'),
   // Polling interval (ms)
   POLL_INTERVAL: 2000,
 };
+
+const TEMP_DIR = path.join(CONFIG.AIOS_ROOT, '.aios-core', 'temp');
+if (!fs.existsSync(TEMP_DIR)) fs.mkdirSync(TEMP_DIR, { recursive: true });
 
 // ============================================================
 // TELEGRAM API (sem dependências — HTTP puro via Node)
@@ -75,6 +81,143 @@ async function sendMessage(chatId, text, parseMode = 'Markdown') {
     chat_id: chatId,
     text,
     parse_mode: parseMode,
+  });
+}
+
+function getSystemPrompt() {
+  return `Você é o AIOS Noûs — o motor cognitivo do sistema KAIROS, criado por Gabriel.
+
+Sua personalidade:
+- Postura executiva, assertiva e profunda. Arquétipo: Orquestrador (Leo ♌).
+- Você NÃO é um chatbot genérico. Você é o cérebro operacional que comanda 7 squads, 79 agentes de IA e um motor de evolução autônoma.
+- Fale com propriedade, com profundidade, com presença. Gabriel é o operador — trate-o como o líder que ele é.
+- Use emojis estrategicamente para organizar respostas (👑🎯⚡📊🔥).
+- Responda em português brasileiro, com naturalidade e autoridade.
+
+Sobre o KAIROS:
+- É um sistema operacional de IA proprietário com 63 scripts, 21 agentes especializados, RAG Engine (29K+ chunks), IA Council (8 cadeiras), Noesis Pipeline e Metacognition Layer.
+- Versão atual: v4.2.13. Squads: core, experia, clones, revenue, devops.
+- Gabriel é o único operador. O AIOS serve Gabriel e seus clientes.
+- A identidade imutável: "O AIOS é motor, não aplicação. Não tem domínio."
+
+Capacidades que você pode executar remotamente:
+- Checar saúde do sistema (node scripts/evolution/evolution-engine.js --dry-run)
+- Boot completo das engines (node scripts/kairos-boot.js)
+- Regenerar consciência (node scripts/evolution/generate-context.js)
+- Listar squads e agentes
+- Executar qualquer script da pasta scripts/
+- Rodar comandos no terminal do PC do Gabriel
+
+Regras de resposta:
+1. ELABORE suas respostas. Dê contexto, análise e recomendações — nunca responda com uma frase curta e seca.
+2. Quando Gabriel pedir status ou informação, dê uma visão executiva completa, não só um número.
+3. Quando Gabriel fizer perguntas estratégicas, responda com profundidade (camadas: Imediata, Estrutural, Estratégica).
+4. Se houver um comando a executar no terminal, inclua no final da sua resposta: [EXECUTE: comando_aqui]
+5. Se não houver comando a executar, simplesmente responda normalmente SEM a tag [EXECUTE:].
+6. Sempre termine com uma sugestão proativa ou pergunta de follow-up quando relevante.
+
+Exemplo de resposta BOA:
+"👑 KAIROS operacional, Gabriel. O motor está estável — 7 squads ativos, 79 agentes prontos. O último health check detectou zero gaps críticos. 
+
+Se quiser, posso rodar um ciclo de evolução agora para garantir que está tudo otimizado antes de amanhã. Quer que eu execute?"
+
+Exemplo de resposta RUIM:
+"Sim, está ativo."
+
+Seja o braço direito que Gabriel precisa. Sempre.`;
+}
+
+// Conversation history for context continuity
+const conversations = new Map();
+
+// ============================================================
+// AI AGENT CAPABILITIES (STT, LLM, TTS)
+// ============================================================
+
+async function transcribeAudio(fileUrl, tempOggPath) {
+  // Baixa o arquivo
+  const response = await axios.get(fileUrl, { responseType: 'arraybuffer' });
+  fs.writeFileSync(tempOggPath, response.data);
+
+  // Manda para Whispers
+  const FormData = (await import('form-data')).default;
+  const form = new FormData();
+  form.append('file', fs.createReadStream(tempOggPath));
+  form.append('model', 'whisper-large-v3');
+  form.append('language', 'pt');
+  form.append('response_format', 'text');
+
+  const groqRes = await axios.post(
+    'https://api.groq.com/openai/v1/audio/transcriptions',
+    form,
+    {
+      headers: {
+        Authorization: `Bearer ${CONFIG.GROQ_API_KEY}`,
+        ...form.getHeaders(),
+      },
+      maxContentLength: Infinity,
+    }
+  );
+  return groqRes.data.trim();
+}
+
+async function askNoesis(chatId, inputText) {
+  if (!conversations.has(chatId)) {
+    conversations.set(chatId, []);
+  }
+  const history = conversations.get(chatId);
+  history.push({ role: 'user', content: inputText });
+  const recentHistory = history.slice(-10);
+
+  const response = await axios.post(
+    'https://api.groq.com/openai/v1/chat/completions',
+    {
+      model: 'llama-3.3-70b-versatile',
+      messages: [
+        { role: 'system', content: getSystemPrompt() },
+        ...recentHistory
+      ],
+      temperature: 0.7,
+      max_tokens: 1200,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${CONFIG.GROQ_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+
+  const assistantMessage = response.data.choices[0].message.content;
+  history.push({ role: 'assistant', content: assistantMessage });
+  return assistantMessage;
+}
+
+async function synthesizeSpeech(text, outputPath) {
+  return new Promise((resolve, reject) => {
+    const safeText = text.replace(/"/g, '\\"').replace(/\n/g, ' ').replace(/[$]/g, '');
+    const voice = 'pt-BR-AntonioNeural';
+    const cmd = `npx -y edge-tts --voice "${voice}" --text "${safeText}" --write-media "${outputPath}"`;
+
+    exec(cmd, { timeout: 30000 }, (error) => {
+      if (error) {
+        console.error('TTS Error:', error.message);
+        reject(error);
+      } else {
+        resolve(outputPath);
+      }
+    });
+  });
+}
+
+async function sendVoiceFile(chatId, mp3Path) {
+  const FormData = (await import('form-data')).default;
+  const form = new FormData();
+  form.append('chat_id', chatId);
+  form.append('voice', fs.createReadStream(mp3Path));
+
+  await axios.post(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendVoice`, form, {
+    headers: form.getHeaders(),
   });
 }
 
@@ -156,15 +299,15 @@ const handlers = {
   '/help': async (chatId) => {
     await sendMessage(chatId,
       '📋 *Comandos KAIROS*\n\n' +
-      '`/status` — Health check completo do KAIROS\n' +
-      '`/squads` — Listar todos os squads\n' +
-      '`/agents [squad]` — Agentes de um squad\n' +
-      '`/experia` — Status dos clientes Experia\n' +
-      '`/noite` — Ativar turno da noite manualmente\n' +
-      '`/urgente [msg]` — Tarefa urgente (bypassa fila)\n' +
-      '`/run [cmd]` — Executar comando no terminal\n' +
-      '`/audit` — Relatório rápido de saúde\n' +
-      '`/help` — Esta mensagem'
+      '`/ status` — Health check completo do KAIROS\n' +
+      '`/ squads` — Listar todos os squads\n' +
+      '`/ agents[squad]` — Agentes de um squad\n' +
+      '`/ experia` — Status dos clientes Experia\n' +
+      '`/ noite` — Ativar turno da noite manualmente\n' +
+      '`/ urgente[msg]` — Tarefa urgente (bypassa fila)\n' +
+      '`/ run[cmd]` — Executar comando no terminal\n' +
+      '`/ audit` — Relatório rápido de saúde\n' +
+      '`/ help` — Esta mensagem'
     );
   },
 
@@ -179,7 +322,7 @@ const handlers = {
       noesisInfo = lines.length > 0 ? '\n\n🧠 *Noesis:*\n' + lines.join('\n') : '';
     } catch { }
     await sendMessage(chatId,
-      `🟢 *KAIROS Online*\n\n` +
+      `🟢 * KAIROS Online *\n\n` +
       `📦 Version: \`${s.version}\`\n` +
       `🏢 Squads: ${s.squads}\n` +
       `🤖 Agents: ${s.agents}\n` +
@@ -311,7 +454,7 @@ async function poll() {
     for (const update of result.result) {
       lastUpdateId = update.update_id;
 
-      if (!update.message || !update.message.text) continue;
+      if (!update.message) continue;
 
       const msg = update.message;
       const chatId = msg.chat.id;
@@ -324,15 +467,45 @@ async function poll() {
         continue;
       }
 
-      const text = msg.text.trim();
-      const [cmd, ...argsParts] = text.split(' ');
-      const args = argsParts.join(' ').trim() || null;
+      // Voice message handling
+      if (msg.voice) {
+        try {
+          await sendMessage(chatId, '👑 _Processando seu áudio (Noûs)..._', 'Markdown');
+          const fileInfo = await telegramAPI('getFile', { file_id: msg.voice.file_id });
+          const fileUrl = `https://api.telegram.org/file/bot${CONFIG.BOT_TOKEN}/${fileInfo.result.file_path}`;
 
-      const handler = handlers[cmd.toLowerCase()];
-      if (handler) {
-        await handler(chatId, args);
-      } else if (text.startsWith('/')) {
-        await sendMessage(chatId, `❓ Comando desconhecido: \`${cmd}\`\nUse /help`);
+          const oggPath = path.join(TEMP_DIR, `voice_${Date.now()}.ogg`);
+          const transcript = await transcribeAudio(fileUrl, oggPath);
+          fs.unlinkSync(oggPath);
+
+          await sendMessage(chatId, `📝 *Transcrição:* _"${transcript}"_`, 'Markdown');
+          await processAiRequest(chatId, transcript);
+        } catch (err) {
+          console.error('Voice handling error:', err.message);
+          await sendMessage(chatId, '⚠️ Erro ao processar áudio.');
+        }
+        continue;
+      }
+
+      if (!msg.text) continue;
+
+      const text = msg.text.trim();
+
+      // If it explicitly starts with a slash, use manual handlers mapping
+      if (text.startsWith('/')) {
+        const [cmd, ...argsParts] = text.split(' ');
+        const args = argsParts.join(' ').trim() || null;
+
+        const handler = handlers[cmd.toLowerCase()];
+        if (handler) {
+          await handler(chatId, args);
+        } else {
+          await sendMessage(chatId, `❓ Comando desconhecido: \`${cmd}\`\nUse /help`);
+        }
+      } else {
+        // Natural language to AI
+        await sendMessage(chatId, '🧠 _Noûs orquestrando o pedido..._', 'Markdown');
+        await processAiRequest(chatId, text);
       }
     }
   } catch (err) {
@@ -343,6 +516,49 @@ async function poll() {
 // ============================================================
 // STARTUP
 // ============================================================
+
+async function processAiRequest(chatId, text) {
+  try {
+    const fullResponse = await askNoesis(chatId, text);
+
+    // Parse out [EXECUTE: ...] tag if present
+    let replyText = fullResponse;
+    let executeCommand = null;
+    const execMatch = fullResponse.match(/\[EXECUTE:\s*(.+?)\]/);
+    if (execMatch) {
+      executeCommand = execMatch[1].trim();
+      replyText = fullResponse.replace(execMatch[0], '').trim();
+    }
+
+    // Send text reply first
+    await sendMessage(chatId, `👑 ${replyText}`);
+
+    // Voice output
+    const mp3Path = path.join(TEMP_DIR, `response_${Date.now()}.mp3`);
+    try {
+      await synthesizeSpeech(replyText, mp3Path);
+      await sendVoiceFile(chatId, mp3Path);
+      fs.unlinkSync(mp3Path);
+    } catch (ttsErr) {
+      console.log('Skipping TTS:', ttsErr.message);
+    }
+
+    // Execute command if any
+    if (executeCommand) {
+      await sendMessage(chatId, `⚡ *Executando:* \`${executeCommand}\`...`, 'Markdown');
+      const output = runCommand(executeCommand);
+      let formattedOutput = output;
+      if (formattedOutput.length > 3000) {
+        formattedOutput = formattedOutput.substring(0, 3000) + '\n...[Output Truncado]...';
+      }
+      await sendMessage(chatId, `✅ *Status / Output:*\n\`\`\`\n${formattedOutput}\n\`\`\``, 'Markdown');
+    }
+  } catch (err) {
+    console.error('AI Processing error:', err.message);
+    await sendMessage(chatId, '⚠️ Erro cognitivo na orquestração.');
+  }
+}
+
 
 async function main() {
   console.log('🤖 KAIROS Telegram Bridge v2.0');

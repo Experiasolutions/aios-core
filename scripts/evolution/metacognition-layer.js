@@ -277,6 +277,34 @@ function detectAntiPatterns(text) {
         });
     }
 
+    // ── AP-006: Direct Assumption (Modo Investigativo / Anti-Viés) ──
+    if (/\b(com certeza|obviamente|claramente|assumo que|é óbvio que|vai funcionar|solução ideal)\b/i.test(text)) {
+        const hasAudit = /\b(pesquisar|auditar|investigar|dados mostram|historicamente|analisando o mercado|validação empírica)\b/i.test(text);
+        if (!hasAudit) {
+            detected.push({
+                id: 'AP-006',
+                name: 'Direct Assumption (No Investigative Mode)',
+                severity: 'high',
+                evidence: 'Output makes direct assumptions without prior market audit/investigation signals',
+                recommendation: 'Activate Investigative Mode: audit the full market landscape before providing ready-made solutions.',
+            });
+        }
+    }
+
+    // ── AP-007: Lone Wolf Tactical Decision (O Conclave Gateway) ──
+    if (/\b(oferta especial|precificação|mudança estratégica|pivotar|novo lançamento|campanha de ads|plano tático)\b/i.test(text)) {
+        const hasCouncil = /\b(conselho|conclave|@clone-finch|@clone-hormozi|validação cruzada|multi-agent|conselheiros)\b/i.test(text);
+        if (!hasCouncil) {
+            detected.push({
+                id: 'AP-007',
+                name: 'Lone Wolf Tactical Decision',
+                severity: 'critical',
+                evidence: 'Strategic/tactical decision presented without Council (Conclave) validation',
+                recommendation: 'Invoke the Conclave (e.g., @clone-finch, @clone-hormozi) to audit feasibility before delivery.',
+            });
+        }
+    }
+
     return detected;
 }
 

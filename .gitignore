@@ -64,3 +64,6 @@ tools/openai-cookbook/
 # Action output (generated at runtime)
 action.json
 context.json
+
+*.m4a
+data/livestreams/full_audio.m4a
