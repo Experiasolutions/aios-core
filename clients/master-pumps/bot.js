@@ -4,6 +4,7 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
+const express = require('express');
 const { getSystemPrompt, MOCK_LABEL } = require('./data');
 
 // ── Config ──────────────────────────────────────────────────
@@ -14,6 +15,22 @@ if (!TELEGRAM_TOKEN || !GROQ_API_KEY) {
     console.error('❌ Defina TELEGRAM_BOT_TOKEN e GROQ_API_KEY no .env');
     process.exit(1);
 }
+
+// ── Express Server para o Render ───────────────────────────
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+    res.send('🤖 KAIROS RH Master Pumps Bot (v3.0) está Online e operando!');
+});
+
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+});
+
+app.listen(PORT, () => {
+    console.log(`🌐 Servidor Web escutando na porta ${PORT}`);
+});
 
 const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
 const TEMP_DIR = path.join(__dirname, 'temp');
@@ -56,6 +73,19 @@ function ensureContext(chatId) {
         userContext.set(chatId, { ...defaultContext });
         saveContext();
         console.log(`📋 Contexto padrão aplicado para chat ${chatId}`);
+    }
+}
+
+// ── Funções de Base (V3) ───────────────────────────────────
+async function safeSend(chatId, text, extra = {}) {
+    try {
+        await bot.sendMessage(chatId, text, { parse_mode: 'Markdown', ...extra });
+    } catch {
+        try {
+            await bot.sendMessage(chatId, text, extra);
+        } catch (err2) {
+            console.error('safeSend fatal:', err2.message);
+        }
     }
 }
 
@@ -322,7 +352,7 @@ bot.on('voice', async (msg) => {
         const answer = await askKairosRH(chatId, transcript);
         console.log(`   → ${answer}`);
 
-        await bot.sendMessage(chatId, `🤖 ${answer}`);
+        await safeSend(chatId, `🤖 ${answer}`);
 
         // Voice response
         const mp3Path = path.join(TEMP_DIR, `response_${Date.now()}.mp3`);
@@ -357,7 +387,7 @@ bot.on('message', async (msg) => {
     try {
         await bot.sendChatAction(chatId, 'typing');
         const answer = await askKairosRH(chatId, text);
-        await bot.sendMessage(chatId, `🤖 ${answer}`);
+        await safeSend(chatId, `🤖 ${answer}`);
 
         // Also respond with voice
         const mp3Path = path.join(TEMP_DIR, `response_${Date.now()}.mp3`);
@@ -397,10 +427,10 @@ bot.on('document', async (msg) => {
 // ── Error handling ──────────────────────────────────────────
 bot.on('polling_error', (error) => {
     if (error.code === 'ETELEGRAM' && error.message.includes('409 Conflict')) {
-        console.error('⚠️  Outra instância do bot está rodando. Encerre-a primeiro.');
-        process.exit(1);
+        console.warn('⚠️  [Aviso] Conflito 409 detectado (possiveis multiplas instancias rodando). Ignorando para permitir transição no Render...');
+    } else {
+        console.error('Polling error:', error.message);
     }
-    console.error('Polling error:', error.message);
 });
 
 console.log('✅ KAIROS RH ativo. Envie /start no Telegram para iniciar o onboarding.');
