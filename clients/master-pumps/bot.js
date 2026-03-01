@@ -273,34 +273,33 @@ bot.onText(/\/start/, async (msg) => {
     const chatId = msg.chat.id;
     ensureContext(chatId);
 
-    await bot.sendMessage(chatId,
+    await safeSend(chatId,
         `🏭 *KAIROS RH — Master Pumps*\n\n` +
-        `Bom dia, Wellington! Sou o *KAIROS RH*, seu Assistente Autônomo de Recursos Humanos.\n\n` +
-        `Fui projetado para ser o seu braço direito. Aqui está o que eu sei fazer:\n\n` +
+        `Wellington, sou o *KAIROS RH*, seu Assistente Autônomo de Recursos Humanos. Fui configurado especificamente para a operação da Master Pumps.\n\n` +
+        `Aqui está o que eu faço por você:\n\n` +
         `📋 *Gestão de Pessoas*\n` +
         `• Controlar faltas, atestados e ocorrências\n` +
         `• Gerenciar banco de horas e alertar excessos\n` +
         `• Acompanhar onboardings de novos colaboradores\n\n` +
         `📊 *Relatórios Executivos*\n` +
         `• Briefing matinal completo do RH\n` +
-        `• Resumo da folha de pagamento\n` +
-        `• Métricas prontas para apresentar à diretoria\n\n` +
+        `• Resumo da folha e custo total\n` +
+        `• Métricas prontas para a diretoria\n\n` +
         `📖 *Políticas da Empresa*\n` +
         `• Responder dúvidas de férias, VT, horários\n` +
         `• Orientar funcionários sobre normas internas\n` +
-        `• Escalar questões complexas (rescisão, etc.)\n\n` +
+        `• Escalar questões complexas para a Juliana\n\n` +
         `🎓 *Treinamentos e Compliance*\n` +
         `• Alertar vencimento de NRs obrigatórias\n` +
         `• Controlar CIPA, integração e SGQ\n\n` +
-        `🎙️ *Interface de Voz*\n` +
+        `🎧 *Interface de Voz*\n` +
         `• Me envie áudios e eu respondo por áudio\n` +
         `• Transcrevo tudo automaticamente\n\n` +
         `───────────────────────\n` +
-        `✅ _Já tenho o contexto da Master Pumps carregado: ~127 colaboradores, estrutura Matriz + Filial, seus organogramas e as políticas de RH._\n\n` +
+        `✅ _Contexto carregado: ~127 colaboradores, Matriz + Filial, organogramas e políticas de RH._\n\n` +
         `Pode me perguntar qualquer coisa — por *texto* ou *áudio*.\n` +
-        `📊 Use /relatorio para o briefing matinal completo.\n` +
-        `🔄 Use /onboarding para reconfigurar o sistema com novos dados.`,
-        { parse_mode: 'Markdown' }
+        `📊 /relatorio — Briefing matinal completo\n` +
+        `🔄 /onboarding — Atualizar dados do sistema`
     );
 });
 
@@ -323,9 +322,9 @@ bot.onText(/\/relatorio/, async (msg) => {
     ensureContext(chatId);
     await bot.sendChatAction(chatId, 'typing');
     const report = await askKairosRH(chatId,
-        'Gere o relatório matinal completo do RH para o Supervisor Wellington: ocorrências do dia (faltas, atestados, acidentes), onboardings pendentes, alertas de banco de horas, treinamentos vencendo, férias próximas e resumo da folha. Formate de forma organizada e executiva. Trate Wellington pelo nome.'
+        'Gere o relatório matinal completo do RH para o Wellington: ocorrências do dia (faltas, atestados, acidentes), onboardings pendentes, alertas de banco de horas, treinamentos vencendo, férias próximas e resumo da folha. Ao final, adicione uma seção curta "Oportunidade de Otimização" com 1-2 insights sobre como a automação de RH poderia reduzir custos ou tempo naquele período. Formate de forma organizada e executiva.'
     );
-    await bot.sendMessage(chatId, `📊 *Briefing Matinal KAIROS RH — Master Pumps*\n\n${report}`, { parse_mode: 'Markdown' });
+    await safeSend(chatId, `📊 *Briefing Matinal KAIROS RH — Master Pumps*\n\n${report}`);
 });
 
 // ── Handler: Voice Messages ─────────────────────────────────
