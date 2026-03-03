@@ -79,5 +79,19 @@
       "3_intelligence": 11110,
       "4_reflexion": 47
     }
+  },
+  {
+    "timestamp": "2026-03-03T14:21:28.124Z",
+    "bootTimeMs": 3190,
+    "mode": "full",
+    "councilScore": 4.94,
+    "councilGaps": 97,
+    "phases": {
+      "0_identity": 9,
+      "1_consciousness": 46,
+      "2_knowledge": 48,
+      "3_intelligence": 3016,
+      "4_reflexion": 27
+    }
   }
 ]
