@@ -633,6 +633,14 @@
       "reportedBy": "ng"
     },
     {
+      "id": "NG-UNUSED-distill-trace",
+      "description": "scripts/distill-trace.js is not referenced by any other script",
+      "severity": 2,
+      "evidence": "No cross-references found in other scripts",
+      "impact30d": "Dead code; cognitive load for new developers",
+      "reportedBy": "ng"
+    },
+    {
       "id": "NG-UNUSED-dump-council",
       "description": "scripts/dump-council.js is not referenced by any other script",
       "severity": 2,
@@ -981,7 +989,7 @@
   ],
   "convergences": [],
   "divergences": [],
-  "overallScore": 4.9,
+  "overallScore": 4.89,
   "memberScores": [
     {
       "memberId": "karpathy",
@@ -995,8 +1003,8 @@
     },
     {
       "memberId": "ng",
-      "score": 2.400000000000011,
-      "gapCount": 52
+      "score": 2.300000000000011,
+      "gapCount": 53
     },
     {
       "memberId": "hinton",
@@ -1024,6 +1032,6 @@
       "gapCount": 3
     }
   ],
-  "totalGaps": 119,
-  "timestamp": "2026-03-13T15:45:15.523Z"
+  "totalGaps": 120,
+  "timestamp": "2026-03-13T16:13:43.599Z"
 }
