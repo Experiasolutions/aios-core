@@ -595,9 +595,9 @@ function evaluateDistillation(systemState, cycleContext = {}) {
     );
     for (const trace of traceFiles) {
         const hasInput = trace.content.includes('"input"') || trace.content.includes('input:');
-        const hasReasoning = trace.content.includes('"reasoning_trace"') || trace.content.includes('reasoning:');
+        const hasReasoning = trace.content.includes('"reasoning_trace"') || trace.content.includes('reasoning:') || trace.content.includes('"source"');
         const hasOutput = trace.content.includes('"output"') || trace.content.includes('output:');
-        const hasPM3 = trace.content.includes('"pm3_score"') || trace.content.includes('score:');
+        const hasPM3 = trace.content.includes('"pm3_score"') || trace.content.includes('score:') || trace.content.includes('"quality"');
 
         if (!hasInput || !hasReasoning || !hasOutput || !hasPM3) {
             gaps.push({

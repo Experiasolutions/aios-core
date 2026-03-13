@@ -1,30 +1,40 @@
 {
     "version": "1.0.0",
-    "purpose": "Track progress toward local model fine-tuning",
+    "created": "2026-03-13",
     "target": 500,
-    "captured": 26,
-    "curated": 8,
-    "milestones": [
+    "captured": 17,
+    "curated": 0,
+    "total_traces": 17,
+    "percentComplete": 3.4,
+    "phases": [
         {
-            "name": "Prototype",
-            "traces": 50,
-            "status": "pending"
+            "phase": 1,
+            "name": "Bootstrap",
+            "target": 50,
+            "status": "in-progress",
+            "description": "Capture initial traces from council gaps, noesis observations, and golden examples"
         },
         {
-            "name": "Alpha",
-            "traces": 200,
-            "status": "pending"
+            "phase": 2,
+            "name": "Auto-Harvest",
+            "target": 200,
+            "status": "planned",
+            "description": "Integrate with Night Shift for automatic trace capture every session"
         },
         {
-            "name": "Beta",
-            "traces": 500,
-            "status": "pending"
+            "phase": 3,
+            "name": "Curation",
+            "target": 100,
+            "status": "planned",
+            "description": "Review and curate high-quality traces for fine-tuning"
         },
         {
-            "name": "Production",
-            "traces": 1000,
-            "status": "pending"
+            "phase": 4,
+            "name": "Fine-Tune",
+            "target": 500,
+            "status": "planned",
+            "description": "Train 3B-7B local model with curated dataset"
         }
     ],
-    "lastUpdated": "2026-03-13T16:05:10.826Z"
+    "lastUpdated": "2026-03-13"
 }
