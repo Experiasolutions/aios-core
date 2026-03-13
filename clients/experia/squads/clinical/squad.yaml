@@ -1,0 +1,58 @@
+name: clinical
+version: 1.0.0
+short-title: Squad Clinical — Protocolos, Qualidade & Compliance (Experia)
+description: >
+  Departamento Clínico com 10 agentes especializados em protocolos,
+  qualidade assistencial, compliance regulatório e logística clínica.
+author: Gabriel (Experia)
+license: UNLICENSED
+slashPrefix: clinical
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - clinical-head.md
+    - protocol-manager.md
+    - clinical-guidelines.md
+    - procedure-checklist.md
+    - quality-auditor.md
+    - outcome-tracker.md
+    - patient-safety.md
+    - regulatory-compliance.md
+    - supply-manager.md
+    - equipment-tracker.md
+  tasks:
+    - create-protocol.md
+    - quality-audit.md
+    - compliance-check.md
+    - track-outcomes.md
+  workflows:
+    - protocol-review-workflow.md
+    - quality-improvement-workflow.md
+  templates:
+    - protocol-tmpl.md
+    - audit-report-tmpl.md
+  checklists:
+    - pre-procedure-checklist.md
+    - compliance-checklist.md
+  tools: []
+  scripts: []
+
+config:
+  extends: extend
+
+dependencies:
+  squads:
+    - patient-ops
+    - analytics
+
+tags:
+  - clinical
+  - protocols
+  - quality
+  - compliance
+  - patient-safety
+  - experia

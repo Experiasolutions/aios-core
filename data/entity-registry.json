@@ -1,0 +1,144 @@
+{
+    "version": "1.0.0",
+    "lastUpdated": "2026-02-28T12:00:00Z",
+    "persons": {
+        "thiago-finch": {
+            "canonical": "Thiago Finch",
+            "aliases": [
+                "Finch",
+                "Tiago",
+                "Fincha",
+                "Thiago"
+            ],
+            "role": "CEO / Apresentador MegaBrain",
+            "source": "live-megabrain-2026-02-27"
+        },
+        "gabriel": {
+            "canonical": "Gabriel",
+            "aliases": [
+                "GB"
+            ],
+            "role": "Operador KAIROS / CEO Experia",
+            "source": "kairos-core"
+        },
+        "alan": {
+            "canonical": "Alan",
+            "aliases": [
+                "Alan Roelas"
+            ],
+            "role": "Colaborador KAIROS",
+            "source": "kairos-core"
+        },
+        "pedro": {
+            "canonical": "Pedro",
+            "aliases": [],
+            "role": "Colaborador KAIROS",
+            "source": "kairos-core"
+        },
+        "claudio-camozzi": {
+            "canonical": "Claudio Camozzi",
+            "aliases": [
+                "Camosi",
+                "Camozzi",
+                "Claudio"
+            ],
+            "role": "Liderança — reestruturação organizacional",
+            "source": "live-megabrain-2026-02-27"
+        },
+        "romulo-saldanha": {
+            "canonical": "Romulo Saldanha",
+            "aliases": [
+                "Romulo"
+            ],
+            "role": "Participante calls",
+            "source": "live-megabrain-2026-02-27"
+        },
+        "paulo-lacerda": {
+            "canonical": "Paulo Lacerda",
+            "aliases": [
+                "Paulo"
+            ],
+            "role": "Contato WhatsApp",
+            "source": "live-megabrain-2026-02-27"
+        },
+        "amanda-faustino": {
+            "canonical": "Amanda Faustino",
+            "aliases": [
+                "Amanda"
+            ],
+            "role": "Participante",
+            "source": "live-megabrain-2026-02-27"
+        }
+    },
+    "organizations": {
+        "experia": {
+            "canonical": "Experia Solutions",
+            "aliases": [
+                "ExperIA",
+                "Experia"
+            ]
+        },
+        "outsider": {
+            "canonical": "Outsider",
+            "aliases": []
+        },
+        "clique-max": {
+            "canonical": "Clique Max",
+            "aliases": [
+                "Clickmax",
+                "Clique Mark",
+                "Click Mark",
+                "Clickmac"
+            ]
+        },
+        "b-mobile": {
+            "canonical": "B-Mobile",
+            "aliases": []
+        }
+    },
+    "themes": {
+        "reducao-custos": {
+            "canonical": "Redução de Custos",
+            "aliases": [
+                "corte de gastos",
+                "diminuir custos",
+                "cutting costs"
+            ]
+        },
+        "outsourcing": {
+            "canonical": "Outsourcing",
+            "aliases": [
+                "terceirização",
+                "terceirizadas"
+            ]
+        },
+        "cloud-code": {
+            "canonical": "Cloud Code",
+            "aliases": [
+                "Cloud Coach",
+                "Claude Code"
+            ]
+        },
+        "mega-brain": {
+            "canonical": "MegaBrain / Jarvis",
+            "aliases": [
+                "Mega Brain",
+                "Jarvis",
+                "Projeto Híbrido Jarvis"
+            ]
+        },
+        "inside-sales": {
+            "canonical": "Inside Sales",
+            "aliases": [
+                "vendas internas"
+            ]
+        },
+        "conclave": {
+            "canonical": "Conclave (Multi-Agent Council)",
+            "aliases": [
+                "conclave",
+                "conselho de agentes"
+            ]
+        }
+    }
+}

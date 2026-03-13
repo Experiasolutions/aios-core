@@ -1,0 +1,263 @@
+name: mind-clones
+version: 6.0.0
+short-title: "Mind Clones — COMPLETE HIVEMIND: 65 Minds + Metamind Orchestrator"
+description: >
+  65 mind clones + METAMIND hivemind orchestrator (66 total).
+  COMPLETE HIVEMIND — all tiers populated.
+  Business Experts (9), AI Fathers (9), Tier 1 (16), Tier 2 (12),
+  Tier 3 Specialists (8), Tier 4 HR/People (11), Metamind (1).
+  Each clone: 6 layers (Knowledge, Biases, Analysis, Decision, Execution, Integration).
+  METAMIND orchestrates all 65 minds via 12+ War Rooms.
+  Arsenal: 53+ tools, 400+ skills.
+author: Gabriel (AIOS Elite)
+license: UNLICENSED
+slashPrefix: clone
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    # === Business & Strategy Experts (9) ===
+    - clone-hormozi.md
+    - clone-pedro-valerio.md
+    - clone-bmad.md
+    - clone-alan-santos.md
+    - clone-finch.md
+    - clone-miessler.md
+    - clone-brunson.md
+    - clone-belfort.md
+    - clone-maquiavel.md
+    # === AI Founding Fathers (9) ===
+    - clone-andrew-ng.md
+    - clone-russell-norvig.md
+    - clone-harrison-chase.md
+    - clone-joao-moura.md
+    - clone-yohei-nakajima.md
+    - clone-toran-richards.md
+    - clone-mustafa-suleyman.md
+    - clone-marc-benioff.md
+    - clone-silas-alberti.md
+    # === Time Machine Tier 1: Computation & Theory (8) ===
+    - clone-geoffrey-hinton.md
+    - clone-ilya-sutskever.md
+    - clone-noam-chomsky.md
+    - clone-eliezer-yudkowsky.md
+    - clone-stephen-wolfram.md
+    - clone-ray-kurzweil.md
+    - clone-nassim-taleb.md
+    - clone-linus-torvalds.md
+    # === Time Machine Tier 1: Scale & Philosophy (8) ===
+    - clone-jensen-huang.md
+    - clone-ray-dalio.md
+    - clone-jeff-bezos.md
+    - clone-naval-ravikant.md
+    - clone-seth-godin.md
+    - clone-chris-lattner.md
+    - clone-jung-peterson.md
+    - clone-viktor-frankl.md
+    # === Time Machine Tier 2: Alignment, Ethics & Complexity (4) ===
+    - clone-paul-christiano.md
+    - clone-melanie-mitchell.md
+    - clone-timnit-gebru.md
+    - clone-richard-dawkins.md
+    # === Time Machine Tier 2: Data & Infrastructure (4) ===
+    - clone-jay-kreps.md
+    - clone-matei-zaharia.md
+    - clone-jaron-lanier.md
+    - clone-anders-hejlsberg.md
+    # === Time Machine Tier 2: Risk, Finance & Creativity (4) ===
+    - clone-nick-bostrom.md
+    - clone-patrick-collison.md
+    - clone-jim-simons.md
+    - clone-rick-rubin.md
+    # === Time Machine Tier 3: Specialists (8) ===
+    - clone-elon-musk.md
+    - clone-sam-altman.md
+    - clone-demis-hassabis.md
+    - clone-andrej-karpathy.md
+    - clone-fei-fei-li.md
+    - clone-satya-nadella.md
+    - clone-tim-ferriss.md
+    - clone-brene-brown.md
+    # === Time Machine Tier 4: HR/People (11) ===
+    - clone-dave-ulrich.md
+    - clone-laszlo-bock.md
+    - clone-adam-grant.md
+    - clone-daniel-goleman.md
+    - clone-amy-edmondson.md
+    - clone-patrick-lencioni.md
+    - clone-kim-scott.md
+    - clone-reed-hastings.md
+    - clone-ed-catmull.md
+    - clone-simon-sinek.md
+    - clone-marcus-buckingham.md
+    # === METAMIND — Hivemind Orchestrator (1) ===
+    - metamind.md
+  tasks: []
+  workflows: []
+  templates: []
+  checklists: []
+  tools: []
+  scripts: []
+
+config:
+  extends: extend
+
+dependencies:
+  squads:
+    - doombot
+    - vendas
+    - marketing
+
+tags:
+  # Core
+  - mind-clone
+  - neural-structure
+  - expert-replication
+  - ai-fathers
+  - time-machine
+  - metamind
+  - hivemind
+  - orchestrator
+  - war-room
+  # Business Experts
+  - hormozi
+  - pedro-valerio
+  - bmad
+  - alan-santos
+  - finch
+  - miessler
+  - brunson
+  - belfort
+  - maquiavel
+  # AI Founding Fathers
+  - andrew-ng
+  - russell-norvig
+  - harrison-chase
+  - joao-moura
+  - yohei-nakajima
+  - toran-richards
+  - mustafa-suleyman
+  - marc-benioff
+  - silas-alberti
+  # Time Machine Tier 1
+  - geoffrey-hinton
+  - ilya-sutskever
+  - noam-chomsky
+  - eliezer-yudkowsky
+  - stephen-wolfram
+  - ray-kurzweil
+  - nassim-taleb
+  - linus-torvalds
+  - jensen-huang
+  - ray-dalio
+  - jeff-bezos
+  - naval-ravikant
+  - seth-godin
+  - chris-lattner
+  - jung-peterson
+  - viktor-frankl
+  # Time Machine Tier 2
+  - paul-christiano
+  - melanie-mitchell
+  - timnit-gebru
+  - richard-dawkins
+  - jay-kreps
+  - matei-zaharia
+  - jaron-lanier
+  - anders-hejlsberg
+  - nick-bostrom
+  - patrick-collison
+  - jim-simons
+  - rick-rubin
+  # Domains — Business
+  - offers
+  - revenue
+  - funnels
+  - straight-line
+  - persuasion
+  - political-strategy
+  - permission-marketing
+  - tribes
+  - purple-cow
+  # Domains — AI & Tech
+  - framework-architecture
+  - ai-development
+  - orchestration
+  - multi-agent
+  - agentic-workflows
+  - autonomous-agents
+  - containment
+  - enterprise-ai
+  - agent-evaluation
+  - rational-agents
+  - context-engineering
+  - self-improvement
+  - deep-learning
+  - unsupervised-learning
+  - representation-learning
+  - superintelligence
+  - scaling-laws
+  - ai-alignment
+  - ai-safety
+  - existential-risk
+  - corrigibility
+  - rlhf
+  - reward-modeling
+  - model-cards
+  - bias-audit
+  # Domains — Language & Computing
+  - universal-grammar
+  - formal-languages
+  - computational-universe
+  - symbolic-computation
+  - compilers
+  - llvm
+  - kernel-architecture
+  - git
+  - modularity
+  - gpu-computing
+  - accelerated-computing
+  - cuda
+  - type-systems
+  - typescript
+  - gradual-typing
+  # Domains — Data Infrastructure
+  - event-streaming
+  - kafka
+  - spark
+  - data-lakehouse
+  - compound-ai
+  - stream-processing
+  # Domains — Philosophy & Psychology
+  - antifragility
+  - black-swan
+  - skin-in-the-game
+  - singularity
+  - exponential-growth
+  - logotherapy
+  - archetypes
+  - shadow-integration
+  - memetics
+  - evolutionary-biology
+  - human-dignity
+  - creativity
+  # Domains — Wealth & Scale
+  - leverage
+  - specific-knowledge
+  - flywheel
+  - customer-obsession
+  - principles
+  - economic-cycles
+  - digital-marketing
+  - human-augmentation
+  - cybersecurity
+  - telos
+  - quantitative-finance
+  - statistical-arbitrage
+  - api-first
+  - payment-infrastructure
+  - progress-studies
+

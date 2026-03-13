@@ -1,0 +1,53 @@
+name: facilities
+version: 1.0.0
+short-title: Squad Facilities — Infra Física e Manutenção
+description: >
+  Squad responsável pela infraestrutura física: manutenção predial,
+  almoxarifado, portaria, limpeza, TI (hardware/rede) e segurança 
+  patrimonial. Garante que o ambiente físico suporte as operações.
+author: Gabriel (Olympus)
+license: UNLICENSED
+slashPrefix: facilities
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - facilities-head.md
+    - facilities-manutencao.md
+    - facilities-ti.md
+    - facilities-almoxarifado.md
+    - facilities-seguranca.md
+  tasks:
+    - abrir-chamado.md
+    - preventiva-mensal.md
+    - inventario.md
+    - setup-estacao.md
+    - audit-seguranca.md
+  workflows:
+    - facility-management-workflow.md
+  checklists:
+    - manutencao-preventiva-checklist.md
+  templates:
+    - chamado-tmpl.md
+  tools: []
+  scripts: []
+  data: []
+
+config:
+  extends: extend
+
+dependencies:
+  squads:
+    - ops
+    - admin
+
+tags:
+  - facilities
+  - manutencao
+  - ti
+  - infraestrutura
+  - seguranca
+  - almoxarifado

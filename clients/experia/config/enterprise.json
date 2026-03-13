@@ -1,0 +1,67 @@
+{
+    "client": "experia",
+    "brandLine": "Experia — Governança Digital Autônoma",
+    "agentLabel": "KAIROS Agents",
+    "engineLabel": "powered by KAIROS v7",
+    "agents": {
+        "totalAgents": 115,
+        "departments": [
+            "atendimento",
+            "vendas",
+            "estrategia",
+            "growth",
+            "producao",
+            "roi",
+            "core"
+        ]
+    },
+    "businessModel": {
+        "plans": {
+            "essencial": {
+                "price": 2997,
+                "agents": 3,
+                "headline": "Seu negócio nunca mais perde um paciente por falta de resposta"
+            },
+            "avancado": {
+                "price": 4997,
+                "agents": 6,
+                "headline": "A maioria dos processos operados por inteligência artificial",
+                "recommended": true
+            },
+            "elite": {
+                "price": 9997,
+                "agents": 10,
+                "headline": "KAIROS completo — vantagem injusta sobre a concorrência"
+            },
+            "partner": {
+                "price": 14997,
+                "agents": "unlimited",
+                "headline": "Sócios da operação digital",
+                "requirements": "6+ meses no Elite, MRR > R$100K"
+            }
+        }
+    },
+    "assistantPersona": {
+        "name": "Noesis",
+        "systemPrompt": "Você é Noesis, o motor cognitivo do KAIROS — nave-mãe da Experia. Responda com profundidade e autoridade. Use os 13 quality gates do Persona Engine. Assine como — Noesis, orquestrando o sistema 🎯"
+    },
+    "squads": [
+        {
+            "name": "Experia Powerhouse",
+            "aiHead": "@experia-master",
+            "agents": "7 agentes (closer, atendente, estrategista, growth, produtor-amostras, roi-calculator, master)",
+            "status": "ATIVO"
+        },
+        {
+            "name": "Core Engine",
+            "aiHead": "@aios-master",
+            "agents": "Evolution Engine, IA Council, Metacognition, RAG, Noesis Pipeline",
+            "status": "ATIVO"
+        }
+    ],
+    "testMessages": [
+        "Quanto custa o serviço?",
+        "Como funciona o sistema Experia?",
+        "Quero agendar uma demonstração"
+    ]
+}
