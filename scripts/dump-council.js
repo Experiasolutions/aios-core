@@ -15,7 +15,7 @@ function scanDirForCouncil(dir, prefix) {
             const relPath = `${prefix}/${entry.name}`;
             if (entry.isFile() && (entry.name.endsWith('.js') || entry.name.endsWith('.md') || entry.name.endsWith('.json'))) {
                 try {
-                    const contentLimit = entry.name.endsWith('.md') ? 8000 : 500;
+                    const contentLimit = entry.name.endsWith('.md') ? 8000 : (entry.name.endsWith('.json') ? 2000 : 500);
                     const content = fs.readFileSync(path.join(dir, entry.name), 'utf8').slice(0, contentLimit);
                     results.push({ path: relPath, content });
                 } catch (e) { /* skip unreadable */ }
