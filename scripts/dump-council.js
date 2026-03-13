@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const PROJECT_ROOT = path.resolve(__dirname);
+const PROJECT_ROOT = path.resolve(__dirname, '..');
 const AIOS_ROOT = PROJECT_ROOT;
 
 function scanDirForCouncil(dir, prefix) {
@@ -43,15 +43,17 @@ try {
     const dirsToScan = [
         ['scripts', 'scripts'],
         ['scripts/evolution', 'scripts/evolution'],
+        ['scripts/operator-noesis', 'scripts/operator-noesis'],
         ['squads', 'squads'],
         ['docs', 'docs'],
         ['reasoning-packages', 'reasoning-packages'],
-        ['.aios-core/opus-replicator', '.aios-core/opus-replicator'],
-        ['.aios-core/core', '.aios-core/core'],
-        ['.aios-core/noesis', '.aios-core/noesis'],
-        ['.aios-core/data', '.aios-core/data'],
+        ['engine/opus-replicator', 'engine/opus-replicator'],
+        ['engine/noesis', 'engine/noesis'],
+        ['engine/memory', 'engine/memory'],
+        ['engine/noesis-operator', 'engine/noesis-operator'],
         ['clients/experia/config', 'clients/experia/config'],
-        ['.antigravity/agents', '.antigravity/agents'],
+        ['.agent/workflows', '.agent/workflows'],
+        ['kairos-orchestrator', 'kairos-orchestrator'],
     ];
 
     for (const [dir, prefix] of dirsToScan) {
@@ -60,7 +62,7 @@ try {
     }
 
     let qualityBaseline = {};
-    const qbPath = path.join(AIOS_ROOT, '.aios-core', 'data', 'quality-baseline.json');
+    const qbPath = path.join(AIOS_ROOT, 'engine', 'memory', 'quality-baseline.json');
     if (fs.existsSync(qbPath)) {
         qualityBaseline = JSON.parse(fs.readFileSync(qbPath, 'utf8'));
     }
