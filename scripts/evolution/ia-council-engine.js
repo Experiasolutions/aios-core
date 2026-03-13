@@ -334,8 +334,8 @@ function evaluateHinton(systemState) {
         f.path.includes('SELF_CONTEXT.md')
     );
     if (selfContext && selfContext.content) {
-        // Support ISO format with timezone: 2026-03-13T14:50:00-03:00
-        const dateMatch = selfContext.content.match(/Última atualização:\s*([\dT:.Z+-]+)/);
+        // Support ISO format with timezone and markdown bold: > **Última atualização:** 2026-03-13T14:50:00-03:00
+        const dateMatch = selfContext.content.match(/Última atualização:\*{0,2}\s*([\dT:.Z+-]+)/);
         if (dateMatch) {
             const lastUpdate = new Date(dateMatch[1]);
             if (!isNaN(lastUpdate.getTime())) {
