@@ -1,88 +1,80 @@
 # KAIROS — STATUS (Fila de Trabalho)
 
-> **Última atualização:** 2026-03-12T09:42:00-03:00
-
----
-
-## 🔴 BLOQUEADO (Precisa de Ação do Gabriel)
-
-1. **Aplicar SQL Schema no Supabase**
-   - Abrir SQL Editor em `ptpojwbdxgmvykwwzatl.supabase.co`
-   - Colar conteúdo de `kairos-orchestrator/kairos-supabase-schema.sql`
-   - Ou usar o prompt AI em `kairos-orchestrator/SUPABASE-SETUP-PROMPT.md`
-
-2. **Configurar as 4 Gemini API Keys no `.env`**
-   - Formato: `GOOGLE_API_KEYS=key1,key2,key3,key4`
-   - Gabriel confirmou que tem 4 keys prontas
-
-3. **`pip install supabase`** — Travou na sessão anterior (Celeron lento)
-   - Tentar de novo: `pip install supabase --no-cache-dir`
+> **Última atualização:** 2026-03-14T11:45:00-03:00
 
 ---
 
 ## 🟡 EM PROGRESSO
 
-### KAIROS SKY — Deploy
-- [x] Código Python completo (12 módulos)
-- [x] GitHub pushado (4 commits)
-- [x] Supabase URL + service_role no `.env`
-- [ ] Aplicar SQL schema no Supabase
-- [ ] Configurar GOOGLE_API_KEYS (4 keys) no `.env`
-- [ ] pip install + teste local
-- [ ] Deploy Railway
-- [ ] Teste bot Telegram
-
-### Hortifruti MVP — Entrega para Elaine
-- [x] Persona Safra + Squad (4 agentes)
-- [x] 4 flows de conversa completos
+### Consumer MVP — Elaine Hortifruti
+- [x] Persona Safra + Squad + 4 flows de conversa
 - [x] Estoque seed (17 produtos + preços)
-- [x] Kit apresentação (scripts, ROI, pitch)
-- [x] Guia WhatsApp Bot (3 caminhos)
-- [ ] Configurar bot no Botpress ou Evolution API
-- [ ] Testar com Elaine ao vivo
-- [ ] Tirar fotos das lojas
-- [ ] Criar posts Instagram com fotos reais
-- [ ] Fechar permuta formal
+- [x] Kit apresentação + guia WhatsApp Bot
+- [x] Visita presencial (Ceasa: ter/qua/sáb)
+- [ ] **Segunda-feira:** Configurar PDV + Intelligence Layer
+- [ ] Integrar sistema de caixa com KAIROS via webhook
+- [ ] Dashboard mobile para estoque 2 lojas
 
-### Padronização Amostra Grátis
-- [x] Template universal de config (`TEMPLATE-CONFIG-UNIVERSAL.json`)
-- [x] Intake rápido de visita (`INTAKE-RAPIDO-VISITA.md`)
-- [ ] Aplicar template no primeiro comércio extra
-- [ ] Documentar processo end-to-end
-- [ ] Expandir para 5+ comércios locais
+### Bot SKY — Evolução Contínua
+- [x] NLP natural (11 intents, zero-latência)
+- [x] Transcrição de áudio (Groq Whisper)
+- [x] Persona JARVIS personalizada
+- [x] Memory Bridge (Telegram → Supabase → Antigravity)
+- [x] OS Worker (blocos de tempo + proteção zona 🔵)
+- [ ] Injetar Knowledge Brain no contexto de conversas livres
+- [ ] Limpar bosses duplicados no Supabase
+- [ ] Popular quests template diários
+
+### God KairoX — Consolidação
+- [x] Higienizar raiz (mover RPs, AIFlow, fotos)
+- [x] Atualizar SELF_CONTEXT.md + STATUS.md
+- [ ] Injetar Knowledge Brain no bot
+- [ ] System auditor worker
+- [ ] README + KAIROS-MANIFEST vitrine
 
 ---
 
 ## ✅ CONCLUÍDO RECENTEMENTE
 
-| Data       | O que                                                    |
-| :--------- | :------------------------------------------------------- |
-| 2026-03-11 | Guia WhatsApp Bot (Botpress/Evolution/KAIROS)            |
-| 2026-03-11 | MVP Kit Apresentação Hortifruti                          |
-| 2026-03-10 | KAIROS SKY orquestrador completo em Python               |
-| 2026-03-10 | Knowledge Brain indexer (360+ arquivos mapeados)         |
-| 2026-03-10 | Supabase schema (12 tabelas + search function)           |
-| 2026-03-10 | Intelligence audit — mapeamento do "cérebro fragmentado" |
-
----
-
-## 📅 AGENDA DO DIA (2026-03-12)
-
-1. **Configurar KAIROS SKY** (Supabase schema + API keys + pip + teste)
-2. **Configurar WhatsApp Bot** da Elaine (Botpress ou Evolution API)
-3. **Criar posts/tabelas de preço** com as fotos geradas por IA
-4. **Tirar fotos reais** das 2 lojas
-5. **Padronizar processo** de onboarding para outros comércios
+| Data       | O que                                            |
+| ---------- | ------------------------------------------------ |
+| 2026-03-14 | Memory Bridge: Telegram → Supabase → Antigravity |
+| 2026-03-14 | Fix timezone morning brief (4am → 7am BRT)       |
+| 2026-03-14 | Fix transcrição áudio duplicada                  |
+| 2026-03-14 | Auto-auditoria: R$200K+ de ativo, R$0 de custo   |
+| 2026-03-14 | God KairoX higienização + estado atualizado      |
+| 2026-03-13 | Deploy Railway SKY 24/7 operacional              |
+| 2026-03-13 | Devcontainer + Codespace Worker + OS Worker      |
+| 2026-03-13 | Persona JARVIS via Anamnese de Genialidade       |
+| 2026-03-13 | Transcrição áudio Groq Whisper                   |
+| 2026-03-13 | Bot NLP 11 intents (sem /commands)               |
+| 2026-03-13 | OODA Loop cognitivo + consciência de zonas       |
+| 2026-03-11 | MVP Kit Hortifruti completo                      |
+| 2026-03-10 | KAIROS SKY + Supabase 12 tabelas                 |
 
 ---
 
 ## 🧭 PRÓXIMOS MILESTONES
 
-| Milestone                       | Quando         | Dependência             |
-| :------------------------------ | :------------- | :---------------------- |
-| Bot Safra respondendo clientes  | Hoje           | Config WhatsApp         |
-| KAIROS SKY no Railway           | Hoje           | Schema SQL + pip        |
-| 1° post Instagram do Hortifruti | Hoje           | Fotos + Canva           |
-| 2° loja com bot ativo           | Amanhã         | Template universal      |
-| 5 cases rodando                 | Esta semana    | Amostra grátis pipeline |
-| 1° cliente pagante              | Próxima semana | Cases + ROI comprovado  |
+| Milestone                      | Quando         | Dependência            |
+| ------------------------------ | -------------- | ---------------------- |
+| Bot com memória contextual     | Hoje           | Knowledge Brain no LLM |
+| Bosses reais no Supabase       | Hoje           | SQL no Supabase Editor |
+| Consumer MVP Elaine            | Segunda-feira  | Visita presencial      |
+| Polvo KAIROS (APIs + n8n)      | Esta semana    | Consolidação feita     |
+| 1° case documentado com photos | Próxima semana | Consumer + fotos reais |
+| 1° cliente pagante             | Próxima semana | Case + ROI comprovado  |
+
+---
+
+## 📊 MÉTRICAS DO SISTEMA
+
+| Métrica               | Valor      |
+| --------------------- | ---------- |
+| Arquivos totais       | 1.200+     |
+| Linhas de código      | ~80.000    |
+| Horas investidas      | ~1.250h    |
+| Custo de infra        | R$0        |
+| Valor de replicação   | R$180-280K |
+| Leads ativos          | 18         |
+| Dívida total (bosses) | R$86.529   |

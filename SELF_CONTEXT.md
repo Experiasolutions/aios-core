@@ -1,85 +1,96 @@
 # KAIROS — SELF CONTEXT (Consciência Viva)
 
-> **Última atualização:** 2026-03-13T14:50:00-03:00
-> **Atualizado por:** KAIROS (Antigravity Session)
-> **Sessão anterior:** 72aba841-3bd2-4b3c-bb1f-39a69549fc9c
+> **Última atualização:** 2026-03-14T11:45:00-03:00
+> **Atualizado por:** God KairoX Consolidation
+> **Sessão:** 72aba841-3bd2-4b3c-bb1f-39a69549fc9c
 
 ---
 
 ## Identidade
 
-- **Sistema:** KAIROS OS v3.1
+- **Sistema:** KAIROS OS v3.1 (God KairoX)
 - **Operador:** Gabriel Ferreira — Arquiteto-Comunicador, Voice of the Dragonborn
 - **Empresa:** Experia Solutions (IA para negócios locais)
-- **Base:** Repositório `C:\Users\Gabriel\Documents\My KAIROS`
-- **Core Engine:** AIOX v5.0.0 (fork do SynkraAI/aiox-core — open source)
-- **GitHub:** [Experiasolutions/aios-core](https://github.com/Experiasolutions/aios-core)
+- **Base:** `C:\Users\Gabriel\Documents\My KAIROS`
+- **Core Engine:** AIOX v5.0.0 (fork SynkraAI/aiox-core)
+- **GitHub:** [aios-core](https://github.com/Experiasolutions/aios-core) + [kairos-orchestrator](https://github.com/Experiasolutions/kairos-orchestrator)
 
 ## Estado do Sistema
 
-### Superpoderes Ativados (2026-03-13)
-- **IA Council** — ✅ Operacional, 120 gaps detectados, score 4.89/10
-- **Distillation Pipeline** — ✅ `distill-trace.js` ativo, 17 traces (3% do alvo 500)
-- **Night Shift** — ✅ Scheduler atualizado (Council + Distillation no ciclo)
-- **WhatsApp Bridge** — ✅ `bridges/whatsapp.py` criado (Evolution API)
-- **Squad Router** — ✅ 3 squad.yaml validados (doombot, meta, mind-clones)
+### KAIROS SKY (Orquestrador Cloud) — ✅ OPERACIONAL
+- **Deploy:** Railway 24/7 (Python 3.12)
+- **Bot Telegram:** @sky_bot, NLP natural (sem /commands), 11 intents
+- **OODA Loop:** Cognitive heartbeat a cada 60s com consciência de zonas OS
+- **Scheduler:** Morning Brief (7am BRT), Night Reminder (22h BRT), task processor (30min)
+- **Transcrição de Áudio:** Groq Whisper `whisper-large-v3-turbo`
+- **Memory Bridge:** Telegram → Supabase knowledge_brain → Antigravity
+- **OS Worker:** 7 blocos de tempo, proteção zona 🔵, detecção de violação
+- **Persona:** JARVIS personalizado via Anamnese de Genialidade (35 perguntas, 18 padrões)
+- **Codespace Worker:** Long-polling com claim atômico (`.devcontainer` configurado)
 
-### KAIROS SKY (Orquestrador Cloud)
-- **Localização:** `kairos-orchestrator/` (Python, APScheduler)
-- **Status:** Código completo, **NÃO DEPLOYADO ainda**
-- **Workers:** morning_brief, night_processor, task_worker, context_sync, whatsapp bridge
-- **Supabase:** URL + service_role key configurados no `.env`
-- **Deploy Railway:** ❌ PENDENTE
-- **API Keys Google:** 4 keys confirmadas
+### Intents do Bot (NLP Zero-Latência)
+`brief` `status` `quests` `bosses` `add_task` `process` `checkin` `leads` `bloco` `lembrar` `memoria` + conversa livre via LLM
+
+### Supabase — ✅ Conectado
+- **12 tabelas:** profile, quests_daily, bosses_finance, loot_shop, experia_agents, context_store, task_queue, api_keys, memory_log, leads, clients, knowledge_brain
+- **Knowledge Brain:** Full-text search em português + Telegram memory bridge
+- **Projeto:** apex-conductor (`ptpojwbdxgmvykwwzatl.supabase.co`)
+
+### API Keys — ✅ Todas Configuradas
+| API                        | Status                        |
+| -------------------------- | ----------------------------- |
+| GOOGLE_API_KEYS (4 Gemini) | ✅ Pool com rotação automática |
+| GROQ_API_KEY               | ✅ Whisper + Llama fallback    |
+| TELEGRAM_BOT_TOKEN         | ✅                             |
+| SUPABASE_URL + SERVICE_KEY | ✅                             |
 
 ### Engine (migrado de .aios-core)
-- **engine/opus-replicator/** — OPUS Replicant System v2, constitutional layer v3
-- **engine/noesis/** — Observations, sessions, cognitive state
-- **engine/memory/** — Quality baseline, golden examples, distillation dataset
-- **engine/night-reports/** — Reports do Night Shift
+- `engine/opus-replicator/` — OPUS Replicant System v2, constitutional layer v3
+- `engine/noesis/` — Observations, sessions, cognitive state
+- `engine/memory/` — Quality baseline, golden examples, distillation dataset
+- `engine/night-reports/` — Reports do Night Shift
 
 ### Clients
-- **Hortifruti** — MVP Kit completo, WhatsApp Bot pendente
-- **Experia** — Landing page + design system
-- **Master Pumps** — Pipeline Trojan Horse
+| Cliente             | Status                       | Próximo                     |
+| ------------------- | ---------------------------- | --------------------------- |
+| Hortifruti (Elaine) | MVP pronto, bot Safra        | Segunda-feira: Consumer MVP |
+| Experia             | Landing page + design system | Dashboard web               |
+| Master Pumps        | Pipeline Trojan Horse        | Token bot enviado           |
 
-### Credenciais (`.env`)
-- `SUPABASE_URL` ✅ | `SUPABASE_SERVICE_ROLE_KEY` ✅
-- `TELEGRAM_BOT_TOKEN` ✅ | `TELEGRAM_ALLOWED_USER_ID` ✅
-- `GEMINI_API_KEY` ✅ | `GROQ_API_KEY` ✅
-- `GOOGLE_API_KEYS` ❌ PRECISA DAS 4 NOVAS
-
-## Arquitetura do Sistema
+## Arquitetura
 
 ```
-KAIROS OS (Local)
-├── .agent/workflows/    ← 14 workflows KAIROS
-├── engine/              ← Core (migrado de .aios-core em v3.1)
-│   ├── opus-replicator/ ← Constitutional layer, golden examples
-│   ├── noesis/          ← Cognitive state, observations
-│   └── memory/          ← Quality baseline, distillation sync
-├── scripts/             ← 100+ scripts (boot, council, night-shift)
-├── squads/              ← Experia(9), Sales(4), C-Level(4)
-├── reasoning-packages/  ← 66 RPs (strategic, core, tasks)
-├── clients/             ← Hortifruti, Experia, Master Pumps
-├── kairos-orchestrator/ ← KAIROS SKY (Python, Railway)
-├── distillation-dataset/← 17 traces para fine-tuning LoRA
-├── tools/               ← 28 repos (integrations + cookbooks)
-└── docs/                ← Bibles, manifestos, guias
+KAIROS OS v3.1 — God KairoX
+├── kairos-orchestrator/     ← SKY Cloud (Python, Railway 24/7)
+│   ├── tg_bot/              ← Bot Telegram NLP (11 intents)
+│   ├── workers/             ← 8 workers (brief, night, task, os, codespace, etc)
+│   ├── persona.py           ← JARVIS personalizado
+│   ├── key_rotator.py       ← Pool multi-key com cooldown
+│   └── supabase_client.py   ← 15 funções (profile, quests, bosses, memory, knowledge)
+├── engine/                  ← Core Brain (opus, noesis, memory)
+├── scripts/                 ← 76+ scripts (boot, council, night-shift, dashboard)
+├── squads/                  ← 10 squads (experia, sales, c-level, jarvis, etc)
+├── reasoning-packages/      ← 66+ RPs (strategic, core, tasks)
+├── clients/                 ← 3 clients (hortifruti, experia, master-pumps)
+├── data/                    ← Entity registry, AI Flow docs, megabrain
+├── tools/                   ← 28+ repos (integrations, cookbooks)
+├── docs/                    ← Bibles, manifestos, guias
+├── .agent/workflows/        ← 14 workflows KAIROS
+└── distillation-dataset/    ← 17 traces para fine-tuning LoRA
 ```
 
-## Decisões Tomadas (Log)
+## Decisões Tomadas
 
-| Data       | Decisão                                                        |
-| :--------- | :------------------------------------------------------------- |
-| 2026-03-10 | Criado KAIROS SKY (Python) com 12 módulos para cloud           |
-| 2026-03-10 | Schema Supabase com 12 tabelas + Knowledge Brain               |
-| 2026-03-11 | MVP Kit Hortifruti completo                                    |
-| 2026-03-12 | Gabriel tem 4 Gemini API keys prontas                          |
-| 2026-03-13 | Restauração 750+ arquivos do force push                        |
-| 2026-03-13 | engine/ criado com 56 artefatos (de .aios-core)                |
-| 2026-03-13 | 28 tools repos atualizados + 5 novos (ralph, aider, swe-agent) |
-| 2026-03-13 | IA Council ativado — 120 gaps, score 4.89/10                   |
-| 2026-03-13 | Distillation Pipeline — 17 traces via auto-harvest             |
-| 2026-03-13 | Night Shift + WhatsApp Bridge integrados ao SKY                |
-| 2026-03-13 | README.md criado, gap elimination em progresso                 |
+| Data       | Decisão                                                       |
+| ---------- | ------------------------------------------------------------- |
+| 2026-03-10 | Criado KAIROS SKY + Supabase schema 12 tabelas                |
+| 2026-03-11 | MVP Kit Hortifruti completo                                   |
+| 2026-03-13 | Restauração 750+ arquivos, engine/ criado, IA Council ativado |
+| 2026-03-13 | Deploy Railway ✅, bot Telegram NLP operacional                |
+| 2026-03-13 | Persona JARVIS via Anamnese de Genialidade                    |
+| 2026-03-13 | Transcrição de áudio Groq Whisper                             |
+| 2026-03-13 | Devcontainer + Codespace Worker + OS Worker                   |
+| 2026-03-14 | Fix timezone (4am→7am), fix transcrição duplicada             |
+| 2026-03-14 | Memory Bridge: Telegram → Supabase → Antigravity              |
+| 2026-03-14 | Auto-auditoria: ativo de R$200K+ com R$0 investido            |
+| 2026-03-14 | God KairoX consolidation — higienização + estado atualizado   |
