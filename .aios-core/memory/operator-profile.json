@@ -1,67 +1,59 @@
 {
   "operatorId": "gabriel",
   "role": "founder-operator",
-  "organization": "Experia Technologies / SynkraAI",
   "behavioral": {
+    "commitPatterns": {
+      "avgCommitHour": 15,
+      "dominantType": "fix",
+      "recentActivity": 30,
+      "evidence": 7
+    },
     "workHours": {
-      "avgBootHour": 17,
-      "pattern": "evening-worker",
-      "evidence": 12
+      "avgBootHour": 0,
+      "pattern": "night-owl",
+      "evidence": 6
     },
     "bootPreference": {
-      "quickRatio": 0.12,
+      "quickRatio": 0,
       "interpretation": "Prefers comprehensive boots",
-      "evidence": 12
-    },
-    "commitPatterns": {
-      "avgCommitHour": 16,
-      "dominantType": "chore",
-      "recentActivity": 30,
-      "evidence": 12
+      "evidence": 6
     }
   },
   "decisional": {
     "focusAllocation": {
-      "features": 0.17,
-      "fixes": 0.2,
-      "docs": 0.1,
-      "maintenance": 0.3,
+      "features": 0.2,
+      "fixes": 0.4,
+      "docs": 0,
+      "maintenance": 0.2,
       "interpretation": "Balanced — no single dominant commit type",
-      "evidence": 12
+      "evidence": 7
     },
     "directoryFocus": {
       "top3": [
-        "docs",
-        "squads",
-        "data"
+        "JDK",
+        "clients",
+        ".aios-core-deprecated"
       ],
-      "interpretation": "Primary focus on: docs, squads, data",
-      "evidence": 12
+      "interpretation": "Primary focus on: JDK, clients, .aios-core-deprecated",
+      "evidence": 7
     }
   },
-  "declarative": {
-    "systemPerformance": {
-      "avgScore": 7.12,
-      "avgDepth": 4,
-      "sessionCount": 1,
-      "strengths": 1,
-      "blindspots": 0,
-      "driftAlerts": 0,
-      "evidence": 12
-    }
-  },
+  "declarative": {},
   "omission": {
     "neglectedAreas": {
-      "directories": [],
+      "directories": [
+        "tests",
+        "reasoning-packages"
+      ],
       "interpretation": "Coverage looks healthy",
-      "evidence": 12
+      "evidence": 7
     }
   },
   "insights": [],
   "_meta": {
     "version": "1.0.0",
-    "lastEnriched": "2026-03-05T06:00:12.756Z",
-    "observationCompleteness": 1,
-    "enrichmentCycles": 12
+    "lastEnriched": "2026-03-26T13:11:07.516Z",
+    "observationCompleteness": 0.75,
+    "enrichmentCycles": 7
   }
 }

@@ -1,5 +1,5 @@
-/** @purpose Enrich operator profile based on interaction patterns */
 #!/usr/bin/env node
+/** @purpose Enrich operator profile based on interaction patterns */
 
 /**
  * profile-enricher.js — Translates raw observations into operator profile vectors

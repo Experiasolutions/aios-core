@@ -20,14 +20,14 @@ const path = require('path');
 
 // Paths
 const ROOT = path.resolve(__dirname, '../..');
-const NOESIS_DIR = path.join(ROOT, '.aios-core/noesis-operator');
+const NOESIS_DIR = path.join(ROOT, '.aiox-core/noesis-operator');
 const MODEL_PATH = path.join(NOESIS_DIR, 'learning-model.json');
 const AUDIT_PATH = path.join(NOESIS_DIR, 'learning-audit-log.json');
 
 // Jarvis Layer paths (read-only)
 const JARVIS_CORE = path.join(ROOT, 'scripts/jarvis-core.js');
 const PROFILE_ENRICHER = path.join(ROOT, 'scripts/profile-enricher.js');
-const OPERATOR_PROFILE = path.join(ROOT, '.aios-core/memory/operator-profile.json');
+const OPERATOR_PROFILE = path.join(ROOT, '.aiox-core/memory/operator-profile.json');
 
 const { evaluateModel } = require('./learning-model-evaluator');
 const { validateInferences } = require('./inference-validator');

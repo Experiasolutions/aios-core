@@ -1,5 +1,5 @@
-/** @purpose Core Jarvis engine: morning brief, night check-in, operator profiling */
 #!/usr/bin/env node
+/** @purpose Core Jarvis engine: morning brief, night check-in, operator profiling */
 
 /**
  * jarvis-core.js — The Silent Observer Layer

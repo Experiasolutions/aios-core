@@ -15,11 +15,11 @@ const path = require('path');
 const crypto = require('crypto');
 
 const AIOS_ROOT = path.resolve(__dirname, '..');
-const RAG_DIR = path.join(AIOS_ROOT, '.aios-core', 'data', 'rag');
+const RAG_DIR = path.join(AIOS_ROOT, '.aiox-core', 'data', 'rag');
 const KNOWLEDGE_DIRS = [
     path.join(AIOS_ROOT, 'squads'),
-    path.join(AIOS_ROOT, '.aios-core', 'docs', 'standards'),
-    path.join(AIOS_ROOT, '.aios-core', 'core'),
+    path.join(AIOS_ROOT, '.aiox-core', 'docs', 'standards'),
+    path.join(AIOS_ROOT, '.aiox-core', 'core'),
     path.join(AIOS_ROOT, 'docs'),
 ];
 

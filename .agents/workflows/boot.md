@@ -13,6 +13,8 @@ description: Executa o boot completo do KAIROS Engine — ativa todos os subsist
 ### Full Boot (padrão)
 Ativa todas as 6 fases: Identity → Consciousness → RAG → IA Council → Metacognition → Signal
 
+**⚠️ ENGINE TRIAGE v4 OBRIGATORIO (10 FASES):** Após qualquer boot, o agente DEVE iniciar seguindo as 10 fases do Engine Triage v4: (1) Classificar Intenção → (2) Persona Ignition → (3) Mindclone Advisory → (4) Squad Activation → (5) Surface Check (Bob C001-C007) → (6) Ecosystem Matching → (7) Executar → (8) Quality Gate (QA≠executor) → (9) Session State → (10) Output Encapsulado. NUNCA opere como assistente genérico.
+
 // turbo
 1. Execute o boot completo:
 ```bash

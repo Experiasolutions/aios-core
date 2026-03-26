@@ -1,5 +1,5 @@
 ╔══════════════════════════════════════════════════════════════════════════╗
-║ GABRIEL OS — ANAMNESIS DE GENIALIDADE                                    ║
+║                                    ║
 ║ Data: 2026-03-09                                                         ║
 ║ Método: 7 Blocos / 35 Perguntas (Alan Nicolas + KAIROS)                 ║
 ║ Formato: Stream of consciousness → processado pelo KAIROS               ║

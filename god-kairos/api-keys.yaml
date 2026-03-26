@@ -1,0 +1,61 @@
+# GOD KAIROS — API Key Pool Completo
+# Todas as keys do operador consolidadas em um único lugar
+
+# Gemini (Google AI Studio) — 5 keys, round-robin
+gemini:
+  provider: "google-ai-studio"
+  model_default: "gemini-2.5-pro"
+  rotation: "round-robin"
+  fallback_on_429: true
+  keys:
+    - id: "lemellomodel"
+      key: "AIzaSyAiEkpxe5nZLEB_wtOkuJ1E7PJBWT97Ncg"
+    - id: "krauserg31"
+      key: "AIzaSyAt7ZwWcT6U7YXnDeSSlTrV0C4MgF9UUVI"
+    - id: "brooklynalexia2025"
+      key: "AIzaSyCADsQ6Ybehb0pGeE9UU0ATZnS_p4Tg3UU"
+    - id: "redfield20251"
+      key: "AIzaSyDWVZ9_l936vtR5gRrfAhuF10x_9gJ0F4E"
+    - id: "redfield20252"
+      key: "AIzaSyAdICYNH461MvPII5X0lCv7oMHugXZHGCs"
+  rate_limits:
+    per_key_rpm: 15
+    pool_total_rpm: 75
+
+# Groq — 2 keys, round-robin (fallback)
+groq:
+  provider: "groq"
+  model_default: "llama-3.1-8b-instant"
+  model_heavy: "llama-3.3-70b-versatile"
+  rotation: "round-robin"
+  role: "fallback"
+  keys:
+    - id: "groq-1"
+      key: "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"
+    - id: "groq-2"
+      key: "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"
+  rate_limits:
+    per_key_rpm: 30
+    pool_total_rpm: 60
+
+# Opus 4.6 (Antigravity) — free tier, este terminal
+opus:
+  provider: "antigravity"
+  model: "opus-4.6"
+  role: "heavy"
+  notes: "Sem key necessária — roda nativamente neste terminal"
+
+# Token Routing
+routing:
+  complexity_1_2:
+    provider: "groq"
+    model: "llama-3.1-8b-instant"
+    use_for: ["chat rápido", "formatação", "queries simples"]
+  complexity_3_4:
+    provider: "gemini"
+    model: "gemini-2.5-pro"
+    use_for: ["coding", "análise", "refatoração", "debugging"]
+  complexity_5:
+    provider: "opus"
+    model: "opus-4.6"
+    use_for: ["arquitetura", "planning estratégico", "decisões críticas", "RPs"]

@@ -56,6 +56,37 @@ Verifique status dos clientes em andamento:
 | Experia      | `clients/experia/`                                    |
 | Master Pumps | `clients/master-pumps/`                               |
 
+## Passo 4.5 — MCP + Agent-First + Engine Triage v4 (OBRIGATÓRIO)
+
+Antes de reportar ao operador, internalize estas regras de operação:
+
+**Engine Triage v4 (10 Fases):** TODO ciclo de trabalho DEVE seguir as 10 fases: (1) Classificar Intenção → (2) Persona Ignition (hat-switch) → (3) Mindclone Advisory (1-3 conselheiros, 66 clones) → (4) Squad Activation → (5) Surface Check (Bob C001-C007) → (6) Ecosystem Matching (13 workflows + 207 tasks + 52 RPs) → (7) Executar → (8) Quality Gate (QA≠executor) → (9) Session State (SELF_CONTEXT + STATUS) → (10) Output Encapsulado. NUNCA opere no modo genérico antes ou depois do comando `/context`.
+
+**MCP v3.0 (23 tools):** Use as tools MCP para consultar o ecossistema:
+- `kairos_read_context` → ler SELF_CONTEXT + STATUS via MCP
+- `kairos_list_tasks` → consultar 204 tasks disponíveis
+- `kairos_list_framework_agents` → consultar 12 agentes AIOX
+- `kairos_read_engine` → acessar noesis (cognitive-state) e memory
+- `kairos_read_synapse` → acessar sysânapse de memória dos agentes
+
+**Agent-First Protocol:** Para TODA demanda:
+1. Identifique o agente especializado mais adequado
+2. Consulte workflow/task/checklist existente no framework
+3. Ative via hat-switching (documente o chapéu em uso)
+4. Delegue formalmente com `@agente` + comando
+
+**Hat-Switching:** Troque de persona conforme a fase:
+- `@architect` para análise e design
+- `@dev` para implementação
+- `@qa` para validação e testes
+- `@devops` para deploy e infra
+
+**HYDRA Architecture (4 Heads):**
+- HEAD 1: N8N + Postgres | HEAD 2: OpenClaw (15 Skills)
+- HEAD 3: SKY Python (55+ tools) | HEAD 4: Evolution API (WhatsApp)
+
+**Full-Ecosystem:** SEMPRE utilize agentes + flows + tasks + workflows + squads + engines + RPs + mindclones. Não opere como assistente genérico.
+
 ## Passo 5 — Relatório ao Operador
 
 Confirme com Gabriel que está contextualizado. Responda em **português**. Mostre:
@@ -64,10 +95,11 @@ Confirme com Gabriel que está contextualizado. Responda em **português**. Most
 2. **Última sessão:** data da última atualização do SELF_CONTEXT.md
 3. **Itens bloqueados:** da seção "BLOQUEADO" do STATUS.md
 4. **Em progresso:** da seção "EM PROGRESSO" do STATUS.md
-5. **Agenda do dia:** da seção "AGENDA DO DIA" do STATUS.md
+5. **HYDRA status:** HEAD 1-4 status (do STATUS.md seção HYDRA)
 6. **Clientes ativos:** qual o status de cada cliente
-7. **Issues conhecidas:** qualquer problema pendente
-8. **Próximo milestone:** o milestone mais urgente
+7. **MCP v3.0:** confirmar que 23 tools estão ativas
+8. **Protocolo ativo:** Agent-First + Hat-Switching + Full-Ecosystem
+9. **Próximo milestone:** o milestone mais urgente
 
 ## Dica Pro — Atualizar Contexto ao Final da Sessão
 

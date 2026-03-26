@@ -1,0 +1,104 @@
+# GOD KAIROS — Configuração Multi-Terminal
+# Hardware: Celeron + 6GB RAM
+# Estratégia: CLI-first (leve) + Antigravity (Opus 4.6 heavy)
+
+system:
+  name: "GOD KAIROS"
+  version: "1.0"
+  hardware:
+    cpu: "Intel Celeron"
+    ram: "6GB"
+    strategy: "CLI-first minimal footprint"
+
+# Roteamento de modelos por complexidade
+model_routing:
+  heavy:
+    provider: "antigravity"
+    model: "opus-4.6"
+    use_for:
+      - "Arquitetura de sistemas"
+      - "Planning estratégico"
+      - "Decisões críticas"
+      - "Criação de RPs"
+      - "Meta-orquestração"
+    estimated_ram: "~500MB (GUI)"
+
+  medium:
+    provider: "gemini-cli"
+    model: "gemini-2.5-pro"
+    use_for:
+      - "Coding/implementação"
+      - "Análise de código"
+      - "Refatoração"
+      - "Debugging"
+    estimated_ram: "~80MB (CLI)"
+
+  light:
+    provider: "groq"
+    model: "llama-3.1-8b-instant"
+    use_for:
+      - "Chat rápido"
+      - "Formatação de texto"
+      - "Queries simples"
+      - "Atendimento"
+    estimated_ram: "~50MB (API call)"
+
+# Terminais configurados
+terminals:
+  - id: "noesis"
+    agent: "aiox-master"
+    title: "👑 NOESIS — Orquestrador"
+    color: "yellow"
+    model: "heavy"
+    role: "Meta-orquestração, planning, decisões críticas"
+    interface: "antigravity"
+
+  - id: "architect"
+    agent: "architect"
+    title: "🏗️ ARCHITECT — Projetista"
+    color: "cyan"
+    model: "medium"
+    role: "Arquitetura, design de sistemas, infra"
+    interface: "gemini-cli"
+
+  - id: "dev"
+    agent: "dev"
+    title: "⚡ DEV — Implementador"
+    color: "green"
+    model: "medium"
+    role: "Coding, implementação, debugging"
+    interface: "gemini-cli"
+
+  - id: "devops"
+    agent: "devops"
+    title: "🔧 DEVOPS — Infra & Deploy"
+    color: "red"
+    model: "medium"
+    role: "Deploy, CI/CD, containers, Railway/OpenShift"
+    interface: "gemini-cli"
+
+  - id: "analyst"
+    agent: "analyst"
+    title: "📊 ANALYST — Pesquisador"
+    color: "magenta"
+    model: "medium"
+    role: "Research, análise de mercado, dados"
+    interface: "gemini-cli"
+
+# Supabase compartilhado
+shared_state:
+  provider: "supabase"
+  project: "apex-conductor"
+  tables:
+    - "context_store"
+    - "task_queue"
+    - "memory_log"
+
+# Integração com SKYDRA (cloud) e SKYROS (personal)
+bridges:
+  skydra:
+    url: "https://kairos-sky.railway.internal"
+    sync: "context_store"
+  skyros:
+    bot: "@K1R0zbot"
+    sync: "context_store + task_queue"

@@ -155,7 +155,7 @@ function evaluateSutskever(systemState) {
 
     // Check 2: PM template presence
     const pmFiles = (systemState.files || []).filter(f =>
-        f.path.includes('opus-replicator') && (f.path.includes('pm1') || f.path.includes('pm2') || f.path.includes('pm3'))
+        f.path.includes('reasoning-packages/core/') && (f.path.includes('pm1') || f.path.includes('pm2') || f.path.includes('pm3'))
     );
     if (pmFiles.length < 3) {
         gaps.push({
@@ -466,8 +466,9 @@ function evaluatePedro(systemState) {
         if ((file.path.endsWith('.js') || (file.path.endsWith('.md') && file.path.includes('opus-replicator')))
             && !detectorExclusions.includes(basename)) {
             for (const word of domainWords) {
+                const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 // Case insensitive check, but skip if it's in a comment about the anti-pattern itself
-                const regex = new RegExp(`\\b${word}\\b`, 'gi');
+                const regex = new RegExp(`\\b${escapedWord}\\b`, 'gi');
                 const matches = file.content.match(regex) || [];
                 if (matches.length > 0 && !file.path.includes('anti-patterns')) {
                     gaps.push({
@@ -484,9 +485,9 @@ function evaluatePedro(systemState) {
     }
 
     // Check 2: Structure is Sacred compliance
-    // engine/ is the KAIROS-specific equivalent of .aios-core/ (migrated in v3.1)
+    // .aiox-core is the KAIROS-specific equivalent of .aios-core/ (migrated in v3.1)
     const requiredDirs = ['scripts', 'squads', 'docs', 'reasoning-packages'];
-    const alternativeDirs = { '.aios-core': 'engine' };
+    const alternativeDirs = { '.aiox-core': 'engine' };
     for (const dir of requiredDirs) {
         const hasDir = (systemState.files || []).some(f => f.path.startsWith(dir + '/'));
         if (!hasDir) {
@@ -500,13 +501,13 @@ function evaluatePedro(systemState) {
             score -= 1;
         }
     }
-    // Check .aios-core OR engine/ (both are valid)
-    const hasAiosCore = (systemState.files || []).some(f => f.path.startsWith('.aios-core/'));
+    // Check .aiox-core OR engine/ (both are valid)
+    const hasAiosCore = (systemState.files || []).some(f => f.path.startsWith('.aiox-core/'));
     const hasEngine = (systemState.files || []).some(f => f.path.startsWith('engine/'));
     if (!hasAiosCore && !hasEngine) {
         gaps.push({
             id: 'PED-STRUCT-engine',
-            description: 'Neither ".aios-core" nor "engine/" directory found in project structure',
+            description: 'Neither ".aiox-core" nor "engine/" directory found in project structure',
             severity: 7,
             evidence: 'No files found with either prefix',
             impact30d: 'Breaks the "Structure is Sacred" principle from AIOS philosophy',
@@ -527,7 +528,7 @@ function evaluateAlan(systemState) {
     let score = 8;
 
     // Check 1: README exists and is non-trivial
-    const readme = (systemState.files || []).find(f => f.path === 'README.md');
+    const readme = (systemState.files || []).find(f => f.path === 'README.md' || f.path === '/README.md');
     if (!readme || !readme.content) {
         gaps.push({
             id: 'ALN-README-MISSING',

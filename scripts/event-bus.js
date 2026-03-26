@@ -40,7 +40,9 @@ class AIOSEventBus extends EventEmitter {
         if (!this.subscriptions.has(channel)) {
             this.subscriptions.set(channel, []);
         }
-        this.subscriptions.get(channel).push({ subscriber, handler });
+        try {
+            this.subscriptions.get(channel).push({ subscriber, handler });
+        } catch(e) {}
         this.on(channel, handler);
 
         this._log('subscribe', { channel, subscriber });

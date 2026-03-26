@@ -1,0 +1,203 @@
+# GOD KAIROS — Mapa Definitivo de Tools por Agente
+# Baseado nos AIflow docs + arsenal instalado + OpenClaw
+
+# ═══════════════════════════════════════════════════
+# TOOLS INSTALADOS
+# ═══════════════════════════════════════════════════
+
+installed:
+  cli_ai:
+    - name: "claude-code"
+      command: "claude"
+      status: "installed"
+      version: "latest"
+    - name: "gemini-cli"
+      command: "gemini"
+      status: "pending"  # Precisa instalar: npm i -g @anthropic-ai/gemini-cli
+
+  sdks:
+    - name: "groq-python"
+      import: "from groq import Groq"
+      status: "installed"
+      version: "1.1.1"
+
+  frameworks:
+    - name: "openclaw"
+      path: "tools/integrations/openclaw/"
+      version: "2026.3.13"
+      status: "installed (source)"
+      requires: "Node >= 22"
+      capabilities:
+        - "Multi-canal: WhatsApp, Telegram, Slack, Discord, Signal +15"
+        - "Subagents com sessions e lifecycle"
+        - "Playwright-core embutido (computer-use)"
+        - "Camera, PDF, memory (LanceDB)"
+        - "Voice calls"
+        - "Gateway com model failover"
+        - "Railway Skills (15 ferramentas): deploy, logs, status, metrics, infra, functions"
+      key_commands:
+        - "openclaw onboard"
+        - "openclaw agent --message 'X'"
+        - "openclaw gateway --port 18789"
+
+    - name: "hydra-mcp"
+      path: "kairos-orchestrator/mcp_server/mcp_server.py"
+      version: "1.0.0"
+      status: "ready (deploy pending)"
+      requires: "Python 3.12, FastAPI"
+      capabilities:
+        - "18 Tools Totais (Python)"
+        - "N8N (4): create/list/execute workflows"
+        - "Database (3): sql, backup, restore"
+        - "Client Mgmt (4): env, metrics, scale"
+        - "Infra (3): status, metrics, restart"
+        - "Integrations (2): webhooks, list"
+
+  runtimes:
+    - name: "Node.js"
+      status: "installed"
+    - name: "Python 3.12"
+      status: "installed"
+    - name: "pnpm"
+      status: "installed"
+      version: "10.32.1"
+
+  aiox_tools:
+    - name: "eslint"
+      status: "installed (project)"
+    - name: "jest"
+      status: "installed (project)"
+    - name: "typescript"
+      status: "installed (project)"
+
+# ═══════════════════════════════════════════════════
+# TOOLS POR AGENTE
+# ═══════════════════════════════════════════════════
+
+agents:
+
+  noesis:
+    role: "Meta-orquestrador"
+    model: "opus-4.6"
+    interface: "antigravity"
+    tools:
+      - "AIOX Framework completo (204 tasks, 12 agents, 13 workflows)"
+      - "KAIROS scripts (boot, council, jarvis, night-shift, RAG)"
+      - "RPs (69+)"
+      - "Squads (experia, sales, c-level)"
+      - "OpenClaw gateway (controle remoto)"
+
+  architect:
+    role: "Projetista de sistemas"
+    model: "gemini-2.5-pro"
+    interface: "claude-code / gemini-cli"
+    tools:
+      - "git (status, log, diff, branch)"
+      - "OpenClaw (para projetar integrações multi-canal)"
+      - "Railway CLI (quando instalado)"
+      - "Supabase CLI (quando instalado)"
+    aiox_tasks:
+      - "analyze-framework.md"
+      - "architect-analyze-impact.md"
+      - "generate-migration-strategy.md"
+
+  dev:
+    role: "Implementador"
+    model: "gemini-2.5-pro"
+    interface: "claude-code / gemini-cli"
+    tools:
+      - "git (add, commit, status, diff, log, branch, checkout, merge)"
+      - "npm/node (run, test, build)"
+      - "eslint + jest + tsc"
+      - "OpenClaw plugin-sdk (para criar extensões)"
+    aiox_tasks:
+      - "dev-develop-story.md"
+      - "dev-improve-code-quality.md"
+      - "dev-optimize-performance.md"
+      - "dev-suggest-refactoring.md"
+      - "build.md"
+    blocked_ops:
+      - "git push (somente @devops)"
+
+  devops:
+    role: "Infra & Deploy"
+    model: "gemini-2.5-pro"
+    interface: "claude-code / gemini-cli"
+    tools:
+      - "git (push, PR)"
+      - "Railway CLI (quando instalado)"
+      - "GitHub CLI (quando instalado)"
+      - "Docker/Podman (OpenClaw container)"
+      - "OpenClaw gateway management"
+    aiox_tasks:
+      - "ci-cd-configuration.md"
+      - "environment-bootstrap.md"
+      - "setup-github.md"
+      - "github-devops-pre-push-quality-gate.md"
+
+  analyst:
+    role: "Pesquisador"
+    model: "gemini-2.5-pro"
+    interface: "claude-code / gemini-cli"
+    tools:
+      - "OpenClaw agent (para pesquisa via LLM)"
+      - "Web search (via OpenClaw ou exa MCP)"
+      - "Python + Groq SDK (para análise rápida)"
+    aiox_tasks:
+      - "facilitate-brainstorming-session.md"
+      - "create-deep-research-prompt.md"
+      - "calculate-roi.md"
+      - "analyst-facilitate-brainstorming.md"
+
+  qa:
+    role: "Qualidade"
+    model: "gemini-2.5-pro"
+    interface: "claude-code / gemini-cli"
+    tools:
+      - "jest (unit tests)"
+      - "eslint (lint)"
+      - "tsc (typecheck)"
+      - "vitest (OpenClaw tests)"
+    aiox_tasks:
+      - "qa-review-story.md"
+      - "qa-generate-tests.md"
+      - "qa-gate.md"
+      - "qa-security-checklist.md"
+
+  nexus:
+    role: "Operador Universal de Sistemas (arma secreta Experia)"
+    model: "gemini-2.5-pro → opus-4.6 (heavy)"
+    interface: "OpenClaw + Playwright"
+    tools:
+      - "OpenClaw (gateway + subagents + sessions)"
+      - "Playwright-core (computer-use, navegação de sistemas)"
+      - "OpenClaw WhatsApp plugin (integração com clientes)"
+      - "OpenClaw Telegram plugin (controle remoto)"
+      - "Python + Groq (análise rápida)"
+    future:
+      - "UiPath Community (desktop RPA)"
+      - "Selenium (fallback browser automation)"
+    target_systems:
+      - "STI3 Powerstock (Hortifruti Elaine)"
+      - "Consumer (Porto Alemão / iFood)"
+
+# ═══════════════════════════════════════════════════
+# PENDÊNCIAS DE INSTALAÇÃO
+# ═══════════════════════════════════════════════════
+
+pending_installs:
+  high_priority:
+    - cmd: "npm install -g @anthropic-ai/gemini-cli"
+      purpose: "Gemini CLI para terminais"
+    - cmd: "npm install -g @railway/cli"
+      purpose: "Deploy e gestão Railway"
+    - cmd: "winget install GitHub.cli"
+      purpose: "GitHub operations"
+  medium_priority:
+    - cmd: "npm install -g supabase"
+      purpose: "Supabase CLI para DB"
+    - cmd: "cd tools/integrations/openclaw && pnpm install"
+      purpose: "OpenClaw dependencies"
+  low_priority:
+    - cmd: "pip install playwright && playwright install"
+      purpose: "Playwright para computer-use standalone"

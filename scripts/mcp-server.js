@@ -148,6 +148,160 @@ function scanTools() {
         },
     });
 
+    // ============================================================
+    // KAIROS EXCLUSIVE TOOLS
+    // ============================================================
+
+    // Tool: list-rps
+    tools.push({
+        name: 'kairos_list_rps',
+        description: 'List all Reasoning Packages (RPs) organized by category (strategic, core, tasks)',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                category: { type: 'string', description: 'Filter by category: strategic, core, tasks, or all (default: all)' },
+            },
+            required: [],
+        },
+    });
+
+    // Tool: read-rp
+    tools.push({
+        name: 'kairos_read_rp',
+        description: 'Read the full content of a specific Reasoning Package by filename',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                filename: { type: 'string', description: 'RP filename (e.g., "RP-20260219-CODEX-GIGAS-v1.0.md")' },
+                category: { type: 'string', description: 'Category folder: strategic, core, or tasks (default: searches all)' },
+            },
+            required: ['filename'],
+        },
+    });
+
+    // Tool: read-doc
+    tools.push({
+        name: 'kairos_read_doc',
+        description: 'Read any document from the KAIROS project by relative path',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                path: { type: 'string', description: 'Relative path from project root (e.g., "docs/core/KAIROS-MANIFEST.md", "SELF_CONTEXT.md")' },
+            },
+            required: ['path'],
+        },
+    });
+
+    // Tool: kairos-health
+    tools.push({
+        name: 'kairos_health',
+        description: 'Full KAIROS system health check: agents, squads, RPs, scripts, tools, clients',
+        inputSchema: { type: 'object', properties: {}, required: [] },
+    });
+
+    // Tool: list-workflows
+    tools.push({
+        name: 'kairos_list_workflows',
+        description: 'List all AIOX workflows available for orchestration',
+        inputSchema: { type: 'object', properties: {}, required: [] },
+    });
+
+    // ============================================================
+    // v3.0 — DEEP SCAN GAP CLOSERS
+    // ============================================================
+
+    // Tool: list-tasks (204 AIOX tasks)
+    tools.push({
+        name: 'kairos_list_tasks',
+        description: 'List all 204 AIOX development tasks with optional keyword filter',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                filter: { type: 'string', description: 'Optional keyword filter (e.g., "qa", "dev", "db", "squad")' },
+            },
+            required: [],
+        },
+    });
+
+    // Tool: read-task
+    tools.push({
+        name: 'kairos_read_task',
+        description: 'Read the full content of a specific AIOX task by filename',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                filename: { type: 'string', description: 'Task filename (e.g., "analyze-framework.md", "qa-review-build.md")' },
+            },
+            required: ['filename'],
+        },
+    });
+
+    // Tool: list-framework-agents (12 AIOX agents - NOT squad agents)
+    tools.push({
+        name: 'kairos_list_framework_agents',
+        description: 'List all 12 AIOX framework agent definitions (architect, dev, qa, etc.) with sizes',
+        inputSchema: { type: 'object', properties: {}, required: [] },
+    });
+
+    // Tool: read-framework-agent
+    tools.push({
+        name: 'kairos_read_framework_agent',
+        description: 'Read the full definition of an AIOX framework agent (persona, commands, dependencies)',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                agent: { type: 'string', description: 'Agent ID (e.g., "architect", "dev", "qa", "aiox-master")' },
+            },
+            required: ['agent'],
+        },
+    });
+
+    // Tool: list-clients
+    tools.push({
+        name: 'kairos_list_clients',
+        description: 'List all KAIROS clients with their directory contents and config files',
+        inputSchema: { type: 'object', properties: {}, required: [] },
+    });
+
+    // Tool: read-context (SELF_CONTEXT + STATUS)
+    tools.push({
+        name: 'kairos_read_context',
+        description: 'Read SELF_CONTEXT.md and/or STATUS.md for session continuity',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                file: { type: 'string', description: 'Which file: self_context, status, or both (default: both)' },
+            },
+            required: [],
+        },
+    });
+
+    // Tool: read-synapse
+    tools.push({
+        name: 'kairos_read_synapse',
+        description: 'Read agent synapse memory from .synapse/ (agent state, commands, constitution)',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                target: { type: 'string', description: 'Synapse target: agent name (e.g., "agent-dev"), or "all" for listing' },
+            },
+            required: ['target'],
+        },
+    });
+
+    // Tool: read-engine
+    tools.push({
+        name: 'kairos_read_engine',
+        description: 'Read engine state: cognitive-state, identity-anchor, operator-profile, quality-baseline',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                module: { type: 'string', description: 'Engine module: noesis, memory, or all (default: all)' },
+            },
+            required: [],
+        },
+    });
+
     return tools;
 }
 
@@ -287,6 +441,287 @@ function handleTool(name, args) {
             };
         }
 
+        // ============================================================
+        // KAIROS EXCLUSIVE HANDLERS
+        // ============================================================
+
+        case 'kairos_list_rps': {
+            const RP_DIR = path.join(AIOS_ROOT, 'reasoning-packages');
+            const categories = ['strategic', 'core', 'tasks'];
+            const filterCat = args.category || 'all';
+            const result = {};
+            let total = 0;
+
+            for (const cat of categories) {
+                if (filterCat !== 'all' && filterCat !== cat) continue;
+                const catDir = path.join(RP_DIR, cat);
+                try {
+                    const files = fs.readdirSync(catDir).filter(f => f.endsWith('.md'));
+                    result[cat] = files.map(f => {
+                        const content = fs.readFileSync(path.join(catDir, f), 'utf8');
+                        const titleMatch = content.match(/^#\s+(.+)/m);
+                        return { filename: f, title: titleMatch ? titleMatch[1].trim() : f.replace('.md', '') };
+                    });
+                    total += files.length;
+                } catch { result[cat] = []; }
+            }
+            return { categories: result, total, filter: filterCat };
+        }
+
+        case 'kairos_read_rp': {
+            const RP_DIR = path.join(AIOS_ROOT, 'reasoning-packages');
+            const searchDirs = args.category ? [args.category] : ['strategic', 'core', 'tasks'];
+            for (const dir of searchDirs) {
+                const fp = path.join(RP_DIR, dir, args.filename);
+                try {
+                    const content = fs.readFileSync(fp, 'utf8');
+                    return { filename: args.filename, category: dir, content, chars: content.length };
+                } catch { continue; }
+            }
+            return { error: `RP '${args.filename}' not found in any category` };
+        }
+
+        case 'kairos_read_doc': {
+            const docPath = path.join(AIOS_ROOT, args.path);
+            // Security: prevent path traversal outside AIOS_ROOT
+            const resolved = path.resolve(docPath);
+            if (!resolved.startsWith(path.resolve(AIOS_ROOT))) {
+                return { error: 'Access denied: path traversal detected' };
+            }
+            try {
+                const content = fs.readFileSync(resolved, 'utf8');
+                return { path: args.path, content, chars: content.length };
+            } catch {
+                return { error: `Document '${args.path}' not found` };
+            }
+        }
+
+        case 'kairos_health': {
+            const health = { timestamp: new Date().toISOString(), subsystems: {} };
+
+            // Squads
+            try {
+                const squads = fs.readdirSync(SQUADS_DIR).filter(s => {
+                    try { return fs.statSync(path.join(SQUADS_DIR, s)).isDirectory(); } catch { return false; }
+                });
+                let totalAgents = 0;
+                squads.forEach(s => {
+                    try { totalAgents += fs.readdirSync(path.join(SQUADS_DIR, s, 'agents')).filter(f => f.endsWith('.md')).length; } catch { }
+                });
+                health.subsystems.squads = { status: 'ok', count: squads.length, agents: totalAgents };
+            } catch { health.subsystems.squads = { status: 'error' }; }
+
+            // RPs
+            const rpDir = path.join(AIOS_ROOT, 'reasoning-packages');
+            try {
+                let rpTotal = 0;
+                for (const cat of ['strategic', 'core', 'tasks']) {
+                    try { rpTotal += fs.readdirSync(path.join(rpDir, cat)).filter(f => f.endsWith('.md')).length; } catch { }
+                }
+                health.subsystems.reasoning_packages = { status: 'ok', count: rpTotal };
+            } catch { health.subsystems.reasoning_packages = { status: 'error' }; }
+
+            // Tools
+            const toolsHealth = toolsBridge.getHealth();
+            health.subsystems.tools = { status: toolsHealth.available ? 'ok' : 'error', ...toolsHealth };
+
+            // Scripts
+            const scriptsDir = path.join(AIOS_ROOT, 'scripts');
+            try {
+                const scripts = fs.readdirSync(scriptsDir).filter(f => f.startsWith('kairos-'));
+                health.subsystems.kairos_scripts = { status: 'ok', count: scripts.length, files: scripts };
+            } catch { health.subsystems.kairos_scripts = { status: 'error' }; }
+
+            // Clients
+            const clientsDir = path.join(AIOS_ROOT, 'clients');
+            try {
+                const clients = fs.readdirSync(clientsDir).filter(c => {
+                    try { return fs.statSync(path.join(clientsDir, c)).isDirectory(); } catch { return false; }
+                });
+                health.subsystems.clients = { status: 'ok', count: clients.length, names: clients };
+            } catch { health.subsystems.clients = { status: 'error' }; }
+
+            // AIOX Core
+            const corePath = path.join(AIOS_ROOT, '.aiox-core');
+            health.subsystems.aiox_core = { status: fs.existsSync(corePath) ? 'ok' : 'missing' };
+
+            // Context files
+            health.subsystems.self_context = { status: fs.existsSync(path.join(AIOS_ROOT, 'SELF_CONTEXT.md')) ? 'ok' : 'missing' };
+            health.subsystems.status_md = { status: fs.existsSync(path.join(AIOS_ROOT, 'STATUS.md')) ? 'ok' : 'missing' };
+
+            // Overall
+            const allOk = Object.values(health.subsystems).every(s => s.status === 'ok');
+            health.overall = allOk ? 'healthy' : 'degraded';
+
+            return health;
+        }
+
+        case 'kairos_list_workflows': {
+            const wfDir = path.join(AIOS_ROOT, '.aiox-core', 'development', 'workflows');
+            try {
+                const files = fs.readdirSync(wfDir).filter(f => f.endsWith('.yaml') || f.endsWith('.yml'));
+                const workflows = files.map(f => {
+                    const content = fs.readFileSync(path.join(wfDir, f), 'utf8');
+                    const nameMatch = content.match(/name:\s*(.+)/i);
+                    return { filename: f, name: nameMatch ? nameMatch[1].trim() : f.replace(/\.ya?ml$/, '') };
+                });
+                return { workflows, count: workflows.length };
+            } catch {
+                return { error: 'Workflows directory not found', path: wfDir };
+            }
+        }
+
+        // ============================================================
+        // v3.0 — DEEP SCAN GAP CLOSERS
+        // ============================================================
+
+        case 'kairos_list_tasks': {
+            const tasksDir = path.join(AIOS_ROOT, '.aiox-core', 'development', 'tasks');
+            try {
+                let files = fs.readdirSync(tasksDir).filter(f => f.endsWith('.md'));
+                if (args.filter) {
+                    const q = args.filter.toLowerCase();
+                    files = files.filter(f => f.toLowerCase().includes(q));
+                }
+                return { tasks: files, count: files.length, total: fs.readdirSync(tasksDir).filter(f => f.endsWith('.md')).length };
+            } catch {
+                return { error: 'Tasks directory not found' };
+            }
+        }
+
+        case 'kairos_read_task': {
+            const taskPath = path.join(AIOS_ROOT, '.aiox-core', 'development', 'tasks', args.filename);
+            try {
+                const content = fs.readFileSync(taskPath, 'utf8');
+                return { filename: args.filename, content, chars: content.length };
+            } catch {
+                return { error: `Task '${args.filename}' not found` };
+            }
+        }
+
+        case 'kairos_list_framework_agents': {
+            const agentsDir = path.join(AIOS_ROOT, '.aiox-core', 'development', 'agents');
+            try {
+                const files = fs.readdirSync(agentsDir).filter(f => f.endsWith('.md'));
+                const agents = files.map(f => {
+                    const stat = fs.statSync(path.join(agentsDir, f));
+                    const content = fs.readFileSync(path.join(agentsDir, f), 'utf8');
+                    const titleMatch = content.match(/title:\s*(.+)/i);
+                    const hasSubdir = fs.existsSync(path.join(agentsDir, f.replace('.md', '')));
+                    return {
+                        id: f.replace('.md', ''),
+                        filename: f,
+                        title: titleMatch ? titleMatch[1].trim() : f.replace('.md', ''),
+                        bytes: stat.size,
+                        hasSubdir,
+                    };
+                });
+                return { agents, count: agents.length };
+            } catch {
+                return { error: 'Agents directory not found' };
+            }
+        }
+
+        case 'kairos_read_framework_agent': {
+            const agentPath = path.join(AIOS_ROOT, '.aiox-core', 'development', 'agents', `${args.agent}.md`);
+            try {
+                const content = fs.readFileSync(agentPath, 'utf8');
+                return { agent: args.agent, content, chars: content.length };
+            } catch {
+                return { error: `Framework agent '${args.agent}' not found` };
+            }
+        }
+
+        case 'kairos_list_clients': {
+            const clientsDir = path.join(AIOS_ROOT, 'clients');
+            try {
+                const dirs = fs.readdirSync(clientsDir).filter(c => {
+                    try { return fs.statSync(path.join(clientsDir, c)).isDirectory(); } catch { return false; }
+                });
+                const clients = dirs.map(d => {
+                    const clientDir = path.join(clientsDir, d);
+                    const files = fs.readdirSync(clientDir);
+                    const hasConfig = files.some(f => f.includes('config') || f.endsWith('.yaml') || f.endsWith('.json'));
+                    return { name: d, files: files.slice(0, 20), fileCount: files.length, hasConfig };
+                });
+                return { clients, count: clients.length };
+            } catch {
+                return { error: 'Clients directory not found' };
+            }
+        }
+
+        case 'kairos_read_context': {
+            const target = args.file || 'both';
+            const result = {};
+            if (target === 'self_context' || target === 'both') {
+                try {
+                    result.self_context = fs.readFileSync(path.join(AIOS_ROOT, 'SELF_CONTEXT.md'), 'utf8');
+                } catch { result.self_context = null; }
+            }
+            if (target === 'status' || target === 'both') {
+                try {
+                    result.status = fs.readFileSync(path.join(AIOS_ROOT, 'STATUS.md'), 'utf8');
+                } catch { result.status = null; }
+            }
+            return result;
+        }
+
+        case 'kairos_read_synapse': {
+            const synapseDir = path.join(AIOS_ROOT, '.synapse');
+            if (args.target === 'all') {
+                try {
+                    const files = fs.readdirSync(synapseDir).filter(f => !f.startsWith('.'));
+                    const synapses = files.map(f => {
+                        const stat = fs.statSync(path.join(synapseDir, f));
+                        return { name: f, isDir: stat.isDirectory(), bytes: stat.isFile() ? stat.size : 0 };
+                    });
+                    return { synapses, count: synapses.length };
+                } catch {
+                    return { error: 'Synapse directory not found' };
+                }
+            }
+            // Read specific synapse
+            const synapsePath = path.join(synapseDir, args.target);
+            try {
+                const content = fs.readFileSync(synapsePath, 'utf8');
+                return { target: args.target, content, chars: content.length };
+            } catch {
+                return { error: `Synapse '${args.target}' not found` };
+            }
+        }
+
+        case 'kairos_read_engine': {
+            const mod = args.module || 'all';
+            const result = {};
+            if (mod === 'noesis' || mod === 'all') {
+                const noesisDir = path.join(AIOS_ROOT, 'engine', 'noesis');
+                try {
+                    const files = ['cognitive-state.json', 'identity-anchor.json', 'state-history.json'];
+                    result.noesis = {};
+                    for (const f of files) {
+                        try {
+                            const content = fs.readFileSync(path.join(noesisDir, f), 'utf8');
+                            result.noesis[f.replace('.json', '')] = JSON.parse(content);
+                        } catch { result.noesis[f.replace('.json', '')] = null; }
+                    }
+                } catch { result.noesis = { error: 'not found' }; }
+            }
+            if (mod === 'memory' || mod === 'all') {
+                const memDir = path.join(AIOS_ROOT, 'engine', 'memory');
+                try {
+                    const files = ['operator-profile.json', 'quality-baseline.json'];
+                    result.memory = {};
+                    for (const f of files) {
+                        try {
+                            const content = fs.readFileSync(path.join(memDir, f), 'utf8');
+                            result.memory[f.replace('.json', '')] = JSON.parse(content);
+                        } catch { result.memory[f.replace('.json', '')] = null; }
+                    }
+                } catch { result.memory = { error: 'not found' }; }
+            }
+            return result;
+        }
+
         default:
             return { error: `Unknown tool: ${name}` };
     }
@@ -321,6 +756,20 @@ if (process.argv.includes('--test')) {
         ['aios_publish_event', { channel: 'test.ping', data: { msg: 'hello' } }],
         ['aios_list_skills', { limit: 5 }],
         ['aios_search_skills', { query: 'react' }],
+        // KAIROS v2.0 tests
+        ['kairos_list_rps', { category: 'all' }],
+        ['kairos_read_doc', { path: 'package.json' }],
+        ['kairos_health', {}],
+        ['kairos_list_workflows', {}],
+        // KAIROS v3.0 deep-scan gap closers
+        ['kairos_list_tasks', { filter: 'qa' }],
+        ['kairos_read_task', { filename: 'analyze-framework.md' }],
+        ['kairos_list_framework_agents', {}],
+        ['kairos_read_framework_agent', { agent: 'dev' }],
+        ['kairos_list_clients', {}],
+        ['kairos_read_context', { file: 'both' }],
+        ['kairos_read_synapse', { target: 'all' }],
+        ['kairos_read_engine', { module: 'all' }],
     ];
 
     let passed = 0;
@@ -375,7 +824,7 @@ if (!process.argv.includes('--list') && !process.argv.includes('--test')) {
                     jsonrpc: '2.0', id, result: {
                         protocolVersion: '2024-11-05',
                         capabilities: { tools: {} },
-                        serverInfo: { name: 'aios-mcp-server', version: '1.0.0' },
+                        serverInfo: { name: 'aios-kairos-mcp-server', version: '3.0.0' },
                     }
                 };
 
@@ -399,6 +848,6 @@ if (!process.argv.includes('--list') && !process.argv.includes('--test')) {
     }
 
     // Log to stderr (MCP standard)
-    process.stderr.write('🔧 AIOS MCP Server v1.0.0 started (stdio mode)\n');
-    process.stderr.write(`   ${tools.length} tools exposed\n`);
+    process.stderr.write('🔧 AIOS + KAIROS MCP Server v3.0.0 started (stdio mode)\n');
+    process.stderr.write(`   ${tools.length} tools exposed (10 AIOS + 13 KAIROS)\n`);
 }

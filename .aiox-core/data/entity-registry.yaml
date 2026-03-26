@@ -1,7 +1,7 @@
 metadata:
   version: 1.0.0
-  lastUpdated: '2026-03-06T11:53:37.887Z'
-  entityCount: 745
+  lastUpdated: '2026-03-26T12:54:00.746Z'
+  entityCount: 750
   checksumAlgorithm: sha256
   resolutionRate: 100
 entities:
@@ -10,16 +10,13 @@ entities:
       path: .aiox-core/development/tasks/add-mcp.md
       layer: L2
       type: task
-      purpose: Add MCP Server Task
+      purpose: Entity at .aiox-core\development\tasks\add-mcp.md
       keywords:
         - add
         - mcp
-        - server
-        - task
       usedBy:
         - devops
-      dependencies:
-        - analyst
+      dependencies: []
       externalDeps: []
       plannedDeps: []
       lifecycle: production
@@ -27,19 +24,17 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:badc8a9859cb313e908d4ea0f4c4d7bc1be723214e38f26d55c366689fe5e3f0
-      lastVerified: '2026-03-06T11:53:37.066Z'
+      checksum: sha256:9db16863b384d148e4c963918ae122ede87356d04ad7feeb25a04d71cbc29f46
+      lastVerified: '2026-03-26T12:54:00.635Z'
     advanced-elicitation:
       path: .aiox-core/development/tasks/advanced-elicitation.md
       layer: L2
       type: task
-      purpose: '- Provide optional reflective and brainstorming actions to enhance content quality'
+      purpose: Entity at .aiox-core\development\tasks\advanced-elicitation.md
       keywords:
         - advanced
         - elicitation
-        - advanced-elicitation
       usedBy:
-        - aiox-master
         - analyst
       dependencies: []
       externalDeps: []
@@ -52,21 +47,17 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:897f36c94fc1e4e40c9e5728f3c7780515b40742d6a99366a5fdb5df109f6636
-      lastVerified: '2026-03-06T11:53:37.068Z'
+      checksum: sha256:bbddd38fade63ba42a2dd51ebba5ab28ebd045ac4d3bb43d1934d209a9b7444c
+      lastVerified: '2026-03-26T12:54:00.638Z'
     analyst-facilitate-brainstorming:
       path: .aiox-core/development/tasks/analyst-facilitate-brainstorming.md
       layer: L2
       type: task
-      purpose: '** Validate prerequisites BEFORE task execution (blocking)'
+      purpose: Entity at .aiox-core\development\tasks\analyst-facilitate-brainstorming.md
       keywords:
         - analyst
         - facilitate
         - brainstorming
-        - checklists
-        - needed
-        - task
-        - facilitates
       usedBy: []
       dependencies: []
       externalDeps: []
@@ -79,8 +70,8 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:85bef3ab05f3e3422ff450e7d39f04f49e59fa981df2f126eeb0f8395e4a1625
-      lastVerified: '2026-03-06T11:53:37.069Z'
+      checksum: sha256:1855c137767d7d5334b5a7197856e71d4696331be2e51703619ddd78789f3662
+      lastVerified: '2026-03-26T12:54:00.641Z'
     analyze-brownfield:
       path: .aiox-core/development/tasks/analyze-brownfield.md
       layer: L2
@@ -144,8 +135,7 @@ entities:
         - analyze
         - framework
         - 'task:'
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - framework-analyzer
         - usage-analytics
@@ -224,16 +214,14 @@ entities:
       path: .aiox-core/development/tasks/apply-qa-fixes.md
       layer: L2
       type: task
-      purpose: 'When a story receives QA feedback, this task helps developers:'
+      purpose: Entity at .aiox-core\development\tasks\apply-qa-fixes.md
       keywords:
         - apply
         - qa
         - fixes
       usedBy:
         - dev
-      dependencies:
-        - qa
-        - dev
+      dependencies: []
       externalDeps: []
       plannedDeps:
         - task-runner.js
@@ -244,8 +232,8 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:614731439a27c15ecc02d84abf3d320c2cf18f016075c222ca1d7bfda12d6625
-      lastVerified: '2026-03-06T11:53:37.073Z'
+      checksum: sha256:d5a9c603a13fba6b1a9d4593916482d13a4927474d6b193fee3395e6a008ca30
+      lastVerified: '2026-03-26T12:54:00.648Z'
     architect-analyze-impact:
       path: .aiox-core/development/tasks/architect-analyze-impact.md
       layer: L2
@@ -281,12 +269,10 @@ entities:
       path: .aiox-core/development/tasks/audit-codebase.md
       layer: L2
       type: task
-      purpose: '** Validate prerequisites BEFORE task execution (blocking)'
+      purpose: Entity at .aiox-core\development\tasks\audit-codebase.md
       keywords:
         - audit
         - codebase
-        - pattern
-        - redundancy
       usedBy:
         - ux-design-expert
       dependencies: []
@@ -300,8 +286,8 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:11a136d6e7cd6d5238a06a9298eff28d381799667612aa7668d923cc40c74ff7
-      lastVerified: '2026-03-06T11:53:37.074Z'
+      checksum: sha256:86e7a676689ec86e1f43448617283c69053aa6a281a0df18ea4b5c118eb9f9e6
+      lastVerified: '2026-03-26T12:54:00.655Z'
     audit-tailwind-config:
       path: .aiox-core/development/tasks/audit-tailwind-config.md
       layer: L2
@@ -331,13 +317,10 @@ entities:
       path: .aiox-core/development/tasks/audit-utilities.md
       layer: L2
       type: task
-      purpose: >-
-        Systematically audit all utilities in `.aiox-core/scripts/` to determine their functional status, classify them
-        as WORKING/FIXABLE/DEPRECATED, and generate actionable recommendations for maintenance a
+      purpose: Entity at .aiox-core\development\tasks\audit-utilities.md
       keywords:
         - audit
         - utilities
-        - audit-utilities
       usedBy: []
       dependencies: []
       externalDeps: []
@@ -350,8 +333,8 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:1a1e4cb6be031f144d223321c6977a88108843b05b933143784ce8340198acd3
-      lastVerified: '2026-03-06T11:53:37.075Z'
+      checksum: sha256:deefd19c8fe1885b06b4d646d3a643b06bf6534eb8f157c01bf5bc3e0092385e
+      lastVerified: '2026-03-26T12:54:00.661Z'
     bootstrap-shadcn-library:
       path: .aiox-core/development/tasks/bootstrap-shadcn-library.md
       layer: L2
@@ -421,20 +404,14 @@ entities:
       path: .aiox-core/development/tasks/brownfield-create-story.md
       layer: L2
       type: task
-      purpose: >-
-        Create a single user story for very small brownfield enhancements that can be completed in one focused
-        development session. This task is for minimal additions or bug fixes that require existing system
+      purpose: Entity at .aiox-core\development\tasks\brownfield-create-story.md
       keywords:
         - brownfield
         - create
         - story
-        - task
       usedBy:
         - pm
-      dependencies:
-        - po-master-checklist
-        - po
-        - sm
+      dependencies: []
       externalDeps: []
       plannedDeps:
         - task-runner.js
@@ -445,8 +422,8 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:29ba1fe81cda46bdece3e698cc797370c63df56903e38ca71523352b98e08dd2
-      lastVerified: '2026-03-06T11:53:37.076Z'
+      checksum: sha256:cda2a8ae0e3ddcd24c44af35f6a47cb948c9069711b35ace5cd38204cfd50bba
+      lastVerified: '2026-03-26T12:54:00.669Z'
     build-autonomous:
       path: .aiox-core/development/tasks/build-autonomous.md
       layer: L2
@@ -569,12 +546,10 @@ entities:
       path: .aiox-core/development/tasks/calculate-roi.md
       layer: L2
       type: task
-      purpose: '** Validate prerequisites BEFORE task execution (blocking)'
+      purpose: Entity at .aiox-core\development\tasks\calculate-roi.md
       keywords:
         - calculate
         - roi
-        - cost
-        - savings
       usedBy:
         - run-design-system-pipeline
         - ux-design-expert
@@ -589,8 +564,8 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:fa8c2073ee845a42b30eea44e2452898ebb8e5d4fceb207c9b42984f817732cc
-      lastVerified: '2026-03-06T11:53:37.080Z'
+      checksum: sha256:614f808932e1baf9f1267d4401fa19b850e054fab85e32ab329b392e976c3442
+      lastVerified: '2026-03-26T12:54:00.674Z'
     check-docs-links:
       path: .aiox-core/development/tasks/check-docs-links.md
       layer: L2
@@ -751,13 +726,10 @@ entities:
       path: .aiox-core/development/tasks/consolidate-patterns.md
       layer: L2
       type: task
-      purpose: '** Validate prerequisites BEFORE task execution (blocking)'
+      purpose: Entity at .aiox-core\development\tasks\consolidate-patterns.md
       keywords:
         - consolidate
         - patterns
-        - using
-        - intelligent
-        - clustering
       usedBy:
         - ux-design-expert
       dependencies: []
@@ -771,24 +743,21 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:c45d9337c0aac9fcea56e216e172234a4f09a09f45db311f013973f9d5efc05a
-      lastVerified: '2026-03-06T11:53:37.083Z'
+      checksum: sha256:9dae3e79aa49902dec554d91e996736da72665243e639d0a48eb02a2230fe2a9
+      lastVerified: '2026-03-26T12:54:00.678Z'
     correct-course:
       path: .aiox-core/development/tasks/correct-course.md
       layer: L2
       type: task
-      purpose: '- Guide a structured response to a change trigger using the `.aiox-core/product/checklists/change-checklist.md`.'
+      purpose: Entity at .aiox-core\development\tasks\correct-course.md
       keywords:
         - correct
         - course
-        - task
       usedBy:
-        - aiox-master
         - pm
         - po
         - sm
-      dependencies:
-        - change-checklist
+      dependencies: []
       externalDeps: []
       plannedDeps:
         - task-runner.js
@@ -799,8 +768,8 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:ec55430908fb25c99bd0ae0bbf8aad6b1aff36306488abb07cf6e8f2e03306cc
-      lastVerified: '2026-03-06T11:53:37.083Z'
+      checksum: sha256:4504fa7201ecd805372455e97523dbdd2f7e957669b47ab7c0c24be23605350c
+      lastVerified: '2026-03-26T12:54:00.684Z'
     create-agent:
       path: .aiox-core/development/tasks/create-agent.md
       layer: L2
@@ -813,8 +782,7 @@ entities:
         - agent
         - 'task:'
         - squad
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -870,7 +838,6 @@ entities:
         - task
         - creates
       usedBy:
-        - aiox-master
         - analyst
         - architect
         - data-engineer
@@ -894,26 +861,17 @@ entities:
       path: .aiox-core/development/tasks/create-doc.md
       layer: L2
       type: task
-      purpose: '** Validate prerequisites BEFORE task execution (blocking)'
+      purpose: Entity at .aiox-core\development\tasks\create-doc.md
       keywords:
         - create
         - doc
-        - template
-        - selection
-        - determined
-        - dynamically
-        - during
       usedBy:
-        - aiox-master
         - analyst
         - architect
         - data-engineer
         - pm
         - ux-design-expert
-      dependencies:
-        - code-intel
-        - planning-helper
-        - component-generator.js
+      dependencies: []
       externalDeps: []
       plannedDeps:
         - Node.js
@@ -923,8 +881,8 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:078b2e5ac900f5d48fc82792198e59108a32891c77ed18aa062d87db442d155e
-      lastVerified: '2026-03-06T11:53:37.087Z'
+      checksum: sha256:4efe4ce185370dfd70bbdb9688e6236b22c672e65d6917329ef56b1aa78fcf79
+      lastVerified: '2026-03-26T12:54:00.687Z'
     create-next-story:
       path: .aiox-core/development/tasks/create-next-story.md
       layer: L2
@@ -938,7 +896,6 @@ entities:
         - story
         - task
       usedBy:
-        - aiox-master
         - sm
       dependencies:
         - po-master-checklist
@@ -972,18 +929,13 @@ entities:
       path: .aiox-core/development/tasks/create-service.md
       layer: L2
       type: task
-      purpose: >-
-        Create a new service using standardized Handlebars templates from WIS-10. Generates consistent TypeScript
-        service structures with proper configuration, testing, and documentation.
+      purpose: Entity at .aiox-core\development\tasks\create-service.md
       keywords:
         - create
         - service
       usedBy:
         - dev
-      dependencies:
-        - code-intel
-        - dev-helper
-        - dev
+      dependencies: []
       externalDeps: []
       plannedDeps: []
       lifecycle: production
@@ -991,8 +943,8 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:dd9467f3e646ca4058f0cc524f99ae102c91750fa70f412f41f50f89d8f4b4e9
-      lastVerified: '2026-03-06T11:53:37.088Z'
+      checksum: sha256:b77e37186c270a5bd91a4f06b978b1c151daa0ebf4397171380c563580602275
+      lastVerified: '2026-03-26T12:54:00.691Z'
     create-suite:
       path: .aiox-core/development/tasks/create-suite.md
       layer: L2
@@ -1027,20 +979,12 @@ entities:
       path: .aiox-core/development/tasks/create-task.md
       layer: L2
       type: task
-      purpose: >-
-        To create a new task file that defines executable workflows for agents, with proper structure, elicitation
-        steps, and validation.
+      purpose: Entity at .aiox-core\development\tasks\create-task.md
       keywords:
         - create
         - task
-        - 'todo:'
-        - task-validation-checklist.md
-        - validation
-        - (follow-up
-      usedBy:
-        - aiox-master
-      dependencies:
-        - component-generator.js
+      usedBy: []
+      dependencies: []
       externalDeps: []
       plannedDeps:
         - Node.js
@@ -1050,26 +994,18 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:2adfe4c3c8b73fbe3998444e24af796542342265b102ce52d3fc85d69d5e12af
-      lastVerified: '2026-03-06T11:53:37.089Z'
+      checksum: sha256:8f499c028ea7509958b16e59e399d2cc6f1e783cbb098ad1cd3735e06828d52e
+      lastVerified: '2026-03-26T12:54:00.694Z'
     create-workflow:
       path: .aiox-core/development/tasks/create-workflow.md
       layer: L2
       type: task
-      purpose: >-
-        To create a new workflow definition that orchestrates multiple agents and tasks for complex multi-step processes
-        in Synkra AIOX.
+      purpose: Entity at .aiox-core\development\tasks\create-workflow.md
       keywords:
         - create
         - workflow
-        - 'todo:'
-        - workflow-validation-checklist.md
-        - validation
-        - (follow-up
-      usedBy:
-        - aiox-master
-      dependencies:
-        - component-generator.js
+      usedBy: []
+      dependencies: []
       externalDeps: []
       plannedDeps:
         - Node.js
@@ -1079,30 +1015,23 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:64abe2114fc3ab6b0494375c6401aa6a8213c63b1dc18ffac729d2acf1161a2c
-      lastVerified: '2026-03-06T11:53:37.089Z'
+      checksum: sha256:e93682bd5a758f21b75aa9d3275552497db034b3e7db51f82f3aa2e55aff4112
+      lastVerified: '2026-03-26T12:54:00.701Z'
     create-worktree:
       path: .aiox-core/development/tasks/create-worktree.md
       layer: L2
       type: task
-      purpose: '** Validate prerequisites BEFORE task execution (blocking)'
+      purpose: Entity at .aiox-core\development\tasks\create-worktree.md
       keywords:
         - create
         - worktree
-        - create-worktree
       usedBy:
         - list-worktrees
         - remove-worktree
         - dev
         - devops
         - auto-worktree
-      dependencies:
-        - worktree-manager
-        - worktree-manager.js
-        - list-worktrees
-        - remove-worktree
-        - merge-worktree
-        - devops
+      dependencies: []
       externalDeps: []
       plannedDeps: []
       lifecycle: production
@@ -1110,8 +1039,8 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:143b9bdf87a4eed0faac612e137965483dec1224a7579399a68b68b6bc0689b7
-      lastVerified: '2026-03-06T11:53:37.089Z'
+      checksum: sha256:a4e2bb7764f22bf2d1e04f16ed06f2704dd401966dc4f7d01ef12658fba32313
+      lastVerified: '2026-03-26T12:54:00.704Z'
     db-analyze-hotpaths:
       path: .aiox-core/development/tasks/db-analyze-hotpaths.md
       layer: L2
@@ -1142,14 +1071,11 @@ entities:
       path: .aiox-core/development/tasks/db-apply-migration.md
       layer: L2
       type: task
-      purpose: '** Validate prerequisites BEFORE task execution (blocking)'
+      purpose: Entity at .aiox-core\development\tasks\db-apply-migration.md
       keywords:
         - db
         - apply
         - migration
-        - 'task:'
-        - (with
-        - snapshot
       usedBy:
         - data-engineer
       dependencies: []
@@ -1162,8 +1088,8 @@ entities:
         score: 0.8
         constraints: []
         extensionPoints: []
-      checksum: sha256:73ca77d0858dde76a1979d6c0dce1cd6760666ea67fdc60283da0d027d73eaa2
-      lastVerified: '2026-03-06T11:53:37.090Z'
+      checksum: sha256:2135d3fe8ca705ce5f7cf8daf62ec153deb410d30fb43cb1f0eecf0787357fdb
+      lastVerified: '2026-03-26T12:54:00.710Z'
     db-bootstrap:
       path: .aiox-core/development/tasks/db-bootstrap.md
       layer: L2
@@ -1621,8 +1547,7 @@ entities:
         - deprecation-checklist.md
         - validation
         - (follow-up
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - usage-tracker
         - component-search
@@ -1888,7 +1813,6 @@ entities:
         - validation
         - (follow-up
       usedBy:
-        - aiox-master
         - analyst
         - architect
       dependencies: []
@@ -1956,7 +1880,6 @@ entities:
         - executes
         - existing
       usedBy:
-        - aiox-master
         - architect
         - data-engineer
         - dev
@@ -2442,8 +2365,7 @@ entities:
         - governor
         - 'task:'
         - commands
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - aiox-master
         - dev
@@ -2514,8 +2436,7 @@ entities:
         - improve
         - self
         - improve-self
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - capability-analyzer
         - improvement-validator
@@ -2552,8 +2473,7 @@ entities:
         - task
         - maintains
         - documentation
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps:
@@ -2633,8 +2553,7 @@ entities:
         - needed
         - interactive
         - facilitation
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps:
@@ -2705,7 +2624,6 @@ entities:
         - worktrees
         - list-worktrees
       usedBy:
-        - create-worktree
         - remove-worktree
         - dev
         - devops
@@ -2756,7 +2674,6 @@ entities:
         - worktree
         - merge-worktree
       usedBy:
-        - create-worktree
         - devops
       dependencies: []
       externalDeps: []
@@ -2779,8 +2696,7 @@ entities:
         - modify
         - agent
         - task
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - change-checklist
       externalDeps: []
@@ -2806,8 +2722,7 @@ entities:
       keywords:
         - modify
         - task
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - change-checklist
       externalDeps: []
@@ -2833,8 +2748,7 @@ entities:
         - modify
         - workflow
         - task
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - change-checklist
       externalDeps: []
@@ -3341,8 +3255,7 @@ entities:
         - aiox
         - developer
         - task
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - dependency-impact-analyzer
         - change-checklist
@@ -3983,7 +3896,6 @@ entities:
         - worktree
         - remove-worktree
       usedBy:
-        - create-worktree
         - list-worktrees
         - dev
         - devops
@@ -4092,7 +4004,6 @@ entities:
         - task
       usedBy:
         - run-workflow
-        - aiox-master
       dependencies:
         - workflow-state-manager.js
         - workflow-validator.js
@@ -4117,8 +4028,7 @@ entities:
         - run
         - workflow
         - task
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - run-workflow-engine
         - aiox-master
@@ -4396,7 +4306,6 @@ entities:
         - processing
         - task
       usedBy:
-        - aiox-master
         - pm
         - po
       dependencies: []
@@ -4929,8 +4838,7 @@ entities:
         - registry
         - intel
         - 'task:'
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - registry-syncer
         - aiox-master
@@ -5055,8 +4963,7 @@ entities:
         - rollback
         - operation
         - built-in
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - backup-manager.js
       externalDeps: []
@@ -5103,8 +5010,7 @@ entities:
       keywords:
         - update
         - manifest
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - change-checklist
       externalDeps: []
@@ -5131,8 +5037,7 @@ entities:
         - source
         - tree
         - task
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -5314,8 +5219,7 @@ entities:
         - validate
         - workflow
         - task
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies:
         - workflow-validator.js
       externalDeps: []
@@ -5513,6 +5417,79 @@ entities:
         extensionPoints: []
       checksum: sha256:484409d3b069c30a14ba28873388567f06d613e6feb9acb14537434d1db03446
       lastVerified: '2026-03-06T11:53:37.237Z'
+    arena-tournament:
+      path: .aiox-core/development/tasks/arena-tournament.md
+      layer: L2
+      type: task
+      purpose: 'Task: Arena Tournament (Universal)'
+      keywords:
+        - arena
+        - tournament
+        - 'task:'
+        - (universal)
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:2ee5e5ad1da747359527f4835dc69e07659f48abb43be983d28eeb894bf1a366
+      lastVerified: '2026-03-26T12:54:00.652Z'
+    critic-gate:
+      path: .aiox-core/development/tasks/critic-gate.md
+      layer: L2
+      type: task
+      purpose: 'Task: Critic-Gate (Universal)'
+      keywords:
+        - critic
+        - gate
+        - 'task:'
+        - critic-gate
+        - (universal)
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:cadab075f6615d30d4ecfa9dcba6c8014a29583f2b4890a5062d9de94ad6bd6c
+      lastVerified: '2026-03-26T12:54:00.707Z'
+    load-reasoning-package:
+      path: .aiox-core/development/tasks/load-reasoning-package.md
+      layer: L2
+      type: task
+      purpose: load-reasoning-package
+      keywords:
+        - load
+        - reasoning
+        - package
+        - load-reasoning-package
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:f8891864aa9ed6a17165d7419d4569d56f3ff24af0b3d22033ad3d28c48c995f
+      lastVerified: '2026-03-26T12:54:00.717Z'
+    revenue-gate:
+      path: .aiox-core/development/tasks/revenue-gate.md
+      layer: L2
+      type: task
+      purpose: 'Task: Revenue Gate (Universal)'
+      keywords:
+        - revenue
+        - gate
+        - 'task:'
+        - (universal)
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:c78a4c260ad1ada7f1e9507ecaf15f8ae1afe6d0dcedfee11cec1988590fe963
+      lastVerified: '2026-03-26T12:54:00.720Z'
   templates:
     activation-instructions-inline-greeting:
       path: .aiox-core/product/templates/activation-instructions-inline-greeting.yaml
@@ -5569,7 +5546,6 @@ entities:
         - aiox
       usedBy:
         - squad-creator-extend
-        - aiox-master
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -5611,7 +5587,6 @@ entities:
         - architecture
         - tmpl
       usedBy:
-        - aiox-master
         - architect
       dependencies: []
       externalDeps: []
@@ -5654,7 +5629,6 @@ entities:
         - architecture
         - tmpl
       usedBy:
-        - aiox-master
         - architect
       dependencies: []
       externalDeps: []
@@ -5676,7 +5650,6 @@ entities:
         - prd
         - tmpl
       usedBy:
-        - aiox-master
         - pm
       dependencies: []
       externalDeps: []
@@ -5763,7 +5736,6 @@ entities:
         - analysis
         - tmpl
       usedBy:
-        - aiox-master
         - analyst
       dependencies: []
       externalDeps: []
@@ -5859,7 +5831,6 @@ entities:
         - architecture
         - tmpl
       usedBy:
-        - aiox-master
         - architect
       dependencies: []
       externalDeps: []
@@ -5882,7 +5853,6 @@ entities:
         - spec
         - tmpl
       usedBy:
-        - aiox-master
         - ux-design-expert
       dependencies: []
       externalDeps: []
@@ -5904,7 +5874,6 @@ entities:
         - architecture
         - tmpl
       usedBy:
-        - aiox-master
         - architect
       dependencies: []
       externalDeps: []
@@ -6036,7 +6005,6 @@ entities:
         - research
         - tmpl
       usedBy:
-        - aiox-master
         - analyst
       dependencies: []
       externalDeps: []
@@ -6238,7 +6206,6 @@ entities:
         - prd
         - tmpl
       usedBy:
-        - aiox-master
         - pm
       dependencies: []
       externalDeps: []
@@ -6260,7 +6227,6 @@ entities:
         - brief
         - tmpl
       usedBy:
-        - aiox-master
         - analyst
       dependencies: []
       externalDeps: []
@@ -6411,7 +6377,6 @@ entities:
         - story
         - tmpl
       usedBy:
-        - aiox-master
         - po
         - qa
         - sm
@@ -6463,8 +6428,7 @@ entities:
         - task
         - template
         - '{{task_title}}'
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -6507,8 +6471,7 @@ entities:
         - template
         - yamllint
         - disable
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7649,8 +7612,7 @@ entities:
         - template
         - validator
       usedBy: []
-      dependencies:
-        - template-engine
+      dependencies: []
       externalDeps: []
       plannedDeps: []
       lifecycle: experimental
@@ -7658,8 +7620,8 @@ entities:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:fb87e8d076b57469d33034f2cae32fd01eae81900317a267d26ab18eebaacb17
-      lastVerified: '2026-03-06T11:53:37.321Z'
+      checksum: sha256:79a02a40daab75fd4d371f72e8de66afba4c3d83c38c73b1861da8706358dc5a
+      lastVerified: '2026-03-26T12:54:00.617Z'
     test-generator:
       path: .aiox-core/development/scripts/test-generator.js
       layer: L2
@@ -7809,8 +7771,8 @@ entities:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:4abe50b097c2d0f7a722b691ecd84021ea48b76a017ad76f4c49f748d002fe09
-      lastVerified: '2026-03-06T11:53:37.323Z'
+      checksum: sha256:601b9db01a3cba1f545a16f80389b1d17668a5a8d2b16fc4217b6f978adbaf99
+      lastVerified: '2026-03-26T12:54:00.621Z'
     verify-workflow-gaps:
       path: .aiox-core/development/scripts/verify-workflow-gaps.js
       layer: L2
@@ -7860,7 +7822,7 @@ entities:
       path: .aiox-core/development/scripts/workflow-navigator.js
       layer: L2
       type: script
-      purpose: step.description || '',
+      purpose: Entity at .aiox-core\development\scripts\workflow-navigator.js
       keywords:
         - workflow
         - navigator
@@ -7876,8 +7838,8 @@ entities:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:45bd9f0317b6a0b9e9577b5b26550f1b7fafec2c45c1b542a6947ffd69a70fec
-      lastVerified: '2026-03-06T11:53:37.324Z'
+      checksum: sha256:50b25a51d1d8cdff002ae1d952bde5a73b8004ec88548f0672b49c11c35496ac
+      lastVerified: '2026-03-26T12:54:00.624Z'
     workflow-state-manager:
       path: .aiox-core/development/scripts/workflow-state-manager.js
       layer: L2
@@ -7942,8 +7904,8 @@ entities:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:916864f9e56e1ccb7fc1596bd2da47400e4037f848a0d4e2bc46d0fa24cc544f
-      lastVerified: '2026-03-06T11:53:37.325Z'
+      checksum: sha256:31f88c9e6af451319b726890cb294e86adf49b28f0ff02d6126999e169300561
+      lastVerified: '2026-03-26T12:54:00.631Z'
     index:
       path: .aiox-core/development/scripts/squad/index.js
       layer: L2
@@ -8749,8 +8711,7 @@ entities:
       keywords:
         - parallel
         - executor
-      usedBy:
-        - workflow-orchestrator
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9357,8 +9318,7 @@ entities:
       keywords:
         - agent
         - invoker
-      usedBy:
-        - master-orchestrator
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9444,8 +9404,8 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:370599a3de3c936e8ebf2f5d14a1d09b8b33c3ccda3027d68740171314888215
-      lastVerified: '2026-03-06T11:53:37.376Z'
+      checksum: sha256:39a1944e5ff02144c0ee743022c2c0fdda6dba1891ea61d5bf4aa7f378a32041
+      lastVerified: '2026-03-26T12:54:00.517Z'
     checklist-runner:
       path: .aiox-core/core/orchestration/checklist-runner.js
       layer: L1
@@ -9454,8 +9414,7 @@ entities:
       keywords:
         - checklist
         - runner
-      usedBy:
-        - workflow-orchestrator
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9494,8 +9453,7 @@ entities:
       keywords:
         - condition
         - evaluator
-      usedBy:
-        - workflow-orchestrator
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9514,8 +9472,7 @@ entities:
       keywords:
         - context
         - manager
-      usedBy:
-        - workflow-orchestrator
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9534,8 +9491,7 @@ entities:
       keywords:
         - dashboard
         - integration
-      usedBy:
-        - master-orchestrator
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps:
@@ -9599,8 +9555,7 @@ entities:
         - execution
         - profile
         - resolver
-      usedBy:
-        - workflow-orchestrator
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9622,7 +9577,6 @@ entities:
       usedBy:
         - brownfield-create-epic
         - bob-orchestrator
-        - workflow-executor
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9641,8 +9595,7 @@ entities:
       keywords:
         - gate
         - evaluator
-      usedBy:
-        - master-orchestrator
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9684,11 +9637,7 @@ entities:
         - handler
       usedBy:
         - bob-orchestrator
-      dependencies:
-        - workflow-executor
-        - surface-checker
-        - session-state
-        - terminal-spawner
+      dependencies: []
       externalDeps: []
       plannedDeps: []
       lifecycle: production
@@ -9696,8 +9645,8 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:e4e951e1347f846f4df0af2a7692838a734418030331cb25ce6fa86721beafdf
-      lastVerified: '2026-03-06T11:53:37.379Z'
+      checksum: sha256:92eeffcbd174705553b05cb9085a8d7fa96879bc86a4ccb6f3050248938bd160
+      lastVerified: '2026-03-26T12:54:00.551Z'
     lock-manager:
       path: .aiox-core/core/orchestration/lock-manager.js
       layer: L1
@@ -9723,18 +9672,13 @@ entities:
       path: .aiox-core/core/orchestration/master-orchestrator.js
       layer: L1
       type: module
-      purpose: '''Requirements → Specification generation'','
+      purpose: Entity at .aiox-core\core\orchestration\master-orchestrator.js
       keywords:
         - master
         - orchestrator
       usedBy:
         - cli-commands
-      dependencies:
-        - tech-stack-detector
-        - recovery-handler
-        - gate-evaluator
-        - agent-invoker
-        - dashboard-integration
+      dependencies: []
       externalDeps: []
       plannedDeps:
         - executors
@@ -9743,8 +9687,8 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:61b874d74fae62e9307861b02b7505538f1c94362fe638fc3941b0665dcbbdf6
-      lastVerified: '2026-03-06T11:53:37.383Z'
+      checksum: sha256:d9cd7524df37266981264785af35c14783921a50114d747312e684a4e21ab24b
+      lastVerified: '2026-03-26T12:54:00.557Z'
     message-formatter:
       path: .aiox-core/core/orchestration/message-formatter.js
       layer: L1
@@ -9773,36 +9717,7 @@ entities:
       keywords:
         - recovery
         - handler
-      usedBy:
-        - master-orchestrator
-      dependencies:
-        - stuck-detector
-        - rollback-manager
-        - recovery-tracker
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
-      adaptability:
-        score: 0.4
-        constraints: []
-        extensionPoints: []
-      checksum: sha256:6a9ef025f95885849aa893188299aca698cea2ea428cc302012833032c9e106e
-      lastVerified: '2026-03-06T11:53:37.384Z'
-    session-state:
-      path: .aiox-core/core/orchestration/session-state.js
-      layer: L1
-      type: module
-      purpose: '''Resume from last saved state'','
-      keywords:
-        - session
-        - state
-      usedBy:
-        - session-resume
-        - greeting-builder
-        - bob-orchestrator
-        - brownfield-handler
-        - greenfield-handler
-        - workflow-executor
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9811,8 +9726,31 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:72aa24d7a7a256a56973d7b4e7b03c968eabeb0d22be23af75f65f2e45ac88b3
-      lastVerified: '2026-03-06T11:53:37.384Z'
+      checksum: sha256:38cd6d4b4318c9e8d522e4133bd7f6011758c3a7a199540069c17a79de19e78f
+      lastVerified: '2026-03-26T12:54:00.565Z'
+    session-state:
+      path: .aiox-core/core/orchestration/session-state.js
+      layer: L1
+      type: module
+      purpose: Entity at .aiox-core\core\orchestration\session-state.js
+      keywords:
+        - session
+        - state
+      usedBy:
+        - session-resume
+        - greeting-builder
+        - bob-orchestrator
+        - brownfield-handler
+      dependencies: []
+      externalDeps: []
+      plannedDeps: []
+      lifecycle: production
+      adaptability:
+        score: 0.4
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:d80e3072585b6d4b23882477624671b91421020b84691feabc390f9f6222a592
+      lastVerified: '2026-03-26T12:54:00.570Z'
     skill-dispatcher:
       path: .aiox-core/core/orchestration/skill-dispatcher.js
       layer: L1
@@ -9821,8 +9759,7 @@ entities:
       keywords:
         - skill
         - dispatcher
-      usedBy:
-        - workflow-orchestrator
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9842,8 +9779,7 @@ entities:
         - subagent
         - prompt
         - builder
-      usedBy:
-        - workflow-orchestrator
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9866,7 +9802,6 @@ entities:
         - greeting-builder
         - bob-orchestrator
         - brownfield-handler
-        - greenfield-handler
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9875,8 +9810,8 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:92e9d5bea78c3db4940c39f79e537821b36451cd524d69e6b738272aa63c08b6
-      lastVerified: '2026-03-06T11:53:37.385Z'
+      checksum: sha256:4da2abc21e0e69c59d7fa33ab77d60f510792a78a299f6a756ccbce92e79870f
+      lastVerified: '2026-03-26T12:54:00.575Z'
     task-complexity-classifier:
       path: .aiox-core/core/orchestration/task-complexity-classifier.js
       layer: L1
@@ -9907,9 +9842,7 @@ entities:
         - tech
         - stack
         - detector
-      usedBy:
-        - master-orchestrator
-        - workflow-orchestrator
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9918,19 +9851,17 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:074c52757e181cc1e344b26ae191ac67488d18e9da2b06b5def23abb6c64c056
-      lastVerified: '2026-03-06T11:53:37.385Z'
+      checksum: sha256:4b5aab098b3f3003781f18adca13a78b159e0cb47fe2e19242dbdcd5bdc42b3e
+      lastVerified: '2026-03-26T12:54:00.579Z'
     terminal-spawner:
       path: .aiox-core/core/orchestration/terminal-spawner.js
       layer: L1
       type: module
-      purpose: '''Apple Silicon'' },'
+      purpose: Entity at .aiox-core\core\orchestration\terminal-spawner.js
       keywords:
         - terminal
         - spawner
-      usedBy:
-        - greenfield-handler
-        - workflow-executor
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9939,8 +9870,8 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:a6453c6acf0ff007444adeaa5e4620890fff38f0b31b058a2da04d790fb098ab
-      lastVerified: '2026-03-06T11:53:37.390Z'
+      checksum: sha256:c8c7f54e50bde544f1b61c89963700a7904b350a34ee04d56e5cc3780f6b8972
+      lastVerified: '2026-03-26T12:54:00.589Z'
     workflow-executor:
       path: .aiox-core/core/orchestration/workflow-executor.js
       layer: L1
@@ -9953,11 +9884,7 @@ entities:
         - story-checkpoint
         - bob-orchestrator
         - brownfield-handler
-        - greenfield-handler
-      dependencies:
-        - executor-assignment
-        - terminal-spawner
-        - session-state
+      dependencies: []
       externalDeps: []
       plannedDeps: []
       lifecycle: production
@@ -9965,8 +9892,8 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:49372791e5729fd7987c80efe1400168e8d59eac000a009b88d9fde6735cf4db
-      lastVerified: '2026-03-06T11:53:37.391Z'
+      checksum: sha256:fd11059d3d5b3157fd34eedc6d2a319f5ecf660dcfc5fc02cf8976d0c0a15319
+      lastVerified: '2026-03-26T12:54:00.595Z'
     workflow-orchestrator:
       path: .aiox-core/core/orchestration/workflow-orchestrator.js
       layer: L1
@@ -9976,15 +9903,7 @@ entities:
         - workflow
         - orchestrator
       usedBy: []
-      dependencies:
-        - subagent-prompt-builder
-        - context-manager
-        - parallel-executor
-        - checklist-runner
-        - tech-stack-detector
-        - condition-evaluator
-        - skill-dispatcher
-        - execution-profile-resolver
+      dependencies: []
       externalDeps: []
       plannedDeps: []
       lifecycle: experimental
@@ -9992,8 +9911,8 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:82816bd5e6fecc9bbb77292444e53254c72bf93e5c04260784743354c6a58627
-      lastVerified: '2026-03-06T11:53:37.391Z'
+      checksum: sha256:7fd9078c0b2293fad4c3a84edcc6c87dab257430352387d7a54af8b4d7ebee15
+      lastVerified: '2026-03-26T12:54:00.601Z'
     operation-guard:
       path: .aiox-core/core/permissions/operation-guard.js
       layer: L1
@@ -10448,8 +10367,7 @@ entities:
       keywords:
         - dev
         - helper
-      usedBy:
-        - create-service
+      usedBy: []
       dependencies:
         - index
       externalDeps: []
@@ -10494,7 +10412,6 @@ entities:
       usedBy:
         - analyze-project-structure
         - brownfield-create-epic
-        - create-doc
         - plan-create-context
         - plan-create-implementation
       dependencies:
@@ -10663,8 +10580,6 @@ entities:
       usedBy:
         - analyze-project-structure
         - brownfield-create-epic
-        - create-doc
-        - create-service
         - github-devops-github-pr-automation
         - github-devops-pre-push-quality-gate
         - plan-create-context
@@ -12796,56 +12711,7 @@ entities:
         - sync-registry-intel
         - claude-rules
         - codex-rules
-      dependencies:
-        - advanced-elicitation
-        - analyze-framework
-        - correct-course
-        - create-agent
-        - create-deep-research-prompt
-        - create-doc
-        - create-next-story
-        - create-task
-        - create-workflow
-        - deprecate-component
-        - document-project
-        - execute-checklist
-        - improve-self
-        - index-docs
-        - kb-mode-interaction
-        - modify-agent
-        - modify-task
-        - modify-workflow
-        - propose-modification
-        - shard-doc
-        - undo-last
-        - update-manifest
-        - update-source-tree
-        - validate-agents
-        - validate-workflow
-        - run-workflow
-        - run-workflow-engine
-        - ids-governor
-        - sync-registry-intel
-        - agent-template.yaml
-        - architecture-tmpl.yaml
-        - brownfield-architecture-tmpl.yaml
-        - brownfield-prd-tmpl.yaml
-        - competitor-analysis-tmpl.yaml
-        - front-end-architecture-tmpl.yaml
-        - front-end-spec-tmpl.yaml
-        - fullstack-architecture-tmpl.yaml
-        - market-research-tmpl.yaml
-        - prd-tmpl.yaml
-        - project-brief-tmpl.yaml
-        - story-tmpl.yaml
-        - task-template
-        - workflow-template.yaml
-        - architect-checklist
-        - change-checklist
-        - pm-checklist
-        - po-master-checklist
-        - story-dod-checklist
-        - story-draft-checklist
+      dependencies: []
       externalDeps: []
       plannedDeps:
         - add-tech-doc
@@ -12855,8 +12721,8 @@ entities:
         score: 0.3
         constraints: []
         extensionPoints: []
-      checksum: sha256:17cd10f6c2ac4fcd96d944283f239c760e2829d2de4e68098f618783ec5ae351
-      lastVerified: '2026-03-06T11:53:37.523Z'
+      checksum: sha256:93cdac2b6fef0d39ba82b1b2829dab780f9dd54b833559b285066b3bf72578b4
+      lastVerified: '2026-03-26T12:54:00.606Z'
     analyst:
       path: .aiox-core/development/agents/analyst.md
       layer: L2
@@ -12865,7 +12731,6 @@ entities:
       keywords:
         - analyst
       usedBy:
-        - add-mcp
         - architect-analyze-impact
         - brownfield-create-epic
         - environment-bootstrap
@@ -13059,7 +12924,6 @@ entities:
         - dev
       usedBy:
         - analyze-project-structure
-        - apply-qa-fixes
         - brownfield-create-epic
         - build-autonomous
         - build-resume
@@ -13068,7 +12932,6 @@ entities:
         - cleanup-utilities
         - create-brownfield-story
         - create-next-story
-        - create-service
         - create-suite
         - dev-backlog-debt
         - dev-develop-story
@@ -13173,7 +13036,6 @@ entities:
       usedBy:
         - analyze-project-structure
         - brownfield-create-epic
-        - create-worktree
         - environment-bootstrap
         - execute-epic-plan
         - github-devops-pre-push-quality-gate
@@ -13308,7 +13170,6 @@ entities:
       keywords:
         - po
       usedBy:
-        - brownfield-create-story
         - cleanup-utilities
         - create-next-story
         - dev-backlog-debt
@@ -13372,7 +13233,6 @@ entities:
       usedBy:
         - analyze-cross-artifact
         - analyze-project-structure
-        - apply-qa-fixes
         - build-autonomous
         - cleanup-utilities
         - create-next-story
@@ -13456,7 +13316,6 @@ entities:
       keywords:
         - sm
       usedBy:
-        - brownfield-create-story
         - dev-develop-story
         - po-close-story
         - validate-next-story
@@ -13730,6 +13589,24 @@ entities:
         extensionPoints: []
       checksum: sha256:158f21a6be7a7cbc90de0302678490887c2f88b1d79d925f77a8a2209d2ae003
       lastVerified: '2026-03-06T11:53:37.572Z'
+    revenue-launch-checklist:
+      path: .aiox-core/development/checklists/revenue-launch-checklist.md
+      layer: L2
+      type: checklist
+      purpose: Revenue Launch Checklist (Core)
+      keywords:
+        - revenue
+        - launch
+        - checklist
+        - (core)
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.6
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:950a87b909cc8e0da8a43cfddfbe4cc2bcc0cd80e3cfc728ec14e26e6bf319e7
+      lastVerified: '2026-03-26T12:54:00.610Z'
   data:
     agent-config-requirements:
       path: .aiox-core/data/agent-config-requirements.yaml
@@ -14236,11 +14113,10 @@ entities:
       path: .aiox-core/development/workflows/development-cycle.yaml
       layer: L2
       type: workflow
-      purpose: '>-'
+      purpose: Entity at .aiox-core\development\workflows\development-cycle.yaml
       keywords:
         - development
         - cycle
-        - '============================================'
       usedBy:
         - story-checkpoint
       dependencies: []
@@ -14251,17 +14127,16 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:e882daca473a95807e5c480c9b1c3d7b428277b075232cb907f9a253468a17c1
-      lastVerified: '2026-03-06T11:53:37.633Z'
+      checksum: sha256:a28edc0482c6db77509c7ce2749b21fc411dbb4df5e6c5069d11c1390be620c9
+      lastVerified: '2026-03-26T12:54:00.723Z'
     epic-orchestration:
       path: .aiox-core/development/workflows/epic-orchestration.yaml
       layer: L2
       type: workflow
-      purpose: '>-'
+      purpose: Entity at .aiox-core\development\workflows\epic-orchestration.yaml
       keywords:
         - epic
         - orchestration
-        - '============================================'
       usedBy: []
       dependencies: []
       externalDeps: []
@@ -14271,8 +14146,8 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:4bb9d91027036d089ab880e46e4b256290761c4dbf17d716abe61b541161fe05
-      lastVerified: '2026-03-06T11:53:37.635Z'
+      checksum: sha256:536476354f112bdbfcd4d960fdf0c1b20bb9b10ad582e1c42d5c4c566a4f123e
+      lastVerified: '2026-03-26T12:54:00.726Z'
     greenfield-fullstack:
       path: .aiox-core/development/workflows/greenfield-fullstack.yaml
       layer: L2
@@ -14831,11 +14706,8 @@ entities:
         - compose-molecule
         - create-brownfield-story
         - create-deep-research-prompt
-        - create-doc
         - create-next-story
         - create-suite
-        - create-task
-        - create-workflow
         - generate-ai-frontend-prompt
         - generate-documentation
         - generate-migration-strategy
@@ -15635,7 +15507,6 @@ entities:
       usedBy:
         - autonomous-build-loop
         - build-state-manager
-        - recovery-handler
         - dev
       dependencies: []
       externalDeps: []
@@ -15698,7 +15569,6 @@ entities:
         - rollback
         - manager
       usedBy:
-        - recovery-handler
         - epic-5-executor
         - dev
       dependencies: []
@@ -15826,7 +15696,6 @@ entities:
         - detector
       usedBy:
         - build-state-manager
-        - recovery-handler
         - epic-5-executor
         - dev
       dependencies: []
@@ -15868,8 +15737,8 @@ entities:
         - template
         - engine
       usedBy:
-        - template-validator
         - component-generator
+        - template-validator
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -16073,8 +15942,7 @@ entities:
       keywords:
         - validate
         - agents
-      usedBy:
-        - aiox-master
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -16263,7 +16131,6 @@ entities:
         - worktree
         - manager
       usedBy:
-        - create-worktree
         - list-worktrees
         - remove-worktree
         - autonomous-build-loop
@@ -17040,7 +16907,6 @@ entities:
         - solution
         - validation
       usedBy:
-        - aiox-master
         - architect
       dependencies: []
       externalDeps: []
@@ -17065,14 +16931,12 @@ entities:
         - navigation
       usedBy:
         - brownfield-create-epic
-        - correct-course
         - modify-agent
         - modify-task
         - modify-workflow
         - propose-modification
         - qa-review-proposal
         - update-manifest
-        - aiox-master
         - pm
         - po
       dependencies: []
@@ -17225,7 +17089,6 @@ entities:
         - (pm)
         - requirements
       usedBy:
-        - aiox-master
         - pm
       dependencies: []
       externalDeps: []
@@ -17252,7 +17115,6 @@ entities:
         - validation
       usedBy:
         - brownfield-create-epic
-        - brownfield-create-story
         - create-brownfield-story
         - create-next-story
         - dev-validate-next-story
@@ -17261,7 +17123,6 @@ entities:
         - qa-trace-requirements
         - sm-create-next-story
         - validate-next-story
-        - aiox-master
         - po
       dependencies: []
       externalDeps: []
@@ -17355,7 +17216,6 @@ entities:
         - done
         - (dod)
       usedBy:
-        - aiox-master
         - dev
       dependencies: []
       externalDeps: []
@@ -17377,7 +17237,6 @@ entities:
         - draft
         - checklist
       usedBy:
-        - aiox-master
         - sm
       dependencies:
         - dev

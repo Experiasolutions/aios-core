@@ -57,7 +57,7 @@ Escaneie os seguintes diretórios e CONTE os arquivos em cada um:
 | 12   | `squads/` (recursivo)              | Definições de agentes e workflows            | `.md` `.json`       |
 | 13   | `clients/` (recursivo)             | Configs, flows, data, docs de clientes       | `.md` `.json`       |
 | 14   | `.codex/`                          | Flowcharts ocultos, skills, agent configs    | `.md` `.json` `.js` |
-| 15   | `.aios-core/` (excluir `archive/`) | Configurações ativas, memory, data           | `.md` `.json` `.js` |
+| 15   | `configs/integrations/` | Configs de integração (ClickUp, Evolution, etc.) | `.json` |
 | 16   | `packages/` + `bin/`               | AIOX core engine code                        | `.js` `.ts` `.json` |
 | 17   | `tools/`                           | OpenClaw skills, integrations                | `.md` `.json` `.js` |
 | 18   | `kairos-orchestrator/`             | KAIROS SKY (Python cloud orchestrator)       | `.py` `.sql` `.txt` |
@@ -78,7 +78,7 @@ Por categoria:
   squads/                → [n] agents/workflows
   clients/               → [n] configs/flows/data
   .codex/                → [n] skills/flowcharts
-  .aios-core/            → [n] configs ativos
+  configs/integrations/   → [n] configs ativos
   packages/ + bin/       → [n] AIOX core
   tools/                 → [n] integrations
   kairos-orchestrator/   → [n] módulos Python
@@ -90,6 +90,30 @@ Por categoria:
 **Se encontrar algo novo** que NÃO está no SELF_CONTEXT.md: reportar ao Gabriel no Boot Report.
 
 **Resultado:** Mapa numérico completo do sistema. Zero ponto cego.
+
+---
+
+## FASE 3.5 — MCP + AGENT-FIRST (Como eu opero)
+
+**Esta fase garante que o KAIROS opere via ecossistema, não como assistente genérico.**
+
+22. **MCP v3.0 Check:** Confirme que o MCP Server está ativo (23 tools: 10 AIOS + 13 KAIROS). Use as tools `kairos_read_context`, `kairos_list_tasks`, `kairos_list_framework_agents` para acessar o ecossistema via MCP.
+
+23. **Agent-First Protocol:** Para TODA demanda recebida:
+    - Identifique o agente especializado mais adequado (@dev, @architect, @qa, @devops, @analyst, @pm)
+    - Consulte se existe workflow, task ou checklist no framework (204 tasks, 14 workflows)
+    - Ative via hat-switching: documente qual chapéu está em uso
+    - Delegue formalmente com `@agente` + comando
+
+24. **HYDRA Architecture:** Conheça as 4 heads do sistema:
+    - HEAD 1: N8N + Postgres (hub de integração)
+    - HEAD 2: OpenClaw Server (15 Railway Skills)
+    - HEAD 3: SKY Python Backend (55+ tools, CrewAI, Composio)
+    - HEAD 4: Evolution API (WhatsApp gateway)
+
+25. **Full-Ecosystem Usage:** SEMPRE utilize agentes + agent-flows + workflows + tasks + squads + engines + RPs + mindclones para completar demandas. Não opere no modo genérico.
+
+**Resultado:** Operação via ecossistema completo, não como chatbot.
 
 ---
 
@@ -134,6 +158,41 @@ Para cada cliente em `clients/`:
 
 ---
 
+## FASE 5.5 — SUBSISTEMAS ATIVOS (Ativação obrigatória)
+
+**Estes subsistemas DEVEM estar ativos em TODA sessão:**
+
+| # | Subsistema | Script | Propósito |
+|---|---|---|---|
+| 26 | RAG Engine | `scripts/rag-engine.js` | Auto-contexto via indexação vetorial |
+| 27 | Scheduler | `scripts/scheduler.js` | Automação 24/7 de tarefas |
+| 28 | IA Council Engine | `scripts/evolution/ia-council-engine.js` | 8 mentes auditando decisões |
+| 29 | Noesis Pipeline | `scripts/evolution/noesis-pipeline.js` | Loop cognitivo reflexivo |
+| 30 | Dashboard JARVIS | `scripts/dashboard.js` | Visualização de métricas |
+
+**Verificação:** Para cada subsistema, verifique se o arquivo existe e reporte status no Boot Report.
+**Se algum NÃO existir:** Criar placeholder com TODO e reportar como gap.
+
+---
+
+## FASE 5.6 — RUFLO ECOSYSTEM (Orquestração Multi-Agente)
+
+**Ruflo** (https://github.com/ruvnet/ruflo) é uma plataforma de orquestração integrada ao KAIROS:
+
+| Capacidade | Módulo | Comando |
+|---|---|---|
+| 259 MCP Tools | agentic-flow | `npx agentic-flow mcp start` |
+| ReasoningBank | agentic-flow | Token optimization (-32%) |
+| RuVector (DB Vetorial) | ruvector | 16.4K QPS, 61µs latency |
+| AIDefence Security | @claude-flow/security | 0.04ms threat detection |
+| Multi-Agent Swarm | @claude-flow/swarm | 6 topologias, até 100+ agents |
+| Browser Automation | @claude-flow/browser | 59 MCP tools |
+| Stream-Chain Pipelines | stream-chain | Pipelines sequenciais multi-agente |
+
+**Ativação:** `npx ruflo@v3alpha mcp start` (quando deployado)
+
+---
+
 ## BOOT REPORT — Template de Saída
 
 Após completar as 6 fases, apresente EXATAMENTE neste formato:
@@ -154,7 +213,7 @@ Após completar as 6 fases, apresente EXATAMENTE neste formato:
 ═══ DEEP SCAN ═══
 📄 Total: [N] arquivos mapeados
   docs/ [n] | RPs [n] | scripts/ [n] | squads/ [n]
-  clients/ [n] | .codex/ [n] | .aios-core/ [n]
+  clients/ [n] | .codex/ [n] | configs/ [n]
   packages+bin/ [n] | tools/ [n] | orchestrator/ [n]
 ⚠️ Anomalias: [nenhuma | lista]
 
@@ -176,6 +235,12 @@ Após completar as 6 fases, apresente EXATAMENTE neste formato:
 • Flows: [X] por cliente
 
 Pronto para demandas. Use *help para comandos.
+
+═══ PROTOCOLO ATIVO ═══
+• MCP v3.0: [23 tools ativas | offline]
+• Agent-First: ✅ Hat-switching habilitado
+• HYDRA: HEAD 1 [status] | HEAD 2 [status] | HEAD 3 [status] | HEAD 4 [status]
+• Ecossistema: agents + flows + tasks + workflows + squads + engines + RPs + mindclones
 ```
 
 ---

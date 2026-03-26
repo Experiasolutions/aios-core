@@ -1,0 +1,33 @@
+# GOD KAIROS — Gemini API Key Pool
+# 5 keys para rotação automática (maximizar free tier)
+
+pool:
+  provider: "google-ai-studio"
+  model: "gemini-2.5-pro"
+  rotation_strategy: "round-robin"  # Troca a cada request
+  fallback_on_429: true  # Se rate-limited, pula pra próxima key
+
+  keys:
+    - id: "lemellomodel"
+      key: "AIzaSyAiEkpxe5nZLEB_wtOkuJ1E7PJBWT97Ncg"
+      status: "active"
+
+    - id: "krauserg31"
+      key: "AIzaSyAt7ZwWcT6U7YXnDeSSlTrV0C4MgF9UUVI"
+      status: "active"
+
+    - id: "brooklynalexia2025"
+      key: "AIzaSyCADsQ6Ybehb0pGeE9UU0ATZnS_p4Tg3UU"
+      status: "active"
+
+    - id: "redfield20251"
+      key: "AIzaSyDWVZ9_l936vtR5gRrfAhuF10x_9gJ0F4E"
+      status: "active"
+
+    - id: "redfield20252"
+      key: "AIzaSyAdICYNH461MvPII5X0lCv7oMHugXZHGCs"
+      status: "active"
+
+  rate_limits:
+    requests_per_minute: 15  # Free tier por key
+    total_with_pool: 75  # 15 x 5 keys

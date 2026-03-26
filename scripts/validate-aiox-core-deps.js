@@ -159,4 +159,9 @@ function main() {
   process.exit(0);
 }
 
-main();
+try {
+  main();
+} catch (error) {
+  console.error('Unhandled error during validation:', error);
+  process.exit(1);
+}

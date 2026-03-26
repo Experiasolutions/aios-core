@@ -1,40 +1,40 @@
 {
-    "version": "1.0.0",
-    "created": "2026-03-13",
-    "target": 500,
-    "captured": 17,
-    "curated": 0,
-    "total_traces": 17,
-    "percentComplete": 3.4,
-    "phases": [
-        {
-            "phase": 1,
-            "name": "Bootstrap",
-            "target": 50,
-            "status": "in-progress",
-            "description": "Capture initial traces from council gaps, noesis observations, and golden examples"
-        },
-        {
-            "phase": 2,
-            "name": "Auto-Harvest",
-            "target": 200,
-            "status": "planned",
-            "description": "Integrate with Night Shift for automatic trace capture every session"
-        },
-        {
-            "phase": 3,
-            "name": "Curation",
-            "target": 100,
-            "status": "planned",
-            "description": "Review and curate high-quality traces for fine-tuning"
-        },
-        {
-            "phase": 4,
-            "name": "Fine-Tune",
-            "target": 500,
-            "status": "planned",
-            "description": "Train 3B-7B local model with curated dataset"
-        }
-    ],
-    "lastUpdated": "2026-03-13"
+  "version": "1.0.0",
+  "created": "2026-03-13",
+  "target": 500,
+  "captured": 18,
+  "curated": 1,
+  "total_traces": 17,
+  "percentComplete": 3.4,
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Bootstrap",
+      "target": 50,
+      "status": "in-progress",
+      "description": "Capture initial traces from council gaps, noesis observations, and golden examples"
+    },
+    {
+      "phase": 2,
+      "name": "Auto-Harvest",
+      "target": 200,
+      "status": "planned",
+      "description": "Integrate with Night Shift for automatic trace capture every session"
+    },
+    {
+      "phase": 3,
+      "name": "Curation",
+      "target": 100,
+      "status": "planned",
+      "description": "Review and curate high-quality traces for fine-tuning"
+    },
+    {
+      "phase": 4,
+      "name": "Fine-Tune",
+      "target": 500,
+      "status": "planned",
+      "description": "Train 3B-7B local model with curated dataset"
+    }
+  ],
+  "lastUpdated": "2026-03-16T04:24:01.989Z"
 }

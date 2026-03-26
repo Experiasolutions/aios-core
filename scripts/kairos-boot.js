@@ -28,6 +28,7 @@ const path = require('path');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const AIOS_ROOT = PROJECT_ROOT;
+const AIOX_CORE = path.join(PROJECT_ROOT, '.aiox-core');
 
 // ─── Timing ─────────────────────────────────────────────────
 const bootStart = Date.now();
@@ -78,13 +79,15 @@ function phase0_identity() {
     phaseHeader(0, 'IDENTITY VERIFICATION', '🔒');
 
     // Check identity anchor
-    const anchorPath = path.join(AIOS_ROOT, '.aios-core', 'noesis', 'identity-anchor.json');
-    if (fs.existsSync(anchorPath)) {
-        const anchor = JSON.parse(fs.readFileSync(anchorPath, 'utf8'));
-        const declarations = anchor.declarations || anchor.immutableDeclarations || [];
+    const anchorPath = path.join(AIOS_ROOT, 'engine', 'noesis', 'identity-anchor.json');
+    const anchorFallback = path.join(AIOX_CORE, 'noesis', 'identity-anchor.json');
+    const resolvedAnchor = fs.existsSync(anchorPath) ? anchorPath : (fs.existsSync(anchorFallback) ? anchorFallback : null);
+    if (resolvedAnchor) {
+        const anchor = JSON.parse(fs.readFileSync(resolvedAnchor, 'utf8'));
+        const declarations = anchor.immutable_declarations || anchor.declarations || anchor.immutableDeclarations || [];
         ok(`Identity Anchor: ${declarations.length} immutable declarations loaded`);
     } else {
-        fail('Identity Anchor: NOT FOUND at .aios-core/noesis/identity-anchor.json');
+        fail('Identity Anchor: NOT FOUND at engine/noesis/ or .aiox-core/noesis/');
     }
 
     // Check rules
@@ -133,7 +136,8 @@ function phase1_consciousness() {
     }
 
     // Load cognitive state
-    const cogPath = path.join(AIOS_ROOT, '.aios-core', 'noesis', 'cognitive-state.json');
+    const cogPath = path.join(AIOS_ROOT, 'engine', 'noesis', 'cognitive-state.json');
+    const cogFallback = path.join(AIOX_CORE, 'noesis', 'cognitive-state.json');
     if (fs.existsSync(cogPath)) {
         const cog = JSON.parse(fs.readFileSync(cogPath, 'utf8'));
         ok(`Cognitive State: Session #${cog.sessionCount || '?'} — Score avg: ${cog.averageScore || '?'}/10`);
@@ -194,7 +198,7 @@ function phase1_5_jarvis() {
 function phase2_knowledge() {
     phaseHeader(2, 'KNOWLEDGE BASE', '📚');
 
-    const indexPath = path.join(AIOS_ROOT, '.aios-core', 'data', 'rag', 'index.json');
+    const indexPath = path.join(AIOX_CORE, 'data', 'rag', 'index.json');
 
     if (fs.existsSync(indexPath)) {
         const stats = fs.statSync(indexPath);
@@ -291,30 +295,30 @@ function phase3_intelligence() {
             ['bin', 'bin'], // CLI runtime (aios.js, aios-init.js, aios-ids.js)
             ['data', 'data'], // entity-registry, memory.json, jarvis-narratives
             // === AIOS CORE ENGINE ===
-            ['.aios-core/opus-replicator', '.aios-core/opus-replicator'],
-            ['.aios-core/core', '.aios-core/core'],
-            ['.aios-core/core/docs', '.aios-core/core/docs'],
-            ['.aios-core/noesis', '.aios-core/noesis'],
-            ['.aios-core/data', '.aios-core/data'],
+            ['.aiox-core/opus-replicator', '.aiox-core/opus-replicator'],
+            ['.aiox-core/core', '.aiox-core/core'],
+            ['.aiox-core/core/docs', '.aiox-core/core/docs'],
+            ['.aiox-core/noesis', '.aiox-core/noesis'],
+            ['.aiox-core/data', '.aiox-core/data'],
             // === DEVELOPMENT MODULE ===
-            ['.aios-core/development', '.aios-core/development'],
-            ['.aios-core/development/agents', '.aios-core/development/agents'],
-            ['.aios-core/development/workflows', '.aios-core/development/workflows'],
-            ['.aios-core/development/tasks', '.aios-core/development/tasks'],
-            ['.aios-core/development/scripts', '.aios-core/development/scripts'],
+            ['.aiox-core/development', '.aiox-core/development'],
+            ['.aiox-core/development/agents', '.aiox-core/development/agents'],
+            ['.aiox-core/development/workflows', '.aiox-core/development/workflows'],
+            ['.aiox-core/development/tasks', '.aiox-core/development/tasks'],
+            ['.aiox-core/development/scripts', '.aiox-core/development/scripts'],
             // === TIER 1 — VALIDATION & QUALITY ===
-            ['.aios-core/schemas', '.aios-core/schemas'], // V3 agent/task/squad schemas + validator
-            ['.aios-core/quality', '.aios-core/quality'], // metrics-collector, metrics-hook, seed-metrics
+            ['.aiox-core/schemas', '.aiox-core/schemas'], // V3 agent/task/squad schemas + validator
+            ['.aiox-core/quality', '.aiox-core/quality'], // metrics-collector, metrics-hook, seed-metrics
             // === TIER 2 — INFRASTRUCTURE & INTEGRATIONS ===
-            ['.aios-core/integrations', '.aios-core/integrations'], // ClickUp, Telegram, Evolution API configs
-            ['.aios-core/infrastructure', '.aios-core/infrastructure'], // MCP contracts, tool templates
-            ['.aios-core/workflow-intelligence', '.aios-core/workflow-intelligence'], // WIS engine + learning
-            ['.aios-core/manifests', '.aios-core/manifests'], // CSV registries (agents, tasks, workers)
+            ['.aiox-core/integrations', '.aiox-core/integrations'], // ClickUp, Telegram, Evolution API configs
+            ['.aiox-core/infrastructure', '.aiox-core/infrastructure'], // MCP contracts, tool templates
+            ['.aiox-core/workflow-intelligence', '.aiox-core/workflow-intelligence'], // WIS engine + learning
+            ['.aiox-core/manifests', '.aiox-core/manifests'], // CSV registries (agents, tasks, workers)
             // === TIER 3 — LIFECYCLE & ELICITATION ===
-            ['.aios-core/elicitation', '.aios-core/elicitation'], // Interactive task engines
-            ['.aios-core/hooks', '.aios-core/hooks'], // IDS git lifecycle hooks
-            ['.aios-core/noesis-operator', '.aios-core/noesis-operator'], // Operator learning model
-            ['.aios-core/handoffs', '.aios-core/handoffs'], // Agent-to-agent handoff artifacts
+            ['.aiox-core/elicitation', '.aiox-core/elicitation'], // Interactive task engines
+            ['.aiox-core/hooks', '.aiox-core/hooks'], // IDS git lifecycle hooks
+            ['.aiox-core/noesis-operator', '.aiox-core/noesis-operator'], // Operator learning model
+            ['.aiox-core/handoffs', '.aiox-core/handoffs'], // Agent-to-agent handoff artifacts
             // === AGENT LAYER ===
             ['.antigravity/agents', '.antigravity/agents'],
             // === TEST INFRASTRUCTURE ===
@@ -330,7 +334,7 @@ function phase3_intelligence() {
 
         // Load REAL quality baseline
         let qualityBaseline = {};
-        const qbPath = path.join(AIOS_ROOT, '.aios-core', 'data', 'quality-baseline.json');
+        const qbPath = path.join(AIOX_CORE, 'data', 'quality-baseline.json');
         if (fs.existsSync(qbPath)) {
             qualityBaseline = JSON.parse(fs.readFileSync(qbPath, 'utf8'));
             info(`Quality baseline: ${qualityBaseline.current_baseline}/10 (trend: ${qualityBaseline.trend})`);
@@ -480,7 +484,7 @@ function phase5_signal(results, isQuick) {
         phases: phaseTimings
     };
 
-    const logDir = path.join(AIOS_ROOT, '.aios-core', 'data');
+    const logDir = path.join(AIOX_CORE, 'data');
     const logFile = path.join(logDir, 'boot-log.json');
 
     try {
@@ -492,7 +496,7 @@ function phase5_signal(results, isQuick) {
         // Keep last 50 boots
         if (logs.length > 50) logs = logs.slice(-50);
         fs.writeFileSync(logFile, JSON.stringify(logs, null, 2));
-        info(`Boot log saved to .aios-core/data/boot-log.json`);
+        info(`Boot log saved to .aiox-core/data/boot-log.json`);
     } catch (e) {
         // Non-critical
     }

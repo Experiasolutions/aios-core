@@ -1,8 +1,339 @@
 {
-  "version": "1.0.0",
+  "version": "1.0",
   "system": "KAIROS OS v3.1",
   "created": "2026-03-13T14:50:00-03:00",
-  "lastUpdated": "2026-03-13T14:50:00-03:00",
+  "lastUpdated": "2026-03-19T15:32:26.528Z",
+  "memories": [
+    {
+      "id": "mem_1773635041996_5ljyc2",
+      "category": "metrics",
+      "content": "Noesis cycle: score=10/10, verdict=EXCELLENT, depth=4/4",
+      "metadata": {
+        "type": "noesis-cycle",
+        "score": 10,
+        "verdict": "EXCELLENT",
+        "depthScore": 4
+      },
+      "timestamp": "2026-03-16T04:24:01.996Z",
+      "tags": [
+        "noesis",
+        "10",
+        "4"
+      ]
+    },
+    {
+      "id": "mem_1773636490671_np9ltk",
+      "category": "context",
+      "content": "Scheduler iniciado com 7 tarefas",
+      "metadata": {
+        "tasks": [
+          "health-check",
+          "instagram-metrics",
+          "clickup-summary",
+          "memory-cleanup",
+          "daily-report",
+          "synapse-health",
+          "wis-learn"
+        ]
+      },
+      "timestamp": "2026-03-16T04:48:10.671Z",
+      "tags": [
+        "scheduler",
+        "7"
+      ]
+    },
+    {
+      "id": "mem_1773636494198_62uhad",
+      "category": "knowledge",
+      "content": "Relatório diário 16/03/2026: 2 ações, 2 memórias acumuladas",
+      "metadata": {
+        "report": {
+          "date": "16/03/2026",
+          "memoriesTotal": 2,
+          "memoriesToday": 2,
+          "categories": {
+            "metrics": 1,
+            "context": 1
+          },
+          "lastActions": [
+            "Scheduler iniciado com 7 tarefas",
+            "Noesis cycle: score=10/10, verdict=EXCELLENT, depth=4/4"
+          ]
+        }
+      },
+      "timestamp": "2026-03-16T04:48:14.198Z",
+      "tags": [
+        "relatório",
+        "16",
+        "03",
+        "2026",
+        "2"
+      ]
+    },
+    {
+      "id": "mem_1773636495396_5vogme",
+      "category": "context",
+      "content": "Resumo diário: 3 memórias totais, 3 hoje. Categorias: {\"metrics\":1,\"context\":1,\"knowledge\":1}",
+      "metadata": {
+        "stats": {
+          "total": 3,
+          "today": 3,
+          "categories": {
+            "metrics": 1,
+            "context": 1,
+            "knowledge": 1
+          },
+          "oldest": "2026-03-16T04:24:01.996Z",
+          "newest": "2026-03-16T04:48:14.198Z",
+          "version": "1.0"
+        }
+      },
+      "timestamp": "2026-03-16T04:48:15.396Z",
+      "tags": [
+        "resumo",
+        "categorias",
+        "3",
+        "1"
+      ]
+    },
+    {
+      "id": "mem_1773636496990_ixn3of",
+      "category": "metrics",
+      "content": "ClickUp: Team com 1 membros",
+      "metadata": {
+        "members": 1
+      },
+      "timestamp": "2026-03-16T04:48:16.990Z",
+      "tags": [
+        "click",
+        "up",
+        "team",
+        "1"
+      ]
+    },
+    {
+      "id": "mem_1773636497378_09gtdh",
+      "category": "metrics",
+      "content": "Instagram: 11 seguidores, 8 posts",
+      "metadata": {
+        "followers": 11,
+        "posts": 8
+      },
+      "timestamp": "2026-03-16T04:48:17.378Z",
+      "tags": [
+        "instagram",
+        "11",
+        "8"
+      ]
+    },
+    {
+      "id": "mem_1773636498920_wsli75",
+      "category": "metrics",
+      "content": "Health Check: groq: ✅ online | clickup: ✅ online | instagram: ✅ online",
+      "metadata": {
+        "checks": {
+          "groq": "✅ online",
+          "clickup": "✅ online",
+          "instagram": "✅ online"
+        },
+        "healthy": true
+      },
+      "timestamp": "2026-03-16T04:48:18.920Z",
+      "tags": [
+        "health check"
+      ]
+    },
+    {
+      "id": "mem_1773661161293_vzffa9",
+      "category": "alerts",
+      "content": "Scheduler erro em 📸 Instagram Metrics: getaddrinfo ENOTFOUND graph.facebook.com",
+      "metadata": {
+        "taskId": "instagram-metrics"
+      },
+      "timestamp": "2026-03-16T11:39:21.383Z",
+      "tags": [
+        "scheduler",
+        "instagram metrics"
+      ]
+    },
+    {
+      "id": "mem_1773661162119_joiay4",
+      "category": "metrics",
+      "content": "Health Check: groq: ❌ offline | clickup: ❌ offline | instagram: ❌ offline",
+      "metadata": {
+        "checks": {
+          "groq": "❌ offline",
+          "clickup": "❌ offline",
+          "instagram": "❌ offline"
+        },
+        "healthy": false
+      },
+      "timestamp": "2026-03-16T11:39:22.119Z",
+      "tags": [
+        "health check"
+      ]
+    },
+    {
+      "id": "mem_1773665293493_7zqq9i",
+      "category": "metrics",
+      "content": "ClickUp: Team com 1 membros",
+      "metadata": {
+        "members": 1
+      },
+      "timestamp": "2026-03-16T12:48:13.494Z",
+      "tags": [
+        "click",
+        "up",
+        "team",
+        "1"
+      ]
+    },
+    {
+      "id": "mem_1773934329285_zkeqcu",
+      "category": "context",
+      "content": "Dashboard JARVIS iniciado na porta 3000",
+      "metadata": {
+        "source": "dashboard"
+      },
+      "timestamp": "2026-03-19T15:32:09.285Z",
+      "tags": [
+        "dashboard",
+        "3000"
+      ]
+    },
+    {
+      "id": "mem_1773934338494_z1dl0g",
+      "category": "context",
+      "content": "Scheduler iniciado com 7 tarefas",
+      "metadata": {
+        "tasks": [
+          "health-check",
+          "instagram-metrics",
+          "clickup-summary",
+          "memory-cleanup",
+          "daily-report",
+          "synapse-health",
+          "wis-learn"
+        ]
+      },
+      "timestamp": "2026-03-19T15:32:18.494Z",
+      "tags": [
+        "scheduler",
+        "7"
+      ]
+    },
+    {
+      "id": "mem_1773934345226_wg3fc7",
+      "category": "context",
+      "content": "Resumo diário: 12 memórias totais, 2 hoje. Categorias: {\"metrics\":6,\"context\":4,\"knowledge\":1,\"alerts\":1}",
+      "metadata": {
+        "stats": {
+          "total": 12,
+          "today": 2,
+          "categories": {
+            "metrics": 6,
+            "context": 4,
+            "knowledge": 1,
+            "alerts": 1
+          },
+          "oldest": "2026-03-16T04:24:01.996Z",
+          "newest": "2026-03-19T15:32:18.494Z",
+          "version": "1.0"
+        }
+      },
+      "timestamp": "2026-03-19T15:32:25.226Z",
+      "tags": [
+        "resumo",
+        "categorias",
+        "12",
+        "2",
+        "6",
+        "4",
+        "1"
+      ]
+    },
+    {
+      "id": "mem_1773934345244_f9rdyr",
+      "category": "metrics",
+      "content": "Instagram: 11 seguidores, 8 posts",
+      "metadata": {
+        "followers": 11,
+        "posts": 8
+      },
+      "timestamp": "2026-03-19T15:32:25.245Z",
+      "tags": [
+        "instagram",
+        "11",
+        "8"
+      ]
+    },
+    {
+      "id": "mem_1773934345580_pauugx",
+      "category": "metrics",
+      "content": "Health Check: groq: ✅ online | clickup: ✅ online | instagram: ✅ online",
+      "metadata": {
+        "checks": {
+          "groq": "✅ online",
+          "clickup": "✅ online",
+          "instagram": "✅ online"
+        },
+        "healthy": true
+      },
+      "timestamp": "2026-03-19T15:32:25.580Z",
+      "tags": [
+        "health check"
+      ]
+    },
+    {
+      "id": "mem_1773934346404_nnadn8",
+      "category": "knowledge",
+      "content": "Relatório diário 19/03/2026: 5 ações, 15 memórias acumuladas",
+      "metadata": {
+        "report": {
+          "date": "19/03/2026",
+          "memoriesTotal": 15,
+          "memoriesToday": 5,
+          "categories": {
+            "metrics": 8,
+            "context": 5,
+            "knowledge": 1,
+            "alerts": 1
+          },
+          "lastActions": [
+            "Health Check: groq: ✅ online | clickup: ✅ online | instagram",
+            "Instagram: 11 seguidores, 8 posts",
+            "Resumo diário: 12 memórias totais, 2 hoje. Categorias: {\"met",
+            "Scheduler iniciado com 7 tarefas",
+            "Dashboard JARVIS iniciado na porta 3000"
+          ]
+        }
+      },
+      "timestamp": "2026-03-19T15:32:26.404Z",
+      "tags": [
+        "relatório",
+        "19",
+        "03",
+        "2026",
+        "5",
+        "15"
+      ]
+    },
+    {
+      "id": "mem_1773934346527_mcdb2n",
+      "category": "metrics",
+      "content": "ClickUp: Team com 1 membros",
+      "metadata": {
+        "members": 1
+      },
+      "timestamp": "2026-03-19T15:32:26.527Z",
+      "tags": [
+        "click",
+        "up",
+        "team",
+        "1"
+      ]
+    }
+  ],
   "sessions": [],
   "decisions": [
     {

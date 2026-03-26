@@ -1,0 +1,110 @@
+[
+  {
+    "timestamp": "2026-03-26T03:44:43.595Z",
+    "bootTimeMs": 203874,
+    "mode": "quick",
+    "councilScore": null,
+    "councilGaps": null,
+    "phases": {
+      "0_identity": 14,
+      "1_consciousness": 33,
+      "1.5_jarvis": 3687,
+      "2_knowledge": 199923
+    }
+  },
+  {
+    "timestamp": "2026-03-26T03:47:40.006Z",
+    "bootTimeMs": 60749,
+    "mode": "quick",
+    "councilScore": null,
+    "councilGaps": null,
+    "phases": {
+      "0_identity": 10,
+      "1_consciousness": 10,
+      "1.5_jarvis": 6301,
+      "2_knowledge": 54395
+    }
+  },
+  {
+    "timestamp": "2026-03-26T03:49:21.783Z",
+    "bootTimeMs": 67284,
+    "mode": "full",
+    "councilScore": 5.53,
+    "councilGaps": 89,
+    "phases": {
+      "0_identity": 7,
+      "1_consciousness": 27,
+      "1.5_jarvis": 2359,
+      "2_knowledge": 39089,
+      "3_intelligence": 25715,
+      "4_reflexion": 43
+    }
+  },
+  {
+    "timestamp": "2026-03-26T04:38:46.069Z",
+    "bootTimeMs": 15215,
+    "mode": "quick",
+    "councilScore": null,
+    "councilGaps": null,
+    "phases": {
+      "identity": 12,
+      "knowledge": 15179
+    }
+  },
+  {
+    "timestamp": "2026-03-26T04:42:27.029Z",
+    "bootTimeMs": 12035,
+    "mode": "quick",
+    "councilScore": null,
+    "councilGaps": null,
+    "phases": {
+      "identity": 6,
+      "knowledge": 12013
+    }
+  },
+  {
+    "timestamp": "2026-03-26T12:39:41.887Z",
+    "bootTimeMs": 25464,
+    "mode": "full",
+    "councilScore": 5.65,
+    "councilGaps": 88,
+    "phases": {
+      "0_identity": 16,
+      "1_consciousness": 9,
+      "1.5_jarvis": 1066,
+      "2_knowledge": 20940,
+      "3_intelligence": 3289,
+      "4_reflexion": 26
+    }
+  },
+  {
+    "timestamp": "2026-03-26T13:02:32.139Z",
+    "bootTimeMs": 57633,
+    "mode": "full",
+    "councilScore": 5.53,
+    "councilGaps": 89,
+    "phases": {
+      "0_identity": 14,
+      "1_consciousness": 12,
+      "1.5_jarvis": 14129,
+      "2_knowledge": 33004,
+      "3_intelligence": 10358,
+      "4_reflexion": 87
+    }
+  },
+  {
+    "timestamp": "2026-03-26T13:11:34.737Z",
+    "bootTimeMs": 48770,
+    "mode": "full",
+    "councilScore": 5.65,
+    "councilGaps": 88,
+    "phases": {
+      "0_identity": 12,
+      "1_consciousness": 8,
+      "1.5_jarvis": 22374,
+      "2_knowledge": 335,
+      "3_intelligence": 25929,
+      "4_reflexion": 57
+    }
+  }
+]
