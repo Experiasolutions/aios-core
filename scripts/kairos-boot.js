@@ -117,6 +117,31 @@ function phase0_identity() {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// PHASE 0.5: MCP SYNCHRONIZATION
+// ═══════════════════════════════════════════════════════════════
+function phase0_5_mcp_sync(isQuick) {
+    if (isQuick) {
+        console.log(`\n  ${DIM}Phase 0.5 skipped (--quick mode)${RESET}`);
+        return { status: 'SKIPPED' };
+    }
+    
+    phaseHeader('0.5', 'MCP SYNCHRONIZATION', '🔌');
+    
+    try {
+        const { execSync } = require('child_process');
+        execSync('node scripts/install-mcp.js', { 
+            cwd: AIOS_ROOT,
+            stdio: 'pipe' 
+        });
+        ok('MCP Config Install: Synced absolute paths to HUD');
+        return { status: 'OK' };
+    } catch (err) {
+        warn(`MCP Config Install: ${err.message}`);
+        return { status: 'DEGRADED', error: err.message };
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════
 // PHASE 1: CONSCIOUSNESS
 // ═══════════════════════════════════════════════════════════════
 function phase1_consciousness() {
@@ -529,6 +554,8 @@ function main() {
     const results = {};
 
     results.identity = timePhase('0_identity', phase0_identity);
+    console.log('');
+    results.mcp_sync = timePhase('0.5_mcp_sync', () => phase0_5_mcp_sync(isQuick));
     console.log('');
     results.consciousness = timePhase('1_consciousness', phase1_consciousness);
     console.log('');

@@ -276,6 +276,32 @@ function scanTools() {
         },
     });
 
+    // Tool: explore-arsenal (Deep Scan of all executable scripts)
+    tools.push({
+        name: 'kairos_explore_arsenal',
+        description: 'Deep scan to list all available executable scripts in the KAIROS arsenal (Evolution, Noesis, Utils)',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                category: { type: 'string', description: 'Folder to scan (e.g. "evolution", "operator-noesis", "utils" or "all")' },
+            },
+            required: [],
+        },
+    });
+
+    // Tool: read-script
+    tools.push({
+        name: 'kairos_read_script',
+        description: 'Read the full source code of any script in the KAIROS arsenal to understand its execution logic.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                path: { type: 'string', description: 'Relative path to script (e.g., "scripts/evolution/convergence-guard.js")' },
+            },
+            required: ['path'],
+        },
+    });
+
     // Tool: read-synapse
     tools.push({
         name: 'kairos_read_synapse',
@@ -666,6 +692,66 @@ function handleTool(name, args) {
             return result;
         }
 
+        case 'kairos_explore_arsenal': {
+            const cat = args.category || 'all';
+            const results = [];
+            
+            function scanDir(dir, relPrefix = '') {
+                try {
+                    const entries = fs.readdirSync(dir, { withFileTypes: true });
+                    for (const entry of entries) {
+                        const relPath = path.join(relPrefix, entry.name);
+                        const fullPath = path.join(dir, entry.name);
+                        if (entry.isDirectory()) {
+                            scanDir(fullPath, relPath);
+                        } else if (entry.name.endsWith('.js') || entry.name.endsWith('.py') || entry.name.endsWith('.ps1')) {
+                            const stat = fs.statSync(fullPath);
+                            results.push({
+                                path: `${relPrefix ? relPrefix.split(path.sep)[0] : ''}/${relPath.split(path.sep).slice(1).join('/') || entry.name}`.replace(/^\//, '') || relPath.replace(/\\/g, '/'),
+                                name: entry.name,
+                                bytes: stat.size
+                            });
+                        }
+                    }
+                } catch (e) {
+                    // Ignore inaccessible folders
+                }
+            }
+            
+            if (cat === 'all') {
+                const roots = ['scripts', 'tools', 'packages'];
+                for (const r of roots) {
+                    const targetDir = path.join(AIOS_ROOT, r);
+                    if (fs.existsSync(targetDir)) scanDir(targetDir, r);
+                }
+            } else {
+                const targetDir = path.join(AIOS_ROOT, cat);
+                const resolvedTarget = path.resolve(targetDir);
+                if (!resolvedTarget.startsWith(path.resolve(AIOS_ROOT))) {
+                    return { error: 'Invalid category path' };
+                }
+                scanDir(targetDir, cat);
+            }
+            
+            return { arsenal: results, count: results.length };
+        }
+
+        case 'kairos_read_script': {
+            const scriptPath = path.join(AIOS_ROOT, args.path);
+            const resolved = path.resolve(scriptPath);
+            const validRoots = ['scripts', 'tools', 'packages'].map(r => path.resolve(AIOS_ROOT, r));
+            
+            if (!validRoots.some(root => resolved.startsWith(root))) {
+                return { error: 'Access denied. You can only read files within scripts, tools, or packages directories.' };
+            }
+            try {
+                const content = fs.readFileSync(resolved, 'utf8');
+                return { path: args.path, content, chars: content.length };
+            } catch {
+                return { error: `Script '${args.path}' not found` };
+            }
+        }
+
         case 'kairos_read_synapse': {
             const synapseDir = path.join(AIOS_ROOT, '.synapse');
             if (args.target === 'all') {
@@ -770,6 +856,8 @@ if (process.argv.includes('--test')) {
         ['kairos_read_context', { file: 'both' }],
         ['kairos_read_synapse', { target: 'all' }],
         ['kairos_read_engine', { module: 'all' }],
+        ['kairos_explore_arsenal', { category: 'all' }],
+        ['kairos_read_script', { path: 'scripts/mcp-server.js' }],
     ];
 
     let passed = 0;
