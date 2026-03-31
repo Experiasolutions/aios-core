@@ -28,8 +28,10 @@ O SKYROS não é um software novo, é um **Framework Mental e Operacional** que 
 ### 3.1. Módulo "Anamnesis" (Brain Dump Contínuo)
 A regra de ouro do SKYROS é a **Lata de Lixo Mental**.
 Você está proibido de tentar "lembrar" de processos. Qualquer pensamento, ideia incrível para a Experia, preocupação pessoal ou dor latente deve ser imediatamente despejada.
-- **Ferramenta:** Obsidian (Sincronizado via Git interno).
-- **Ação:** Criar o atalho no celular para abrir a Infinite Canvas e apenas jogar texto bruto. O NOESIS se encarrega de refatorar e triar essas memórias toda sexta-feira.
+- **Vault Real:** `C:\Users\GABS\Documents\Haha²` (Obsidian)
+- **Junction KAIROS:** `docs/anamnesis/` → Vault Haha² (leitura nativa pelo AIOX)
+- **Ação:** Abrir o Obsidian no celular/notebook e jogar texto bruto. O NOESIS se encarrega de refatorar e triar essas memórias toda sexta-feira.
+- **Git:** Apenas conteúdo `.md` é rastreado. Metadados `.obsidian/` e `.smart-env/` são ignorados.
 
 ### 3.2. Módulo "Triage Matinal" (Morning Briefing)
 A primeira hora do dia define o controle. O terminal de borda (Notebook) rodará `@pm *status`.
@@ -37,10 +39,10 @@ A primeira hora do dia define o controle. O terminal de borda (Notebook) rodará
 - Apenas 1 (uma) task com Prioridade `P0 🔥` será exigida para a manhã. Todo o resto é ruído.
 
 ### 3.3. Módulo "Isolation Mode"
-Se o estresse bater o limite, você digita `*invoke isolation` no Antigravity.
-1. O Sistema suspende o acesso ao RAG de clientes e foca apenas no `SELF_CONTEXT.md` pessoal.
-2. Abre a tela preta do Cursor IDE ou Windsurf.
-3. Permite comunicação apenas com a IA para code/study.
+O Isolation Mode é ativado **internamente pelo orquestrador NOESIS** (via `/kairos`), sem necessidade de comando manual.
+1. O NOESIS injeta a tag de bloqueio no `STATUS.md` automaticamente quando detecta Sprint P0 ativa.
+2. O Sistema suspende o acesso ao RAG de clientes e foca exclusivamente na tarefa corrente.
+3. A desativação também é automática ao concluir o ciclo de trabalho.
 
 ## 4. Orquestração Técnica (O Elixir)
 

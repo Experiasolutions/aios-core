@@ -13,19 +13,18 @@
 
 ## 🟡 EM PROGRESSO
 
-### MCP Server v3.0 (Local JS) — ✅ OPERACIONAL
-- [x] v1.0→v2.0→v3.0: 23 tools, 19/19 tests
+### MCP Server v4.0-SKYROS (Local JS) — ✅ OPERACIONAL
+- [x] v1.0→v2.0→v3.0→v4.0: 23 tools, 23/23 tests
+- [x] SKYROS tools integradas (skyros_triage, skyros_isolation)
 - [x] Antigravity reiniciado e operacional nas 2 instâncias (PC e Note)
 
-### MCP Servers Antigravity — ✅ CONFIGURADOS (6 servers)
-- [x] aios-kairos (23 tools KAIROS)
-- [x] context7 (docs live em prompts)
+### MCP Servers Antigravity — ✅ CONFIGURADOS (4 servers)
+- [x] aios-kairos (23 tools KAIROS+SKYROS)
 - [x] sequential-thinking (raciocínio step-by-step)
-- [x] github (ops de repositório)
-- [x] huggingface (modelos AI, datasets)
-- [x] brave-search (web search real-time)
-- [ ] GitHub token pendente no config (funciona sem token para repos publicos)
-- [ ] Brave API key pendente (funcional sem API key via web fallback)
+- [x] github (ops de repositório — token ativo)
+- [x] brave-search (web search — placeholder key)
+- [x] context7 removido (poluía STDOUT)
+- [x] huggingface removido (OAuth bloqueava JSON-RPC)
 
 ### CLIs — ✅ INSTALADOS
 - [x] Railway CLI (`npm i -g @railway/cli`)
@@ -203,7 +202,7 @@
 
 | Métrica | Valor |
 |---|---|
-| MCP Tools (JS local) | **23** |
+| MCP Tools (JS local) | **23** (10 AIOS + 11 KAIROS + 2 SKYROS) |
 | MCP Tools (Python/HYDRA) | **18** (pendente deploy) |
 | OpenClaw Skills | **15** (pendente deploy) |
 | Tasks AIOX | 204 |

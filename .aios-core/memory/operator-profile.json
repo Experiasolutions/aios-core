@@ -6,27 +6,27 @@
       "avgCommitHour": 15,
       "dominantType": "fix",
       "recentActivity": 30,
-      "evidence": 7
+      "evidence": 8
     },
     "workHours": {
       "avgBootHour": 0,
       "pattern": "night-owl",
-      "evidence": 6
+      "evidence": 7
     },
     "bootPreference": {
       "quickRatio": 0,
       "interpretation": "Prefers comprehensive boots",
-      "evidence": 6
+      "evidence": 7
     }
   },
   "decisional": {
     "focusAllocation": {
       "features": 0.2,
-      "fixes": 0.4,
-      "docs": 0,
-      "maintenance": 0.2,
+      "fixes": 0.3,
+      "docs": 0.07,
+      "maintenance": 0.23,
       "interpretation": "Balanced — no single dominant commit type",
-      "evidence": 7
+      "evidence": 8
     },
     "directoryFocus": {
       "top3": [
@@ -35,7 +35,7 @@
         ".aios-core-deprecated"
       ],
       "interpretation": "Primary focus on: JDK, clients, .aios-core-deprecated",
-      "evidence": 7
+      "evidence": 8
     }
   },
   "declarative": {},
@@ -46,14 +46,14 @@
         "reasoning-packages"
       ],
       "interpretation": "Coverage looks healthy",
-      "evidence": 7
+      "evidence": 8
     }
   },
   "insights": [],
   "_meta": {
     "version": "1.0.0",
-    "lastEnriched": "2026-03-26T13:11:07.516Z",
+    "lastEnriched": "2026-03-31T17:15:36.179Z",
     "observationCompleteness": 0.75,
-    "enrichmentCycles": 7
+    "enrichmentCycles": 8
   }
 }

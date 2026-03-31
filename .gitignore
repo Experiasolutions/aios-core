@@ -1,3 +1,6 @@
+# Obsidian Vault (SKYROS Anamnesis) - Sincronizado APENAS via Syncthing P2P
+docs/anamnesis/
+
 # Dependencies
 node_modules/
 pnpm-lock.yaml
