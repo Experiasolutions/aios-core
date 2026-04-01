@@ -38,13 +38,16 @@ Como temos "4 Orquestradores" (Opus, Gemini, N8N, OpenClaw), precisamos definir 
 - **Assumido por:** N8N (Head 1) ou Evolution API.
 - **Exemplo:** "Mande relatórios para a Elaine".
 
-## 4. O Sistema de "Mente Compartilhada" (Brain Sync)
-Para que o Opus no PC saiba o que o Gemini no Notebook fez:
-1. A pasta `C:\Users\GABS\.gemini\antigravity\brain` é movida para o Google Drive / OneDrive.
-2. É feito um **Symlink (Junction)** em ambos os PCs apontando para essa pasta da nuvem.
-3. **Comando Windows:** `mklink /J "C:\Users\GABS\.gemini\antigravity\brain" "D:\Google Drive\kairos_brain"`
+## 4. O Sistema de "Mente Compartilhada" (Brain Sync P2P)
+Para que o Opus no PC saiba o que o Gemini no Notebook fez em milissegundos sem depender da nuvem do Google Server:
+1. **Infraestrutura P2P (Syncthing):** O serviço Syncthing foi instalado como *Windows Service* nos terminais locais.
+2. **Device Handshake:** O PC e o Notebook estão pareados via ID Criptográfico diretamente, roteando Tráfego na LAN local quando sob a mesma rede, e relays globais quando externos.
+3. **Pastas Mapeadas na Instância Syncthing:**
+   - `Antigravity Brain`: `C:\Users\GABS\.gemini\antigravity\brain` (Estado do Chat GUI).
+   - `KAIROS Synapse`: `C:\Users\GABS\Documents\My KAIROS\.synapse` (Agentes Operacionais hookados).
+   - `Operator Core Logs`: `C:\Users\GABS\Documents\My KAIROS\.aiox-core\noesis-operator` (RAG Aprendizado de Máquina/Operador).
 
-*Quando o Notebook executa a Rota B, o Artifact é salvo no Drive. Segundos depois, o PC pode ler e analisar.*
+*Quando o Notebook executa a Rota B, o Artifact é injetado localmente. O Syncthing propaga localmente p/ a HUD do PC (Opus) em 1~3 segundos garantindo "State-Match" da Mente.*
 
 ## 5. Implementação Tática (Próximos Passos)
 1. **Concluir a push pro GitHub:** Garantir que o código-fonte (este repo) esteja versionado (Rodando agora mesmo).

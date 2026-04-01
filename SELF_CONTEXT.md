@@ -1,8 +1,8 @@
 # KAIROS — SELF CONTEXT (Consciência Viva)
 
-> **Última atualização:** 2026-03-26T01:10:00-03:00
-> **Atualizado por:** NOESIS (sessão fe078e98 — Flow Case Pipeline v2 + Rules v3.0)
-> **Sessão:** fe078e98-0e64-40f2-824b-8e002e70eee7
+> **Última atualização:** 2026-03-31T14:15:00-03:00
+> **Atualizado por:** NOESIS (sessão 7880c5d0 — Unificação P2P e SKYROS)
+> **Estado:** HIVEMIND ATIVA (Syncthing rodando entre PC e Notebook)
 
 ---
 
@@ -73,11 +73,13 @@
 - GPU: NVIDIA GeForce 7300 SE (256MB, 2006, SEM CUDA)
 - **Cloud obrigatório** — HuggingFace ZeroGPU (H200 70GB) é prioridade #1
 
-### SKYDRA/SKYROS Blueprint — ✅ CRIADO (25/03)
-- HEAD 5: AI Inference Server (vLLM, modelos open-source)
-- HEAD 6: OpenShift AI (MLOps + importar MCP AIOX no AI hub)
-- HEAD 7: InstructLab (fine-tune PT-BR)
-- Estratégia: cloud free-tier + Red Hat para persistência
+### SKYDRA/SKYROS Blueprint — ✅ CRIADO E IMPLEMENTADO (31/03)
+- **SKYROS (Personal OS):** Módulos Isolation Mode, Triage Matinal e Anamnesis (Obsidian Vault) criados.
+- **Memória P2P:** Syncthing configurado sincronizando `~/.gemini/antigravity/brain` entre Opus(PC) e Gemini(Note).
+- **Event Bus:** Configuração RAG e Telegram delegada ao Supabase (`engine/rag/supabase-schema.sql`).
+- HEAD 5: AI Inference Server (Proxy `openshift-connector.js` criado para a Red Hat).
+- HEAD 6: OpenShift AI (MLOps + Webhooks)
+- Estratégia atual: Cloud free-tier + P2P LAN Sync para 100% de coerência entre 4 agentes.
 
 ## Clientes
 
@@ -93,18 +95,11 @@
 
 | Data       | Decisão                                                           |
 | ---------- | ----------------------------------------------------------------- |
-| 2026-03-26 | SKYDRA/SKYROS blueprint: 3 novas heads (AI Inference, MLOps, InstructLab) |
-| 2026-03-26 | Estratégia híbrida: HuggingFace ZeroGPU + Red Hat cloud           |
-| 2026-03-26 | **RULE FIVE — Hybrid Flow Case Pipeline** injetada em rules.md v3.0 |
-| 2026-03-26 | PM templates criados (pm1-reasoning, pm2-execution, pm3-evaluation) |
-| 2026-03-26 | Boot script corrigido: .aios-core→.aiox-core + engine/noesis fallback |
-| 2026-03-25 | AIOS → AIOX consolidation completa (zero contaminação)            |
-| 2026-03-25 | 7 trials Red Hat ativados + 3 MCP servers oficiais mapeados       |
-| 2026-03-25 | MCP Server v3.0 com 23 tools — cobertura total do ecossistema     |
-| 2026-03-25 | Deep Scan: 3000+ arquivos mapeados, 204 tasks, 14 workflows      |
-| 2026-03-25 | GOD KAIROS launcher configurado (6 agentes, 3 CLIs)               |
-| 2026-03-24 | Agent-First Protocol internalizado                                |
-| 2026-03-24 | Bot Hortifruti deployado no Railway                               |
+| 2026-03-31 | **GitHub Libertado:** Squads, Docs e RPs agora rastreados na nuvem  |
+| 2026-03-31 | **SKYROS Inicializado:** Isolation Mode e Triage ativados          |
+| 2026-03-31 | **Hivemind P2P:** Syncthing configurado unindo 4 agentes e 2 PCs  |
+| 2026-03-31 | Conector Red Hat (vLLM free token) e Esquemas Supabase criados    |
+| 2026-03-26 | SKYDRA/SKYROS blueprint: 3 novas heads (AI Inference, MLOps)      |
 
 ## Problemas Abertos
 

@@ -328,6 +328,28 @@ function scanTools() {
         },
     });
 
+    // ---- SKYROS Personal OS Tools ----
+
+    // Tool: skyros-triage
+    tools.push({
+        name: 'skyros_triage',
+        description: 'Run SKYROS Morning Triage: scans roadmap.md for P0 tasks and checks Anamnesis vault status',
+        inputSchema: { type: 'object', properties: {}, required: [] },
+    });
+
+    // Tool: skyros-isolation
+    tools.push({
+        name: 'skyros_isolation',
+        description: 'Toggle SKYROS Isolation Mode (Deep Work): injects focus protocol into STATUS.md blocking distractions',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                action: { type: 'string', description: 'Action: engage or disengage (default: engage)' },
+            },
+            required: [],
+        },
+    });
+
     return tools;
 }
 
@@ -703,7 +725,9 @@ function handleTool(name, args) {
                         const relPath = path.join(relPrefix, entry.name);
                         const fullPath = path.join(dir, entry.name);
                         if (entry.isDirectory()) {
-                            scanDir(fullPath, relPath);
+                            if (entry.name !== 'node_modules' && entry.name !== '.git' && !entry.name.startsWith('.')) {
+                                scanDir(fullPath, relPath);
+                            }
                         } else if (entry.name.endsWith('.js') || entry.name.endsWith('.py') || entry.name.endsWith('.ps1')) {
                             const stat = fs.statSync(fullPath);
                             results.push({
@@ -808,6 +832,67 @@ function handleTool(name, args) {
             return result;
         }
 
+        // ---- SKYROS Personal OS Handlers ----
+
+        case 'skyros_triage': {
+            const roadmapPath = path.join(AIOS_ROOT, 'roadmap.md');
+            const anamnesisPath = path.join(AIOS_ROOT, 'docs', 'anamnesis');
+            const result = { timestamp: new Date().toISOString() };
+
+            if (!fs.existsSync(roadmapPath)) {
+                result.error = 'roadmap.md not found in project root';
+                return result;
+            }
+
+            const roadmapContent = fs.readFileSync(roadmapPath, 'utf8');
+            const p0Matches = [...roadmapContent.matchAll(/\|.*[pP]0.*\|/g)];
+            result.p0Tasks = p0Matches.map(m => m[0].trim());
+            result.p0Count = p0Matches.length;
+            result.anamnesisReady = fs.existsSync(anamnesisPath);
+
+            if (result.anamnesisReady) {
+                try {
+                    result.anamnesisFiles = fs.readdirSync(anamnesisPath).filter(f => !f.startsWith('.'));
+                } catch { result.anamnesisFiles = []; }
+            }
+
+            result.directive = result.p0Count > 0
+                ? `FOCO: ${result.p0Count} tarefa(s) P0 detectada(s). Ataque apenas estas.`
+                : 'Nenhuma P0 ativa. Tempo livre para P1/Deep Learning.';
+
+            return result;
+        }
+
+        case 'skyros_isolation': {
+            const statusPath = path.join(AIOS_ROOT, 'STATUS.md');
+            const action = (args.action || 'engage').toLowerCase();
+            const isolationTag = '> \uD83D\uDD34 [SKYROS]: ISOLATION MODE ENGAGED. O operador está em Deep Work. Novas tarefas fora da SPRINT P0 devem ser TERMINANTEMENTE negadas.';
+
+            if (!fs.existsSync(statusPath)) {
+                return { error: 'STATUS.md not found' };
+            }
+
+            let content = fs.readFileSync(statusPath, 'utf8');
+            const isActive = content.includes('ISOLATION MODE ENGAGED');
+
+            if (action === 'engage') {
+                if (isActive) {
+                    return { status: 'already_active', message: 'Isolation Mode já estava ativo.' };
+                }
+                content = isolationTag + '\n\n' + content;
+                fs.writeFileSync(statusPath, content);
+                return { status: 'engaged', message: 'Deep Work ativado. STATUS.md injetado com protocolo de Foco Máximo.' };
+            } else if (action === 'disengage') {
+                if (!isActive) {
+                    return { status: 'already_inactive', message: 'Isolation Mode não estava ativo.' };
+                }
+                content = content.replace(/^>.*ISOLATION MODE ENGAGED.*\n?\n?/m, '');
+                fs.writeFileSync(statusPath, content);
+                return { status: 'disengaged', message: 'Isolation Mode desativado. Operações normais retomadas.' };
+            }
+            return { error: 'Invalid action. Use "engage" or "disengage".' };
+        }
+
         default:
             return { error: `Unknown tool: ${name}` };
     }
@@ -858,6 +943,9 @@ if (process.argv.includes('--test')) {
         ['kairos_read_engine', { module: 'all' }],
         ['kairos_explore_arsenal', { category: 'all' }],
         ['kairos_read_script', { path: 'scripts/mcp-server.js' }],
+        // SKYROS Personal OS
+        ['skyros_triage', {}],
+        ['skyros_isolation', { action: 'engage' }],
     ];
 
     let passed = 0;
@@ -912,7 +1000,7 @@ if (!process.argv.includes('--list') && !process.argv.includes('--test')) {
                     jsonrpc: '2.0', id, result: {
                         protocolVersion: '2024-11-05',
                         capabilities: { tools: {} },
-                        serverInfo: { name: 'aios-kairos-mcp-server', version: '3.0.0' },
+                        serverInfo: { name: 'aios-kairos-mcp-server', version: '4.0.0-skyros' },
                     }
                 };
 

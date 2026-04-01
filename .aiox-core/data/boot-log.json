@@ -106,5 +106,19 @@
       "3_intelligence": 25929,
       "4_reflexion": 57
     }
+  },
+  {
+    "timestamp": "2026-03-31T17:15:36.350Z",
+    "bootTimeMs": 4661,
+    "mode": "quick",
+    "councilScore": null,
+    "councilGaps": null,
+    "phases": {
+      "0_identity": 7,
+      "0.5_mcp_sync": 1,
+      "1_consciousness": 7,
+      "1.5_jarvis": 4563,
+      "2_knowledge": 66
+    }
   }
 ]
