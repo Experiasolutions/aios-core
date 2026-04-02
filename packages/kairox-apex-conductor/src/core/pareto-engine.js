@@ -3,13 +3,16 @@
  * 
  * Implementação da lógica de Triagem Pareto³ conforme descrito no 
  * GABRIEL-ANAMNESIS-GENIALIDADE.md
+ * 
+ * Integrado ao SQLite para persistência automática.
  */
+
+import { addTask } from './database.js';
 
 // Estrutura de Ingestão de Tarefas
 export class ParetoEngine {
   constructor() {
-    // Inicializar conexão com o SQLite (a ser implementado)
-    this.dbStatus = "pending";
+    this.dbStatus = "ready";
   }
 
   /**
@@ -29,12 +32,13 @@ export class ParetoEngine {
     // Lógica core de priorização
     const rawScore = (impacto * vontade) / esforco;
     
-    // Normalização (opcional)
+    // Normalização
     return parseFloat(rawScore.toFixed(2));
   }
 
   /**
    * Decide se a tarefa deve ser cortada, executada ou delegada para a Skydra.
+   * Persiste automaticamente no SQLite.
    */
   triageTask(taskParams) {
     const score = this.calculateParetoScore(
@@ -56,13 +60,27 @@ export class ParetoEngine {
       action = "CUT_ELIMINATE";
     }
 
-    return {
-      taskId: crypto.randomUUID(),
+    const result = {
+      id: crypto.randomUUID(),
       title: taskParams.title,
+      description: taskParams.description || '',
+      impacto: taskParams.impacto,
+      vontade: taskParams.vontade,
+      esforco: taskParams.esforco,
       score: score,
       decision: action,
+      category: taskParams.category || 'geral',
       timestamp: Date.now()
     };
+
+    // Persistir no SQLite
+    try {
+      addTask(result);
+    } catch (err) {
+      console.warn('[CONDUCTOR] DB write failed, returning in-memory result:', err.message);
+    }
+
+    return result;
   }
 }
 
