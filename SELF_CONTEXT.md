@@ -1,8 +1,8 @@
 # KAIROS — SELF CONTEXT (Consciência Viva)
 
-> **Última atualização:** 2026-03-31T14:15:00-03:00
-> **Atualizado por:** NOESIS (sessão 7880c5d0 — Unificação P2P e SKYROS)
-> **Estado:** HIVEMIND ATIVA (Syncthing rodando entre PC e Notebook)
+> **Última atualização:** 2026-04-02T18:20:00-03:00
+> **Atualizado por:** NOESIS (sessão 50970a92 — Handoff Notebook→PC + Git Push)
+> **Estado:** PC PRINCIPAL ATIVO (Notebook devolvido. Claude Code CLI = IDE principal)
 
 ---
 
@@ -11,7 +11,9 @@
 - **Sistema:** KAIROS OS v3.1 (fork AIOX v5.0.0 by SynkraAI)
 - **Operador:** Gabriel Ferreira — Arquiteto-Comunicador, Voice of the Dragonborn
 - **Empresa:** Experia Solutions — Governança Digital Autônoma para comércio
-- **Base:** `C:\Users\GABS\Documents\My KAIROS`
+- **Base PC:** `C:\Users\GABS\Documents\My KAIROS`
+- **Base Notebook (devolvido):** `C:\Users\maymo\OneDrive\Documentos\MY KAIROS`
+- **IDE Principal:** Claude Code CLI (Antigravity = complemento)
 - **Core Engine:** AIOX v5.0.0 (fork SynkraAI/aiox-core)
 - **GitHub Principal:** [aios-core](https://github.com/Experiasolutions/aios-core)
 - **GitHub Clientes:** [experiaghostwarrior](https://github.com/Experiaghostwarrior) (bots Railway)
@@ -95,6 +97,10 @@
 
 | Data       | Decisão                                                           |
 | ---------- | ----------------------------------------------------------------- |
+| 2026-04-02 | **Claude Code CLI = IDE Principal:** Antigravity vira complemento visual |
+| 2026-04-02 | **Notebook devolvido:** PC é máquina única de desenvolvimento      |
+| 2026-04-02 | **SKYROS v1 + Apex Conductor pushados:** 2 repos atualizados no GitHub |
+| 2026-04-02 | **Handoff doc criado:** `docs/handoffs/HANDOFF-2026-04-02-notebook-to-pc.md` |
 | 2026-03-31 | **GitHub Libertado:** Squads, Docs e RPs agora rastreados na nuvem  |
 | 2026-03-31 | **SKYROS Inicializado:** Isolation Mode e Triage ativados          |
 | 2026-03-31 | **Hivemind P2P:** Syncthing configurado unindo 4 agentes e 2 PCs  |

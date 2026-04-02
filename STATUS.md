@@ -1,7 +1,7 @@
 # KAIROS — STATUS (Fila de Trabalho)
 
-> **Última atualização:** 2026-03-31T14:15:00-03:00
-> **Estado Operacional:** HIVEMIND P2P ATIVA (4 Agentes Sincronizados)
+> **Última atualização:** 2026-04-02T18:20:00-03:00
+> **Estado Operacional:** PC PRINCIPAL (Notebook devolvido — Claude Code CLI = IDE)
 
 ---
 
@@ -189,6 +189,11 @@
 
 | Data | O que |
 |---|---|
+| 2026-04-02 | **Git Push completo:** KAIROX (`b9f53b58`) + apex-conductor (`8797268`) |
+| 2026-04-02 | **SKYROS Dashboard v1 pushado:** Morning Brief, Night Check-in, Triage, Pareto |
+| 2026-04-02 | **Apex Conductor gamificado:** ParetoFilter, BossRoom, LootShop, Sanctuary |
+| 2026-04-02 | **Handoff Notebook→PC:** `docs/handoffs/HANDOFF-2026-04-02-notebook-to-pc.md` |
+| 2026-04-02 | **Claude Code analysis salva:** `docs/research/claude-code-analysis.md` |
 | 2026-03-31 | **Hivemind P2P Ativa** (Syncthing conectando PC e Notebook) |
 | 2026-03-31 | **SKYROS** (Isolation + Triage + Anamnesis) implantado |
 | 2026-03-31 | **SKYDRA Conectors** (RedHat vLLM + Supabase SQL) forjados |
