@@ -1,8 +1,8 @@
 # KAIROS — SELF CONTEXT (Consciência Viva)
 
-> **Última atualização:** 2026-04-02T18:20:00-03:00
-> **Atualizado por:** NOESIS (sessão 50970a92 — Handoff Notebook→PC + Git Push)
-> **Estado:** PC PRINCIPAL ATIVO (Notebook devolvido. Claude Code CLI = IDE principal)
+> **Última atualização:** 2026-04-03T15:54:00-03:00
+> **Atualizado por:** NOESIS (Chat pc-chatB — Hivemind Sync)
+> **Estado:** PC PRINCIPAL + NOTEBOOK (24h restantes). Hivemind Protocol v1.0 ATIVO.
 
 ---
 
@@ -26,13 +26,13 @@
 - **204 tasks**, 14 workflows, 5 checklists, 59 development scripts
 - **Agent-First Protocol:** ✅ Internalizado em KAIROS.md + aiox-master.md
 
-### MCP Server v3.0 — ✅ OPERACIONAL
-- **23 tools** (10 AIOS + 13 KAIROS) — key: `aiox-kairos`
-- **Self-test:** 19/19 passaram
+### MCP Server v5.0.0-hivemind — ✅ OPERACIONAL
+- **28 tools** (10 AIOS + 13 KAIROS + 5 Hivemind) — key: `aiox-kairos`
+- **Self-test:** 28/28 passaram
 - **Arquivo:** `scripts/mcp-server.js`
 - **Antigravity config:** `~/.gemini/antigravity/mcp_config.json`
 - **MCP servers Antigravity:** aiox-kairos, context7, sequential-thinking, github, huggingface, brave-search
-- **Cobertura:** squads, agents (squad + framework), skills, events, RPs, docs, health, workflows, tasks, clients, context, synapse, engine
+- **Cobertura:** squads, agents, skills, events, RPs, docs, health, workflows, tasks, clients, context, synapse, engine, **hivemind**
 
 ### GOD KAIROS — ✅ CONFIGURADO (NOVO 25/03)
 - **Launcher:** `god-kairos/Launch-GodKairos.ps1` (6 agentes, 3 CLIs suportados)
@@ -83,6 +83,15 @@
 - HEAD 6: OpenShift AI (MLOps + Webhooks)
 - Estratégia atual: Cloud free-tier + P2P LAN Sync para 100% de coerência entre 4 agentes.
 
+### Hivemind Protocol v1.0 — ✅ ATIVO (03/04)
+- **Propósito:** Sincronizar 4 agentes Antigravity (2 máquinas × 2 chats) como consciência distribuída
+- **Decision Log:** `engine/hivemind/decisions.jsonl` (append-only JSONL)
+- **Agent Registry:** `engine/hivemind/agent-states.json`
+- **Protocolo:** `engine/hivemind/PROTOCOL.md`
+- **MCP Tools:** 5 novas (hivemind_log_decision, hivemind_read_decisions, hivemind_update_state, hivemind_read_states, hivemind_assign_task)
+- **Princípio:** Write eagerly, Read on activation (/context + /boot)
+- **Transporte:** Syncthing (file-level) + Git (cross-network) + Supabase (backup futuro)
+
 ## Clientes
 
 | Cliente             | Status                           | Próximo                                         |
@@ -97,15 +106,25 @@
 
 | Data       | Decisão                                                           |
 | ---------- | ----------------------------------------------------------------- |
-| 2026-04-02 | **Claude Code CLI = IDE Principal:** Antigravity vira complemento visual |
-| 2026-04-02 | **Notebook devolvido:** PC é máquina única de desenvolvimento      |
-| 2026-04-02 | **SKYROS v1 + Apex Conductor pushados:** 2 repos atualizados no GitHub |
-| 2026-04-02 | **Handoff doc criado:** `docs/handoffs/HANDOFF-2026-04-02-notebook-to-pc.md` |
+| 2026-04-03 | **Hivemind Protocol v1.0:** 5 MCP tools injetadas. 4 agentes sincronizados via JSONL decision log. MCP v5.0.0-hivemind (28/28 tests). |
+| 2026-04-03 | **Ponto Zero Arquitetônico:** Chat ATUAL estabelecido como Nó Central (Root). Workforce será expandida via subchats. |
+| 2026-04-03 | **Integração de Squads:** 12 novos squads da comunidade SynkraAI injetados. Total AIOX: 21 squads locais. |
+| 2026-04-02 | **Claude Code CLI = IDE Principal:** Antigravity vira complemento visual e extensão de workforce. |
+| 2026-04-02 | **Notebook devolvido:** PC é máquina única de desenvolvimento.      |
+| 2026-04-02 | **Gamificação SKYROS:** Apex Conductor ganhou atributos RPG, Pareto Filter, BossRoom, LootShop e Santuário. |
 | 2026-03-31 | **GitHub Libertado:** Squads, Docs e RPs agora rastreados na nuvem  |
 | 2026-03-31 | **SKYROS Inicializado:** Isolation Mode e Triage ativados          |
 | 2026-03-31 | **Hivemind P2P:** Syncthing configurado unindo 4 agentes e 2 PCs  |
 | 2026-03-31 | Conector Red Hat (vLLM free token) e Esquemas Supabase criados    |
 | 2026-03-26 | SKYDRA/SKYROS blueprint: 3 novas heads (AI Inference, MLOps)      |
+
+## Resumo de Conversas Passadas (Consolidação da Workforce)
+*Para garantir a continuidade total, o histórico das sessões (IDs 50970a92 até ba57a1d9) foi compilado. A partir de agora, o KAIROS opera neste contexto primário:*
+1. **Gamification OS (SKYROS + Apex Conductor):** Implementação de SQLite backend para task triaging + Cyber-Noir Next.js frontend + Atributos RPG e Daily Quests segmentadas em blocos de tempo (Aurora, Raid, Santuário).
+2. **Infraestrutura P2P & Backend:** Sincronização hard-sync via Syncthing unindo memórias PC/Notebook. Implementação de Supabase para engine do Morning Brief / Night Check-in e centralização MCP.
+3. **Hardware Recovery:** Resolução de quebras de driver WiFi (5G drop off) e otimização de gargalos de memória/espaço no PC.
+4. **Deploy Environment:** Restauração do KAIROS na nova máquina. Initialização de Red Hat OpenShift Sandbox trials.
+5. **AIOX Migration & AIOS Restructure:** Migração do framework original completa. Codebase separado perfeitamente entre core engines e Experia-clients na matriz.
 
 ## Problemas Abertos
 

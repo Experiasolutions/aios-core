@@ -1,0 +1,43 @@
+{
+  "agents": {
+    "pc-chatA-root": {
+      "id": "ac48d935",
+      "machine": "PC-GABS",
+      "label": "Root Node (Orchestrator)",
+      "last_active": "2026-04-03T13:18:00-03:00",
+      "focus": "Consolidação Mestre + Squads SynkraAI",
+      "status": "active"
+    },
+    "pc-chatB": {
+      "id": "50970a92",
+      "machine": "PC-GABS",
+      "label": "Handoff & Research Node",
+      "last_active": "2026-04-03T14:51:00-03:00",
+      "focus": "Hivemind Sync + Skortex Architecture + CLI Free-Tier",
+      "status": "active"
+    },
+    "note-chatC": {
+      "id": "unknown-c",
+      "machine": "NOTEBOOK-MAYMO",
+      "label": "Sub-node C",
+      "last_active": "unknown",
+      "focus": "unknown",
+      "status": "idle"
+    },
+    "note-chatD": {
+      "id": "unknown-d",
+      "machine": "NOTEBOOK-MAYMO",
+      "label": "Sub-node D",
+      "last_active": "unknown",
+      "focus": "unknown",
+      "status": "idle"
+    },
+    "test-agent": {
+      "last_active": "2026-04-03T18:51:30.953Z",
+      "focus": "self-test",
+      "status": "active"
+    }
+  },
+  "protocol_version": "1.0",
+  "last_sync": "2026-04-03T18:51:30.953Z"
+}

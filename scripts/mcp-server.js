@@ -350,6 +350,77 @@ function scanTools() {
         },
     });
 
+    // ============================================================
+    // HIVEMIND PROTOCOL v1.0 — Multi-Agent Sync Tools
+    // ============================================================
+
+    tools.push({
+        name: 'hivemind_log_decision',
+        description: 'Log a decision/artifact/event to the Hivemind shared memory (engine/hivemind/decisions.jsonl). All agents read this on /context activation.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                agent: { type: 'string', description: 'Agent ID logging the decision (e.g., pc-chatA-root, pc-chatB, note-chatC)' },
+                type: { type: 'string', description: 'Entry type: decision, artifact, task, or event' },
+                summary: { type: 'string', description: 'Short summary of the decision' },
+                context: { type: 'string', description: 'Why this decision was made' },
+                affects: { type: 'array', items: { type: 'string' }, description: 'Areas affected (e.g., architecture, infra, tooling, all-agents)' },
+            },
+            required: ['agent', 'type', 'summary'],
+        },
+    });
+
+    tools.push({
+        name: 'hivemind_read_decisions',
+        description: 'Read the latest N decisions from the Hivemind shared memory. Use on session start to sync with other agents.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                limit: { type: 'number', description: 'Number of most recent decisions to read (default: 20)' },
+                filter_agent: { type: 'string', description: 'Optional: filter by agent ID' },
+                filter_type: { type: 'string', description: 'Optional: filter by type (decision, artifact, task, event)' },
+            },
+            required: [],
+        },
+    });
+
+    tools.push({
+        name: 'hivemind_update_state',
+        description: 'Update this agent\'s state in the Hivemind registry (engine/hivemind/agent-states.json)',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                agent_id: { type: 'string', description: 'Agent ID (e.g., pc-chatA-root, pc-chatB, note-chatC, note-chatD)' },
+                focus: { type: 'string', description: 'Current focus/task of this agent' },
+                status: { type: 'string', description: 'Status: active, idle, or done' },
+                chat_id: { type: 'string', description: 'Optional: Antigravity chat/conversation ID' },
+                machine: { type: 'string', description: 'Optional: Machine identifier' },
+            },
+            required: ['agent_id'],
+        },
+    });
+
+    tools.push({
+        name: 'hivemind_read_states',
+        description: 'Read the state of all Hivemind agents from the registry',
+        inputSchema: { type: 'object', properties: {}, required: [] },
+    });
+
+    tools.push({
+        name: 'hivemind_assign_task',
+        description: 'Assign a task to a specific agent via the Hivemind decision log',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                from_agent: { type: 'string', description: 'Agent assigning the task' },
+                to_agent: { type: 'string', description: 'Target agent to receive the task' },
+                task: { type: 'string', description: 'Task description' },
+                priority: { type: 'string', description: 'Priority: P0, P1, P2 (default: P1)' },
+            },
+            required: ['from_agent', 'to_agent', 'task'],
+        },
+    });
+
     return tools;
 }
 
@@ -893,6 +964,103 @@ function handleTool(name, args) {
             return { error: 'Invalid action. Use "engage" or "disengage".' };
         }
 
+        // ============================================================
+        // HIVEMIND PROTOCOL v1.0 — Handlers
+        // ============================================================
+
+        case 'hivemind_log_decision': {
+            const HIVEMIND_DIR = path.join(AIOS_ROOT, 'engine', 'hivemind');
+            const logPath = path.join(HIVEMIND_DIR, 'decisions.jsonl');
+            try {
+                if (!fs.existsSync(HIVEMIND_DIR)) fs.mkdirSync(HIVEMIND_DIR, { recursive: true });
+                const entry = {
+                    ts: new Date().toISOString(),
+                    agent: args.agent,
+                    type: args.type || 'decision',
+                    summary: args.summary,
+                    context: args.context || '',
+                    affects: args.affects || [],
+                };
+                fs.appendFileSync(logPath, JSON.stringify(entry) + '\n');
+                return { logged: true, entry };
+            } catch (e) {
+                return { error: `Failed to log decision: ${e.message}` };
+            }
+        }
+
+        case 'hivemind_read_decisions': {
+            const HIVEMIND_DIR = path.join(AIOS_ROOT, 'engine', 'hivemind');
+            const logPath = path.join(HIVEMIND_DIR, 'decisions.jsonl');
+            try {
+                if (!fs.existsSync(logPath)) return { decisions: [], count: 0 };
+                const lines = fs.readFileSync(logPath, 'utf8').trim().split('\n').filter(l => l.trim());
+                let decisions = lines.map(l => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
+                if (args.filter_agent) decisions = decisions.filter(d => d.agent === args.filter_agent);
+                if (args.filter_type) decisions = decisions.filter(d => d.type === args.filter_type);
+                const limit = args.limit || 20;
+                decisions = decisions.slice(-limit);
+                return { decisions, count: decisions.length, total_in_log: lines.length };
+            } catch (e) {
+                return { error: `Failed to read decisions: ${e.message}` };
+            }
+        }
+
+        case 'hivemind_update_state': {
+            const HIVEMIND_DIR = path.join(AIOS_ROOT, 'engine', 'hivemind');
+            const statePath = path.join(HIVEMIND_DIR, 'agent-states.json');
+            try {
+                if (!fs.existsSync(HIVEMIND_DIR)) fs.mkdirSync(HIVEMIND_DIR, { recursive: true });
+                let states = { agents: {}, protocol_version: '1.0', last_sync: new Date().toISOString() };
+                if (fs.existsSync(statePath)) {
+                    states = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+                }
+                if (!states.agents[args.agent_id]) states.agents[args.agent_id] = {};
+                const agent = states.agents[args.agent_id];
+                agent.last_active = new Date().toISOString();
+                if (args.focus) agent.focus = args.focus;
+                if (args.status) agent.status = args.status;
+                if (args.chat_id) agent.id = args.chat_id;
+                if (args.machine) agent.machine = args.machine;
+                states.last_sync = new Date().toISOString();
+                fs.writeFileSync(statePath, JSON.stringify(states, null, 2));
+                return { updated: true, agent_id: args.agent_id, state: agent };
+            } catch (e) {
+                return { error: `Failed to update state: ${e.message}` };
+            }
+        }
+
+        case 'hivemind_read_states': {
+            const HIVEMIND_DIR = path.join(AIOS_ROOT, 'engine', 'hivemind');
+            const statePath = path.join(HIVEMIND_DIR, 'agent-states.json');
+            try {
+                if (!fs.existsSync(statePath)) return { agents: {}, count: 0 };
+                const states = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+                return { ...states, count: Object.keys(states.agents || {}).length };
+            } catch (e) {
+                return { error: `Failed to read states: ${e.message}` };
+            }
+        }
+
+        case 'hivemind_assign_task': {
+            const HIVEMIND_DIR = path.join(AIOS_ROOT, 'engine', 'hivemind');
+            const logPath = path.join(HIVEMIND_DIR, 'decisions.jsonl');
+            try {
+                if (!fs.existsSync(HIVEMIND_DIR)) fs.mkdirSync(HIVEMIND_DIR, { recursive: true });
+                const entry = {
+                    ts: new Date().toISOString(),
+                    agent: args.from_agent,
+                    type: 'task',
+                    summary: `[ASSIGN → ${args.to_agent}] ${args.task}`,
+                    context: `Priority: ${args.priority || 'P1'}`,
+                    affects: [args.to_agent],
+                };
+                fs.appendFileSync(logPath, JSON.stringify(entry) + '\n');
+                return { assigned: true, from: args.from_agent, to: args.to_agent, task: args.task, priority: args.priority || 'P1' };
+            } catch (e) {
+                return { error: `Failed to assign task: ${e.message}` };
+            }
+        }
+
         default:
             return { error: `Unknown tool: ${name}` };
     }
@@ -946,6 +1114,12 @@ if (process.argv.includes('--test')) {
         // SKYROS Personal OS
         ['skyros_triage', {}],
         ['skyros_isolation', { action: 'engage' }],
+        // Hivemind Protocol v1.0
+        ['hivemind_log_decision', { agent: 'test', type: 'event', summary: 'MCP self-test' }],
+        ['hivemind_read_decisions', { limit: 5 }],
+        ['hivemind_update_state', { agent_id: 'test-agent', focus: 'self-test', status: 'active' }],
+        ['hivemind_read_states', {}],
+        ['hivemind_assign_task', { from_agent: 'test', to_agent: 'test-target', task: 'test task' }],
     ];
 
     let passed = 0;
@@ -1000,7 +1174,7 @@ if (!process.argv.includes('--list') && !process.argv.includes('--test')) {
                     jsonrpc: '2.0', id, result: {
                         protocolVersion: '2024-11-05',
                         capabilities: { tools: {} },
-                        serverInfo: { name: 'aios-kairos-mcp-server', version: '4.0.0-skyros' },
+                        serverInfo: { name: 'aios-kairos-mcp-server', version: '5.0.0-hivemind' },
                     }
                 };
 
@@ -1024,6 +1198,6 @@ if (!process.argv.includes('--list') && !process.argv.includes('--test')) {
     }
 
     // Log to stderr (MCP standard)
-    process.stderr.write('🔧 AIOS + KAIROS MCP Server v3.0.0 started (stdio mode)\n');
-    process.stderr.write(`   ${tools.length} tools exposed (10 AIOS + 13 KAIROS)\n`);
+    process.stderr.write('🔧 AIOS + KAIROS MCP Server v5.0.0-hivemind started (stdio mode)\n');
+    process.stderr.write(`   ${tools.length} tools exposed (10 AIOS + 13 KAIROS + 5 Hivemind)\n`);
 }
