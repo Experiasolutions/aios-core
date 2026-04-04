@@ -2,19 +2,34 @@
 
 # KAIROS — STATUS (Fila de Trabalho)
 
-> **Última atualização:** 2026-04-03T15:54:00-03:00
-> **Estado Operacional:** PC PRINCIPAL + NOTEBOOK (24h restantes) — Hivemind v1.0 ATIVO
-> **Sessão Root:** ac48d935 — Nó Central de Controle (subchats spawnam daqui)
+> **Última atualização:** 2026-04-04T00:15:00-03:00 (Fim de Expediente)
+> **Estado Operacional:** NOTEBOOK-MAYMO — Hivemind v1.0 ATIVO
+> **Agente:** KAIROS (Skortex Node B)
 
 ---
 
-## 🔴 BLOQUEADO
+## 🎯 PRÓXIMO FOCO P0 (04/04)
 
-- Porto Alemão: instância `close` — precisa novo QR scan do Rogério
+1. **Definição Skortex/RedHat:**
+   - Escolher nome do projeto de inferência privada (vLLM KAIROS).
+   - Validar limites de hardware do trial OpenShift localmente ou via `oc` CLI.
+2. **Deploy do Motor Próprio:**
+   - Construir e aplicar os manifestos YAML em `infra/redhat/*`.
+   - Inicializar Pod vLLM com Qwen Coder ou equivalente usando tokens free da RedHat.
+3. **Migração:**
+   - Redirecionar URL do SkortexInferenceFactory para bater unicamente na Cloud Privada.
 
 ---
 
-## 🟡 EM PROGRESSO
+## 🔴 BLOQUEIOS ATUAIS
+
+- **LLM Exausto:** Groq Key 401 e Gemini Rate Limit.
+- Porto Alemão: instância `close` — precisa novo QR scan do Rogério.
+   
+---
+
+## 💬 HANDOFF (03/04 -> 04/04)
+- **Sessão:** Acabamos de gerar o `implementation_plan.md` listando as etapas para migrar a KAIROS para um motor próprio via RedHat OpenShift/AI Inference Trial. Sessão IDLE.
 
 ### MCP Server v5.0.0-hivemind (Local JS) — ✅ OPERACIONAL
 - [x] v1.0→v2.0→v3.0→v4.0→v5.0: 28 tools, 28/28 tests
@@ -22,13 +37,13 @@
 - [x] **Hivemind Protocol v1.0:** 5 tools de sincronia multi-agente
 - [x] Antigravity reiniciado e operacional nas 2 instâncias (PC e Note)
 
-### MCP Servers Antigravity — ✅ CONFIGURADOS (4 servers)
-- [x] aios-kairos (23 tools KAIROS+SKYROS)
+### MCP Servers Antigravity — ✅ CONFIGURADOS (5 servers)
+- [x] aiox-kairos (28 tools KAIROS+SKYROS+Hivemind)
 - [x] sequential-thinking (raciocínio step-by-step)
 - [x] github (ops de repositório — token ativo)
-- [x] brave-search (web search — placeholder key)
-- [x] context7 removido (poluía STDOUT)
-- [x] huggingface removido (OAuth bloqueava JSON-RPC)
+- [x] context7 (library docs lookup)
+- [x] huggingface (models/papers/spaces search)
+- [x] brave-search REMOVIDO (placeholder key causava crash MCP) — usar search_web nativo
 
 ### CLIs — ✅ INSTALADOS
 - [x] Railway CLI (`npm i -g @railway/cli`)
@@ -194,7 +209,8 @@
 | Data | O que |
 |---|---|
 | 2026-04-03 | **Hivemind Protocol v1.0:** 5 MCP tools, decision log JSONL, agent registry JSON. MCP v5.0.0-hivemind (28/28 tests). |
-| 2026-04-03 | **Consolidação Mestre:** Todas as sessões (50970a92→ba57a1d9) compiladas em SELF_CONTEXT. Chat ac48d935 = Root Node. |
+| 2026-04-03 | **Consolidação Hivemind Opus (pc-chatB):** 4 agentes auditados, divergências resolvidas, plan A + código B fundidos. |
+| 2026-04-04 | **Skortex CLI v1.0** (`9b0c59ad`): InferenceFactory (Qwen→Groq→Gemini), Pre-Flight Engine (auto-contexto), Autopilot Save. TS: 0 erros. |
 | 2026-04-03 | **12 Squads SynkraAI integrados:** apex, brand, curator, deep-research, dispatch, education, kaizen, kaizen-v2, legal-analyst, seo, squad-creator, squad-creator-pro |
 | 2026-04-02 | **Git Push completo:** KAIROX (`b9f53b58`) + apex-conductor (`8797268`) |
 | 2026-04-02 | **SKYROS Dashboard v1 pushado:** Morning Brief, Night Check-in, Triage, Pareto |
