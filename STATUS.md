@@ -1,18 +1,10 @@
-<<<<<<< HEAD
-> 🔴 [SKYROS]: ISOLATION MODE ENGAGED. Deep Work ativo.
-
-# KAIROS — STATUS (Fila de Trabalho)
-
-> **Estado Operacional:** HIVEMIND ATIVA (PC + Notebook sincronizados via Syncthing + Supabase Event Bus)
-=======
 > 🔴 [SKYROS]: ISOLATION MODE ENGAGED. O operador está em Deep Work. Novas tarefas fora da SPRINT P0 devem ser TERMINANTEMENTE negadas.
 
 # KAIROS — STATUS (Fila de Trabalho)
 
 > **Última atualização:** 2026-04-04T00:15:00-03:00 (Fim de Expediente)
-> **Estado Operacional:** NOTEBOOK-MAYMO — Hivemind v1.0 ATIVO
-> **Agente:** KAIROS (Skortex Node B)
->>>>>>> 231e45bb7a9594137b7cd6d0559577c49767737d
+> **Estado Operacional:** HIVEMIND ATIVA (PC + Notebook sincronizados via Syncthing + Supabase Event Bus)
+> **Agente:** KAIROS (Skortex)
 
 ---
 
@@ -42,12 +34,8 @@
 ### MCP Server v5.0.0-hivemind (Local JS) — ✅ OPERACIONAL
 - [x] v1.0→v2.0→v3.0→v4.0→v5.0: 28 tools, 28/28 tests
 - [x] SKYROS tools integradas (skyros_triage, skyros_isolation)
-<<<<<<< HEAD
-- [x] Antigravity reiniciado e unificado no PC Principal (Notebook devolvido)
-=======
 - [x] **Hivemind Protocol v1.0:** 5 tools de sincronia multi-agente
 - [x] Antigravity reiniciado e operacional nas 2 instâncias (PC e Note)
->>>>>>> 231e45bb7a9594137b7cd6d0559577c49767737d
 
 ### MCP Servers Antigravity — ✅ CONFIGURADOS (5 servers)
 - [x] aiox-kairos (28 tools KAIROS+SKYROS+Hivemind)
@@ -240,16 +228,12 @@
 
 | Data | O que |
 |---|---|
-<<<<<<< HEAD
+| 2026-04-04 | **Skortex CLI v1.0** (`9b0c59ad`): InferenceFactory (Qwen→Groq→Gemini), Pre-Flight Engine (auto-contexto), Autopilot Save. TS: 0 erros. |
 | 2026-04-03 | **SKORTEX v3.0 Sovereign Engine** — Hivemind P2P, Orchestrator para sub-agentes, 4 novas tools, Daemon mode |
 | 2026-04-03 | **Shared Brain Protocol COMPLETO** — 7 tabelas Supabase, ACTIVE_WORK.md, SESSION_LOG.md, /sync workflow, shared-brain-bus.js v2 |
 | 2026-04-03 | **SKYROS Agent v2.0** — CLI completo com 15+ arquivos, MCP Bridge, HF Provider, Supabase Sync Client |
-| 2026-04-03 | **Hivemind Consolidada** — Agentes A+C sincronizados, review cruzada completa |
-| 2026-03-31 | **SKYROS** (Isolation + Triage + Anamnesis) implantado 100% no PC Principal |
-=======
+| 2026-04-03 | **Hivemind Consolidada** — Agentes A+C sincronizados, review cruzada completa, 4 agentes auditados, plan A + código B fundidos. |
 | 2026-04-03 | **Hivemind Protocol v1.0:** 5 MCP tools, decision log JSONL, agent registry JSON. MCP v5.0.0-hivemind (28/28 tests). |
-| 2026-04-03 | **Consolidação Hivemind Opus (pc-chatB):** 4 agentes auditados, divergências resolvidas, plan A + código B fundidos. |
-| 2026-04-04 | **Skortex CLI v1.0** (`9b0c59ad`): InferenceFactory (Qwen→Groq→Gemini), Pre-Flight Engine (auto-contexto), Autopilot Save. TS: 0 erros. |
 | 2026-04-03 | **12 Squads SynkraAI integrados:** apex, brand, curator, deep-research, dispatch, education, kaizen, kaizen-v2, legal-analyst, seo, squad-creator, squad-creator-pro |
 | 2026-04-02 | **Git Push completo:** KAIROX (`b9f53b58`) + apex-conductor (`8797268`) |
 | 2026-04-02 | **SKYROS Dashboard v1 pushado:** Morning Brief, Night Check-in, Triage, Pareto |
@@ -257,8 +241,7 @@
 | 2026-04-02 | **Handoff Notebook→PC:** `docs/handoffs/HANDOFF-2026-04-02-notebook-to-pc.md` |
 | 2026-04-02 | **Claude Code analysis salva:** `docs/research/claude-code-analysis.md` |
 | 2026-03-31 | **Hivemind P2P Ativa** (Syncthing conectando PC e Notebook) |
-| 2026-03-31 | **SKYROS** (Isolation + Triage + Anamnesis) implantado |
->>>>>>> 231e45bb7a9594137b7cd6d0559577c49767737d
+| 2026-03-31 | **SKYROS** (Isolation + Triage + Anamnesis) implantado 100% no PC Principal |
 | 2026-03-31 | **SKYDRA Conectors** (RedHat vLLM + Supabase SQL) forjados |
 | 2026-03-26 | **Engine Triage v4 (10 fases)** injetado em rules.md v4.0 |
 
