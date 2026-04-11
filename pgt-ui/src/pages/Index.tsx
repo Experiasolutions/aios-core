@@ -7,18 +7,30 @@ import { BossRoom } from "@/components/bosses/BossRoom";
 import { LootShop } from "@/components/loot/LootShop";
 import { Sanctuary } from "@/components/sanctuary/Sanctuary";
 import { AgendaCalendar } from "@/components/agenda/AgendaCalendar";
+import { SkillsPage } from "@/components/skills/SkillsPage";
+import { QuestlinesPage } from "@/components/questlines/QuestlinesPage";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
+  const [expandedQuestline, setExpandedQuestline] = useState<string | null>(null);
+
+  const handleQuestlineClick = (questlineId: string) => {
+    setExpandedQuestline(questlineId);
+    setActiveSection("questlines");
+  };
 
   const renderSection = () => {
     switch (activeSection) {
       case "dashboard":
-        return <Dashboard />;
+        return <Dashboard onQuestlineClick={handleQuestlineClick} />;
       case "agenda":
         return <AgendaCalendar />;
       case "quests":
         return <DailyQuestTracker />;
+      case "questlines":
+        return <QuestlinesPage expandedId={expandedQuestline} />;
+      case "skills":
+        return <SkillsPage />;
       case "bosses":
         return <BossRoom />;
       case "loot":
@@ -26,7 +38,7 @@ const Index = () => {
       case "sanctuary":
         return <Sanctuary />;
       default:
-        return <Dashboard />;
+        return <Dashboard onQuestlineClick={handleQuestlineClick} />;
     }
   };
 

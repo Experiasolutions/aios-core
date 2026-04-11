@@ -1,11 +1,13 @@
-import { useState } from "react";
-import { Sun, Sunset, Moon, CheckCircle2, Circle, Flame, Zap } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Sun, Flame, Zap, BookOpen, Moon, CheckCircle2, Circle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useSharedBrain } from "../../hooks/useSharedBrain";
 
 interface Quest {
   id: string;
   title: string;
-  xpReward: number;
+  rewardType: 'XP' | 'GEMS' | 'SEEDS';
+  rewardAmount: number;
   completed: boolean;
 }
 
@@ -13,57 +15,86 @@ interface QuestBlock {
   id: string;
   name: string;
   time: string;
-  icon: typeof Sun;
+  icon: any;
   quests: Quest[];
 }
 
-const initialBlocks: QuestBlock[] = [
+const gabrielOSBlocks: QuestBlock[] = [
   {
-    id: "morning",
-    name: "Ritual do Despertar",
-    time: "06:00 - 12:00",
+    id: "aurora",
+    name: "AURORA ☀️",
+    time: "06:30 - 09:00",
     icon: Sun,
     quests: [
-      { id: "m1", title: "Holy Triad (Meditação + Journaling + Exercício)", xpReward: 150, completed: false },
-      { id: "m2", title: "Hydration Check (2L água)", xpReward: 50, completed: false },
-      { id: "m3", title: "Raid de Prospecção (8 contatos)", xpReward: 200, completed: false },
+      { id: "a1", title: "Acordar ≤ 07:30", rewardType: 'XP', rewardAmount: 10, completed: false },
+      { id: "a2", title: "Movimento Corporal (≥15min)", rewardType: 'XP', rewardAmount: 10, completed: false },
+      { id: "a3", title: "Silêncio/Intenção (5min)", rewardType: 'XP', rewardAmount: 10, completed: false },
+      { id: "a4", title: "1 Tarefa Doméstica", rewardType: 'XP', rewardAmount: 10, completed: false },
     ],
   },
   {
-    id: "afternoon",
-    name: "Arena de Conversão",
-    time: "13:00 - 18:00",
-    icon: Sunset,
+    id: "raid1",
+    name: "RAID I ⚔️ (Genialidade)",
+    time: "09:00 - 12:30",
+    icon: Flame,
     quests: [
-      { id: "a1", title: "Call de Fechamento (1x)", xpReward: 300, completed: false },
-      { id: "a2", title: "Follow-up de Leads (5x)", xpReward: 100, completed: false },
-      { id: "a3", title: "Laboratório Hot IA (1h)", xpReward: 150, completed: false },
+      { id: "r1-1", title: "A Única Coisa (Pareto 0.8%)", rewardType: 'GEMS', rewardAmount: 50, completed: false },
+      { id: "r1-2", title: "Deep Work Isolado (≥90min)", rewardType: 'GEMS', rewardAmount: 30, completed: false },
     ],
   },
   {
-    id: "night",
-    name: "Santuário",
-    time: "20:00 - 23:30",
+    id: "raid2",
+    name: "RAID II ⚡ (Excelência)",
+    time: "13:30 - 17:30",
+    icon: Zap,
+    quests: [
+      { id: "r2-1", title: "Entregável Concreto do Dia", rewardType: 'GEMS', rewardAmount: 25, completed: false },
+      { id: "r2-2", title: "Prospecção / Vendas (1x)", rewardType: 'GEMS', rewardAmount: 20, completed: false },
+      { id: "r2-3", title: "Batch Impacto (30min folow-ups)", rewardType: 'XP', rewardAmount: 15, completed: false },
+    ],
+  },
+  {
+    id: "academia",
+    name: "ACADEMIA 📚",
+    time: "17:30 - 19:00",
+    icon: BookOpen,
+    quests: [
+      { id: "ac1", title: "Estudo Focado (IA/Inglês/Cloud)", rewardType: 'SEEDS', rewardAmount: 30, completed: false },
+    ],
+  },
+  {
+    id: "santuario",
+    name: "SANTUÁRIO 🌙",
+    time: "20:30 - 22:30",
     icon: Moon,
     quests: [
-      { id: "n1", title: "Biblioteca da Sabedoria (2h estudo)", xpReward: 200, completed: false },
-      { id: "n2", title: "Journaling de Gratidão", xpReward: 100, completed: false },
-      { id: "n3", title: "Reset de Energia (Meditação noturna)", xpReward: 100, completed: false },
+      { id: "s1", title: "Journaling (≥5min)", rewardType: 'XP', rewardAmount: 15, completed: false },
+      { id: "s2", title: "Planejamento de Amanhã", rewardType: 'XP', rewardAmount: 10, completed: false },
     ],
   },
 ];
 
 export function DailyQuestTracker() {
-  const [blocks, setBlocks] = useState<QuestBlock[]>(initialBlocks);
-  const [streak, setStreak] = useState(0);
+  const { completeQuest, xp, focoGems, streak } = useSharedBrain();
+  const [blocks, setBlocks] = useState<QuestBlock[]>(gabrielOSBlocks);
+  const [localStreak, setLocalStreak] = useState(streak);
 
-  const toggleQuest = (blockId: string, questId: string) => {
-    setBlocks(prev => prev.map(block => {
+  useEffect(() => {
+    // Sync streak when loaded from brain
+    if (streak > 0) setLocalStreak(streak);
+  }, [streak]);
+
+  const toggleQuest = async (blockId: string, questId: string) => {
+    // Find quest
+    let targetQuest: Quest | null = null;
+    
+    const newBlocks = blocks.map(block => {
       if (block.id === blockId) {
         return {
           ...block,
           quests: block.quests.map(quest => {
             if (quest.id === questId) {
+              targetQuest = quest;
               return { ...quest, completed: !quest.completed };
             }
             return quest;
@@ -71,7 +102,14 @@ export function DailyQuestTracker() {
         };
       }
       return block;
-    }));
+    });
+
+    setBlocks(newBlocks);
+
+    // Persist if checking (not unchecking)
+    if (targetQuest !== null && !targetQuest!.completed) {
+      await completeQuest(questId, targetQuest!.rewardType, targetQuest!.rewardAmount);
+    }
   };
 
   const totalQuests = blocks.reduce((acc, block) => acc + block.quests.length, 0);
@@ -84,18 +122,20 @@ export function DailyQuestTracker() {
       {/* Header Stats */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="font-serif text-2xl text-secondary glow-gold">Daily Quests</h2>
-          <p className="text-muted-foreground">Complete todas as missões para maximizar XP</p>
+          <h2 className="font-serif text-2xl text-secondary glow-gold">Rotina KAIROS</h2>
+          <p className="text-muted-foreground">Sistema RPG (Pareto Cubed v3.0)</p>
         </div>
         
         <div className="flex items-center gap-6">
-          {/* Streak */}
           <div className="flex items-center gap-2 glass-card px-4 py-2">
             <Flame className="w-5 h-5 text-orange-500" />
-            <span className="font-mono text-lg">{streak} dias</span>
+            <span className="font-mono text-lg">{localStreak} dias</span>
+          </div>
+
+          <div className="flex items-center gap-2 glass-card px-4 py-2 border-green-500/30">
+            <span className="font-bold text-green-400">{xp} XP</span>
           </div>
           
-          {/* Daily Progress */}
           <div className="w-48">
             <div className="flex justify-between text-xs mb-1">
               <span className="text-muted-foreground">Progresso Diário</span>
@@ -109,7 +149,7 @@ export function DailyQuestTracker() {
       </div>
 
       {/* Quest Blocks */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
         {blocks.map((block, blockIndex) => (
           <div 
             key={block.id} 
@@ -146,14 +186,14 @@ export function DailyQuestTracker() {
                     )}
                     <div className="flex-1">
                       <p className={cn(
-                        "text-sm",
+                        "text-sm font-medium",
                         quest.completed && "line-through text-muted-foreground"
                       )}>
                         {quest.title}
                       </p>
                       <div className="flex items-center gap-1 mt-1">
                         <Zap className="w-3 h-3 text-purple-glow" />
-                        <span className="text-xs text-purple-glow">+{quest.xpReward} XP</span>
+                        <span className="text-xs text-purple-glow">+{quest.rewardAmount} {quest.rewardType}</span>
                       </div>
                     </div>
                   </div>

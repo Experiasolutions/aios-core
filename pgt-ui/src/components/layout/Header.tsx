@@ -1,30 +1,20 @@
-import { Zap, Coins, TrendingUp, Clock, Cpu } from "lucide-react";
+import { Zap, Coins, Clock, Cpu, Flame, Shield } from "lucide-react";
 import { useState, useEffect } from "react";
-
-interface PlayerStats {
-  level: number;
-  xp: number;
-  xpToNext: number;
-  gold: number;
-  vibration: number;
-}
+import { useSharedBrain } from "../../hooks/useSharedBrain";
 
 export function Header() {
   const [time, setTime] = useState(new Date());
-  const [stats] = useState<PlayerStats>({
-    level: 7,
-    xp: 2450,
-    xpToNext: 3000,
-    gold: 8750,
-    vibration: 85,
-  });
+  const { xp, focoGems, streak, realCoins } = useSharedBrain();
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
-  const xpPercentage = (stats.xp / stats.xpToNext) * 100;
+  const level = Math.floor(xp / 100);
+  const xpInLevel = xp % 100;
+  const xpToNext = 100;
+  const xpPercentage = (xpInLevel / xpToNext) * 100;
 
   return (
     <header className="h-20 border-b border-border bg-card/80 backdrop-blur-xl px-8 flex items-center justify-between relative overflow-hidden">
@@ -41,50 +31,61 @@ export function Header() {
         </div>
         <div>
           <h1 className="font-display text-2xl text-primary glow-cyan tracking-wider uppercase">
-            AI ORCHESTRATOR
+            GABRIEL OS
           </h1>
           <p className="text-sm text-muted-foreground font-mono">
-            <span className="text-neon-magenta">◆</span> NEURAL_COMMAND.v2.0
+            <span className="text-red-400">◆</span> T1-2026 · MODO DE GUERRA
           </p>
         </div>
       </div>
 
       {/* Stats Bar */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-4">
         {/* Level & XP */}
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-lg border-2 border-primary flex items-center justify-center bg-background relative cyber-frame">
-            <span className="font-display text-xl text-primary">{stats.level}</span>
+            <span className="font-display text-xl text-primary">{level}</span>
           </div>
           <div className="w-36">
             <div className="flex justify-between text-xs mb-1 font-mono">
               <span className="text-muted-foreground">XP.LEVEL</span>
-              <span className="text-neon-purple">{stats.xp.toLocaleString()}/{stats.xpToNext.toLocaleString()}</span>
+              <span className="text-neon-purple">{xpInLevel}/{xpToNext}</span>
             </div>
             <div className="progress-bar">
-              <div className="progress-fill-purple" style={{ width: `${xpPercentage}%` }} />
+              <div
+                className="progress-fill-purple"
+                style={{ width: `${Math.max(xpPercentage, 2)}%` }}
+              />
             </div>
           </div>
         </div>
 
-        {/* Gold */}
+        {/* Real Coins (R$ faturado) */}
         <div className="flex items-center gap-2 glass-card-gold px-4 py-2">
           <Coins className="w-5 h-5 text-gold" />
-          <span className="font-mono text-lg text-gold">R$ {stats.gold.toLocaleString()}</span>
+          <span className="font-mono text-lg text-gold">
+            R$ {(realCoins ?? 0).toLocaleString("pt-BR")}
+          </span>
         </div>
 
-        {/* Vibration */}
+        {/* Foco GEMS */}
         <div className="flex items-center gap-2 glass-card px-4 py-2">
-          <Zap className="w-5 h-5 text-neon-green" />
-          <span className="font-mono text-lg text-neon-green">{stats.vibration}%</span>
-          <TrendingUp className="w-4 h-4 text-neon-green" />
+          <Zap className="w-5 h-5 text-neon-purple" />
+          <span className="font-mono text-lg text-neon-purple">{focoGems} GEMS</span>
+        </div>
+
+        {/* Streak */}
+        <div className="flex items-center gap-2 glass-card px-4 py-2">
+          <Flame className="w-5 h-5 text-neon-orange" />
+          <span className="font-mono text-lg text-neon-orange">{streak}d</span>
+          <Shield className="w-3 h-3 text-muted-foreground" title="Streak Shield disponível" />
         </div>
 
         {/* Clock */}
         <div className="flex items-center gap-2 glass-card px-4 py-2">
           <Clock className="w-5 h-5 text-primary" />
           <span className="font-mono text-xl text-primary glow-cyan">
-            {time.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+            {time.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
           </span>
         </div>
       </div>

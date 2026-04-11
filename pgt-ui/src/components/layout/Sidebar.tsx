@@ -1,11 +1,12 @@
 import { 
   LayoutDashboard, 
   Swords, 
-  CalendarDays, 
   ShoppingBag, 
   Sparkles,
   Hexagon,
-  Calendar
+  Calendar,
+  TrendingUp,
+  Scroll,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,9 +18,11 @@ interface SidebarProps {
 const navItems = [
   { id: "dashboard", icon: LayoutDashboard, label: "Command Center" },
   { id: "agenda", icon: Calendar, label: "Agenda" },
-  { id: "quests", icon: CalendarDays, label: "Questlines" },
+  { id: "quests", icon: Scroll, label: "Daily Quests" },
+  { id: "questlines", icon: LayoutDashboard, label: "Questlines" },
+  { id: "skills", icon: TrendingUp, label: "Skill Tree" },
   { id: "bosses", icon: Swords, label: "Boss Room" },
-  { id: "loot", icon: ShoppingBag, label: "Loot Shop" },
+  { id: "loot", icon: ShoppingBag, label: "Arsenal" },
   { id: "sanctuary", icon: Sparkles, label: "Santuário" },
 ];
 
@@ -64,7 +67,7 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
 
       {/* Version Badge */}
       <div className="text-xs text-primary/60 font-mono">
-        v2.0
+        v4.1
       </div>
     </aside>
   );

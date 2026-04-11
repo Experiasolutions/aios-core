@@ -54,7 +54,7 @@ const defaultRoutine: ScheduleEvent[] = [
   { id: "1", title: "Ritual do Despertar (Holy Triad)", startTime: "06:00", endTime: "07:30", category: "ritual", xpReward: 50 },
   { id: "2", title: "Raid de Prospecção", startTime: "08:00", endTime: "12:00", category: "raid", xpReward: 200 },
   { id: "3", title: "Arena de Conversão", startTime: "13:00", endTime: "17:00", category: "arena", xpReward: 300 },
-  { id: "4", title: "Laboratório Hot IA", startTime: "17:00", endTime: "18:00", category: "lab", xpReward: 100 },
+  { id: "4", title: "Academia — Expansão Zona 🔵 (IA, Inglês, Hipnose)", startTime: "17:30", endTime: "19:00", category: "study", xpReward: 80 },
   { id: "5", title: "Biblioteca da Sabedoria", startTime: "20:00", endTime: "22:00", category: "study", xpReward: 150 },
   { id: "6", title: "Santuário (Journaling)", startTime: "22:00", endTime: "23:30", category: "sanctuary", xpReward: 100 },
 ];

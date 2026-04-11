@@ -1,96 +1,213 @@
-import { Lock, Unlock, ShoppingBag, Gem, Laptop, Home, Dumbbell, Sparkles } from "lucide-react";
+import { Lock, Unlock, ShoppingBag, Gem, Laptop, Home, Dumbbell, Sparkles, Smartphone, Shirt, Coffee, Wrench } from "lucide-react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface LootItem {
   id: string;
   name: string;
   description: string;
+  currency: "REAL" | "GEMS" | "SEEDS" | "XP";
   cost: number;
-  requiredLevel: number;
   requirement: string;
-  category: "upgrade" | "reward" | "style";
+  tier: 1 | 2 | 3 | 4 | 5 | 6;
+  category: "work" | "castle" | "personal" | "dopamine" | "utility";
   icon: typeof Gem;
   unlocked: boolean;
 }
 
 const lootItems: LootItem[] = [
+  // UTILITY — Custo zero, só disposição
   {
-    id: "l1",
-    name: "Cadeira Gamer Pro",
-    description: "Upgrade de conforto para longas sessões",
-    cost: 1500,
-    requiredLevel: 8,
-    requirement: "1ª Recorrência Ativa",
-    category: "upgrade",
-    icon: Laptop,
+    id: "u1",
+    name: "Consertar Registro do Chuveiro",
+    description: "Fechar água da casa, trocar registro, parar o vazamento",
+    currency: "XP",
+    cost: 200,
+    requirement: "5 dias de streak + dedicar 1 tarde",
+    tier: 1,
+    category: "utility",
+    icon: Wrench,
     unlocked: false,
   },
   {
-    id: "l2",
-    name: "Tattoo Nova",
-    description: "Marca de vitória permanente",
-    cost: 800,
-    requiredLevel: 10,
-    requirement: "R$ 10k em dívidas quitadas",
-    category: "style",
-    icon: Sparkles,
-    unlocked: false,
-  },
-  {
-    id: "l3",
-    name: "Reforma Cozinha",
-    description: "Upgrade do Castelo - Fase 1",
-    cost: 3000,
-    requiredLevel: 12,
-    requirement: "Boss SERASA derrotado",
-    category: "upgrade",
+    id: "u2",
+    name: "Desmontar Guarda-Roupa Amarelo",
+    description: "Jogar fora, instalar o marrom do escritório. Ambiente melhorado.",
+    currency: "XP",
+    cost: 150,
+    requirement: "1 dia livre + disposição",
+    tier: 1,
+    category: "utility",
     icon: Home,
     unlocked: false,
   },
   {
-    id: "l4",
-    name: "Academia MMA",
-    description: "Buff de Força e Disciplina",
-    cost: 250,
-    requiredLevel: 15,
-    requirement: "Faturamento R$ 15k/mês",
-    category: "reward",
-    icon: Dumbbell,
+    id: "u3",
+    name: "Doar Roupas da Mãe",
+    description: "Sacolas para brechós locais. Processo de cura e espaço.",
+    currency: "XP",
+    cost: 100,
+    requirement: "Qualquer tarde livre",
+    tier: 1,
+    category: "utility",
+    icon: Shirt,
+    unlocked: true, // Pode fazer agora
+  },
+  // PERSONAL TIER 1 — Primeiros R$
+  {
+    id: "p1",
+    name: "Skincare & Higiene Upgrade",
+    description: "Produtos de cuidado pessoal básicos",
+    currency: "REAL",
+    cost: 200,
+    requirement: "1ª semana de missões completas",
+    tier: 1,
+    category: "personal",
+    icon: Sparkles,
     unlocked: false,
   },
   {
-    id: "l5",
-    name: "Notebook High-End",
-    description: "Arma lendária de produtividade",
-    cost: 8000,
-    requiredLevel: 20,
-    requirement: "3 Recorrências Ativas",
-    category: "upgrade",
+    id: "p2",
+    name: "Roupa Nova",
+    description: "Peças básicas — camisas, calça, bermuda que presta",
+    currency: "REAL",
+    cost: 300,
+    requirement: "2 semanas consecutivas de missões",
+    tier: 2,
+    category: "personal",
+    icon: Shirt,
+    unlocked: false,
+  },
+  // WORK TIER
+  {
+    id: "w1",
+    name: "Cartão Físico (Banco sem dívida)",
+    description: "Solicitar cartão no banco onde não tem dívidas. Mobilidade financeira.",
+    currency: "XP",
+    cost: 50,
+    requirement: "Fazer 1 visita presencial ao banco",
+    tier: 1,
+    category: "work",
+    icon: Gem,
+    unlocked: true, // Pode fazer agora!
+  },
+  {
+    id: "w2",
+    name: "Cadeira de Trabalho Decente",
+    description: "Upgrade de ergonomia para as longas sessões de RAID",
+    currency: "REAL",
+    cost: 800,
+    requirement: "1ª recorrência ativa (R$500+ MRR)",
+    tier: 2,
+    category: "work",
     icon: Laptop,
     unlocked: false,
   },
   {
-    id: "l6",
-    name: "Premium Quality Herbs",
-    description: "Recompensa de final de semana",
-    cost: 150,
-    requiredLevel: 7,
-    requirement: "100% Daily Quests na semana",
-    category: "reward",
-    icon: Gem,
-    unlocked: true,
+    id: "w3",
+    name: "Internet Móvel (Celular)",
+    description: "Chip com dados. Mobilidade = mais oportunidades.",
+    currency: "REAL",
+    cost: 50,
+    requirement: "Celular consertado + R$50 disponível",
+    tier: 1,
+    category: "work",
+    icon: Smartphone,
+    unlocked: false,
+  },
+  {
+    id: "w4",
+    name: "Notebook High-End",
+    description: "Arma lendária. Fim das limitações de hardware.",
+    currency: "REAL",
+    cost: 5000,
+    requirement: "3 recorrências ativas (R$3K+ MRR)",
+    tier: 4,
+    category: "work",
+    icon: Laptop,
+    unlocked: false,
+  },
+  // DOPAMINE — Recompensas de prazer (custo alto em GEMS para evitar acesso fácil)
+  {
+    id: "d1",
+    name: "Dopamina Controlada (Fim de semana)",
+    description: "Prêmio por 100% das missões semanais. Merece.",
+    currency: "GEMS",
+    cost: 500,
+    requirement: "100% das daily quests nos 7 dias da semana",
+    tier: 3,
+    category: "dopamine",
+    icon: Coffee,
+    unlocked: false,
+  },
+  {
+    id: "d2",
+    name: "Academia MMA",
+    description: "Buff de Força + Disciplina + saúde. Investimento de longo prazo.",
+    currency: "REAL",
+    cost: 250,
+    requirement: "Faturamento >R$2K/mês por 2 meses",
+    tier: 4,
+    category: "personal",
+    icon: Dumbbell,
+    unlocked: false,
+  },
+  // CASTLE
+  {
+    id: "c1",
+    name: "Dedetização Profissional",
+    description: "Acabar com as baratas da cozinha de uma vez por todas",
+    currency: "REAL",
+    cost: 300,
+    requirement: "R$300 disponível + agendar o serviço",
+    tier: 2,
+    category: "castle",
+    icon: Home,
+    unlocked: false,
+  },
+  {
+    id: "c2",
+    name: "Reforma da Cozinha (Fase 1)",
+    description: "Azulejo + bancada. O Castelo começa a ser reconstruído.",
+    currency: "REAL",
+    cost: 3000,
+    requirement: "Boss SERASA derrotado + R$3K reservado",
+    tier: 4,
+    category: "castle",
+    icon: Home,
+    unlocked: false,
   },
 ];
 
-const categoryColors = {
-  upgrade: "from-blue-500/20 to-blue-600/5",
-  reward: "from-green-500/20 to-green-600/5",
-  style: "from-purple-500/20 to-purple-600/5",
+const categoryColors: Record<string, string> = {
+  work: "from-blue-500/20 to-blue-600/5",
+  castle: "from-orange-500/20 to-orange-600/5",
+  personal: "from-purple-500/20 to-purple-600/5",
+  dopamine: "from-red-500/10 to-red-600/5",
+  utility: "from-green-500/20 to-green-600/5",
 };
 
+const categoryLabels: Record<string, string> = {
+  work: "⚙️ Trabalho",
+  castle: "🏠 Castelo",
+  personal: "🧍 Pessoal",
+  dopamine: "🔥 Dopamina",
+  utility: "🔧 Utilidade",
+};
+
+const currencyColors: Record<string, string> = {
+  REAL: "text-green-400",
+  GEMS: "text-blue-400",
+  SEEDS: "text-yellow-400",
+  XP: "text-purple-400",
+};
+
+type FilterCat = "all" | "work" | "castle" | "personal" | "dopamine" | "utility";
+
 export function LootShop() {
-  const currentGold = 8750;
-  const currentLevel = 7;
+  const [filter, setFilter] = useState<FilterCat>("all");
+
+  const filtered = lootItems.filter(i => filter === "all" || i.category === filter);
 
   return (
     <div className="space-y-6">
@@ -99,109 +216,107 @@ export function LootShop() {
         <div>
           <h2 className="font-serif text-2xl text-secondary glow-gold flex items-center gap-3">
             <ShoppingBag className="w-8 h-8" />
-            Loot Shop
+            Arsenal de Recompensas
           </h2>
-          <p className="text-muted-foreground">Invista seu Gold em upgrades e recompensas</p>
-        </div>
-
-        <div className="glass-card-gold px-6 py-3">
-          <p className="text-xs text-muted-foreground">Saldo Disponível</p>
-          <p className="font-mono text-2xl text-secondary">R$ {currentGold.toLocaleString()}</p>
+          <p className="text-muted-foreground text-sm mt-1">Cada item custa realização — não dinheiro fácil</p>
         </div>
       </div>
 
-      {/* Categories */}
-      <div className="flex gap-4">
-        {["Todos", "Upgrades", "Recompensas", "Estilo"].map((cat) => (
+      {/* Currency Legend */}
+      <div className="flex gap-3 flex-wrap">
+        {Object.entries(currencyColors).map(([cur, color]) => (
+          <div key={cur} className="flex items-center gap-1 text-xs font-mono">
+            <Gem className={cn("w-3 h-3", color)} />
+            <span className={color}>{cur}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Category Filter */}
+      <div className="flex gap-2 flex-wrap">
+        {(["all", "work", "castle", "personal", "dopamine", "utility"] as FilterCat[]).map(f => (
           <button
-            key={cat}
-            className="px-4 py-2 rounded-lg bg-muted/50 hover:bg-muted text-sm transition-colors"
+            key={f}
+            onClick={() => setFilter(f)}
+            className={cn(
+              "px-3 py-1 rounded-lg text-xs font-mono transition-all",
+              filter === f
+                ? "bg-primary/20 border border-primary/50 text-primary"
+                : "bg-muted/50 hover:bg-muted text-muted-foreground"
+            )}
           >
-            {cat}
+            {f === "all" ? "Todos" : categoryLabels[f]}
           </button>
         ))}
       </div>
 
       {/* Items Grid */}
-      <div className="grid grid-cols-3 gap-6">
-        {lootItems.map((item, index) => {
-          const canAfford = currentGold >= item.cost;
-          const meetsLevel = currentLevel >= item.requiredLevel;
-          const available = item.unlocked && canAfford && meetsLevel;
+      <div className="grid grid-cols-3 gap-4">
+        {filtered.map((item, index) => {
+          const Icon = item.icon;
+          const curColor = currencyColors[item.currency];
 
           return (
             <div
               key={item.id}
               className={cn(
                 "relative overflow-hidden rounded-xl border transition-all duration-300 animate-fade-in",
-                available 
-                  ? "loot-item-unlocked cursor-pointer hover:scale-[1.02]" 
+                item.unlocked
+                  ? "loot-item-unlocked cursor-pointer hover:scale-[1.02]"
                   : "loot-item-locked"
               )}
-              style={{ animationDelay: `${index * 100}ms` }}
+              style={{ animationDelay: `${index * 60}ms` }}
             >
               {/* Background Gradient */}
-              <div className={cn(
-                "absolute inset-0 bg-gradient-to-br",
-                categoryColors[item.category]
-              )} />
+              <div className={cn("absolute inset-0 bg-gradient-to-br", categoryColors[item.category])} />
 
-              <div className="relative p-6">
+              <div className="relative p-5">
                 {/* Lock Status */}
-                <div className="absolute top-4 right-4">
-                  {available ? (
-                    <Unlock className="w-5 h-5 text-secondary" />
+                <div className="absolute top-3 right-3">
+                  {item.unlocked ? (
+                    <Unlock className="w-4 h-4 text-secondary" />
                   ) : (
-                    <Lock className="w-5 h-5 text-muted-foreground" />
+                    <Lock className="w-4 h-4 text-muted-foreground" />
                   )}
                 </div>
 
                 {/* Icon */}
-                <div className="w-16 h-16 rounded-2xl bg-card/80 flex items-center justify-center mb-4 mx-auto">
-                  <item.icon className={cn(
-                    "w-8 h-8",
-                    available ? "text-secondary" : "text-muted-foreground"
-                  )} />
+                <div className="w-12 h-12 rounded-xl bg-card/80 flex items-center justify-center mb-3 mx-auto">
+                  <Icon className={cn("w-6 h-6", item.unlocked ? "text-secondary" : "text-muted-foreground")} />
+                </div>
+
+                {/* Tier Badge */}
+                <div className="flex justify-center mb-2">
+                  <span className="text-xs font-mono bg-muted/50 px-2 py-0.5 rounded">TIER {item.tier}</span>
                 </div>
 
                 {/* Info */}
                 <h3 className={cn(
-                  "font-serif text-lg text-center mb-1",
-                  available ? "text-foreground" : "text-muted-foreground"
+                  "font-serif text-sm text-center mb-1 leading-tight",
+                  item.unlocked ? "text-foreground" : "text-muted-foreground"
                 )}>
                   {item.name}
                 </h3>
-                <p className="text-sm text-muted-foreground text-center mb-4">
+                <p className="text-xs text-muted-foreground text-center mb-3 leading-relaxed">
                   {item.description}
                 </p>
 
-                {/* Price */}
-                <div className="text-center mb-4">
-                  <span className={cn(
-                    "font-mono text-xl",
-                    canAfford ? "text-secondary" : "text-destructive"
-                  )}>
-                    R$ {item.cost.toLocaleString()}
+                {/* Cost */}
+                <div className="text-center mb-3">
+                  <span className={cn("font-mono text-lg font-bold", curColor)}>
+                    {item.cost.toLocaleString("pt-BR")} {item.currency}
                   </span>
                 </div>
 
-                {/* Requirements */}
-                <div className="space-y-2 text-xs">
-                  <div className="flex items-center justify-between px-3 py-2 bg-muted/50 rounded-lg">
-                    <span className="text-muted-foreground">Nível</span>
-                    <span className={meetsLevel ? "text-green-400" : "text-destructive"}>
-                      {item.requiredLevel}
-                    </span>
-                  </div>
-                  <div className="px-3 py-2 bg-muted/50 rounded-lg">
-                    <span className="text-muted-foreground">{item.requirement}</span>
-                  </div>
+                {/* Requirement */}
+                <div className="px-2 py-2 bg-muted/50 rounded-lg">
+                  <p className="text-xs text-muted-foreground text-center leading-relaxed">{item.requirement}</p>
                 </div>
 
-                {/* Buy Button */}
-                {available && (
-                  <button className="w-full mt-4 py-3 rounded-lg bg-secondary text-secondary-foreground font-medium hover:bg-secondary/90 transition-colors">
-                    Adquirir
+                {/* Unlock button */}
+                {item.unlocked && (
+                  <button className="w-full mt-3 py-2 rounded-lg bg-secondary text-secondary-foreground font-medium text-sm hover:bg-secondary/90 transition-colors">
+                    Resgatar
                   </button>
                 )}
               </div>

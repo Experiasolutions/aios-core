@@ -1,84 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
-
 @layer base {
   :root {
-    /* Cyberpunk Dark Core */
-    --background: 220 20% 4%;
-    --foreground: 180 100% 95%;
+    /* ═══════════════════════════════════════════════════════════
+       CYBER-ARCANO HYBRID THEME — Gabriel OS v4.2
+       Base: Cyberpunk dark navy | Accent: Arcane Gold (Boot.dev DNA)
+       Mantém glassmorphism + adiciona stone depth + serif majesty
+    ═══════════════════════════════════════════════════════════ */
 
-    --card: 220 25% 6%;
-    --card-foreground: 180 100% 95%;
+    /* Core Dark (cyberpunk base, mais quente que antes) */
+    --background: 222 25% 5%;
+    --foreground: 40 20% 92%;
 
-    --popover: 220 25% 5%;
-    --popover-foreground: 180 100% 95%;
+    --card: 222 28% 7%;
+    --card-foreground: 40 20% 92%;
 
-    /* Neon Cyan - Primary Actions */
-    --primary: 180 100% 50%;
-    --primary-foreground: 220 20% 4%;
+    --popover: 222 28% 6%;
+    --popover-foreground: 40 20% 92%;
 
-    /* Neon Magenta - Accent */
+    /* ★ PRIMARY: ARCANE GOLD (era cyan, agora gold) */
+    --primary: 43 77% 55%;
+    --primary-foreground: 222 25% 5%;
+
+    /* SECONDARY: Neon Magenta (mantido — contraste dramático) */
     --secondary: 320 100% 60%;
-    --secondary-foreground: 220 20% 4%;
+    --secondary-foreground: 222 20% 4%;
 
-    /* Dark Charcoal */
-    --muted: 220 20% 12%;
-    --muted-foreground: 220 15% 55%;
+    /* Dark Stone */
+    --muted: 222 20% 11%;
+    --muted-foreground: 222 12% 52%;
 
-    /* Electric Purple Accent */
-    --accent: 270 100% 65%;
-    --accent-foreground: 180 100% 95%;
+    /* Arcane Purple (XP, magia, KAIROS) */
+    --accent: 270 80% 62%;
+    --accent-foreground: 40 20% 92%;
 
-    /* Red Alert */
-    --destructive: 0 85% 55%;
-    --destructive-foreground: 180 100% 95%;
+    /* Blood Red (Bosses, Perigo) */
+    --destructive: 0 80% 52%;
+    --destructive-foreground: 40 20% 92%;
 
-    --border: 220 30% 18%;
-    --input: 220 25% 12%;
-    --ring: 180 100% 50%;
+    --border: 222 28% 16%;
+    --input: 222 25% 11%;
+    --ring: 43 77% 55%;
 
     --radius: 0.5rem;
 
-    /* Cyberpunk Custom Tokens */
-    --neon-cyan: 180 100% 50%;
-    --neon-magenta: 320 100% 60%;
-    --neon-purple: 270 100% 65%;
-    --neon-green: 150 100% 50%;
-    --neon-orange: 25 100% 55%;
-    --neon-yellow: 55 100% 55%;
-    
-    --cyber-dark: 220 25% 4%;
-    --cyber-darker: 220 30% 2%;
-    --cyber-grid: 220 30% 10%;
-    
-    --energy-high: 150 100% 50%;
-    --energy-medium: 55 100% 55%;
-    --energy-low: 0 85% 55%;
-    
-    --xp-bar: 270 100% 60%;
-    --hp-bar: 0 85% 55%;
-    --gold-cyber: 45 100% 55%;
-    
-    --glass-bg: 220 25% 8%;
-    --glass-border: 220 30% 20%;
+    /* ═══ CYBER-ARCANO TOKEN SYSTEM ═══ */
 
-    /* Sidebar - Cyber Command */
-    --sidebar-background: 220 30% 3%;
-    --sidebar-foreground: 180 40% 70%;
-    --sidebar-primary: 180 100% 50%;
-    --sidebar-primary-foreground: 220 20% 4%;
-    --sidebar-accent: 270 100% 50%;
-    --sidebar-accent-foreground: 180 100% 95%;
-    --sidebar-border: 220 30% 12%;
-    --sidebar-ring: 180 100% 50%;
-  }
+    /* The gold universe */
+    --arcane-gold: 43 77% 55%;        /* #c9a84c — primary gold */
+    --arcane-amber: 38 68% 35%;       /* #8b6914 — deep gold */
+    --arcane-light: 48 90% 70%;       /* #f0d060 — bright gold glow */
 
-  .dark {
-    --background: 220 20% 4%;
-    --foreground: 180 100% 95%;
+    /* The arcane purple/cyan universe (KAIROS DNA) */
+    --neon-cyan: 186 90% 48%;         /* softer cyan, not pure neon */
+    --neon-purple: 270 80% 62%;       /* arcane purple */
+    --neon-magenta: 320 100% 60%;     /* kept from cyberpunk */
+
+    /* Nature colors */
+    --neon-green: 152 70% 42%;        /* forest green (not neon lime) */
+    --neon-orange: 25 95% 52%;        /* ember orange */
+    --blood-red: 0 80% 52%;           /* boss blood */
+
+    /* Stone surfaces */
+    --stone-dark: 222 28% 7%;
+    --stone-mid: 222 25% 10%;
+    --stone-border: 222 28% 18%;
+
+    /* System */
+    --xp-bar: 43 77% 55%;             /* gold XP (era purple) */
+    --hp-bar: 0 80% 52%;
+    --gold-cyber: 43 77% 55%;
+    --glass-bg: 222 28% 8%;
+    --glass-border: 222 30% 18%;
+
+    /* Sidebar */
+    --sidebar-background: 222 32% 4%;
+    --sidebar-foreground: 40 15% 65%;
+    --sidebar-primary: 43 77% 55%;
+    --sidebar-primary-foreground: 222 20% 4%;
+    --sidebar-accent: 270 80% 62%;
+    --sidebar-accent-foreground: 40 20% 92%;
+    --sidebar-border: 222 30% 10%;
+    --sidebar-ring: 43 77% 55%;
   }
 }
 
@@ -89,72 +96,103 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Rajdhani', sans-serif;
-    background-image: 
-      linear-gradient(rgba(0, 255, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 50px 50px;
+    font-family: 'Inter', sans-serif;
+    /* Arcane grid: mais sutil, warm gold instead of cyan */
+    background-image:
+      linear-gradient(hsl(43 77% 55% / 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(43 77% 55% / 0.015) 1px, transparent 1px);
+    background-size: 48px 48px;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  /* Display titles: Cinzel (fantasy serif — Blizzard energy) */
+  h1, h2, h3 {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.06em;
+  }
+
+  /* Sub-titles: Orbitron mantido para elementos HUD/tech */
+  h4, h5, h6 {
     font-family: 'Orbitron', sans-serif;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
   }
 
   .font-mono {
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'JetBrains Mono', 'Share Tech Mono', monospace;
+  }
+
+  .font-display {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-hud {
+    font-family: 'Orbitron', sans-serif;
   }
 }
 
 @layer components {
-  /* Cyber Glass Card */
+  /* ═══ CARD SYSTEM — Cyber-Arcano Glass ═══ */
+
+  /* Base: glassmorphism mantido, mas com glow gold */
   .glass-card {
     @apply bg-card/80 backdrop-blur-xl border rounded-lg relative overflow-hidden;
-    border-color: hsl(var(--neon-cyan) / 0.2);
-    box-shadow: 
-      0 0 20px hsl(var(--neon-cyan) / 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border-color: hsl(var(--arcane-gold) / 0.18);
+    box-shadow:
+      0 0 20px hsl(var(--arcane-gold) / 0.07),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.3);
   }
 
   .glass-card::before {
     content: '';
     @apply absolute inset-0 pointer-events-none;
-    background: linear-gradient(135deg, hsl(var(--neon-cyan) / 0.05) 0%, transparent 50%);
+    background: linear-gradient(135deg, hsl(var(--arcane-gold) / 0.04) 0%, transparent 60%);
   }
 
+  /* Stone texture overlay — Boot.dev DNA */
+  .glass-card::after {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.5;
+  }
+
+  /* Gold accent card */
   .glass-card-gold {
     @apply glass-card;
-    border-color: hsl(var(--gold-cyber) / 0.4);
-    box-shadow: 
-      0 0 30px hsl(var(--gold-cyber) / 0.15),
+    border-color: hsl(var(--arcane-gold) / 0.45);
+    box-shadow:
+      0 0 30px hsl(var(--arcane-gold) / 0.15),
+      0 0 60px hsl(var(--arcane-gold) / 0.06),
       inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   .glass-card-gold::before {
-    background: linear-gradient(135deg, hsl(var(--gold-cyber) / 0.1) 0%, transparent 50%);
+    background: linear-gradient(135deg, hsl(var(--arcane-gold) / 0.12) 0%, transparent 60%);
   }
 
+  /* Arcane purple card (KAIROS) */
   .glass-card-purple {
     @apply glass-card;
     border-color: hsl(var(--neon-purple) / 0.4);
-    box-shadow: 
-      0 0 30px hsl(var(--neon-purple) / 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    box-shadow:
+      0 0 30px hsl(var(--neon-purple) / 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
   .glass-card-purple::before {
-    background: linear-gradient(135deg, hsl(var(--neon-purple) / 0.1) 0%, transparent 50%);
+    background: linear-gradient(135deg, hsl(var(--neon-purple) / 0.08) 0%, transparent 60%);
   }
 
   .glass-card-magenta {
     @apply glass-card;
     border-color: hsl(var(--neon-magenta) / 0.4);
-    box-shadow: 
-      0 0 30px hsl(var(--neon-magenta) / 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    box-shadow:
+      0 0 30px hsl(var(--neon-magenta) / 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
-  /* Cyber Frame */
+  /* ═══ ARCANE FRAME (substitui cyber-frame — mais ornamental) ═══ */
   .cyber-frame {
     @apply relative;
   }
@@ -162,8 +200,8 @@
   .cyber-frame::before,
   .cyber-frame::after {
     content: '';
-    @apply absolute w-4 h-4 border-2;
-    border-color: hsl(var(--neon-cyan));
+    @apply absolute w-3 h-3 border-2;
+    border-color: hsl(var(--arcane-gold));
   }
 
   .cyber-frame::before {
@@ -174,83 +212,72 @@
     @apply bottom-0 right-0 border-l-0 border-t-0;
   }
 
-  /* Progress Bars */
+  /* ═══ PROGRESS BARS — Gold System ═══ */
   .progress-bar {
     @apply h-2 rounded-full overflow-hidden bg-muted relative;
-  }
-
-  .progress-bar::before {
-    content: '';
-    @apply absolute inset-0;
-    background: repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 4px,
-      hsl(var(--background) / 0.3) 4px,
-      hsl(var(--background) / 0.3) 6px
-    );
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
   }
 
   .progress-fill-cyan {
-    @apply h-full rounded-full transition-all duration-500 relative;
-    background: linear-gradient(90deg, hsl(var(--neon-cyan) / 0.6), hsl(var(--neon-cyan)));
-    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.7);
+    @apply h-full rounded-full transition-all duration-700 relative;
+    background: linear-gradient(90deg, hsl(var(--arcane-gold) / 0.7), hsl(var(--arcane-gold)));
+    box-shadow: 0 0 12px hsl(var(--arcane-gold) / 0.6);
   }
 
   .progress-fill-purple {
-    @apply h-full rounded-full transition-all duration-500;
-    background: linear-gradient(90deg, hsl(var(--neon-purple) / 0.6), hsl(var(--neon-purple)));
-    box-shadow: 0 0 20px hsl(var(--neon-purple) / 0.7);
+    @apply h-full rounded-full transition-all duration-700;
+    background: linear-gradient(90deg, hsl(var(--neon-purple) / 0.7), hsl(var(--neon-purple)));
+    box-shadow: 0 0 12px hsl(var(--neon-purple) / 0.6);
   }
 
   .progress-fill-gold {
-    @apply h-full rounded-full transition-all duration-500;
-    background: linear-gradient(90deg, hsl(var(--gold-cyber) / 0.6), hsl(var(--gold-cyber)));
-    box-shadow: 0 0 20px hsl(var(--gold-cyber) / 0.7);
+    @apply h-full rounded-full transition-all duration-700;
+    background: linear-gradient(90deg, hsl(var(--arcane-amber) / 0.8), hsl(var(--arcane-gold)));
+    box-shadow: 0 0 14px hsl(var(--arcane-gold) / 0.7);
   }
 
   .progress-fill-hp {
-    @apply h-full rounded-full transition-all duration-500;
-    background: linear-gradient(90deg, hsl(var(--hp-bar) / 0.6), hsl(var(--hp-bar)));
-    box-shadow: 0 0 15px hsl(var(--hp-bar) / 0.7);
+    @apply h-full rounded-full transition-all duration-700;
+    background: linear-gradient(90deg, hsl(var(--blood-red) / 0.7), hsl(var(--blood-red)));
+    box-shadow: 0 0 12px hsl(var(--blood-red) / 0.6);
   }
 
   .progress-fill-energy {
-    @apply h-full rounded-full transition-all duration-500;
-    background: linear-gradient(90deg, hsl(var(--energy-high) / 0.6), hsl(var(--energy-high)));
-    box-shadow: 0 0 15px hsl(var(--energy-high) / 0.7);
+    @apply h-full rounded-full transition-all duration-700;
+    background: linear-gradient(90deg, hsl(var(--neon-green) / 0.7), hsl(var(--neon-green)));
+    box-shadow: 0 0 12px hsl(var(--neon-green) / 0.6);
   }
 
-  /* Neon Glow Effects */
+  /* ═══ GLOW EFFECTS — Arcane system ═══ */
   .glow-cyan {
-    text-shadow: 
-      0 0 10px hsl(var(--neon-cyan)),
-      0 0 20px hsl(var(--neon-cyan) / 0.8),
-      0 0 40px hsl(var(--neon-cyan) / 0.5);
-  }
-
-  .glow-magenta {
-    text-shadow: 
-      0 0 10px hsl(var(--neon-magenta)),
-      0 0 20px hsl(var(--neon-magenta) / 0.8),
-      0 0 40px hsl(var(--neon-magenta) / 0.5);
-  }
-
-  .glow-purple {
-    text-shadow: 
-      0 0 10px hsl(var(--neon-purple)),
-      0 0 20px hsl(var(--neon-purple) / 0.8),
-      0 0 40px hsl(var(--neon-purple) / 0.5);
+    text-shadow:
+      0 0 8px hsl(var(--arcane-gold)),
+      0 0 20px hsl(var(--arcane-gold) / 0.7),
+      0 0 40px hsl(var(--arcane-gold) / 0.4);
   }
 
   .glow-gold {
-    text-shadow: 
-      0 0 10px hsl(var(--gold-cyber)),
-      0 0 20px hsl(var(--gold-cyber) / 0.8),
-      0 0 40px hsl(var(--gold-cyber) / 0.5);
+    text-shadow:
+      0 0 8px hsl(var(--arcane-gold)),
+      0 0 20px hsl(var(--arcane-gold) / 0.7),
+      0 0 40px hsl(var(--arcane-gold) / 0.4);
   }
 
-  /* Icon Buttons - Cyber Style */
+  .glow-magenta {
+    text-shadow:
+      0 0 8px hsl(var(--neon-magenta)),
+      0 0 20px hsl(var(--neon-magenta) / 0.7),
+      0 0 40px hsl(var(--neon-magenta) / 0.4);
+  }
+
+  .glow-purple {
+    text-shadow:
+      0 0 8px hsl(var(--neon-purple)),
+      0 0 20px hsl(var(--neon-purple) / 0.7),
+      0 0 40px hsl(var(--neon-purple) / 0.4);
+  }
+
+  /* ═══ ICON BUTTONS — Arcane style ═══ */
   .icon-btn {
     @apply p-3 rounded-lg transition-all duration-300 flex items-center justify-center relative;
     @apply text-muted-foreground hover:text-primary;
@@ -259,8 +286,8 @@
   .icon-btn::before {
     content: '';
     @apply absolute inset-0 rounded-lg opacity-0 transition-opacity;
-    background: linear-gradient(135deg, hsl(var(--neon-cyan) / 0.1), transparent);
-    border: 1px solid hsl(var(--neon-cyan) / 0.3);
+    background: linear-gradient(135deg, hsl(var(--arcane-gold) / 0.1), transparent);
+    border: 1px solid hsl(var(--arcane-gold) / 0.3);
   }
 
   .icon-btn:hover::before {
@@ -273,45 +300,78 @@
 
   .icon-btn-active::before {
     @apply opacity-100;
-    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.3);
+    box-shadow: 0 0 18px hsl(var(--arcane-gold) / 0.3);
   }
 
-  /* Boss Card - Cyber */
+  /* ═══ SKILL CARD — Blizzard style ═══ */
+  .skill-card {
+    @apply relative overflow-hidden rounded-xl border-2 transition-all duration-300;
+    border-color: hsl(var(--stone-border));
+    background: linear-gradient(160deg, hsl(222 30% 8%) 0%, hsl(222 28% 6%) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.04),
+      inset 0 -2px 4px rgba(0,0,0,0.5);
+  }
+
+  .skill-card:hover {
+    border-color: hsl(var(--arcane-gold) / 0.5);
+    box-shadow:
+      0 0 25px hsl(var(--arcane-gold) / 0.12),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+    transform: translateY(-2px);
+  }
+
+  .skill-card-genius {
+    @apply skill-card;
+    border-color: hsl(220 80% 55% / 0.4);
+  }
+
+  .skill-card-excellence {
+    @apply skill-card;
+    border-color: hsl(var(--neon-green) / 0.3);
+  }
+
+  .skill-card-impact {
+    @apply skill-card;
+    border-color: hsl(var(--arcane-gold) / 0.3);
+  }
+
+  /* ═══ BOSS CARD ═══ */
   .boss-card {
     @apply glass-card p-6 relative overflow-hidden;
   }
 
   .boss-card::after {
     content: '';
-    @apply absolute inset-0 opacity-20 pointer-events-none;
-    background: 
-      linear-gradient(180deg, transparent 0%, hsl(var(--hp-bar) / 0.3) 100%),
-      repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(var(--hp-bar) / 0.1) 2px, hsl(var(--hp-bar) / 0.1) 4px);
+    @apply absolute inset-0 opacity-15 pointer-events-none;
+    background:
+      linear-gradient(180deg, transparent 0%, hsl(var(--blood-red) / 0.3) 100%),
+      repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(var(--blood-red) / 0.08) 2px, hsl(var(--blood-red) / 0.08) 4px);
   }
 
-  /* Quest Item - Cyber */
+  /* ═══ QUEST ITEM ═══ */
   .quest-item {
     @apply glass-card p-4 flex items-center gap-4 transition-all duration-300 cursor-pointer;
   }
 
   .quest-item:hover {
-    border-color: hsl(var(--neon-cyan) / 0.5);
-    box-shadow: 0 0 25px hsl(var(--neon-cyan) / 0.2);
+    border-color: hsl(var(--arcane-gold) / 0.5);
+    box-shadow: 0 0 20px hsl(var(--arcane-gold) / 0.12);
   }
 
   .quest-item-completed {
     @apply quest-item opacity-60;
-    border-color: hsl(var(--energy-high) / 0.4);
+    border-color: hsl(var(--neon-green) / 0.4);
   }
 
-  /* Loot Item */
+  /* ═══ LOOT / ARSENAL ═══ */
   .loot-item {
     @apply glass-card p-4 text-center transition-all duration-300;
   }
 
   .loot-item:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 40px hsl(var(--neon-purple) / 0.2);
+    box-shadow: 0 10px 40px hsl(var(--arcane-gold) / 0.18);
   }
 
   .loot-item-locked {
@@ -320,11 +380,11 @@
 
   .loot-item-unlocked {
     @apply loot-item;
-    border-color: hsl(var(--gold-cyber) / 0.5);
-    box-shadow: 0 0 30px hsl(var(--gold-cyber) / 0.2);
+    border-color: hsl(var(--arcane-gold) / 0.5);
+    box-shadow: 0 0 30px hsl(var(--arcane-gold) / 0.18);
   }
 
-  /* Agent Card */
+  /* ═══ AGENT CARD ═══ */
   .agent-card {
     @apply glass-card-purple p-4;
   }
@@ -332,7 +392,7 @@
   .agent-status-active {
     @apply w-3 h-3 rounded-full;
     background: hsl(var(--neon-green));
-    box-shadow: 0 0 15px hsl(var(--neon-green));
+    box-shadow: 0 0 12px hsl(var(--neon-green));
     animation: pulse-glow 2s infinite;
   }
 
@@ -342,16 +402,17 @@
     box-shadow: 0 0 10px hsl(var(--neon-orange));
   }
 
-  /* Cyber Button */
+  /* ═══ ARCANE BUTTON (substitui cyber-btn) ═══ */
   .cyber-btn {
     @apply relative px-6 py-3 font-semibold uppercase tracking-wider transition-all duration-300;
     @apply bg-transparent border-2 border-primary text-primary;
-    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    font-family: 'Cinzel', serif;
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
   }
 
   .cyber-btn:hover {
     @apply bg-primary text-primary-foreground;
-    box-shadow: 0 0 30px hsl(var(--neon-cyan) / 0.5);
+    box-shadow: 0 0 30px hsl(var(--arcane-gold) / 0.5);
   }
 
   .cyber-btn-magenta {
@@ -363,19 +424,7 @@
     box-shadow: 0 0 30px hsl(var(--neon-magenta) / 0.5);
   }
 
-  /* Scanline Effect */
-  .scanlines {
-    @apply pointer-events-none fixed inset-0 z-50;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.1) 2px,
-      rgba(0, 0, 0, 0.1) 4px
-    );
-  }
-
-  /* Cyber Input */
+  /* ═══ ARCANE INPUT ═══ */
   .cyber-input {
     @apply w-full px-4 py-3 bg-muted/50 border border-border rounded-lg;
     @apply focus:outline-none focus:border-primary transition-all duration-300;
@@ -383,7 +432,37 @@
   }
 
   .cyber-input:focus {
-    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.2);
+    box-shadow: 0 0 20px hsl(var(--arcane-gold) / 0.2);
+  }
+
+  /* ═══ SKILL ART CARD — Blizzard Vibes ═══ */
+  .skill-art-card {
+    @apply relative overflow-hidden rounded-2xl cursor-pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .skill-art-card::before {
+    content: '';
+    @apply absolute inset-0 z-10;
+    background: linear-gradient(to top, hsl(222 28% 5% / 0.95) 0%, hsl(222 28% 5% / 0.3) 50%, transparent 100%);
+  }
+
+  .skill-art-card:hover {
+    transform: scale(1.03) translateY(-4px);
+    box-shadow:
+      0 20px 60px rgba(0,0,0,0.6),
+      0 0 40px hsl(var(--arcane-gold) / 0.2);
+  }
+
+  .skill-art-card__border {
+    @apply absolute inset-0 rounded-2xl pointer-events-none z-20;
+    border: 2px solid hsl(var(--arcane-gold) / 0.2);
+    transition: border-color 0.3s;
+  }
+
+  .skill-art-card:hover .skill-art-card__border {
+    border-color: hsl(var(--arcane-gold) / 0.6);
+    box-shadow: inset 0 0 20px hsl(var(--arcane-gold) / 0.1);
   }
 }
 
@@ -404,12 +483,20 @@
     color: hsl(var(--neon-green));
   }
 
+  .text-neon-orange {
+    color: hsl(var(--neon-orange));
+  }
+
   .text-gold-cyber {
-    color: hsl(var(--gold-cyber));
+    color: hsl(var(--arcane-gold));
+  }
+
+  .text-gold {
+    color: hsl(var(--arcane-gold));
   }
 
   .bg-cyber-grid {
-    background-color: hsl(var(--cyber-grid));
+    background-color: hsl(222 25% 9%);
   }
 
   .border-neon-cyan {
@@ -419,91 +506,108 @@
   .border-neon-magenta {
     border-color: hsl(var(--neon-magenta));
   }
+
+  /* ARCANE DIVIDER — separador ornamental */
+  .arcane-divider {
+    @apply relative flex items-center my-4;
+  }
+
+  .arcane-divider::before,
+  .arcane-divider::after {
+    content: '';
+    @apply flex-1 h-px;
+    background: linear-gradient(90deg, transparent, hsl(var(--arcane-gold) / 0.3), transparent);
+  }
+
+  .arcane-divider span {
+    @apply mx-3 text-xs font-mono;
+    color: hsl(var(--arcane-gold) / 0.6);
+  }
 }
 
-/* Animations */
+/* ═══════════════ ANIMATIONS ═══════════════ */
+
 @keyframes pulse-glow {
   0%, 100% {
     opacity: 1;
-    box-shadow: 0 0 15px hsl(var(--neon-green));
+    box-shadow: 0 0 12px hsl(var(--neon-green));
   }
   50% {
     opacity: 0.7;
-    box-shadow: 0 0 25px hsl(var(--neon-green));
+    box-shadow: 0 0 24px hsl(var(--neon-green));
   }
 }
 
 @keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes arcane-pulse {
   0%, 100% {
-    transform: translateY(0);
+    box-shadow: 0 0 10px hsl(var(--arcane-gold) / 0.3);
   }
   50% {
-    transform: translateY(-10px);
+    box-shadow: 0 0 25px hsl(var(--arcane-gold) / 0.6), 0 0 50px hsl(var(--arcane-gold) / 0.2);
   }
+}
+
+@keyframes ember-flicker {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  25% { opacity: 0.85; transform: scale(1.05) rotate(-2deg); }
+  50% { opacity: 0.9; transform: scale(0.98) rotate(1deg); }
+  75% { opacity: 0.95; transform: scale(1.02) rotate(-1deg); }
 }
 
 @keyframes glitch {
-  0%, 90%, 100% {
-    transform: translate(0);
-  }
-  92% {
-    transform: translate(-2px, 2px);
-  }
-  94% {
-    transform: translate(2px, -2px);
-  }
-  96% {
-    transform: translate(-2px, -2px);
-  }
-  98% {
-    transform: translate(2px, 2px);
-  }
+  0%, 90%, 100% { transform: translate(0); }
+  92% { transform: translate(-2px, 2px); }
+  94% { transform: translate(2px, -2px); }
+  96% { transform: translate(-2px, -2px); }
+  98% { transform: translate(2px, 2px); }
 }
 
-@keyframes data-stream {
-  0% {
-    background-position: 0% 0%;
-  }
-  100% {
-    background-position: 0% 100%;
-  }
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
-@keyframes neon-flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    opacity: 1;
-  }
-  20%, 24%, 55% {
-    opacity: 0.4;
-  }
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+@keyframes cyber-scan {
+  0% { top: -2px; }
+  100% { top: 100%; }
 }
 
-.animate-glitch {
-  animation: glitch 0.5s ease-in-out;
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-glitch { animation: glitch 0.5s ease-in-out; }
+.animate-arcane-pulse { animation: arcane-pulse 2.5s ease-in-out infinite; }
+.animate-ember { animation: ember-flicker 1.5s ease-in-out infinite; }
+.animate-fade-in { animation: fade-in 0.4s ease-out forwards; }
+.animate-cyber-scan { animation: cyber-scan 3s linear infinite; }
+
+/* Shimmer effect (skill hover, chest) */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(var(--arcane-gold) / 0.15) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
 }
 
-.animate-flicker {
-  animation: neon-flicker 3s linear infinite;
-}
-
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: hsl(var(--background));
-}
-
+/* Scrollbar — arcane gold */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--neon-cyan) / 0.3);
+  background: hsl(var(--arcane-gold) / 0.25);
   border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--neon-cyan) / 0.5);
+  background: hsl(var(--arcane-gold) / 0.45);
 }
