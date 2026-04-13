@@ -1,29 +1,26 @@
 import { useState, useEffect } from "react";
 import { CurrentQuestPanel } from "./CurrentQuestPanel";
-import { Cpu, Activity, Flame, Target, Zap, TrendingUp, AlertCircle, ChevronRight, Calendar } from "lucide-react";
-import { useSharedBrain } from "../../hooks/useSharedBrain";
+import { JarvisTerminal } from "@/components/jarvis/JarvisTerminal";
+import { useKAIROS } from "@/hooks/useKAIROS";
+import { useSharedBrain } from "@/hooks/useSharedBrain";
+import {
+  Cpu, Activity, Flame, Target, Zap, TrendingUp,
+  AlertCircle, ChevronRight, Calendar, Bot, Loader2,
+  Wifi, WifiOff, Skull, Shield, RotateCcw
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface DashboardProps {
   onQuestlineClick?: (questlineId: string) => void;
 }
 
-// Experia Empire roadmap — fases sequenciais
-const imperiumRoadmap = [
-  { id: "prd", label: "PRD Experia", emoji: "📄", status: "active", hint: "PRÓXIMA MISSÃO 🔵" },
-  { id: "ds", label: "Design System", emoji: "🎨", status: "locked", hint: "Após PRD" },
-  { id: "digital", label: "Presença Digital", emoji: "🌐", status: "locked", hint: "LP + Insta + WA" },
-  { id: "cases", label: "3 Cases Locais", emoji: "📸", status: "locked", hint: "15 dias" },
-  { id: "calls", label: "Cold Calls", emoji: "📞", status: "locked", hint: "Com cases na mão" },
-  { id: "contrato", label: "1º Contrato", emoji: "💰", status: "locked", hint: "Boss do IPTU sangra" },
-];
-
-// Countdown para cold calls (~15 dias a partir de 11/04/2026)
 const coldCallDeadline = new Date("2026-04-26");
 
 export function Dashboard({ onQuestlineClick }: DashboardProps = {}) {
   const { xp, focoGems, streak, realCoins, availableAttributePoints, level } = useSharedBrain();
+  const kairos = useKAIROS(30000);
   const [daysUntilCalls, setDaysUntilCalls] = useState(0);
+  const [showJarvis, setShowJarvis] = useState(false);
 
   useEffect(() => {
     const diff = Math.ceil((coldCallDeadline.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
@@ -31,9 +28,29 @@ export function Dashboard({ onQuestlineClick }: DashboardProps = {}) {
   }, []);
 
   const xpInLevel = xp % 100;
-  const xpPercentage = xpInLevel;
   const seasonStart = new Date("2026-04-10");
   const seasonDay = Math.max(1, Math.floor((Date.now() - seasonStart.getTime()) / (1000 * 60 * 60 * 24)) + 1);
+
+  // Bosses from roadmap.md via API (dynamic)
+  const activeBosses = kairos.bosses.filter(b => !b.status.includes("✅"));
+  const completedBosses = kairos.bosses.filter(b => b.status.includes("✅"));
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'P0': return 'text-red-400 border-red-500/40 bg-red-500/5';
+      case 'P1': return 'text-orange-400 border-orange-500/40 bg-orange-500/5';
+      case 'P2': return 'text-yellow-400 border-yellow-500/40 bg-yellow-500/5';
+      default: return 'text-muted-foreground border-border bg-muted/10';
+    }
+  };
+
+  const getStatusEmoji = (status: string) => {
+    if (status.includes('🔥')) return '🔥';
+    if (status.includes('✅')) return '✅';
+    if (status.includes('🧊')) return '🧊';
+    if (status.includes('🔧')) return '🔧';
+    return '📋';
+  };
 
   return (
     <div className="space-y-6">
@@ -53,6 +70,16 @@ export function Dashboard({ onQuestlineClick }: DashboardProps = {}) {
                 GABRIEL OS v4.1 // LVL {level} // T1-2026 · DIA {seasonDay}/90
               </span>
               <Activity className="w-4 h-4 text-neon-green animate-pulse" />
+              {/* Backend status indicator */}
+              {kairos.backendOnline ? (
+                <span className="flex items-center gap-1 text-[10px] font-mono text-neon-green">
+                  <Wifi className="w-3 h-3" /> LIVE
+                </span>
+              ) : (
+                <span className="flex items-center gap-1 text-[10px] font-mono text-red-400">
+                  <WifiOff className="w-3 h-3" /> OFFLINE
+                </span>
+              )}
             </div>
 
             <h2 className="font-display text-4xl text-primary glow-cyan mb-2 uppercase tracking-wider">
@@ -64,10 +91,11 @@ export function Dashboard({ onQuestlineClick }: DashboardProps = {}) {
 
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/30 w-fit">
               <AlertCircle className="w-4 h-4 text-red-400" />
-              <span className="text-sm font-mono text-red-400">T1 FUNDAÇÃO — MODO DE GUERRA ATIVO</span>
+              <span className="text-sm font-mono text-red-400">
+                {kairos.isolationActive ? '🔴 ISOLATION MODE — DEEP WORK ATIVO' : 'T1 FUNDAÇÃO — MODO DE GUERRA ATIVO'}
+              </span>
             </div>
 
-            {/* Quick Stats */}
             <div className="flex items-center gap-3 mt-4 flex-wrap">
               <StatPill icon={Flame} value={`${streak}d`} label="streak" color="text-neon-orange" borderColor="border-neon-orange/30" bgColor="bg-neon-orange/10" />
               <StatPill icon={Zap} value={`${focoGems} GEMS`} label="foco" color="text-blue-400" borderColor="border-blue-400/30" bgColor="bg-blue-500/10" />
@@ -92,7 +120,7 @@ export function Dashboard({ onQuestlineClick }: DashboardProps = {}) {
                   cx="64" cy="64" r="60"
                   stroke="currentColor" strokeWidth="4" fill="transparent"
                   strokeDasharray="377"
-                  strokeDashoffset={377 - (377 * (xpPercentage / 100))}
+                  strokeDashoffset={377 - (377 * (xpInLevel / 100))}
                   className="text-primary transition-all duration-1000"
                 />
               </svg>
@@ -101,78 +129,112 @@ export function Dashboard({ onQuestlineClick }: DashboardProps = {}) {
         </div>
       </div>
 
-      {/* EXPERIA EMPIRE ROADMAP — destaque máximo */}
-      <div className="glass-card p-6 border border-yellow-500/30 bg-yellow-500/5 animate-fade-in">
+      {/* ══ BOSS FIGHTS — Dynamic from roadmap.md ══ */}
+      <div className="glass-card p-6 border border-red-500/20 animate-fade-in">
         <div className="flex items-center justify-between mb-4">
-          <div>
-            <h3 className="font-display text-lg text-yellow-400 uppercase tracking-wide">
-              ⚔️ Experia Empire — Roadmap T1
-            </h3>
-            <p className="text-xs text-muted-foreground mt-1">
-              A sequência que resolve tudo. Siga a ordem.
-            </p>
+          <div className="flex items-center gap-3">
+            <Skull className="w-5 h-5 text-red-400" />
+            <div>
+              <h3 className="font-display text-lg text-red-400 uppercase tracking-wide">
+                Boss Fights Ativas (P0)
+              </h3>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                {kairos.backendOnline
+                  ? `${activeBosses.length} boss(es) ativos · lido do roadmap.md`
+                  : 'Backend offline — inicie: node scripts/dashboard.js'
+                }
+              </p>
+            </div>
           </div>
-          <div className="flex items-center gap-2 text-xs text-orange-400 bg-orange-500/10 border border-orange-500/30 px-3 py-1.5 rounded-lg">
-            <Calendar className="w-3 h-3" />
-            <span className="font-mono">{daysUntilCalls}d até cold calls</span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => kairos.refetch()}
+              className="icon-btn w-7 h-7 text-muted-foreground hover:text-primary"
+              title="Sincronizar roadmap"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+            </button>
+            <div className="flex items-center gap-2 text-xs text-orange-400 bg-orange-500/10 border border-orange-500/30 px-3 py-1.5 rounded-lg">
+              <Calendar className="w-3 h-3" />
+              <span className="font-mono">{daysUntilCalls}d até cold calls</span>
+            </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 overflow-x-auto pb-2">
-          {imperiumRoadmap.map((phase, i) => (
-            <div key={phase.id} className="flex items-center gap-2 flex-shrink-0">
-              <button
-                onClick={() => onQuestlineClick?.("experia")}
-                className={cn(
-                  "flex flex-col items-center p-3 rounded-xl border transition-all text-center min-w-[90px]",
-                  phase.status === "active"
-                    ? "border-yellow-400/70 bg-yellow-500/15 cursor-pointer hover:bg-yellow-500/25"
-                    : "border-border bg-muted/10 opacity-50 cursor-default"
-                )}
+        {kairos.loading ? (
+          <div className="flex items-center justify-center py-8">
+            <Loader2 className="w-5 h-5 text-primary animate-spin mr-2" />
+            <span className="text-sm text-muted-foreground font-mono">Carregando roadmap...</span>
+          </div>
+        ) : activeBosses.length === 0 ? (
+          <div className="flex items-center justify-center py-8 gap-2 text-muted-foreground">
+            <Shield className="w-5 h-5 text-neon-green" />
+            <span className="font-mono text-sm">Nenhum boss ativo — área limpa! 🏆</span>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {activeBosses.map((boss, i) => (
+              <div
+                key={boss.id}
+                className="flex items-center gap-4 p-4 rounded-xl border border-red-500/20 bg-red-500/5 hover:border-red-500/40 transition-all"
+                style={{ animationDelay: `${i * 60}ms` }}
               >
-                <span className="text-2xl mb-1">{phase.emoji}</span>
-                <span className={cn(
-                  "text-xs font-mono font-medium text-center leading-tight",
-                  phase.status === "active" ? "text-yellow-400" : "text-muted-foreground"
-                )}>
-                  {phase.label}
+                <div className="flex-shrink-0 text-xl">{getStatusEmoji(boss.status)}</div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <span className={cn('text-[10px] font-mono font-bold px-2 py-0.5 rounded border', getPriorityColor(boss.priority))}>
+                      {boss.priority}
+                    </span>
+                    <span className="text-xs text-muted-foreground font-mono">{boss.project}</span>
+                    {boss.owner && (
+                      <span className="text-[10px] text-muted-foreground/50 font-mono">{boss.owner}</span>
+                    )}
+                  </div>
+                  <p className="text-sm text-foreground leading-tight">{boss.description}</p>
+                  <p className="text-[10px] text-muted-foreground mt-1 font-mono">{boss.status}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Quests P1/P2 in pipeline */}
+        {kairos.quests.length > 0 && (
+          <div className="mt-4 pt-4 border-t border-border">
+            <p className="text-xs text-muted-foreground font-mono mb-2">PIPELINE (P1–P3)</p>
+            <div className="flex flex-wrap gap-2">
+              {kairos.quests.slice(0, 5).map(q => (
+                <span
+                  key={q.id}
+                  className={cn('text-[10px] font-mono px-2 py-1 rounded border', getPriorityColor(q.priority))}
+                >
+                  [{q.priority}] {q.project}: {q.description.substring(0, 40)}{q.description.length > 40 ? '...' : ''}
                 </span>
-                {phase.status === "active" && (
-                  <span className="text-[9px] text-neon-orange mt-1 font-mono animate-pulse">
-                    {phase.hint}
-                  </span>
-                )}
-              </button>
-              {i < imperiumRoadmap.length - 1 && (
-                <ChevronRight className={cn(
-                  "w-4 h-4 flex-shrink-0",
-                  phase.status === "active" ? "text-yellow-400" : "text-muted-foreground/30"
-                )} />
+              ))}
+              {kairos.quests.length > 5 && (
+                <span className="text-[10px] font-mono text-muted-foreground px-2 py-1">
+                  +{kairos.quests.length - 5} mais
+                </span>
               )}
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Pareto Zones */}
-      <div className="grid grid-cols-4 gap-4">
-        {[
-          { zone: "🔵 Genialidade", desc: "0.8% → 51%", color: "text-blue-400", border: "border-blue-500/30", bg: "bg-blue-500/5", hint: "RAID I SAGRADO" },
-          { zone: "🟢 Excelência", desc: "4% → 64%", color: "text-green-400", border: "border-green-500/30", bg: "bg-green-500/5", hint: "RAID II" },
-          { zone: "🟡 Impacto", desc: "20% → 80%", color: "text-yellow-400", border: "border-yellow-500/30", bg: "bg-yellow-500/5", hint: "Batch 30min" },
-          { zone: "🔴 Vórtex", desc: "Concentrar lixo", color: "text-red-400", border: "border-red-500/30", bg: "bg-red-500/5", hint: "Sexta 14-16h" },
-        ].map((z, i) => (
-          <div key={i} className={cn("glass-card p-4 animate-fade-in border", z.border, z.bg)} style={{ animationDelay: `${i * 80}ms` }}>
-            <div className={cn("text-base font-mono font-bold", z.color)}>{z.zone}</div>
-            <div className="text-xs text-muted-foreground mt-1">{z.desc}</div>
-            <div className={cn("text-[10px] font-mono mt-2 opacity-70", z.color)}>{z.hint}</div>
           </div>
-        ))}
+        )}
       </div>
 
-      {/* Main Content — Quest Panel full width */}
-      <div className="grid grid-cols-1 gap-6">
-        <CurrentQuestPanel />
+      {/* Main Content + JARVIS Terminal lado a lado */}
+      <div className="grid grid-cols-1 xl:grid-cols-5 gap-6">
+        {/* Quest Panel — 3 colunas */}
+        <div className="xl:col-span-3">
+          <CurrentQuestPanel />
+        </div>
+
+        {/* JARVIS Terminal — 2 colunas */}
+        <div className="xl:col-span-2">
+          <JarvisTerminal
+            isolationActive={kairos.isolationActive}
+            className="h-full min-h-[460px]"
+          />
+        </div>
       </div>
 
       {/* Quick Nav Cards */}
@@ -180,13 +242,11 @@ export function Dashboard({ onQuestlineClick }: DashboardProps = {}) {
         {[
           { label: "Questlines", emoji: "📜", desc: "7 ativas · 2 P0", section: "questlines" },
           { label: "Skill Tree", emoji: "🌳", desc: `${availableAttributePoints} pontos disponíveis`, section: "skills" },
-          { label: "Boss Room", emoji: "💀", desc: "R$25.2K em aberto", section: "bosses" },
+          { label: "Boss Room", emoji: "💀", desc: `${activeBosses.length} boss(es) ativos`, section: "bosses" },
         ].map((card) => (
           <button
             key={card.section}
-            onClick={() => onQuestlineClick && card.section !== "questlines"
-              ? undefined
-              : onQuestlineClick?.("")}
+            onClick={() => onQuestlineClick?.(card.section === "questlines" ? "experia" : "")}
             className="glass-card p-4 text-left hover:border-primary/50 transition-all group"
           >
             <div className="text-2xl mb-2">{card.emoji}</div>
